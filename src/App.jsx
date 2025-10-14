@@ -82,6 +82,9 @@ import EditModulePage from './pages/EditModulePage';
 import LessonMod1Dreams from './pages/LessonMod1Dreams';
 import LessonMod2 from './pages/LessonMod2';
 import LessonMod3Protection from './pages/LessonMod3Protection';
+import LessonMod1Education from './pages/LessonMod1Education';
+import LessonMod2NeedsAssessment from './pages/LessonMod2NeedsAssessment';
+import LessonMod3CurriculumDesign from './pages/LessonMod3CurriculumDesign';
 import Chatbot from './pages/Chatbot.jsx';
 
 const queryClient = new QueryClient();
@@ -120,9 +123,16 @@ const App = () => (
                   <Route path="courses/modules/:moduleId/essays/:essayId" element={<EssayInstructorPage />} />
                   <Route path="courses/modules/:moduleId/surveys/:surveyId" element={<SurveyInstructorPage />} />
                   <Route path="courses/modules/:moduleId/units" element={<ModuleUnits />} />
+                  {/* Law Enforcement Training Routes */}
                   <Route path="courses/modules/1/lessons" element={<LessonMod1Dreams />} />
                   <Route path="courses/modules/2/lessons" element={<LessonMod2 />} />
                   <Route path="courses/modules/3/lessons" element={<LessonMod3Protection />} />
+                  
+                  {/* Educator Training Routes */}
+                  <Route path="courses/modules/4/lessons" element={<LessonMod1Education />} />
+                  <Route path="courses/modules/5/lessons" element={<LessonMod2NeedsAssessment />} />
+                  <Route path="courses/modules/6/lessons" element={<LessonMod3CurriculumDesign />} />
+                  
                   <Route path="catalog" element={<Catalog />} />
                   <Route path="catalog/:categoryId" element={<CategoryDetail />} />
                   <Route path="catalog/:courseId/:moduleId/:unitId" element={<CourseLessons />} />
