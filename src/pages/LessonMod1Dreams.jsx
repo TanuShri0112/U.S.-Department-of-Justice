@@ -20,22 +20,12 @@ const LessonMod1Dreams = () => {
   const [currentTTSIndex, setCurrentTTSIndex] = useState(0); // Current topic being read
   const textRef = useRef(null);
 
-  // Language options - Only languages with commonly available voices
+  // Language options - Only languages with commonly available TTS voices
   const languageOptions = React.useMemo(() => ([
     { code: 'en-US', label: '🇺🇸 English (US)' },
     { code: 'en-GB', label: '🇬🇧 English (UK)' },
     { code: 'en-AU', label: '🇦🇺 English (Australia)' },
     { code: 'en-CA', label: '🇨🇦 English (Canada)' },
-    { code: 'hi-IN', label: '🇮🇳 हिन्दी (Hindi)' },
-    { code: 'mr-IN', label: '🇮🇳 मराठी (Marathi)' },
-    { code: 'ta-IN', label: '🇮🇳 தமிழ் (Tamil)' },
-    { code: 'te-IN', label: '🇮🇳 తెలుగు (Telugu)' },
-    { code: 'bn-IN', label: '🇮🇳 বাংলা (Bengali)' },
-    { code: 'gu-IN', label: '🇮🇳 ગુજરાતી (Gujarati)' },
-    { code: 'kn-IN', label: '🇮🇳 ಕನ್ನಡ (Kannada)' },
-    { code: 'ml-IN', label: '🇮🇳 മലയാളം (Malayalam)' },
-    { code: 'pa-IN', label: '🇮🇳 ਪੰਜਾਬੀ (Punjabi)' },
-    { code: 'ur-IN', label: '🇮🇳 اردو (Urdu)' },
     { code: 'fr-FR', label: '🇫🇷 Français (French)' },
     { code: 'fr-CA', label: '🇨🇦 Français (Canada)' },
     { code: 'de-DE', label: '🇩🇪 Deutsch (German)' },
@@ -90,20 +80,8 @@ const LessonMod1Dreams = () => {
         description: 'Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals',
         complete: 'Complete Module'
       },
-      'hi': { 
-        backToModules: 'मà¥‰अ¡à¥अ¯à¥‚अ²à¥अ¸ अªअ° अµअ¾अªअ¸ अœअ¾अअ‚',
-        module1: 'मà¥‰अ¡à¥अ¯à¥‚अ² 1: अ…अªअ¨à¥‡ अ¸अªअ¨à¥‹अ‚ अ•à¥‹ अ¸मअअ¨अ¾',
-        courseTitle: 'अ¸अªअ¨à¥‹अ‚ अ•à¥€ अ°अ•à¥अ·अ¾',
-        description: 'अœअ¾अ¨à¥‡अ‚ अ•अ¿ अ†अªअ•à¥‡ अªअ°अ¿अµअ¾अ° अ•à¥‡ अ­अµअ¿अ·à¥अ¯ अ•à¥‡ अ²अ¿अ अµअ¿अ¤à¥अ¤à¥€अ¯ अ¸à¥अ°अ•à¥अ·अ¾ अ•अ¾ अ•à¥अ¯अ¾ मअ¤अ²अ¬ अ¹à¥ˆ',
-        complete: 'मà¥‰अ¡à¥अ¯à¥‚अ² अªà¥‚अ°अ¾ अ•अ°à¥‡अ‚'
-      },
-      'mr': { 
-        backToModules: 'मà¥‰अ¡à¥अ¯à¥‚अ²à¥अ¸अ•अ¡à¥‡ अªअ°अ¤ अœअ¾',
-        module1: 'मà¥‰अ¡à¥अ¯à¥‚अ² 1: अ¤à¥मअšà¥‡ अ¸à¥अµअªà¥अ¨à¥‡ अ¸मअœà¥‚अ¨ अ˜à¥‡अ£à¥‡',
-        courseTitle: 'अ¸à¥अµअªà¥अ¨अ¾अ‚अšà¥‡ अ¸अ‚अ°अ•à¥अ·अ£',
-        description: 'अ¤à¥मअšà¥अ¯अ¾ अ•à¥अŸà¥अ‚अ¬अ¾अšà¥अ¯अ¾ अ­अµअ¿अ·à¥अ¯अ¾अ¸अ¾अ à¥€ अ†अ°à¥अ¥अ¿अ• अ¸à¥अ°अ•à¥अ·अ¾ मà¥अ¹अ£अœà¥‡ अ•अ¾अ¯ अ¹à¥‡ अœअ¾अ£à¥‚अ¨ अ˜à¥अ¯अ¾अ². अ†मà¥अ¹à¥€ अµà¥अ¯अ¾अµअ¹अ¾अ°अ¿अ• अªअ¾अµअ²à¥‡ अ¸अ¾अ‚अ—à¥‚ अœà¥अ¯अ¾मà¥अ³à¥‡ अ¤à¥मà¥अ¹à¥€ अअ• मअœअ¬à¥‚अ¤ अ†अ°à¥अ¥अ¿अ• अªअ¾अ¯अ¾ अ¤अ¯अ¾अ° अ•अ°à¥‚ अ¶अ•अ¤अ¾ अœà¥‹ अ…अ¨अ¿अ¶à¥अšअ¿अ¤अ¤à¥‡अ¤अ¹à¥€ अ¸à¥अµअªà¥अ¨à¥‡ मअ¾अ°à¥अ—अ¾अµअ° अ à¥‡अµअ¤à¥‹.',
-        complete: 'मà¥‰अ¡à¥अ¯à¥‚अ² अªà¥‚अ°à¥अ£ अ•अ°अ¾'
-      }
+    
+     
     };
     const key = (selectedLang || 'en-US').split('-')[0];
     return map[key] || map['en'];
@@ -524,7 +502,7 @@ const LessonMod1Dreams = () => {
   const pdfUi = React.useMemo(() => {
     if (baseLang === 'hi') return { title: 'अªà¥€अ¡à¥€अअ« अ¦अ¸à¥अ¤अ¾अµà¥‡अœ', open: 'अ–à¥‹अ²à¥‡अ‚', download: 'अ¡अ¾अ‰अ¨अ²à¥‹अ¡' };
     if (baseLang === 'mr') return { title: 'PDF अ¦अ¸à¥अ¤अअµअœ', open: 'अ‰अ˜अ¡अ¾', download: 'अ¡अ¾अ‰अ¨अ²à¥‹अ¡' };
-    return { title: ' ent', open: 'Open', download: 'Download' };
+    return { title: 'Law Enforcement Training Manual', open: 'Open', download: 'Download' };
   }, [baseLang]);
   const pdfUrl = '/assets/Lesson1Understanding_Your_Dream.pdf';
 
@@ -661,11 +639,6 @@ const LessonMod1Dreams = () => {
                 >
                   <optgroup label="🌍 English Variants">
                     {languageOptions.filter(opt => opt.code.startsWith('en-')).map(opt => (
-                    <option key={opt.code} value={opt.code}>{opt.label}</option>
-                  ))}
-                  </optgroup>
-                  <optgroup label="🇮🇳 Indian Languages">
-                    {languageOptions.filter(opt => opt.code.includes('-IN')).map(opt => (
                       <option key={opt.code} value={opt.code}>{opt.label}</option>
                     ))}
                   </optgroup>
@@ -678,7 +651,7 @@ const LessonMod1Dreams = () => {
                   </optgroup>
                   <optgroup label="🌍 Asian Languages">
                     {languageOptions.filter(opt => 
-                      ['ja-', 'ko-', 'zh-', 'th-', 'vi-', 'id-', 'ms-', 'fil-', 'ar-', 'he-', 'fa-', 'hi-PK', 'ur-PK', 'bn-BD', 'si-', 'my-', 'km-', 'lo-', 'mn-', 'ka-', 'hy-', 'az-', 'kk-', 'ky-', 'uz-', 'tg-', 'tk-'].some(prefix => opt.code.startsWith(prefix) || opt.code === prefix)
+                      ['ja-', 'ko-', 'zh-', 'th-', 'vi-', 'id-', 'ms-', 'fil-', 'ar-', 'he-', 'fa-'].some(prefix => opt.code.startsWith(prefix))
                     ).map(opt => (
                       <option key={opt.code} value={opt.code}>{opt.label}</option>
                     ))}

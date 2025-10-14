@@ -55,13 +55,21 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
       return;
     }
     
-    // Special handling for Module 1, 2, and 3 - navigate to lessons page
+    // Special handling for Law Enforcement Training modules (1, 2, 3)
     if (module.id === 1) {
       navigate('/courses/modules/1/lessons');
     } else if (module.id === 2) {
       navigate('/courses/modules/2/lessons');
     } else if (module.id === 3) {
       navigate('/courses/modules/3/lessons');
+    } 
+    // Special handling for Educator Training modules (4, 5, 6)
+    else if (module.id === 4) {
+      navigate('/courses/modules/4/lessons');
+    } else if (module.id === 5) {
+      navigate('/courses/modules/5/lessons');
+    } else if (module.id === 6) {
+      navigate('/courses/modules/6/lessons');
     } else {
       navigate(`/courses/modules/${module.id}/units`);
     }
