@@ -7,24 +7,24 @@ import { Book, Calendar, Users, Copy } from "lucide-react";
 const teachingCourses = [
   {
     id: 1,
-    title: "Banking Basics",
+    title: "LAW ENFORCEMENT TRAINING",
     image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&h=800&fit=crop&auto=format",
     students: 120,
-    modules: 6
+    modules: 3
   },
   {
     id: 2,
-    title: "Protecting Dreams: A Learning Journey with Rakshak Smart",
+    title: "EDUCATOR TRAINING",
     image: "/assets/Course2.PNG",
     students: 95,
-    modules: 5
+    modules: 3
   },
   {
     id: 3,
-    title: "Introduction to Financial Markets",
+    title: "YOUTH ADVOCATE TRAINING",
     image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=800&fit=crop&auto=format",
     students: 110,
-    modules: 7
+    modules: 3
   }
 ];
 

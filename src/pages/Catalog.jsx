@@ -31,14 +31,14 @@ const Catalog = () => {
       name: 'Insurance Fundamentals',
       description: 'Core insurance concepts, policies, and industry knowledge',
       imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&h=300&fit=crop&auto=format',
-      courseCount: 2 // Banking Basics, Introduction to Financial Markets
+      courseCount: 2 // LAW ENFORCEMENT TRAINING, YOUTH ADVOCATE TRAINING
     },
     {
       id: 2,
       name: 'Life Insurance Sales',
       description: 'Life insurance products, sales techniques, and customer engagement',
       imageUrl: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=300&fit=crop&auto=format',
-      courseCount: 1 // Protecting Dreams: A Learning Journey with Rakshak Smart
+      courseCount: 1 // EDUCATOR TRAINING
     },
     {
       id: 3,

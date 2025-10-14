@@ -71,7 +71,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
       }
     }
 
-    document.title = `${newTitle} | PRAMERICA`;
+    document.title = `${newTitle} | U.S. Department of Justice`;
   }, [location.pathname, title, courseId, setCourseTitle]);
 
   return (

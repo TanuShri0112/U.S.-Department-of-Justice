@@ -26,12 +26,12 @@ const Courses = () => {
   const [activeTab, setActiveTab] = useState('courses');
   const navigate = useNavigate();
 
-  // Basic banking courses (3 only)
+  // U.S. Department of Justice Training Courses
   const mockCourses = [
     {
       id: 1,
-      title: "Banking Basics",
-      description: "Core concepts of banking, accounts, deposits, and lending",
+      title: "LAW ENFORCEMENT TRAINING",
+      description: "Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals",
       students: 120,
       duration: "6 weeks",
       level: "Beginner",
@@ -39,12 +39,12 @@ const Courses = () => {
       image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&h=800&fit=crop&auto=format",
       archived: false,
       deleted: false,
-      catalog: "Insurance"
+      catalog: "Law Enforcement"
     },
     {
       id: 2,
-      title: "Protecting Dreams: A Learning Journey with Rakshak Smart",
-      description: "Products, services, KYC, and branch operations in retail banking",
+      title: "EDUCATOR TRAINING",
+      description: "Professional learning program for educators focusing on needs assessment, curriculum design, and module development",
       students: 95,
       duration: "5 weeks",
       level: "Beginner",
@@ -52,12 +52,12 @@ const Courses = () => {
       image: "/assets/Course2.PNG",
       archived: false,
       deleted: false,
-      catalog: "Insurance"
+      catalog: "Education"
     },
     {
       id: 3,
-      title: "Introduction to Financial Markets",
-      description: "Overview of money markets, capital markets, and risk basics",
+      title: "YOUTH ADVOCATE TRAINING",
+      description: "Training program for youth advocates covering advocacy foundations, needs assessment, and program design",
       students: 110,
       duration: "7 weeks",
       level: "Beginner",
@@ -65,7 +65,7 @@ const Courses = () => {
       image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=800&fit=crop&auto=format",
       archived: false,
       deleted: false,
-      catalog: "Insurance"
+      catalog: "Youth Development"
     }
   ];
 

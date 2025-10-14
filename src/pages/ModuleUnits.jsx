@@ -28,78 +28,121 @@ const ModuleUnits = () => {
     mediaFile: null
   });
 
-  const [lessons, setLessons] = useState([
-    {
-      id: 1,
-      title: "Insurance Fundamentals: Policy Types and Coverage",
-      type: 'text',
-      description: "Overview of common insurance policy types, coverage limits, and exclusions with sales talking points.",
-      duration: "15 min",
-      content: "In this lesson, learn key policy types (auto, health, life, commercial) and how to position coverage benefits and exclusions during sales conversations. Includes examples and objection-handling scripts.",
-      videoUrl: '',
-      audioUrl: ''
-    },
-    {
-      id: 2,
-      title: "Insurance Sales Demo Call - Video Walkthrough",
-      type: 'video',
-      description: "Sample insurance sales demo with objection handling and benefit framing.",
-      duration: "25 min",
-      content: "Watch a full demo call illustrating discovery, needs analysis, and closing techniques for insurance products.",
-      videoUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=450&fit=crop&auto=format',
-      audioUrl: ''
-    },
-    {
-      id: 3,
-      title: "Sales Objections Audio Workshop",
-      type: 'audio',
-      description: "Audio coaching on handling common insurance sales objections with scripts.",
-      duration: "18 min",
-      content: "Listen to real objection scenarios (price, coverage confusion, timing) and recommended responses that keep the conversation moving forward.",
-      videoUrl: '',
-      audioUrl: '/placeholder-audio.mp3'
-    },
-    {
-      id: 4,
-      title: "Commercial Insurance Brochure (PDF)",
-      type: 'pdf',
-      description: "Reference PDF for agents to share with prospects.",
-      duration: "10 min",
-      content: "Downloadable brochure covering product features, eligibility, and underwriting guidelines.",
-      videoUrl: '',
-      audioUrl: ''
-    },
-    {
-      id: 4,
-      title: "Strategic Planning Fundamentals",
-      type: 'text',
-      description: "Essential concepts and methodologies for effective strategic business planning.",
-      duration: "20 min",
-      content: "Strategic planning is the cornerstone of successful business operations. This lesson covers:\n\n1. Vision and Mission Development\n- Creating compelling organizational vision statements\n- Defining clear mission objectives\n- Aligning stakeholder interests\n\n2. SWOT Analysis Framework\n- Identifying organizational strengths\n- Recognizing potential weaknesses\n- Exploring market opportunities\n- Assessing competitive threats\n\n3. Goal Setting and KPIs\n- Establishing SMART objectives\n- Developing key performance indicators\n- Creating measurement frameworks\n- Monitoring progress and adjustments",
-      videoUrl: '',
-      audioUrl: ''
-    },
-    {
-      id: 5,
-      title: "Marketing Analytics Video Course",
-      type: 'video',
-      description: "Comprehensive video training on marketing analytics tools and techniques.",
-      duration: "35 min",
-      content: "Master the art of marketing analytics with this comprehensive video course. Learn to track, measure, and optimize your marketing campaigns using industry-standard tools and methodologies. Topics include Google Analytics, conversion tracking, ROI measurement, and data-driven decision making.",
-      videoUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&auto=format',
-      audioUrl: ''
-    },
-    {
-      id: 6,
-      title: "Customer Psychology Audio Series",
-      type: 'audio',
-      description: "Understanding consumer behavior and psychological triggers in marketing.",
-      duration: "28 min",
-      content: "Dive deep into the psychology behind consumer decision-making processes. This audio series explores behavioral economics, cognitive biases, and emotional triggers that influence purchasing decisions. Learn to apply psychological principles to create more effective marketing strategies and improve customer engagement.",
-      videoUrl: '',
-      audioUrl: '/placeholder-audio-2.mp3'
-    }
-  ]);
+  // Get lessons based on moduleId
+  const getLessonsForModule = (moduleId) => {
+    const moduleLessons = {
+      '1': [ // Law Enforcement Training - Module 1
+        {
+          id: 1,
+          title: "Adult Learning in Tactical & Compliance Settings (Andragogy in policing)",
+          type: 'text',
+          description: "Master adult learning principles specifically designed for law enforcement training environments.",
+          duration: "45 min",
+          content: "Understanding andragogy in policing - self-directed learning, problem-centered approaches, and experience-based learning for law enforcement professionals.",
+          videoUrl: '',
+          audioUrl: ''
+        },
+        {
+          id: 2,
+          title: "DOJ & POST Training Requirements",
+          type: 'video',
+          description: "Understand federal and state training requirements for law enforcement officers.",
+          duration: "35 min",
+          content: "Federal DOJ standards and state-specific POST requirements including certification, compliance, and continuing education mandates.",
+          videoUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=450&fit=crop&auto=format',
+          audioUrl: ''
+        },
+        {
+          id: 3,
+          title: "Ethical & Civil Rights Foundations (Use of force, Miranda, implicit bias)",
+          type: 'text',
+          description: "Master the ethical foundations and civil rights principles essential for law enforcement.",
+          duration: "50 min",
+          content: "Constitutional framework, use of force standards, Miranda rights training, and implicit bias recognition strategies for law enforcement professionals.",
+          videoUrl: '',
+          audioUrl: ''
+        },
+        {
+          id: 4,
+          title: "Trauma-informed instruction for first responders",
+          type: 'audio',
+          description: "Learn trauma-informed approaches for training first responders and supporting their mental health.",
+          duration: "40 min",
+          content: "Understanding trauma in law enforcement, trauma-informed training principles, support resources, and intervention strategies for first responders.",
+          videoUrl: '',
+          audioUrl: '/placeholder-audio.mp3'
+        }
+      ],
+      '2': [ // Law Enforcement Training - Module 2
+        {
+          id: 1,
+          title: "Identifying Key Stakeholders in Law Enforcement Training",
+          type: 'text',
+          description: "Learn to identify and analyze key stakeholders in law enforcement training programs.",
+          duration: "30 min",
+          content: "Stakeholder analysis framework including internal and external stakeholders, power/interest matrices, and engagement strategies.",
+          videoUrl: '',
+          audioUrl: ''
+        },
+        {
+          id: 2,
+          title: "Conducting Training Needs Assessment",
+          type: 'video',
+          description: "Master the process of conducting comprehensive training needs assessments.",
+          duration: "45 min",
+          content: "Data collection techniques, assessment frameworks, and analysis methods for identifying law enforcement training needs.",
+          videoUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=450&fit=crop&auto=format',
+          audioUrl: ''
+        },
+        {
+          id: 3,
+          title: "Prioritizing Training Needs and Resource Allocation",
+          type: 'text',
+          description: "Learn to prioritize training needs and effectively allocate resources for maximum impact.",
+          duration: "35 min",
+          content: "Risk-based prioritization, resource allocation strategies, implementation planning, and evaluation methods.",
+          videoUrl: '',
+          audioUrl: ''
+        }
+      ],
+      '3': [ // Law Enforcement Training - Module 3
+        {
+          id: 1,
+          title: "Curriculum Development for Law Enforcement",
+          type: 'text',
+          description: "Master the principles and processes of developing effective law enforcement curricula.",
+          duration: "40 min",
+          content: "Curriculum design principles, development processes, and specialized curriculum areas for law enforcement training.",
+          videoUrl: '',
+          audioUrl: ''
+        },
+        {
+          id: 2,
+          title: "Scenario-Based Training Design",
+          type: 'video',
+          description: "Learn to design and implement effective scenario-based training for law enforcement.",
+          duration: "50 min",
+          content: "Scenario development framework, design principles, implementation strategies, and evaluation methods for realistic training.",
+          videoUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=450&fit=crop&auto=format',
+          audioUrl: ''
+        },
+        {
+          id: 3,
+          title: "Assessment and Evaluation Methods",
+          type: 'text',
+          description: "Master comprehensive assessment and evaluation methods for law enforcement training programs.",
+          duration: "45 min",
+          content: "Formative and summative assessment, evaluation methods, technology integration, and quality assurance strategies.",
+          videoUrl: '',
+          audioUrl: ''
+        }
+      ]
+    };
+    
+    return moduleLessons[moduleId] || moduleLessons['1'];
+  };
+
+  const [lessons, setLessons] = useState(getLessonsForModule(moduleId));
 
   const getTypeIcon = (type) => {
     switch (type) {

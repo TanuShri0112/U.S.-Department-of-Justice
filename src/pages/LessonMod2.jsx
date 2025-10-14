@@ -106,10 +106,10 @@ const LessonMod2 = () => {
         <section className="max-w-4xl mx-auto mb-12">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Lesson 2: Key Benefits & Smart Flexibility
+              Module 2: Stakeholder Analysis & Needs Assessment
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Why this plan stands out for your financial future
+              Identifying key stakeholders and assessing training needs in law enforcement
             </p>
           </div>
 
@@ -118,8 +118,8 @@ const LessonMod2 = () => {
             <div className="aspect-video w-full max-w-4xl mx-auto">
               <iframe
                 className="w-full h-full rounded-xl shadow-lg"
-                src="https://www.youtube.com/embed/3ctoSEQsY54"
-                title="Rakshak Smart Benefits Overview"
+                src="https://www.youtube.com/embed/akZd7s_Kxms?si=tOk4x9ShMo1YZZMZ"
+                title="Stakeholder Analysis & Needs Assessment Overview"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -127,7 +127,7 @@ const LessonMod2 = () => {
             </div>
             <div className="text-center mt-4">
               <p className="text-sm text-gray-500">
-                Watch this overview to understand the key benefits of Rakshak Smart
+                Watch this overview to understand stakeholder analysis and needs assessment in law enforcement training
               </p>
             </div>
           </div>
@@ -136,7 +136,7 @@ const LessonMod2 = () => {
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-semibold text-gray-800">
-                What You'll Learn in This Lesson
+                What You'll Learn in This Module
               </h2>
               
                              {/* Language and Voice Controls */}
@@ -188,37 +188,37 @@ const LessonMod2 = () => {
                    size="sm" 
                    variant="outline" 
                    className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100" 
-                   onClick={() => handleSpeakToggle('lesson-text', 'In this comprehensive lesson, you\'ll discover the unique advantages that make Rakshak Smart an exceptional choice for life insurance protection. We\'ll explore the plan\'s innovative features, flexible premium options, and how it adapts to your changing financial needs throughout different life stages.')}
+                   onClick={() => handleSpeakToggle('lesson-text', 'In this comprehensive module, you\'ll learn how to identify key stakeholders in law enforcement training and conduct thorough needs assessments. We\'ll explore skill gap analysis, training audits, and community consultation methods that ensure training programs meet real-world requirements and public expectations.')}
                  >
                    {speakingBlocks['lesson-text'] ? <Pause className="h-3 w-3 mr-2" /> : <Play className="h-3 w-3 mr-2" />}
                    {speakingBlocks['lesson-text'] ? uiText.stop : uiText.listen}
                  </Button>
                </div>
                <p className="text-gray-700 leading-relaxed">
-                 In this comprehensive lesson, you'll discover the unique advantages that make 
-                 Rakshak Smart an exceptional choice for life insurance protection. We'll explore 
-                 the plan's innovative features, flexible premium options, and how it adapts to 
-                 your changing financial needs throughout different life stages.
+                 In this comprehensive module, you'll learn how to identify key stakeholders in 
+                 law enforcement training and conduct thorough needs assessments. We'll explore 
+                 skill gap analysis, training audits, and community consultation methods that 
+                 ensure training programs meet real-world requirements and public expectations.
                </p>
              </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-blue-50 rounded-lg p-4">
-                <h3 className="font-semibold text-blue-800 mb-2">Key Benefits</h3>
+                <h3 className="font-semibold text-blue-800 mb-2">Stakeholder Analysis</h3>
                 <ul className="text-sm text-blue-700 space-y-1">
-                  <li>• Comprehensive life coverage</li>
-                  <li>• Flexible premium payments</li>
-                  <li>• Assured returns on maturity</li>
-                  <li>• Tax benefits under Section 80C</li>
+                  <li>• Community policing partnerships</li>
+                  <li>• De-escalation skill development</li>
+                  <li>• Youth interaction training</li>
+                  <li>• Public accountability measures</li>
                 </ul>
               </div>
               <div className="bg-green-50 rounded-lg p-4">
-                <h3 className="font-semibold text-green-800 mb-2">Smart Flexibility</h3>
+                <h3 className="font-semibold text-green-800 mb-2">Needs Assessment</h3>
                 <ul className="text-sm text-green-700 space-y-1">
-                  <li>• Adjustable coverage amounts</li>
-                  <li>• Premium holiday options</li>
-                  <li>• Easy policy modifications</li>
-                  <li>• Online account management</li>
+                  <li>• Training audit methodologies</li>
+                  <li>• Field data analysis techniques</li>
+                  <li>• Community consultation processes</li>
+                  <li>• Performance gap identification</li>
                 </ul>
               </div>
                          </div>
@@ -229,62 +229,91 @@ const LessonMod2 = () => {
          <section className="max-w-4xl mx-auto mb-12">
            <div className="bg-white rounded-2xl shadow-lg p-8">
              <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-               Section 2: Audio Narration
+               Section 2: Training Topics Overview
              </h2>
              
-             <div className="space-y-6">
-               {/* Language Selection */}
-               <div>
-                 <label className="block text-lg font-medium text-gray-700 mb-3">
-                   Choose Narration Language
-                 </label>
-                 <select
-                   value={selectedLang}
-                   onChange={(e) => setSelectedLang(e.target.value)}
-                   className="w-full px-4 py-3 border border-gray-300 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                 >
-                   <option value="en-US">🇺🇸 English</option>
-                   <option value="hi-IN">🇮🇳 Hindi</option>
-                   <option value="mr-IN">🇮🇳 Marathi</option>
-                 </select>
-               </div>
-
-               {/* Audio Player */}
-               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 shadow-lg border border-blue-100">
-                 <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                   Listen to Lesson in {selectedLang === 'en-US' ? 'English' : selectedLang === 'hi-IN' ? 'Hindi' : 'Marathi'}
-                 </h3>
-                 
-                 <div className="bg-white rounded-lg p-4 shadow-md">
-                   <audio
-                     controls
-                     className="w-full"
-                     preload="metadata"
-                   >
-                     {selectedLang === 'en-US' && (
-                       <source src="/English.mp3" type="audio/mpeg" />
-                     )}
-                     {selectedLang === 'hi-IN' && (
-                       <source src="/hindi.mp3" type="audio/mpeg" />
-                     )}
-                     {selectedLang === 'mr-IN' && (
-                       <source src="/ma.mp3" type="audio/mpeg" />
-                     )}
-                     Your browser does not support the audio element.
-                   </audio>
-                   
-                   <div className="mt-3 text-sm text-gray-600">
-                     <p className="flex items-center gap-2">
-                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                       {selectedLang === 'en-US' && 'High-quality English narration with clear pronunciation'}
-                       {selectedLang === 'hi-IN' && 'स्पष्ट उच्चारण के साथ उच्च गुणवत्ता वाली हिंदी कथा'}
-                       {selectedLang === 'mr-IN' && 'स्पष्ट उच्चारणासह उच्च गुणवत्तेची मराठी कथा'}
-                     </p>
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+               {/* Topic 2.1: Identifying Skill Gaps */}
+               <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200">
+                 <div className="flex items-center mb-4">
+                   <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                     <span className="text-white text-lg">🎯</span>
+                   </div>
+                   <div>
+                     <h3 className="text-lg font-semibold text-blue-800">Topic 2.1</h3>
+                     <p className="text-sm text-blue-600">Skill Gap Analysis</p>
+                   </div>
+                 </div>
+                 <div className="space-y-3">
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">Community Policing</h4>
+                     <p className="text-sm text-gray-600">Building trust and partnerships with community members</p>
+                   </div>
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">De-escalation</h4>
+                     <p className="text-sm text-gray-600">Techniques for reducing tension and conflict</p>
+                   </div>
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">Youth Interaction</h4>
+                     <p className="text-sm text-gray-600">Effective communication with young people</p>
                    </div>
                  </div>
                </div>
 
+               {/* Topic 2.2: Training Audits */}
+               <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 border border-green-200">
+                 <div className="flex items-center mb-4">
+                   <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                     <span className="text-white text-lg">📊</span>
+                   </div>
+                   <div>
+                     <h3 className="text-lg font-semibold text-green-800">Topic 2.2</h3>
+                     <p className="text-sm text-green-600">Training Audits</p>
+                   </div>
+                 </div>
+                 <div className="space-y-3">
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">Field Data Collection</h4>
+                     <p className="text-sm text-gray-600">Gathering real-world performance data</p>
+                   </div>
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">Performance Metrics</h4>
+                     <p className="text-sm text-gray-600">Measuring training effectiveness</p>
+                   </div>
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">Audit Reports</h4>
+                     <p className="text-sm text-gray-600">Documenting findings and recommendations</p>
+                   </div>
+                 </div>
                </div>
+
+               {/* Topic 2.3: Community Consultation */}
+               <div className="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6 border border-purple-200">
+                 <div className="flex items-center mb-4">
+                   <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                     <span className="text-white text-lg">🤝</span>
+                   </div>
+                   <div>
+                     <h3 className="text-lg font-semibold text-purple-800">Topic 2.3</h3>
+                     <p className="text-sm text-purple-600">Community Consultation</p>
+                   </div>
+                 </div>
+                 <div className="space-y-3">
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">Public Input</h4>
+                     <p className="text-sm text-gray-600">Engaging community in training design</p>
+                   </div>
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">Accountability</h4>
+                     <p className="text-sm text-gray-600">Ensuring transparency in training processes</p>
+                   </div>
+                   <div className="bg-white rounded-lg p-3 shadow-sm">
+                     <h4 className="font-medium text-gray-800 mb-2">Feedback Loops</h4>
+                     <p className="text-sm text-gray-600">Continuous improvement mechanisms</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
            </div>
          </section>
 
@@ -316,7 +345,7 @@ const LessonMod2 = () => {
              <div className="flex items-center justify-between gap-3">
                <DialogTitle className="text-xl font-bold flex items-center gap-3 min-w-0">
                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-700 text-sm">👁️</span>
-                 <span className="truncate">Lesson 2: Key Benefits & Smart Flexibility</span>
+                 <span className="truncate">Module 2: Stakeholder Analysis & Needs Assessment</span>
                </DialogTitle>
                <div className="flex items-center gap-2 flex-wrap bg-gray-50 border rounded-lg px-3 py-2">
                  <label className="text-xs text-gray-600" title={uiText.language}>
@@ -363,10 +392,10 @@ const LessonMod2 = () => {
              <div className="max-w-4xl mx-auto">
                <div className="text-center mb-8">
                  <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                   Lesson 2: Key Benefits & Smart Flexibility
+                   Module 2: Stakeholder Analysis & Needs Assessment
                  </h1>
                  <p className="text-xl text-gray-600 leading-relaxed">
-                   Why this plan stands out for your financial future
+                   Identifying key stakeholders and assessing training needs in law enforcement
                  </p>
                </div>
                
@@ -376,163 +405,193 @@ const LessonMod2 = () => {
                      size="sm" 
                      variant="outline" 
                      className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100" 
-                     onClick={() => handleSpeakToggle('modal-lesson-text', 'In this comprehensive lesson, you\'ll discover the unique advantages that make Rakshak Smart an exceptional choice for life insurance protection. We\'ll explore the plan\'s innovative features, flexible premium options, and how it adapts to your changing financial needs throughout different life stages.')}
+                     onClick={() => handleSpeakToggle('modal-lesson-text', 'In this comprehensive module, you\'ll learn how to identify key stakeholders in law enforcement training and conduct thorough needs assessments. We\'ll explore skill gap analysis, training audits, and community consultation methods that ensure training programs meet real-world requirements and public expectations.')}
                    >
                      {speakingBlocks['modal-lesson-text'] ? <Pause className="h-3 w-3 mr-2" /> : <Play className="h-3 w-3 mr-2" />}
                      {speakingBlocks['modal-lesson-text'] ? uiText.stop : uiText.listen}
                    </Button>
                  </div>
                  <p className="text-gray-700 leading-relaxed text-lg">
-                   In this comprehensive lesson, you'll discover the unique advantages that make 
-                   Rakshak Smart an exceptional choice for life insurance protection. We'll explore 
-                   the plan's innovative features, flexible premium options, and how it adapts to 
-                   your changing financial needs throughout different life stages.
+                   In this comprehensive module, you'll learn how to identify key stakeholders in 
+                   law enforcement training and conduct thorough needs assessments. We'll explore 
+                   skill gap analysis, training audits, and community consultation methods that 
+                   ensure training programs meet real-world requirements and public expectations.
                  </p>
                </div>
                
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div className="bg-blue-50 rounded-lg p-6">
-                   <h3 className="font-semibold text-blue-800 mb-3 text-lg">Key Benefits</h3>
+                   <h3 className="font-semibold text-blue-800 mb-3 text-lg">Stakeholder Analysis</h3>
                    <ul className="text-blue-700 space-y-2">
                      <li className="flex items-start">
                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                       <span>Comprehensive life coverage</span>
+                       <span>Community policing partnerships</span>
                      </li>
                      <li className="flex items-start">
                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                       <span>Flexible premium payments</span>
+                       <span>De-escalation skill development</span>
                      </li>
                      <li className="flex items-start">
                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                       <span>Assured returns on maturity</span>
+                       <span>Youth interaction training</span>
                      </li>
                      <li className="flex items-start">
                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                       <span>Tax benefits under Section 80C</span>
+                       <span>Public accountability measures</span>
                      </li>
                    </ul>
                  </div>
                  <div className="bg-green-50 rounded-lg p-6">
-                   <h3 className="font-semibold text-green-800 mb-3 text-lg">Smart Flexibility</h3>
+                   <h3 className="font-semibold text-green-800 mb-3 text-lg">Needs Assessment</h3>
                    <ul className="text-green-700 space-y-2">
                      <li className="flex items-start">
                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                       <span>Adjustable coverage amounts</span>
+                       <span>Training audit methodologies</span>
                      </li>
                      <li className="flex items-start">
                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                       <span>Premium holiday options</span>
+                       <span>Field data analysis techniques</span>
                      </li>
                      <li className="flex items-start">
                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                       <span>Easy policy modifications</span>
+                       <span>Community consultation processes</span>
                      </li>
                      <li className="flex items-start">
                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                       <span>Online account management</span>
+                       <span>Performance gap identification</span>
                      </li>
                    </ul>
                  </div>
-               
-                 {/* Section 2 in Modal */}
-                 <div className="border-t pt-8 mt-8">
+               </div>
+              
+               {/* Section 2 in Modal */}
+               <div className="border-t pt-8 mt-8">
                    <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                     Section 2: Audio Narration
+                     Section 2: Training Topics Overview
                    </h2>
                    
-                   <div className="space-y-6">
-                     {/* Language Selection */}
-                     <div>
-                       <label className="block text-lg font-medium text-gray-700 mb-3">
-                         Choose Narration Language
-                       </label>
-                       <select
-                         value={selectedLang}
-                         onChange={(e) => setSelectedLang(e.target.value)}
-                         className="w-full px-4 py-3 border border-gray-300 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                       >
-                         <option value="en-US">🇺🇸 English</option>
-                         <option value="hi-IN">🇮🇳 Hindi</option>
-                         <option value="mr-IN">🇮🇳 Marathi</option>
-                       </select>
-                     </div>
-
-                     {/* Audio Player */}
-                     <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 shadow-lg border border-blue-100">
-                       <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                         Listen to Lesson in {selectedLang === 'en-US' ? 'English' : selectedLang === 'hi-IN' ? 'Hindi' : 'Marathi'}
-                       </h3>
-                       
-                       <div className="bg-white rounded-lg p-4 shadow-md">
-                         <audio
-                           controls
-                           className="w-full"
-                           preload="metadata"
-                         >
-                           {selectedLang === 'en-US' && (
-                             <source src="/English.mp3" type="audio/mpeg" />
-                           )}
-                           {selectedLang === 'hi-IN' && (
-                             <source src="/hindi.mp3" type="audio/mpeg" />
-                           )}
-                           {selectedLang === 'mr-IN' && (
-                             <source src="/ma.mp3" type="audio/mpeg" />
-                           )}
-                           Your browser does not support the audio element.
-                         </audio>
-                         
-                         <div className="mt-3 text-sm text-gray-600">
-                           <p className="flex items-center gap-2">
-                             <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                             {selectedLang === 'en-US' && 'High-quality English narration with clear pronunciation'}
-                             {selectedLang === 'hi-IN' && 'स्पष्ट उच्चारण के साथ उच्च गुणवत्ता वाली हिंदी कथा'}
-                             {selectedLang === 'mr-IN' && 'स्पष्ट उच्चारणासह उच्च गुणवत्तेची मराठी कथा'}
-                           </p>
+                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                     {/* Topic 2.1: Identifying Skill Gaps */}
+                     <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200">
+                       <div className="flex items-center mb-4">
+                         <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                           <span className="text-white text-lg">🎯</span>
+                         </div>
+                         <div>
+                           <h3 className="text-lg font-semibold text-blue-800">Topic 2.1</h3>
+                           <p className="text-sm text-blue-600">Skill Gap Analysis</p>
+                         </div>
+                       </div>
+                       <div className="space-y-3">
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">Community Policing</h4>
+                           <p className="text-sm text-gray-600">Building trust and partnerships with community members</p>
+                         </div>
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">De-escalation</h4>
+                           <p className="text-sm text-gray-600">Techniques for reducing tension and conflict</p>
+                         </div>
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">Youth Interaction</h4>
+                           <p className="text-sm text-gray-600">Effective communication with young people</p>
                          </div>
                        </div>
                      </div>
 
-                     {/* Section 3 in Modal */}
-                     <div className="border-t pt-8 mt-8">
+                     {/* Topic 2.2: Training Audits */}
+                     <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 border border-green-200">
+                       <div className="flex items-center mb-4">
+                         <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                           <span className="text-white text-lg">📊</span>
+                         </div>
+                         <div>
+                           <h3 className="text-lg font-semibold text-green-800">Topic 2.2</h3>
+                           <p className="text-sm text-green-600">Training Audits</p>
+                         </div>
+                       </div>
+                       <div className="space-y-3">
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">Field Data Collection</h4>
+                           <p className="text-sm text-gray-600">Gathering real-world performance data</p>
+                         </div>
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">Performance Metrics</h4>
+                           <p className="text-sm text-gray-600">Measuring training effectiveness</p>
+                         </div>
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">Audit Reports</h4>
+                           <p className="text-sm text-gray-600">Documenting findings and recommendations</p>
+                         </div>
+                       </div>
+                     </div>
+
+                     {/* Topic 2.3: Community Consultation */}
+                     <div className="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6 border border-purple-200">
+                       <div className="flex items-center mb-4">
+                         <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                           <span className="text-white text-lg">🤝</span>
+                         </div>
+                         <div>
+                           <h3 className="text-lg font-semibold text-purple-800">Topic 2.3</h3>
+                           <p className="text-sm text-purple-600">Community Consultation</p>
+                         </div>
+                       </div>
+                       <div className="space-y-3">
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">Public Input</h4>
+                           <p className="text-sm text-gray-600">Engaging community in training design</p>
+                         </div>
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">Accountability</h4>
+                           <p className="text-sm text-gray-600">Ensuring transparency in training processes</p>
+                         </div>
+                         <div className="bg-white rounded-lg p-3 shadow-sm">
+                           <h4 className="font-medium text-gray-800 mb-2">Feedback Loops</h4>
+                           <p className="text-sm text-gray-600">Continuous improvement mechanisms</p>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+               </div>
+
+               {/* Section 3 in Modal */}
+               <div className="border-t pt-8 mt-8">
                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                          Section 3: Video Background
                        </h2>
                        <div className="w-full h-[400px] relative overflow-hidden rounded-xl">
                          <Section3Video />
                        </div>
-                     </div>
+               </div>
 
-                     {/* Section 4 in Modal */}
-                     <div className="border-t pt-8 mt-8">
+               {/* Section 4 in Modal */}
+               <div className="border-t pt-8 mt-8">
                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                          Section 4: Income Growth Chart
                        </h2>
                        <div className="w-full">
                          <IncomeGrowthChart />
                        </div>
-                     </div>
+               </div>
 
-                     {/* Section 5 in Modal */}
-                     <div className="border-t pt-8 mt-8">
+               {/* Section 5 in Modal */}
+               <div className="border-t pt-8 mt-8">
                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                          Section 5: Drag & Drop Challenge
                        </h2>
                        <div className="w-full">
                          <DragDropChallenge />
                        </div>
-                     </div>
+               </div>
 
-                     {/* Section 6 in Modal */}
-                     <div className="border-t pt-8 mt-8">
+               {/* Section 6 in Modal */}
+               <div className="border-t pt-8 mt-8">
                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                          Section 6: Voice Interaction
                        </h2>
                        <div className="w-full">
                          <VoiceInteraction />
                        </div>
-                     </div>
-                   </div>
-                 </div>
                </div>
              </div>
            </div>

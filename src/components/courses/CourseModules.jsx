@@ -35,15 +35,15 @@ const CourseModules = () => {
         
         if (publishedCourse.modules && publishedCourse.modules.length > 0) {
           const imageMap = {
-            'Module 1: Understanding Your Dreams': 'https://feedingonjesus.com/wp-content/uploads/2020/02/dream-journal.jpg',
-            'Module 2: Foundations of Life Insurance': 'https://img-c.udemycdn.com/course/750x422/3001538_f89d_9.jpg',
-            'Module 3: Building Your Protection Plan': 'https://img.etimg.com/thumb/height-360,width-480,imgsize-444020,msid-64589551/buying-insurance-with-a-home-loan-is-not-compulsory-should-you-still-get-it.jpg',
-            'Module 1: Path to Financial Independence': 'https://wealthnation.io/wp-content/uploads/2023/09/financial-independence.webp',
-            'Module 2: Investment Strategies': 'https://d32ijn7u0aqfv4.cloudfront.net/wp/wp-content/uploads/raw/financialcharts-investing-chalkboard-laptop_SOIN19142_1180273_st_1560x880.jpg',
-            'Module 3: Retirement Planning': 'https://smartasset.com/wp-content/uploads/sites/2/2024/06/iStock-1887469204-modified-273b351e-da1d-4cc8-954d-3fbe9dfea2f6.jpg',
-            'Module 1: Family Protection Basics': 'https://static.vecteezy.com/system/resources/previews/007/117/153/non_2x/happy-prosperous-family-in-flowers-mother-father-daughter-son-cuddling-together-near-family-protection-family-conflict-flat-modern-design-illustration-vector.jpg',
-            'Module 2: Health Insurance Essentials': 'https://media.assettype.com/outlookmoney/2025-08-30/dky5i6oy/Health-Insurance-Essentials.png?w=640',
-            'Module 3: Estate Planning': 'https://agamalaw.in/wp-content/uploads/2024/02/09df9b4c-33d0-47c3-a817-bede2f3bb96d.gif'
+            'Module 1: Foundations of Law Enforcement Training in the U.S.': 'https://images.unsplash.com/photo-1520483601560-4b17b0c93a77?w=800&h=600&fit=crop',
+            'Module 2: Stakeholder Analysis & Needs Assessment': 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
+            'Module 3: Customized Curriculum & Scenario Design': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+            'Module 1: Foundations of Professional Learning in Education': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop',
+            'Module 2: Needs Assessment for Schools & Districts': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop',
+            'Module 3: Curriculum & Module Design for Teachers': 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop',
+            'Module 1: Foundations of Youth Advocacy & Development': 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&h=600&fit=crop',
+            'Module 2: Needs Assessment in Youth Advocacy': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop',
+            'Module 3: Designing Advocacy Training Programs': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop'
           };
           const courseModules = publishedCourse.modules.map((module, index) => ({
             id: module.id,
@@ -65,11 +65,11 @@ const CourseModules = () => {
         // Course-specific modules based on courseId
         const getCourseModules = (courseId) => {
           const courseModules = {
-            '1': [ // Protecting Dreams Course
+            '1': [ // Law Enforcement Training
               {
                 id: 1,
-                title: "Module 1: Understanding Your Dreams",
-                description: "Discover what financial security means for your family's future",
+                title: "Module 1: Foundations of Law Enforcement Training in the U.S.",
+                description: "Understanding the core principles and frameworks of law enforcement training",
                 units: 5,
                 assessments: 1,
                 duration: "2 hours",
@@ -78,8 +78,8 @@ const CourseModules = () => {
               },
               {
                 id: 2,
-                title: "Module 2: Foundations of Life Insurance",
-                description: "Understanding the basics and why protection matters",
+                title: "Module 2: Stakeholder Analysis & Needs Assessment",
+                description: "Identifying key stakeholders and assessing training needs in law enforcement",
                 units: 8,
                 assessments: 2,
                 duration: "4 hours",
@@ -88,8 +88,8 @@ const CourseModules = () => {
               },
               {
                 id: 3,
-                title: "Module 3: Building Your Protection Plan",
-                description: "Creating a comprehensive strategy for your family's security",
+                title: "Module 3: Customized Curriculum & Scenario Design",
+                description: "Developing tailored training programs and realistic scenarios for law enforcement",
                 units: 6,
                 assessments: 2,
                 duration: "3 hours",
@@ -97,11 +97,11 @@ const CourseModules = () => {
                 locked: courseType === 'sequential',
               }
             ],
-            '2': [ // Financial Freedom Course
+            '2': [ // Educator Training
               {
                 id: 1,
-                title: "Module 1: Path to Financial Independence",
-                description: "Understanding wealth building and financial planning",
+                title: "Module 1: Foundations of Professional Learning in Education",
+                description: "Core concepts of professional development and educator growth",
                 units: 7,
                 assessments: 2,
                 duration: "3 hours",
@@ -110,8 +110,8 @@ const CourseModules = () => {
               },
               {
                 id: 2,
-                title: "Module 2: Investment Strategies",
-                description: "Smart investment choices for long-term growth",
+                title: "Module 2: Needs Assessment for Schools & Districts",
+                description: "Evaluating educational needs and identifying improvement opportunities",
                 units: 9,
                 assessments: 3,
                 duration: "5 hours",
@@ -120,8 +120,8 @@ const CourseModules = () => {
               },
               {
                 id: 3,
-                title: "Module 3: Retirement Planning",
-                description: "Securing your golden years with proper planning",
+                title: "Module 3: Curriculum & Module Design for Teachers",
+                description: "Creating effective curriculum and training modules for educators",
                 units: 6,
                 assessments: 2,
                 duration: "4 hours",
@@ -129,11 +129,11 @@ const CourseModules = () => {
                 locked: courseType === 'sequential',
               }
             ],
-            '3': [ // Family Security Course
+            '3': [ // Youth Advocate Training
               {
                 id: 1,
-                title: "Module 1: Family Protection Basics",
-                description: "Essential concepts for protecting your loved ones",
+                title: "Module 1: Foundations of Youth Advocacy & Development",
+                description: "Understanding youth development and advocacy principles",
                 units: 6,
                 assessments: 1,
                 duration: "2.5 hours",
@@ -142,8 +142,8 @@ const CourseModules = () => {
               },
               {
                 id: 2,
-                title: "Module 2: Health Insurance Essentials",
-                description: "Understanding health coverage and medical protection",
+                title: "Module 2: Needs Assessment in Youth Advocacy",
+                description: "Identifying and analyzing the needs of youth populations",
                 units: 8,
                 assessments: 2,
                 duration: "4 hours",
@@ -152,8 +152,8 @@ const CourseModules = () => {
               },
               {
                 id: 3,
-                title: "Module 3: Estate Planning",
-                description: "Planning for the future and legacy protection",
+                title: "Module 3: Designing Advocacy Training Programs",
+                description: "Creating comprehensive training programs for youth advocates",
                 units: 7,
                 assessments: 2,
                 duration: "3.5 hours",
@@ -163,20 +163,20 @@ const CourseModules = () => {
             ]
           };
           
-          return courseModules[courseId] || courseModules['1']; // Default to Protecting Dreams
+          return courseModules[courseId] || courseModules['1']; // Default to Law Enforcement Training
         };
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            'Module 1: Understanding Your Dreams': 'https://feedingonjesus.com/wp-content/uploads/2020/02/dream-journal.jpg',
-            'Module 2: Foundations of Life Insurance': 'https://img-c.udemycdn.com/course/750x422/3001538_f89d_9.jpg',
-            'Module 3: Building Your Protection Plan': 'https://img.etimg.com/thumb/height-360,width-480,imgsize-444020,msid-64589551/buying-insurance-with-a-home-loan-is-not-compulsory-should-you-still-get-it.jpg',
-            'Module 1: Path to Financial Independence': 'https://wealthnation.io/wp-content/uploads/2023/09/financial-independence.webp',
-            'Module 2: Investment Strategies': 'https://d32ijn7u0aqfv4.cloudfront.net/wp/wp-content/uploads/raw/financialcharts-investing-chalkboard-laptop_SOIN19142_1180273_st_1560x880.jpg',
-            'Module 3: Retirement Planning': 'https://smartasset.com/wp-content/uploads/sites/2/2024/06/iStock-1887469204-modified-273b351e-da1d-4cc8-954d-3fbe9dfea2f6.jpg',
-            'Module 1: Family Protection Basics': 'https://static.vecteezy.com/system/resources/previews/007/117/153/non_2x/happy-prosperous-family-in-flowers-mother-father-daughter-son-cuddling-together-near-family-protection-family-conflict-flat-modern-design-illustration-vector.jpg',
-            'Module 2: Health Insurance Essentials': 'https://media.assettype.com/outlookmoney/2025-08-30/dky5i6oy/Health-Insurance-Essentials.png?w=640',
-            'Module 3: Estate Planning': 'https://agamalaw.in/wp-content/uploads/2024/02/09df9b4c-33d0-47c3-a817-bede2f3bb96d.gif'
+            'Module 1: Foundations of Law Enforcement Training in the U.S.': 'https://images.unsplash.com/photo-1520483601560-4b17b0c93a77?w=800&h=600&fit=crop',
+            'Module 2: Stakeholder Analysis & Needs Assessment': 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
+            'Module 3: Customized Curriculum & Scenario Design': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+            'Module 1: Foundations of Professional Learning in Education': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop',
+            'Module 2: Needs Assessment for Schools & Districts': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop',
+            'Module 3: Curriculum & Module Design for Teachers': 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop',
+            'Module 1: Foundations of Youth Advocacy & Development': 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&h=600&fit=crop',
+            'Module 2: Needs Assessment in Youth Advocacy': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop',
+            'Module 3: Designing Advocacy Training Programs': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop'
           };
           return { ...m, image: titleToImage[m.title] };
         });
