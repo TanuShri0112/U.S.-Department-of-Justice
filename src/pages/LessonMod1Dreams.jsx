@@ -744,8 +744,34 @@ const LessonMod1Dreams = () => {
             </div>
           </div>
         </section>
+
+        {/* Section 2: PDF Document - MOVED TO RESOURCES SECTION */}
+        <section className="max-w-4xl mx-auto mb-12">
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-lg font-medium">{pdfUi.title}</h3>
+              <div className="flex items-center gap-2">
+                <Button asChild variant="outline" size="sm">
+                  <a href={pdfUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2">
+                    <ExternalLink className="h-4 w-4" /> {pdfUi.open}
+                  </a>
+                </Button>
+                <Button asChild size="sm">
+                  <a href={pdfUrl} download className="flex items-center gap-2">
+                    <FileDown className="h-4 w-4" /> {pdfUi.download}
+                  </a>
+                </Button>
               </div>
+            </div>
+            <div className="rounded-lg overflow-hidden border bg-white">
+              {/* PDF Viewer - Like Module 2 */}
               <div className="w-full h-[60vh]">
+                <iframe
+                  src={pdfUrl}
+                  className="w-full h-full border-0"
+                  title="Lesson 1 Understanding PDF"
+                  frameBorder="0"
+                >
                   <p className="p-4 text-gray-600">
                     {baseLang === 'hi' ? 'अ†अªअ•अ¾ अ¬à¥अ°अ¾अ‰अœअ¼अ° PDF अ¨अ¹à¥€अ‚ अ¦अ¿अ–अ¾ अ¸अ•अ¤अ¾à¥¤' : 
                      baseLang === 'mr' ? 'अ¤à¥मअšअ¾ अ¬à¥अ°अ¾अ‰अœअ¼अ° PDF अ¦अ¾अ–अµà¥‚ अ¶अ•अ¤ अ¨अ¾अ¹à¥€.' : 
@@ -760,6 +786,18 @@ const LessonMod1Dreams = () => {
                     </a>
                     {baseLang === 'hi' ? 'PDF अ¦à¥‡अ–अ¨à¥‡ अ•à¥‡ अ²अ¿अ' : baseLang === 'mr' ? 'PDF अªअ¹अ£à¥अ¯अ¾अ¸अ¾अ à¥€' : 'to view the PDF'}
                   </p>
+                </iframe>
+              </div>
+              
+
+            </div>
+            <div className="mt-3 text-sm text-gray-500 text-center">
+              {baseLang === 'hi' ? 'PDF अ«अ¼अ¾अ‡अ²: Lesson1Understanding_Your_Dream.pdf' : 
+               baseLang === 'mr' ? 'PDF अ«अ¾अˆअ²: Lesson1Understanding_Your_Dream.pdf' : 
+               'PDF File: Lesson1Understanding_Your_Dream.pdf'}
+            </div>
+          </div>
+        </section>
 
         {/* TTS Section */}
         <section className="max-w-4xl mx-auto mb-12">

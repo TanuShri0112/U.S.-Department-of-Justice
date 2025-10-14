@@ -293,7 +293,7 @@ const LessonMod3Protection = () => {
       <div className="container mx-auto px-6 py-8">
         {/* Section 1: Introduction - Image 1 Style */}
         <section className="max-w-4xl mx-auto mb-12">
-          <div className="bg-gradient-to-br from-slate-500 to-slate-600 rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl shadow-lg overflow-hidden">
             {/* Yellow bar separator */}
             <div className="h-1 bg-yellow-400"></div>
             
@@ -333,7 +333,7 @@ const LessonMod3Protection = () => {
                 </Button>
               </div>
                   <div className="flex-1 bg-gray-200 rounded-full h-2">
-                    <div className="bg-slate-600 h-2 rounded-full" style={{width: '30%'}}></div>
+                    <div className="bg-blue-600 h-2 rounded-full" style={{width: '30%'}}></div>
             </div>
                   <span className="text-sm text-gray-600">0:45</span>
                   <span className="text-sm text-gray-600">1x</span>
@@ -399,7 +399,7 @@ const LessonMod3Protection = () => {
                    </Button>
                  </div>
                   <div className="flex-1 bg-gray-300 rounded-full h-1">
-                    <div className="bg-slate-600 h-1 rounded-full" style={{width: '25%'}}></div>
+                    <div className="bg-blue-600 h-1 rounded-full" style={{width: '25%'}}></div>
                </div>
                   <span className="text-sm text-gray-600">0:22</span>
                   <span className="text-sm text-gray-600">1x</span>
@@ -415,7 +415,7 @@ const LessonMod3Protection = () => {
         <section className="max-w-4xl mx-auto mb-12">
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
             {/* Header */}
-            <div className="bg-gradient-to-r from-slate-600 to-slate-700 text-white p-6">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
               <h2 className="text-2xl font-bold text-center">
                 {baseLang === 'hi' ? 'इस पाठ का उद्देश्य' : baseLang === 'mr' ? 'या धड्याचा उद्देश्य' : 'Purpose of This Lesson'}
             </h2>
@@ -466,7 +466,7 @@ const LessonMod3Protection = () => {
                   }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-slate-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
                       {item.number}
                     </div>
                     <p className="text-gray-700 leading-relaxed">{item.text}</p>
@@ -495,7 +495,7 @@ const LessonMod3Protection = () => {
                 </Button>
                   </div>
                   <div className="flex-1 bg-gray-300 rounded-full h-1">
-                    <div className="bg-slate-600 h-1 rounded-full" style={{width: '35%'}}></div>
+                    <div className="bg-blue-600 h-1 rounded-full" style={{width: '35%'}}></div>
                 </div>
                 <span className="text-sm text-gray-600">0:36</span>
                 <span className="text-sm text-gray-600">1x</span>
@@ -545,7 +545,7 @@ const LessonMod3Protection = () => {
                 </Button>
                   </div>
                   <div className="flex-1 bg-gray-300 rounded-full h-1">
-                    <div className="bg-slate-600 h-1 rounded-full" style={{width: '20%'}}></div>
+                    <div className="bg-blue-600 h-1 rounded-full" style={{width: '20%'}}></div>
                       </div>
                   <span className="text-sm text-gray-600">0:04</span>
                   <span className="text-sm text-gray-600">1x</span>
@@ -555,15 +555,15 @@ const LessonMod3Protection = () => {
                   </div>
 
               {/* Image/Visual Content */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 p-8 flex items-center justify-center">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-24 h-24 bg-slate-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Scale className="w-12 h-12 text-white" strokeWidth={2} />
                   </div>
-                  <h3 className="text-slate-700 font-semibold text-lg mb-2">
+                  <h3 className="text-blue-800 font-semibold text-lg mb-2">
                     {baseLang === 'hi' ? 'न्याय' : baseLang === 'mr' ? 'न्याय' : 'Justice'}
                   </h3>
-                  <p className="text-slate-600 text-sm">
+                  <p className="text-blue-700 text-sm">
                     {baseLang === 'hi' ? 'निष्पक्ष प्रक्रिया' : baseLang === 'mr' ? 'निष्पक्ष प्रक्रिया' : 'Fair Process'}
                   </p>
                 </div>
@@ -633,15 +633,15 @@ const LessonMod3Protection = () => {
             {/* Card Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {/* Probation */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200 hover:shadow-lg transition-shadow">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 border border-green-200 hover:shadow-lg transition-shadow">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-slate-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <FileText className="w-8 h-8 text-white" />
             </div>
-                  <h3 className="text-lg font-semibold text-slate-700 mb-2">
+                  <h3 className="text-lg font-semibold text-green-800 mb-2">
                     {baseLang === 'hi' ? 'प्रोबेशन' : baseLang === 'mr' ? 'प्रोबेशन' : 'Probation'}
                   </h3>
-                  <p className="text-slate-600 text-sm">
+                  <p className="text-green-700 text-sm">
                     {baseLang === 'hi' ? 'किशोर न्याय सुधार में सहयोग' : 
                      baseLang === 'mr' ? 'किशोर न्याय सुधारात सहकार्य' : 
                      'Collaboration in juvenile justice reform'}
@@ -650,15 +650,15 @@ const LessonMod3Protection = () => {
               </div>
 
               {/* Schools */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200 hover:shadow-lg transition-shadow">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200 hover:shadow-lg transition-shadow">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-slate-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <School className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-700 mb-2">
+                  <h3 className="text-lg font-semibold text-blue-800 mb-2">
                     {baseLang === 'hi' ? 'स्कूल' : baseLang === 'mr' ? 'शाळा' : 'Schools'}
                   </h3>
-                  <p className="text-slate-600 text-sm">
+                  <p className="text-blue-700 text-sm">
                     {baseLang === 'hi' ? 'शैक्षिक संस्थानों के साथ सहयोग' : 
                      baseLang === 'mr' ? 'शैक्षणिक संस्थांसोबत सहकार्य' : 
                      'Collaboration with educational institutions'}
@@ -667,15 +667,15 @@ const LessonMod3Protection = () => {
               </div>
 
               {/* Advocacy Groups */}
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200 hover:shadow-lg transition-shadow">
+              <div className="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6 border border-purple-200 hover:shadow-lg transition-shadow">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-slate-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-700 mb-2">
+                  <h3 className="text-lg font-semibold text-purple-800 mb-2">
                     {baseLang === 'hi' ? 'वकालत समूह' : baseLang === 'mr' ? 'वकालत गट' : 'Advocacy Groups'}
                   </h3>
-                  <p className="text-slate-600 text-sm">
+                  <p className="text-purple-700 text-sm">
                     {baseLang === 'hi' ? 'सामुदायिक संगठनों के साथ सहयोग' : 
                      baseLang === 'mr' ? 'सामुदायिक संघटनांसोबत सहकार्य' : 
                      'Collaboration with community organizations'}
@@ -691,7 +691,7 @@ const LessonMod3Protection = () => {
               </h3>
               <div className="relative">
                 {/* Timeline Line */}
-                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-300"></div>
+                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-blue-300"></div>
                 
                 {/* Timeline Items */}
             <div className="space-y-6">
@@ -699,22 +699,22 @@ const LessonMod3Protection = () => {
                 {
                       phase: baseLang === 'hi' ? 'चरण 1: जरूरतों की पहचान' : baseLang === 'mr' ? 'टप्पा 1: गरजांची ओळख' : 'Phase 1: Identify Needs',
                       description: baseLang === 'hi' ? 'सभी एजेंसियों की प्रशिक्षण आवश्यकताओं का आकलन' : baseLang === 'mr' ? 'सर्व एजन्सींच्या प्रशिक्षण गरजांचे मूल्यांकन' : 'Assess training needs across all agencies',
-                      color: 'slate'
+                      color: 'blue'
                     },
                     {
                       phase: baseLang === 'hi' ? 'चरण 2: संसाधन साझा करना' : baseLang === 'mr' ? 'टप्पा 2: संसाधने सामायिक करणे' : 'Phase 2: Share Resources',
                       description: baseLang === 'hi' ? 'प्रशिक्षण सामग्री और विशेषज्ञता साझा करें' : baseLang === 'mr' ? 'प्रशिक्षण साहित्य आणि कौशल्य सामायिक करा' : 'Share training materials and expertise',
-                      color: 'slate'
+                      color: 'green'
                     },
                     {
                       phase: baseLang === 'hi' ? 'चरण 3: संयुक्त प्रशिक्षण' : baseLang === 'mr' ? 'टप्पा 3: संयुक्त प्रशिक्षण' : 'Phase 3: Joint Training',
                       description: baseLang === 'hi' ? 'क्रॉस-एजेंसी प्रशिक्षण सत्र आयोजित करें' : baseLang === 'mr' ? 'क्रॉस-एजन्सी प्रशिक्षण सत्रे आयोजित करा' : 'Conduct cross-agency training sessions',
-                      color: 'slate'
+                      color: 'purple'
                     },
                     {
                       phase: baseLang === 'hi' ? 'चरण 4: मूल्यांकन' : baseLang === 'mr' ? 'टप्पा 4: मूल्यांकन' : 'Phase 4: Evaluation',
                       description: baseLang === 'hi' ? 'परिणामों का मूल्यांकन और सुधार करें' : baseLang === 'mr' ? 'परिणामांचे मूल्यांकन आणि सुधार करा' : 'Evaluate outcomes and improve',
-                      color: 'slate'
+                      color: 'orange'
                     }
                   ].map((item, idx) => (
                     <div key={idx} className="relative pl-20">
@@ -772,21 +772,21 @@ const LessonMod3Protection = () => {
                 }
               ].map((item, idx) => (
                 <div key={idx} className="relative">
-                  <div className="flex items-start gap-4 bg-gradient-to-r from-slate-50 to-slate-100 rounded-lg p-6 border border-slate-200">
+                  <div className="flex items-start gap-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center text-white font-bold">
+                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                         {item.step}
                       </div>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <item.IconComponent className="w-6 h-6 text-slate-600" />
+                        <item.IconComponent className="w-6 h-6 text-blue-600" />
                         <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
                       </div>
                       <p className="text-gray-700">{item.description}</p>
                     </div>
                     {idx < 4 && (
-                      <div className="absolute left-10 top-full w-0.5 h-4 bg-slate-300"></div>
+                      <div className="absolute left-10 top-full w-0.5 h-4 bg-blue-300"></div>
                     )}
                   </div>
                 </div>
@@ -804,16 +804,16 @@ const LessonMod3Protection = () => {
             
             <div className="space-y-6">
               {/* DOJ Civil Rights Cases */}
-              <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-200">
+              <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-6 border border-red-200">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-slate-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
                     <Scale className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-700 mb-2">
+                    <h3 className="text-lg font-semibold text-red-800 mb-2">
                       {baseLang === 'hi' ? 'DOJ नागरिक अधिकार मामले' : baseLang === 'mr' ? 'DOJ नागरिक अधिकार केसेस' : 'DOJ Civil Rights Cases'}
                   </h3>
-                    <p className="text-slate-600 leading-relaxed">
+                    <p className="text-red-700 leading-relaxed">
                       {baseLang === 'hi' ? 
                         'वास्तविक DOJ नागरिक अधिकार मामलों का अध्ययन करके अधिकारी सीखते हैं कि कैसे न्यायसंगत और प्रभावी कानून प्रवर्तन करें।' :
                         baseLang === 'mr' ?
