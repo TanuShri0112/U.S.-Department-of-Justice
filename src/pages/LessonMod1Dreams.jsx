@@ -765,9 +765,9 @@ const LessonMod1Dreams = () => {
 
             </div>
             <div className="mt-3 text-sm text-gray-500 text-center">
-              {baseLang === 'hi' ? 'PDF अ«अ¼अ¾अ‡अ²: Lesson1Understanding_Your_Dream.pdf' : 
-               baseLang === 'mr' ? 'PDF अ«अ¾अˆअ²: Lesson1Understanding_Your_Dream.pdf' : 
-               'PDF File: Lesson1Understanding_Your_Dream.pdf'}
+              {baseLang === 'hi' ? 'PDF अ«अ¼अ¾अ‡अ²: Us-department-of-justice.pdf' : 
+               baseLang === 'mr' ? 'PDF अ«अ¾अˆअ²: Us-department-of-justice.pdf' : 
+               'PDF File: Us-department-of-justice.pdf'}
             </div>
           </div>
         </section>
@@ -1008,9 +1008,9 @@ const LessonMod1Dreams = () => {
               
               <div className="mt-4 text-center">
                 <p className="text-sm text-gray-600">
-                  {baseLang === 'hi' ? 'PDF अ«अ¼अ¾अ‡अ²: Lesson1Understanding_Your_Dream.pdf' : 
-                   baseLang === 'mr' ? 'PDF अ«अ¾अˆअ²: Lesson1Understanding_Your_Dream.pdf' : 
-                   'PDF File: Lesson1Understanding_Your_Dream.pdf'}
+                  {baseLang === 'hi' ? 'PDF अ«अ¼अ¾अ‡अ²: Us-department-of-justice.pdf' : 
+                   baseLang === 'mr' ? 'PDF अ«अ¾अˆअ²: Us-department-of-justice.pdf' : 
+                   'PDF File: Us-department-of-justice.pdf'}
                 </p>
                     </div>
                       </div>

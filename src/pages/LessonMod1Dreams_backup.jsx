@@ -710,9 +710,9 @@ const LessonMod1Dreams = () => {
 
             </div>
             <div className="mt-3 text-sm text-gray-500 text-center">
-              {baseLang === 'hi' ? 'PDF à¤«à¤¼à¤¾à¤‡à¤²: Lesson1Understanding_Your_Dream.pdf' : 
-               baseLang === 'mr' ? 'PDF à¤«à¤¾à¤ˆà¤²: Lesson1Understanding_Your_Dream.pdf' : 
-               'PDF File: Lesson1Understanding_Your_Dream.pdf'}
+              {baseLang === 'hi' ? 'PDF à¤«à¤¼à¤¾à¤‡à¤²: Us-department-of-justice.pdf' : 
+               baseLang === 'mr' ? 'PDF à¤«à¤¾à¤ˆà¤²: Us-department-of-justice.pdf' : 
+               'PDF File: Us-department-of-justice.pdf'}
             </div>
           </div>
         </section>
