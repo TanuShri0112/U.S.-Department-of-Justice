@@ -99,7 +99,7 @@ const CourseModules = () => {
             ],
             '2': [ // Educator Training
               {
-                id: 1,
+                id: 4,
                 title: "Module 1: Foundations of Professional Learning in Education",
                 description: "Core concepts of professional development and educator growth",
                 units: 7,
@@ -109,7 +109,7 @@ const CourseModules = () => {
                 locked: false,
               },
               {
-                id: 2,
+                id: 5,
                 title: "Module 2: Needs Assessment for Schools & Districts",
                 description: "Evaluating educational needs and identifying improvement opportunities",
                 units: 9,
@@ -119,7 +119,7 @@ const CourseModules = () => {
                 locked: courseType === 'sequential',
               },
               {
-                id: 3,
+                id: 6,
                 title: "Module 3: Curriculum & Module Design for Teachers",
                 description: "Creating effective curriculum and training modules for educators",
                 units: 6,

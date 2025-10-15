@@ -333,90 +333,91 @@ const LessonMod2 = () => {
            </div>
          </section>
 
-         {/* Section 2: Narration Language Selection */}
-         <section className="max-w-4xl mx-auto mb-12">
+         {/* Section 2: Training Topics Overview */}
+         <section className="max-w-6xl mx-auto mb-12">
            <div className="bg-white rounded-2xl shadow-lg p-8">
-             <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-               Section 2: Training Topics Overview
+             <h2 className="text-2xl font-semibold text-gray-800 mb-8 text-center">
+               Training Topics Overview
              </h2>
              
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-               {/* Topic 2.1: Identifying Skill Gaps */}
-               <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200">
-                 <div className="flex items-center mb-4">
-                   <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
-                     <span className="text-white text-lg">🎯</span>
+             {/* Horizontal Layout for Topics */}
+             <div className="space-y-8">
+               {/* Topic 1.1: Skill Gap Analysis */}
+               <div className="bg-gradient-to-r from-slate-50 to-gray-100 rounded-xl p-6 border border-slate-200">
+                 <div className="flex items-center mb-6">
+                   <div className="w-12 h-12 bg-slate-600 rounded-lg flex items-center justify-center mr-4">
+                     <span className="text-white text-xl">🎯</span>
                    </div>
-               <div>
-                     <h3 className="text-lg font-semibold text-blue-800">Topic 2.1</h3>
-                     <p className="text-sm text-blue-600">Skill Gap Analysis</p>
+                   <div>
+                     <h3 className="text-xl font-bold text-slate-800">Topic 1.1: Skill Gap Analysis</h3>
+                     <p className="text-slate-600">Identifying training needs in law enforcement</p>
                    </div>
                  </div>
-                 <div className="space-y-3">
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">Community Policing</h4>
+                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">Community Policing</h4>
                      <p className="text-sm text-gray-600">Building trust and partnerships with community members</p>
                    </div>
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">De-escalation</h4>
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">De-escalation</h4>
                      <p className="text-sm text-gray-600">Techniques for reducing tension and conflict</p>
                    </div>
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">Youth Interaction</h4>
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">Youth Interaction</h4>
                      <p className="text-sm text-gray-600">Effective communication with young people</p>
                    </div>
                  </div>
                </div>
 
-               {/* Topic 2.2: Training Audits */}
-               <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 border border-green-200">
-                 <div className="flex items-center mb-4">
-                   <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
-                     <span className="text-white text-lg">📊</span>
+               {/* Topic 1.2: Training Audits */}
+               <div className="bg-gradient-to-r from-slate-50 to-gray-100 rounded-xl p-6 border border-slate-200">
+                 <div className="flex items-center mb-6">
+                   <div className="w-12 h-12 bg-slate-600 rounded-lg flex items-center justify-center mr-4">
+                     <span className="text-white text-xl">📊</span>
                    </div>
                    <div>
-                     <h3 className="text-lg font-semibold text-green-800">Topic 2.2</h3>
-                     <p className="text-sm text-green-600">Training Audits</p>
+                     <h3 className="text-xl font-bold text-slate-800">Topic 1.2: Training Audits</h3>
+                     <p className="text-slate-600">Systematic evaluation using field data</p>
                    </div>
                  </div>
-                 <div className="space-y-3">
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">Field Data Collection</h4>
+                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">Field Data Collection</h4>
                      <p className="text-sm text-gray-600">Gathering real-world performance data</p>
                    </div>
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">Performance Metrics</h4>
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">Performance Metrics</h4>
                      <p className="text-sm text-gray-600">Measuring training effectiveness</p>
                    </div>
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">Audit Reports</h4>
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">Audit Reports</h4>
                      <p className="text-sm text-gray-600">Documenting findings and recommendations</p>
                    </div>
                  </div>
                </div>
 
-               {/* Topic 2.3: Community Consultation */}
-               <div className="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6 border border-purple-200">
-                 <div className="flex items-center mb-4">
-                   <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
-                     <span className="text-white text-lg">🤝</span>
+               {/* Topic 1.3: Community Consultation */}
+               <div className="bg-gradient-to-r from-slate-50 to-gray-100 rounded-xl p-6 border border-slate-200">
+                 <div className="flex items-center mb-6">
+                   <div className="w-12 h-12 bg-slate-600 rounded-lg flex items-center justify-center mr-4">
+                     <span className="text-white text-xl">🤝</span>
                    </div>
                    <div>
-                     <h3 className="text-lg font-semibold text-purple-800">Topic 2.3</h3>
-                     <p className="text-sm text-purple-600">Community Consultation</p>
+                     <h3 className="text-xl font-bold text-slate-800">Topic 1.3: Community Consultation</h3>
+                     <p className="text-slate-600">Engaging stakeholders in training design</p>
                    </div>
                  </div>
-                 <div className="space-y-3">
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">Public Input</h4>
+                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">Public Input</h4>
                      <p className="text-sm text-gray-600">Engaging community in training design</p>
                    </div>
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">Accountability</h4>
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">Accountability</h4>
                      <p className="text-sm text-gray-600">Ensuring transparency in training processes</p>
                    </div>
-                   <div className="bg-white rounded-lg p-3 shadow-sm">
-                     <h4 className="font-medium text-gray-800 mb-2">Feedback Loops</h4>
+                   <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-200">
+                     <h4 className="font-semibold text-slate-700 mb-2">Feedback Loops</h4>
                      <p className="text-sm text-gray-600">Continuous improvement mechanisms</p>
                    </div>
                  </div>
@@ -425,7 +426,7 @@ const LessonMod2 = () => {
            </div>
          </section>
 
-         {/* Section 3: Topic 2.1 - Detailed Skill Gap Analysis */}
+         {/* Section 3: Topic 1.1 - Detailed Skill Gap Analysis */}
          <section className="max-w-4xl mx-auto mb-12">
            <div className="bg-white rounded-2xl shadow-lg p-8">
              <div className="flex items-center mb-6">
@@ -433,7 +434,7 @@ const LessonMod2 = () => {
                  <span className="text-2xl text-white">🎯</span>
                    </div>
                <div>
-                 <h2 className="text-2xl font-bold text-gray-900">Topic 2.1: Identifying Skill Gaps</h2>
+                 <h2 className="text-2xl font-bold text-gray-900">Topic 1.1: Identifying Skill Gaps</h2>
                  <p className="text-gray-600">Comprehensive analysis of law enforcement training needs</p>
                  </div>
                </div>
@@ -539,7 +540,7 @@ const LessonMod2 = () => {
            </div>
          </section>
 
-         {/* Section 4: Topic 2.2 - Training Audits */}
+         {/* Section 4: Topic 1.2 - Training Audits */}
          <section className="max-w-4xl mx-auto mb-12">
            <div className="bg-white rounded-2xl shadow-lg p-8">
              <div className="flex items-center mb-6">
@@ -547,7 +548,7 @@ const LessonMod2 = () => {
                  <span className="text-2xl text-white">📊</span>
                </div>
                <div>
-                 <h2 className="text-2xl font-bold text-gray-900">Topic 2.2: Conducting Training Audits</h2>
+                 <h2 className="text-2xl font-bold text-gray-900">Topic 1.2: Conducting Training Audits</h2>
                  <p className="text-gray-600">Systematic evaluation of training effectiveness using field data</p>
                </div>
              </div>
@@ -653,7 +654,7 @@ const LessonMod2 = () => {
            </div>
          </section>
 
-         {/* Section 5: Topic 2.3 - Community Consultation */}
+         {/* Section 5: Topic 1.3 - Community Consultation */}
          <section className="max-w-4xl mx-auto mb-12">
            <div className="bg-white rounded-2xl shadow-lg p-8">
              <div className="flex items-center mb-6">
@@ -661,7 +662,7 @@ const LessonMod2 = () => {
                  <span className="text-2xl text-white">🤝</span>
                </div>
                <div>
-                 <h2 className="text-2xl font-bold text-gray-900">Topic 2.3: Community Consultation</h2>
+                 <h2 className="text-2xl font-bold text-gray-900">Topic 1.3: Community Consultation</h2>
                  <p className="text-gray-600">Engaging stakeholders in training design and public accountability</p>
                </div>
              </div>
@@ -921,293 +922,270 @@ const LessonMod2 = () => {
          </section>
 
          {/* Section 7: Interactive Training Assessment */}
-         <section className="max-w-4xl mx-auto mb-12">
-           <div className="bg-white rounded-2xl shadow-lg p-8">
-             <div className="flex items-center mb-6">
-               <div className="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center mr-4">
-                 <span className="text-2xl text-white">🎯</span>
+         <section className="max-w-5xl mx-auto mb-12">
+           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+             <div className="flex items-center justify-between mb-4">
+               <div className="flex items-center">
+                 <div className="w-8 h-8 bg-slate-600 rounded-lg flex items-center justify-center mr-3">
+                   <span className="text-white text-sm">🎯</span>
+                 </div>
+                 <div>
+                   <h2 className="text-lg font-semibold text-gray-800">Training Assessment</h2>
+                   <p className="text-sm text-gray-600">Match methods to skill areas</p>
+                 </div>
                </div>
-               <div>
-                 <h2 className="text-2xl font-bold text-gray-900">Interactive Training Assessment</h2>
-                 <p className="text-gray-600">Test your knowledge by matching training methods to skill areas</p>
-               </div>
+               <Button onClick={handleReset} variant="outline" size="sm" className="text-xs">
+                 Reset
+               </Button>
              </div>
 
-             {/* Drag & Drop Activity */}
-             <div className="mb-8">
-               <div className="flex items-center justify-between mb-4">
-                 <h3 className="text-lg font-semibold text-gray-800">Match Training Methods to Skill Areas</h3>
-                 <Button onClick={handleReset} variant="outline" size="sm">
-                   Reset Activity
-                 </Button>
-               </div>
-               <p className="text-sm text-gray-600 mb-6">Drag each training method to its most appropriate skill area category</p>
-               
-               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                 {/* Training Methods (Draggable Items) */}
-                 <div className="space-y-4">
-                   <h4 className="font-semibold text-gray-800 mb-3">Training Methods</h4>
-                   <div className="space-y-3 min-h-[300px]">
-                     {availableItems.length === 0 ? (
-                       <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-dashed border-green-300 rounded-lg p-8 text-center">
-                         <div className="text-4xl mb-2">✅</div>
-                         <p className="text-green-700 font-semibold">All items have been placed!</p>
-                         <p className="text-sm text-green-600 mt-1">Check your results below</p>
-                       </div>
-                     ) : (
-                       availableItems.map(item => (
-                         <div
-                           key={item.id}
-                           draggable
-                           onDragStart={() => handleDragStart(item)}
-                           className={`rounded-lg p-4 cursor-move transition-all shadow-sm hover:shadow-md ${
-                             draggedItem?.id === item.id ? 'opacity-50 scale-95' : 'hover:scale-102'
-                           }`}
-                           style={{
-                             backgroundColor: item.color === 'blue' ? '#dbeafe' : 
-                                            item.color === 'green' ? '#d1fae5' :
-                                            item.color === 'purple' ? '#e9d5ff' : '#fed7aa',
-                             borderWidth: '2px',
-                             borderStyle: 'dashed',
-                             borderColor: item.color === 'blue' ? '#93c5fd' : 
-                                         item.color === 'green' ? '#6ee7b7' :
-                                         item.color === 'purple' ? '#c4b5fd' : '#fdba74'
-                           }}
-                         >
-                           <div className="flex items-center">
-                             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3 shadow-sm">
-                               <span className="text-2xl">{item.icon}</span>
-                             </div>
-                             <div>
-                               <span className="font-semibold text-gray-800 block">{item.name}</span>
-                               <span className="text-xs text-gray-600">Drag to skill area →</span>
-                             </div>
-                           </div>
+             {/* Compact Drag & Drop */}
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+               {/* Training Methods */}
+               <div className="space-y-2">
+                 <h4 className="text-sm font-medium text-gray-700 mb-2">Training Methods</h4>
+                 <div className="space-y-2 min-h-[200px]">
+                   {availableItems.length === 0 ? (
+                     <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                       <div className="text-2xl mb-1">✅</div>
+                       <p className="text-green-700 text-sm font-medium">All placed!</p>
+                     </div>
+                   ) : (
+                     availableItems.map(item => (
+                       <div
+                         key={item.id}
+                         draggable
+                         onDragStart={() => handleDragStart(item)}
+                         className={`rounded-md p-3 cursor-move transition-all text-sm ${
+                           draggedItem?.id === item.id ? 'opacity-50 scale-95' : 'hover:scale-102'
+                         }`}
+                         style={{
+                           backgroundColor: item.color === 'blue' ? '#f0f9ff' : 
+                                          item.color === 'green' ? '#f0fdf4' :
+                                          item.color === 'purple' ? '#faf5ff' : '#fff7ed',
+                           borderWidth: '1px',
+                           borderStyle: 'dashed',
+                           borderColor: item.color === 'blue' ? '#bae6fd' : 
+                                       item.color === 'green' ? '#bbf7d0' :
+                                       item.color === 'purple' ? '#e9d5ff' : '#fed7aa'
+                         }}
+                       >
+                         <div className="flex items-center">
+                           <span className="text-lg mr-2">{item.icon}</span>
+                           <span className="font-medium text-gray-800">{item.name}</span>
                          </div>
-                       ))
+                       </div>
+                     ))
+                   )}
+                 </div>
+               </div>
+
+               {/* Skill Areas */}
+               <div className="space-y-2">
+                 <h4 className="text-sm font-medium text-gray-700 mb-2">Skill Areas</h4>
+                 <div className="space-y-2">
+                   {/* Community Policing */}
+                   <div
+                     onDragOver={handleDragOver}
+                     onDrop={(e) => handleDrop(e, 'community-policing')}
+                     className="bg-gray-50 border border-gray-300 rounded-md p-3 min-h-[60px] transition-colors hover:bg-gray-100"
+                   >
+                     <div className="flex items-center mb-2">
+                       <span className="text-lg mr-2">🤝</span>
+                       <span className="text-sm font-medium text-gray-800">Community Policing</span>
+                     </div>
+                     {droppedItems['community-policing'].length === 0 ? (
+                       <p className="text-xs text-gray-500">Drop here</p>
+                     ) : (
+                       <div className="space-y-1">
+                         {droppedItems['community-policing'].map(item => (
+                           <div 
+                             key={item.id} 
+                             className={`rounded p-2 flex items-center justify-between text-xs ${
+                               showResults 
+                                 ? isItemCorrect(item, 'community-policing')
+                                   ? 'bg-green-100 border border-green-300'
+                                   : 'bg-red-100 border border-red-300'
+                                 : 'bg-white border border-gray-200'
+                             }`}
+                           >
+                             <div className="flex items-center">
+                               <span className="mr-2">{item.icon}</span>
+                               <span>{item.name}</span>
+                               {showResults && (
+                                 <span className="ml-1">
+                                   {isItemCorrect(item, 'community-policing') ? '✓' : '✗'}
+                                 </span>
+                               )}
+                             </div>
+                             {!showResults && (
+                               <button
+                                 onClick={() => handleRemoveItem(item, 'community-policing')}
+                                 className="text-red-500 hover:text-red-700 text-xs"
+                               >
+                                 ✕
+                               </button>
+                             )}
+                           </div>
+                         ))}
+                       </div>
+                     )}
+                   </div>
+
+                   {/* De-escalation */}
+                   <div
+                     onDragOver={handleDragOver}
+                     onDrop={(e) => handleDrop(e, 'de-escalation')}
+                     className="bg-gray-50 border border-gray-300 rounded-md p-3 min-h-[60px] transition-colors hover:bg-gray-100"
+                   >
+                     <div className="flex items-center mb-2">
+                       <span className="text-lg mr-2">⚖️</span>
+                       <span className="text-sm font-medium text-gray-800">De-escalation</span>
+                     </div>
+                     {droppedItems['de-escalation'].length === 0 ? (
+                       <p className="text-xs text-gray-500">Drop here</p>
+                     ) : (
+                       <div className="space-y-1">
+                         {droppedItems['de-escalation'].map(item => (
+                           <div 
+                             key={item.id} 
+                             className={`rounded p-2 flex items-center justify-between text-xs ${
+                               showResults 
+                                 ? isItemCorrect(item, 'de-escalation')
+                                   ? 'bg-green-100 border border-green-300'
+                                   : 'bg-red-100 border border-red-300'
+                                 : 'bg-white border border-gray-200'
+                             }`}
+                           >
+                             <div className="flex items-center">
+                               <span className="mr-2">{item.icon}</span>
+                               <span>{item.name}</span>
+                               {showResults && (
+                                 <span className="ml-1">
+                                   {isItemCorrect(item, 'de-escalation') ? '✓' : '✗'}
+                                 </span>
+                               )}
+                             </div>
+                             {!showResults && (
+                               <button
+                                 onClick={() => handleRemoveItem(item, 'de-escalation')}
+                                 className="text-red-500 hover:text-red-700 text-xs"
+                               >
+                                 ✕
+                               </button>
+                             )}
+                           </div>
+                         ))}
+                       </div>
+                     )}
+                   </div>
+
+                   {/* Youth Interaction */}
+                   <div
+                     onDragOver={handleDragOver}
+                     onDrop={(e) => handleDrop(e, 'youth-interaction')}
+                     className="bg-gray-50 border border-gray-300 rounded-md p-3 min-h-[60px] transition-colors hover:bg-gray-100"
+                   >
+                     <div className="flex items-center mb-2">
+                       <span className="text-lg mr-2">👥</span>
+                       <span className="text-sm font-medium text-gray-800">Youth Interaction</span>
+                     </div>
+                     {droppedItems['youth-interaction'].length === 0 ? (
+                       <p className="text-xs text-gray-500">Drop here</p>
+                     ) : (
+                       <div className="space-y-1">
+                         {droppedItems['youth-interaction'].map(item => (
+                           <div 
+                             key={item.id} 
+                             className={`rounded p-2 flex items-center justify-between text-xs ${
+                               showResults 
+                                 ? isItemCorrect(item, 'youth-interaction')
+                                   ? 'bg-green-100 border border-green-300'
+                                   : 'bg-red-100 border border-red-300'
+                                 : 'bg-white border border-gray-200'
+                             }`}
+                           >
+                             <div className="flex items-center">
+                               <span className="mr-2">{item.icon}</span>
+                               <span>{item.name}</span>
+                               {showResults && (
+                                 <span className="ml-1">
+                                   {isItemCorrect(item, 'youth-interaction') ? '✓' : '✗'}
+                                 </span>
+                               )}
+                             </div>
+                             {!showResults && (
+                               <button
+                                 onClick={() => handleRemoveItem(item, 'youth-interaction')}
+                                 className="text-red-500 hover:text-red-700 text-xs"
+                               >
+                                 ✕
+                               </button>
+                             )}
+                           </div>
+                         ))}
+                       </div>
+                     )}
+                   </div>
+
+                   {/* Legal Compliance */}
+                   <div
+                     onDragOver={handleDragOver}
+                     onDrop={(e) => handleDrop(e, 'legal-compliance')}
+                     className="bg-gray-50 border border-gray-300 rounded-md p-3 min-h-[60px] transition-colors hover:bg-gray-100"
+                   >
+                     <div className="flex items-center mb-2">
+                       <span className="text-lg mr-2">📋</span>
+                       <span className="text-sm font-medium text-gray-800">Legal Compliance</span>
+                     </div>
+                     {droppedItems['legal-compliance'].length === 0 ? (
+                       <p className="text-xs text-gray-500">Drop here</p>
+                     ) : (
+                       <div className="space-y-1">
+                         {droppedItems['legal-compliance'].map(item => (
+                           <div 
+                             key={item.id} 
+                             className={`rounded p-2 flex items-center justify-between text-xs ${
+                               showResults 
+                                 ? isItemCorrect(item, 'legal-compliance')
+                                   ? 'bg-green-100 border border-green-300'
+                                   : 'bg-red-100 border border-red-300'
+                                 : 'bg-white border border-gray-200'
+                             }`}
+                           >
+                             <div className="flex items-center">
+                               <span className="mr-2">{item.icon}</span>
+                               <span>{item.name}</span>
+                               {showResults && (
+                                 <span className="ml-1">
+                                   {isItemCorrect(item, 'legal-compliance') ? '✓' : '✗'}
+                                 </span>
+                               )}
+                             </div>
+                             {!showResults && (
+                               <button
+                                 onClick={() => handleRemoveItem(item, 'legal-compliance')}
+                                 className="text-red-500 hover:text-red-700 text-xs"
+                               >
+                                 ✕
+                               </button>
+                             )}
+                           </div>
+                         ))}
+                       </div>
                      )}
                    </div>
                  </div>
-
-                 {/* Skill Areas (Drop Zones) */}
-                 <div className="space-y-4">
-                   <h4 className="font-semibold text-gray-800 mb-3">Skill Areas</h4>
-                   <div className="space-y-3">
-                     {/* Community Policing */}
-                     <div
-                       onDragOver={handleDragOver}
-                       onDrop={(e) => handleDrop(e, 'community-policing')}
-                       className="bg-gray-50 border-2 border-gray-300 rounded-lg p-4 min-h-[80px] transition-colors hover:bg-gray-100"
-                     >
-                       <div className="flex items-center justify-between mb-2">
-                         <div className="flex items-center">
-                           <span className="text-xl mr-2">🤝</span>
-                           <span className="font-medium text-gray-800">Community Policing</span>
-                         </div>
-                       </div>
-                       {droppedItems['community-policing'].length === 0 ? (
-                         <p className="text-xs text-gray-500 text-center py-2">Drop training methods here</p>
-                       ) : (
-                         <div className="space-y-2">
-                           {droppedItems['community-policing'].map(item => (
-                             <div 
-                               key={item.id} 
-                               className={`rounded-lg p-3 flex items-center justify-between transition-all ${
-                                 showResults 
-                                   ? isItemCorrect(item, 'community-policing')
-                                     ? 'bg-green-100 border-2 border-green-500'
-                                     : 'bg-red-100 border-2 border-red-500'
-                                   : `bg-${item.color}-50 border-2 border-${item.color}-200`
-                               }`}
-                             >
-                               <div className="flex items-center">
-                                 <span className="text-xl mr-3">{item.icon}</span>
-                                 <span className="text-sm font-medium text-gray-800">{item.name}</span>
-                                 {showResults && (
-                                   <span className="ml-2">
-                                     {isItemCorrect(item, 'community-policing') ? '✓' : '✗'}
-                                   </span>
-                                 )}
-                               </div>
-                               {!showResults && (
-                                 <button
-                                   onClick={() => handleRemoveItem(item, 'community-policing')}
-                                   className="text-red-500 hover:text-red-700 text-sm font-bold"
-                                 >
-                                   ✕
-                                 </button>
-                               )}
-                             </div>
-                           ))}
-                         </div>
-                       )}
-                     </div>
-
-                     {/* De-escalation */}
-                     <div
-                       onDragOver={handleDragOver}
-                       onDrop={(e) => handleDrop(e, 'de-escalation')}
-                       className="bg-gray-50 border-2 border-gray-300 rounded-lg p-4 min-h-[80px] transition-colors hover:bg-gray-100"
-                     >
-                       <div className="flex items-center justify-between mb-2">
-                         <div className="flex items-center">
-                           <span className="text-xl mr-2">⚖️</span>
-                           <span className="font-medium text-gray-800">De-escalation</span>
-                         </div>
-                       </div>
-                       {droppedItems['de-escalation'].length === 0 ? (
-                         <p className="text-xs text-gray-500 text-center py-2">Drop training methods here</p>
-                       ) : (
-                         <div className="space-y-2">
-                           {droppedItems['de-escalation'].map(item => (
-                             <div 
-                               key={item.id} 
-                               className={`rounded-lg p-3 flex items-center justify-between transition-all ${
-                                 showResults 
-                                   ? isItemCorrect(item, 'de-escalation')
-                                     ? 'bg-green-100 border-2 border-green-500'
-                                     : 'bg-red-100 border-2 border-red-500'
-                                   : `bg-${item.color}-50 border-2 border-${item.color}-200`
-                               }`}
-                             >
-                               <div className="flex items-center">
-                                 <span className="text-xl mr-3">{item.icon}</span>
-                                 <span className="text-sm font-medium text-gray-800">{item.name}</span>
-                                 {showResults && (
-                                   <span className="ml-2">
-                                     {isItemCorrect(item, 'de-escalation') ? '✓' : '✗'}
-                                   </span>
-                                 )}
-                               </div>
-                               {!showResults && (
-                                 <button
-                                   onClick={() => handleRemoveItem(item, 'de-escalation')}
-                                   className="text-red-500 hover:text-red-700 text-sm font-bold"
-                                 >
-                                   ✕
-                                 </button>
-                               )}
-                             </div>
-                           ))}
-                         </div>
-                       )}
-                     </div>
-
-                     {/* Youth Interaction */}
-                     <div
-                       onDragOver={handleDragOver}
-                       onDrop={(e) => handleDrop(e, 'youth-interaction')}
-                       className="bg-gray-50 border-2 border-gray-300 rounded-lg p-4 min-h-[80px] transition-colors hover:bg-gray-100"
-                     >
-                       <div className="flex items-center justify-between mb-2">
-                         <div className="flex items-center">
-                           <span className="text-xl mr-2">👥</span>
-                           <span className="font-medium text-gray-800">Youth Interaction</span>
-                         </div>
-                       </div>
-                       {droppedItems['youth-interaction'].length === 0 ? (
-                         <p className="text-xs text-gray-500 text-center py-2">Drop training methods here</p>
-                       ) : (
-                         <div className="space-y-2">
-                           {droppedItems['youth-interaction'].map(item => (
-                             <div 
-                               key={item.id} 
-                               className={`rounded-lg p-3 flex items-center justify-between transition-all ${
-                                 showResults 
-                                   ? isItemCorrect(item, 'youth-interaction')
-                                     ? 'bg-green-100 border-2 border-green-500'
-                                     : 'bg-red-100 border-2 border-red-500'
-                                   : `bg-${item.color}-50 border-2 border-${item.color}-200`
-                               }`}
-                             >
-                               <div className="flex items-center">
-                                 <span className="text-xl mr-3">{item.icon}</span>
-                                 <span className="text-sm font-medium text-gray-800">{item.name}</span>
-                                 {showResults && (
-                                   <span className="ml-2">
-                                     {isItemCorrect(item, 'youth-interaction') ? '✓' : '✗'}
-                                   </span>
-                                 )}
-                               </div>
-                               {!showResults && (
-                                 <button
-                                   onClick={() => handleRemoveItem(item, 'youth-interaction')}
-                                   className="text-red-500 hover:text-red-700 text-sm font-bold"
-                                 >
-                                   ✕
-                                 </button>
-                               )}
-                             </div>
-                           ))}
-                         </div>
-                       )}
-                     </div>
-
-                     {/* Legal Compliance */}
-                     <div
-                       onDragOver={handleDragOver}
-                       onDrop={(e) => handleDrop(e, 'legal-compliance')}
-                       className="bg-gray-50 border-2 border-gray-300 rounded-lg p-4 min-h-[80px] transition-colors hover:bg-gray-100"
-                     >
-                       <div className="flex items-center justify-between mb-2">
-                         <div className="flex items-center">
-                           <span className="text-xl mr-2">📋</span>
-                           <span className="font-medium text-gray-800">Legal Compliance</span>
-                         </div>
-                       </div>
-                       {droppedItems['legal-compliance'].length === 0 ? (
-                         <p className="text-xs text-gray-500 text-center py-2">Drop training methods here</p>
-                       ) : (
-                         <div className="space-y-2">
-                           {droppedItems['legal-compliance'].map(item => (
-                             <div 
-                               key={item.id} 
-                               className={`rounded-lg p-3 flex items-center justify-between transition-all ${
-                                 showResults 
-                                   ? isItemCorrect(item, 'legal-compliance')
-                                     ? 'bg-green-100 border-2 border-green-500'
-                                     : 'bg-red-100 border-2 border-red-500'
-                                   : `bg-${item.color}-50 border-2 border-${item.color}-200`
-                               }`}
-                             >
-                               <div className="flex items-center">
-                                 <span className="text-xl mr-3">{item.icon}</span>
-                                 <span className="text-sm font-medium text-gray-800">{item.name}</span>
-                                 {showResults && (
-                                   <span className="ml-2">
-                                     {isItemCorrect(item, 'legal-compliance') ? '✓' : '✗'}
-                                   </span>
-                                 )}
-                               </div>
-                               {!showResults && (
-                                 <button
-                                   onClick={() => handleRemoveItem(item, 'legal-compliance')}
-                                   className="text-red-500 hover:text-red-700 text-sm font-bold"
-                                 >
-                                   ✕
-                                 </button>
-                               )}
-                             </div>
-                           ))}
-                         </div>
-                       )}
-                     </div>
-                   </div>
-                 </div>
                </div>
+             </div>
 
-               {/* Instructions */}
-               <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                 <div className="flex items-start">
-                   <span className="text-yellow-600 mr-3">💡</span>
-                   <div>
-                     <h4 className="font-semibold text-yellow-800 mb-1">Instructions</h4>
-                     <p className="text-sm text-yellow-700">
-                       Drag each training method to the skill area where it would be most effective. 
-                       Consider the learning objectives and practical application of each method.
-                     </p>
-                   </div>
-                 </div>
+             {/* Compact Instructions */}
+             <div className="mt-4 bg-blue-50 border border-blue-200 rounded-md p-3">
+               <div className="flex items-start">
+                 <span className="text-blue-600 mr-2 text-sm">💡</span>
+                 <p className="text-xs text-blue-700">
+                   Drag each training method to its most effective skill area
+                 </p>
                </div>
              </div>
 
@@ -1417,98 +1395,98 @@ const LessonMod2 = () => {
                
                  {/* Section 2 in Modal */}
                  <div className="border-t pt-8 mt-8">
-                   <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                     Section 2: Training Topics Overview
+                   <h2 className="text-2xl font-semibold text-gray-800 mb-8 text-center">
+                     Training Topics Overview
                    </h2>
                    
-                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                     {/* Topic 2.1: Identifying Skill Gaps */}
-                     <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 border border-blue-200">
+                   <div className="space-y-6">
+                     {/* Topic 1.1: Skill Gap Analysis */}
+                     <div className="bg-gradient-to-r from-slate-50 to-gray-100 rounded-xl p-6 border border-slate-200">
                        <div className="flex items-center mb-4">
-                         <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                         <div className="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center mr-3">
                            <span className="text-white text-lg">🎯</span>
                          </div>
-                     <div>
-                           <h3 className="text-lg font-semibold text-blue-800">Topic 2.1</h3>
-                           <p className="text-sm text-blue-600">Skill Gap Analysis</p>
+                         <div>
+                           <h3 className="text-lg font-semibold text-slate-800">Topic 1.1: Skill Gap Analysis</h3>
+                           <p className="text-sm text-slate-600">Identifying training needs in law enforcement</p>
                          </div>
                        </div>
-                       <div className="space-y-3">
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">Community Policing</h4>
-                           <p className="text-sm text-gray-600">Building trust and partnerships with community members</p>
+                       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">Community Policing</h4>
+                           <p className="text-xs text-gray-600">Building trust and partnerships</p>
                          </div>
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">De-escalation</h4>
-                           <p className="text-sm text-gray-600">Techniques for reducing tension and conflict</p>
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">De-escalation</h4>
+                           <p className="text-xs text-gray-600">Techniques for reducing tension</p>
                          </div>
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">Youth Interaction</h4>
-                           <p className="text-sm text-gray-600">Effective communication with young people</p>
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">Youth Interaction</h4>
+                           <p className="text-xs text-gray-600">Effective communication with youth</p>
                          </div>
                        </div>
                      </div>
 
-                     {/* Topic 2.2: Training Audits */}
-                     <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl p-6 border border-green-200">
+                     {/* Topic 1.2: Training Audits */}
+                     <div className="bg-gradient-to-r from-slate-50 to-gray-100 rounded-xl p-6 border border-slate-200">
                        <div className="flex items-center mb-4">
-                         <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                         <div className="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center mr-3">
                            <span className="text-white text-lg">📊</span>
                          </div>
                          <div>
-                           <h3 className="text-lg font-semibold text-green-800">Topic 2.2</h3>
-                           <p className="text-sm text-green-600">Training Audits</p>
+                           <h3 className="text-lg font-semibold text-slate-800">Topic 1.2: Training Audits</h3>
+                           <p className="text-sm text-slate-600">Systematic evaluation using field data</p>
                          </div>
                        </div>
-                       <div className="space-y-3">
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">Field Data Collection</h4>
-                           <p className="text-sm text-gray-600">Gathering real-world performance data</p>
+                       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">Field Data Collection</h4>
+                           <p className="text-xs text-gray-600">Gathering real-world performance data</p>
                          </div>
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">Performance Metrics</h4>
-                           <p className="text-sm text-gray-600">Measuring training effectiveness</p>
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">Performance Metrics</h4>
+                           <p className="text-xs text-gray-600">Measuring training effectiveness</p>
                          </div>
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">Audit Reports</h4>
-                           <p className="text-sm text-gray-600">Documenting findings and recommendations</p>
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">Audit Reports</h4>
+                           <p className="text-xs text-gray-600">Documenting findings and recommendations</p>
                          </div>
                        </div>
                      </div>
 
-                     {/* Topic 2.3: Community Consultation */}
-                     <div className="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl p-6 border border-purple-200">
+                     {/* Topic 1.3: Community Consultation */}
+                     <div className="bg-gradient-to-r from-slate-50 to-gray-100 rounded-xl p-6 border border-slate-200">
                        <div className="flex items-center mb-4">
-                         <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                         <div className="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center mr-3">
                            <span className="text-white text-lg">🤝</span>
                          </div>
                          <div>
-                           <h3 className="text-lg font-semibold text-purple-800">Topic 2.3</h3>
-                           <p className="text-sm text-purple-600">Community Consultation</p>
+                           <h3 className="text-lg font-semibold text-slate-800">Topic 1.3: Community Consultation</h3>
+                           <p className="text-sm text-slate-600">Engaging stakeholders in training design</p>
                          </div>
                        </div>
-                       <div className="space-y-3">
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">Public Input</h4>
-                           <p className="text-sm text-gray-600">Engaging community in training design</p>
+                       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">Public Input</h4>
+                           <p className="text-xs text-gray-600">Engaging community in training design</p>
                          </div>
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">Accountability</h4>
-                           <p className="text-sm text-gray-600">Ensuring transparency in training processes</p>
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">Accountability</h4>
+                           <p className="text-xs text-gray-600">Ensuring transparency in processes</p>
                          </div>
-                         <div className="bg-white rounded-lg p-3 shadow-sm">
-                           <h4 className="font-medium text-gray-800 mb-2">Feedback Loops</h4>
-                           <p className="text-sm text-gray-600">Continuous improvement mechanisms</p>
+                         <div className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                           <h4 className="font-medium text-slate-700 mb-1">Feedback Loops</h4>
+                           <p className="text-xs text-gray-600">Continuous improvement mechanisms</p>
                          </div>
                        </div>
                      </div>
                    </div>
                </div>
 
-                     {/* Section 3 in Modal - Topic 2.1 */}
+                     {/* Section 3 in Modal - Topic 1.1 */}
                      <div className="border-t pt-8 mt-8">
                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                         Section 3: Topic 2.1 - Skill Gap Analysis
+                         Section 3: Topic 1.1 - Skill Gap Analysis
                        </h2>
                        <div className="space-y-4">
                          <div className="bg-blue-50 rounded-lg p-4">
@@ -1532,10 +1510,10 @@ const LessonMod2 = () => {
                        </div>
                      </div>
 
-                     {/* Section 4 in Modal - Topic 2.2 */}
+                     {/* Section 4 in Modal - Topic 1.2 */}
                      <div className="border-t pt-8 mt-8">
                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                         Section 4: Topic 2.2 - Training Audits
+                         Section 4: Topic 1.2 - Training Audits
                        </h2>
                        <div className="space-y-4">
                          <div className="bg-green-50 rounded-lg p-4">
@@ -1559,10 +1537,10 @@ const LessonMod2 = () => {
                        </div>
                      </div>
 
-                     {/* Section 5 in Modal - Topic 2.3 */}
+                     {/* Section 5 in Modal - Topic 1.3 */}
                      <div className="border-t pt-8 mt-8">
                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                         Section 5: Topic 2.3 - Community Consultation
+                         Section 5: Topic 1.3 - Community Consultation
                        </h2>
                        <div className="space-y-4">
                          <div className="bg-purple-50 rounded-lg p-4">

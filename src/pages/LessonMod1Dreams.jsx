@@ -20,22 +20,12 @@ const LessonMod1Dreams = () => {
   const [currentTTSIndex, setCurrentTTSIndex] = useState(0); // Current topic being read
   const textRef = useRef(null);
 
-  // Language options - Only languages with commonly available voices
+  // Language options - Only languages with commonly available TTS voices
   const languageOptions = React.useMemo(() => ([
     { code: 'en-US', label: '🇺🇸 English (US)' },
     { code: 'en-GB', label: '🇬🇧 English (UK)' },
     { code: 'en-AU', label: '🇦🇺 English (Australia)' },
     { code: 'en-CA', label: '🇨🇦 English (Canada)' },
-    { code: 'hi-IN', label: '🇮🇳 हिन्दी (Hindi)' },
-    { code: 'mr-IN', label: '🇮🇳 मराठी (Marathi)' },
-    { code: 'ta-IN', label: '🇮🇳 தமிழ் (Tamil)' },
-    { code: 'te-IN', label: '🇮🇳 తెలుగు (Telugu)' },
-    { code: 'bn-IN', label: '🇮🇳 বাংলা (Bengali)' },
-    { code: 'gu-IN', label: '🇮🇳 ગુજરાતી (Gujarati)' },
-    { code: 'kn-IN', label: '🇮🇳 ಕನ್ನಡ (Kannada)' },
-    { code: 'ml-IN', label: '🇮🇳 മലയാളം (Malayalam)' },
-    { code: 'pa-IN', label: '🇮🇳 ਪੰਜਾਬੀ (Punjabi)' },
-    { code: 'ur-IN', label: '🇮🇳 اردو (Urdu)' },
     { code: 'fr-FR', label: '🇫🇷 Français (French)' },
     { code: 'fr-CA', label: '🇨🇦 Français (Canada)' },
     { code: 'de-DE', label: '🇩🇪 Deutsch (German)' },
@@ -90,20 +80,8 @@ const LessonMod1Dreams = () => {
         description: 'Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals',
         complete: 'Complete Module'
       },
-      'hi': { 
-        backToModules: 'मà¥‰अ¡à¥अ¯à¥‚अ²à¥अ¸ अªअ° अµअ¾अªअ¸ अœअ¾अअ‚',
-        module1: 'मà¥‰अ¡à¥अ¯à¥‚अ² 1: अ…अªअ¨à¥‡ अ¸अªअ¨à¥‹अ‚ अ•à¥‹ अ¸मअअ¨अ¾',
-        courseTitle: 'अ¸अªअ¨à¥‹अ‚ अ•à¥€ अ°अ•à¥अ·अ¾',
-        description: 'अœअ¾अ¨à¥‡अ‚ अ•अ¿ अ†अªअ•à¥‡ अªअ°अ¿अµअ¾अ° अ•à¥‡ अ­अµअ¿अ·à¥अ¯ अ•à¥‡ अ²अ¿अ अµअ¿अ¤à¥अ¤à¥€अ¯ अ¸à¥अ°अ•à¥अ·अ¾ अ•अ¾ अ•à¥अ¯अ¾ मअ¤अ²अ¬ अ¹à¥ˆ',
-        complete: 'मà¥‰अ¡à¥अ¯à¥‚अ² अªà¥‚अ°अ¾ अ•अ°à¥‡अ‚'
-      },
-      'mr': { 
-        backToModules: 'मà¥‰अ¡à¥अ¯à¥‚अ²à¥अ¸अ•अ¡à¥‡ अªअ°अ¤ अœअ¾',
-        module1: 'मà¥‰अ¡à¥अ¯à¥‚अ² 1: अ¤à¥मअšà¥‡ अ¸à¥अµअªà¥अ¨à¥‡ अ¸मअœà¥‚अ¨ अ˜à¥‡अ£à¥‡',
-        courseTitle: 'अ¸à¥अµअªà¥अ¨अ¾अ‚अšà¥‡ अ¸अ‚अ°अ•à¥अ·अ£',
-        description: 'अ¤à¥मअšà¥अ¯अ¾ अ•à¥अŸà¥अ‚अ¬अ¾अšà¥अ¯अ¾ अ­अµअ¿अ·à¥अ¯अ¾अ¸अ¾अ à¥€ अ†अ°à¥अ¥अ¿अ• अ¸à¥अ°अ•à¥अ·अ¾ मà¥अ¹अ£अœà¥‡ अ•अ¾अ¯ अ¹à¥‡ अœअ¾अ£à¥‚अ¨ अ˜à¥अ¯अ¾अ². अ†मà¥अ¹à¥€ अµà¥अ¯अ¾अµअ¹अ¾अ°अ¿अ• अªअ¾अµअ²à¥‡ अ¸अ¾अ‚अ—à¥‚ अœà¥अ¯अ¾मà¥अ³à¥‡ अ¤à¥मà¥अ¹à¥€ अअ• मअœअ¬à¥‚अ¤ अ†अ°à¥अ¥अ¿अ• अªअ¾अ¯अ¾ अ¤अ¯अ¾अ° अ•अ°à¥‚ अ¶अ•अ¤अ¾ अœà¥‹ अ…अ¨अ¿अ¶à¥अšअ¿अ¤अ¤à¥‡अ¤अ¹à¥€ अ¸à¥अµअªà¥अ¨à¥‡ मअ¾अ°à¥अ—अ¾अµअ° अ à¥‡अµअ¤à¥‹.',
-        complete: 'मà¥‰अ¡à¥अ¯à¥‚अ² अªà¥‚अ°à¥अ£ अ•अ°अ¾'
-      }
+    
+     
     };
     const key = (selectedLang || 'en-US').split('-')[0];
     return map[key] || map['en'];
@@ -524,7 +502,7 @@ const LessonMod1Dreams = () => {
   const pdfUi = React.useMemo(() => {
     if (baseLang === 'hi') return { title: 'अªà¥€अ¡à¥€अअ« अ¦अ¸à¥अ¤अ¾अµà¥‡अœ', open: 'अ–à¥‹अ²à¥‡अ‚', download: 'अ¡अ¾अ‰अ¨अ²à¥‹अ¡' };
     if (baseLang === 'mr') return { title: 'PDF अ¦अ¸à¥अ¤अअµअœ', open: 'अ‰अ˜अ¡अ¾', download: 'अ¡अ¾अ‰अ¨अ²à¥‹अ¡' };
-    return { title: ' ent', open: 'Open', download: 'Download' };
+    return { title: 'Law Enforcement Training Manual', open: 'Open', download: 'Download' };
   }, [baseLang]);
   const pdfUrl = '/assets/Lesson1Understanding_Your_Dream.pdf';
 
@@ -661,11 +639,6 @@ const LessonMod1Dreams = () => {
                 >
                   <optgroup label="🌍 English Variants">
                     {languageOptions.filter(opt => opt.code.startsWith('en-')).map(opt => (
-                    <option key={opt.code} value={opt.code}>{opt.label}</option>
-                  ))}
-                  </optgroup>
-                  <optgroup label="🇮🇳 Indian Languages">
-                    {languageOptions.filter(opt => opt.code.includes('-IN')).map(opt => (
                       <option key={opt.code} value={opt.code}>{opt.label}</option>
                     ))}
                   </optgroup>
@@ -678,7 +651,7 @@ const LessonMod1Dreams = () => {
                   </optgroup>
                   <optgroup label="🌍 Asian Languages">
                     {languageOptions.filter(opt => 
-                      ['ja-', 'ko-', 'zh-', 'th-', 'vi-', 'id-', 'ms-', 'fil-', 'ar-', 'he-', 'fa-', 'hi-PK', 'ur-PK', 'bn-BD', 'si-', 'my-', 'km-', 'lo-', 'mn-', 'ka-', 'hy-', 'az-', 'kk-', 'ky-', 'uz-', 'tg-', 'tk-'].some(prefix => opt.code.startsWith(prefix) || opt.code === prefix)
+                      ['ja-', 'ko-', 'zh-', 'th-', 'vi-', 'id-', 'ms-', 'fil-', 'ar-', 'he-', 'fa-'].some(prefix => opt.code.startsWith(prefix))
                     ).map(opt => (
                       <option key={opt.code} value={opt.code}>{opt.label}</option>
                     ))}
@@ -865,13 +838,13 @@ const LessonMod1Dreams = () => {
 
         {/* Topic 1.1: Adult Learning - Complete Lesson */}
         <section className="max-w-4xl mx-auto mb-12">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-100 rounded-2xl shadow-lg p-8">
+          <div className="bg-gradient-to-r from-gray-50 to-slate-100 rounded-2xl shadow-lg p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-slate-600 rounded-lg flex items-center justify-center">
                 <span className="text-2xl text-white">🎓</span>
                         </div>
               <div>
-                <span className="text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">Topic 1.1</span>
+                <span className="text-sm font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-full">Topic 1.1</span>
                 <h2 className="text-2xl font-bold text-gray-900 mt-1">Adult Learning in Tactical & Compliance Settings</h2>
                 <p className="text-gray-600">Understanding Andragogy in Policing</p>
                       </div>
@@ -879,24 +852,24 @@ const LessonMod1Dreams = () => {
             {/* Learning Objectives Card */}
             <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <span className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
+                <span className="w-6 h-6 bg-slate-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
                 Learning Objectives
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-slate-500 rounded-full mt-2"></div>
                   <span className="text-gray-700">Understand adult learning principles in law enforcement</span>
                       </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-slate-500 rounded-full mt-2"></div>
                   <span className="text-gray-700">Apply andragogy to tactical training scenarios</span>
                     </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-slate-500 rounded-full mt-2"></div>
                   <span className="text-gray-700">Design compliance training for adult learners</span>
                       </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-slate-500 rounded-full mt-2"></div>
                   <span className="text-gray-700">Implement stress-based learning techniques</span>
                     </div>
                   </div>
@@ -905,21 +878,21 @@ const LessonMod1Dreams = () => {
             {/* Key Principles Interactive Cards */}
             <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <span className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">2</span>
+                <span className="w-6 h-6 bg-slate-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">2</span>
                 Core Principles of Adult Learning
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border-l-4 border-blue-500">
-                  <h4 className="font-semibold text-blue-800 mb-2">Self-Directed Learning</h4>
-                  <p className="text-sm text-gray-700">Officers control their learning pace and build on existing experience</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Self-Directed Learning</h4>
+                  <p className="text-sm text-gray-600">Officers control their learning pace and build on existing experience</p>
                     </div>
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border-l-4 border-green-500">
-                  <h4 className="font-semibold text-green-800 mb-2">Problem-Centered Approach</h4>
-                  <p className="text-sm text-gray-700">Use real-world scenarios that connect to actual policing situations</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Problem-Centered Approach</h4>
+                  <p className="text-sm text-gray-600">Use real-world scenarios that connect to actual policing situations</p>
                     </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border-l-4 border-purple-500">
-                  <h4 className="font-semibold text-purple-800 mb-2">Experience-Based Learning</h4>
-                  <p className="text-sm text-gray-700">Leverage field experience and peer-to-peer learning opportunities</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Experience-Based Learning</h4>
+                  <p className="text-sm text-gray-600">Leverage field experience and peer-to-peer learning opportunities</p>
                   </div>
                 </div>
             </div>
@@ -927,43 +900,43 @@ const LessonMod1Dreams = () => {
             {/* Tactical Training Considerations */}
             <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <span className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">3</span>
+                <span className="w-6 h-6 bg-slate-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">3</span>
                 Tactical Training Considerations
                 </h3>
               <div className="space-y-4">
-                <div className="bg-gradient-to-r from-red-50 to-pink-50 p-4 rounded-lg border border-red-200">
-                  <h4 className="font-semibold text-red-800 mb-2">High-Stress Learning Environment</h4>
-                  <p className="text-sm text-gray-700">Training must prepare officers for real-world pressure and decision-making under stress</p>
+                <div className="bg-gradient-to-r from-gray-50 to-slate-100 p-4 rounded-lg border border-slate-200">
+                  <h4 className="font-semibold text-slate-700 mb-2">High-Stress Learning Environment</h4>
+                  <p className="text-sm text-gray-600">Training must prepare officers for real-world pressure and decision-making under stress</p>
                     </div>
-                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-lg border border-yellow-200">
-                  <h4 className="font-semibold text-yellow-800 mb-2">Muscle Memory Development</h4>
-                  <p className="text-sm text-gray-700">Repetitive practice for critical skills that must become automatic responses</p>
+                <div className="bg-gradient-to-r from-gray-50 to-slate-100 p-4 rounded-lg border border-slate-200">
+                  <h4 className="font-semibold text-slate-700 mb-2">Muscle Memory Development</h4>
+                  <p className="text-sm text-gray-600">Repetitive practice for critical skills that must become automatic responses</p>
                 </div>
-                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-4 rounded-lg border border-indigo-200">
-                  <h4 className="font-semibold text-indigo-800 mb-2">Scenario-Based Training</h4>
-                  <p className="text-sm text-gray-700">Training that mimics real conditions and requires split-second decision making</p>
+                <div className="bg-gradient-to-r from-gray-50 to-slate-100 p-4 rounded-lg border border-slate-200">
+                  <h4 className="font-semibold text-slate-700 mb-2">Scenario-Based Training</h4>
+                  <p className="text-sm text-gray-600">Training that mimics real conditions and requires split-second decision making</p>
               </div>
             </div>
           </div>
 
             {/* Best Practices Summary */}
-            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl p-6">
+            <div className="bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-4">Key Takeaways</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start space-x-3">
-                  <span className="text-blue-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Interactive learning with role-playing and simulations</span>
                   </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-blue-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Peer teaching with experienced officers mentoring newer ones</span>
                     </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-blue-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Continuous assessment and regular evaluation</span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-blue-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Constructive feedback loops for improvement</span>
                 </div>
               </div>
@@ -1046,13 +1019,13 @@ const LessonMod1Dreams = () => {
 
         {/* Topic 1.2: DOJ & POST Requirements - Complete Lesson */}
         <section className="max-w-4xl mx-auto mb-12">
-          <div className="bg-gradient-to-r from-purple-50 to-pink-100 rounded-2xl shadow-lg p-8">
+          <div className="bg-gradient-to-r from-gray-50 to-slate-100 rounded-2xl shadow-lg p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-slate-600 rounded-lg flex items-center justify-center">
                 <span className="text-2xl text-white">📋</span>
                     </div>
               <div>
-                <span className="text-sm font-medium text-purple-600 bg-purple-100 px-3 py-1 rounded-full">Topic 1.2</span>
+                <span className="text-sm font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-full">Topic 1.2</span>
                 <h2 className="text-2xl font-bold text-gray-900 mt-1">DOJ & POST Training Requirements</h2>
                 <p className="text-gray-600">Federal and State Training Standards</p>
                   </div>
@@ -1061,7 +1034,7 @@ const LessonMod1Dreams = () => {
             {/* Federal Requirements Card */}
             <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <span className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
+                <span className="w-6 h-6 bg-slate-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
                 Federal DOJ Training Standards
                 </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1106,23 +1079,23 @@ const LessonMod1Dreams = () => {
             </div>
             
             {/* Compliance Checklist */}
-            <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-xl p-6">
+            <div className="bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-4">Training Compliance Checklist</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start space-x-3">
-                  <span className="text-purple-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Annual constitutional law updates completed</span>
           </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-purple-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Civil rights training documentation on file</span>
       </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-purple-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Use of force protocols reviewed and signed</span>
           </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-purple-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Specialized role training requirements met</span>
         </div>
       </div>
@@ -1132,13 +1105,13 @@ const LessonMod1Dreams = () => {
 
         {/* Topic 1.3: Ethical & Civil Rights - Complete Lesson */}
         <section className="max-w-4xl mx-auto mb-12">
-          <div className="bg-gradient-to-r from-red-50 to-orange-100 rounded-2xl shadow-lg p-8">
+          <div className="bg-gradient-to-r from-gray-50 to-slate-100 rounded-2xl shadow-lg p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-slate-600 rounded-lg flex items-center justify-center">
                 <span className="text-2xl text-white">⚖️</span>
               </div>
               <div>
-                <span className="text-sm font-medium text-red-600 bg-red-100 px-3 py-1 rounded-full">Topic 1.3</span>
+                <span className="text-sm font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-full">Topic 1.3</span>
                 <h2 className="text-2xl font-bold text-gray-900 mt-1">Ethical & Civil Rights Foundations</h2>
                 <p className="text-gray-600">Use of Force, Miranda, Implicit Bias</p>
                 </div>
@@ -1147,21 +1120,21 @@ const LessonMod1Dreams = () => {
             {/* Constitutional Framework */}
             <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <span className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
+                <span className="w-6 h-6 bg-slate-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
                 Constitutional Framework
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border-l-4 border-blue-500">
-                  <h4 className="font-semibold text-blue-800 mb-2">Fourth Amendment</h4>
-                  <p className="text-sm text-gray-700">Search and seizure limitations, probable cause requirements</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Fourth Amendment</h4>
+                  <p className="text-sm text-gray-600">Search and seizure limitations, probable cause requirements</p>
                             </div>
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border-l-4 border-green-500">
-                  <h4 className="font-semibold text-green-800 mb-2">Fifth Amendment</h4>
-                  <p className="text-sm text-gray-700">Miranda rights, self-incrimination protections</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Fifth Amendment</h4>
+                  <p className="text-sm text-gray-600">Miranda rights, self-incrimination protections</p>
                             </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border-l-4 border-purple-500">
-                  <h4 className="font-semibold text-purple-800 mb-2">Sixth Amendment</h4>
-                  <p className="text-sm text-gray-700">Right to counsel, speedy trial requirements</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Sixth Amendment</h4>
+                  <p className="text-sm text-gray-600">Right to counsel, speedy trial requirements</p>
                           </div>
                         </div>
               </div>
@@ -1169,16 +1142,16 @@ const LessonMod1Dreams = () => {
             {/* Use of Force Standards */}
             <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <span className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">2</span>
+                <span className="w-6 h-6 bg-slate-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">2</span>
                 Use of Force Standards
               </h3>
                 <div className="space-y-4">
-                <div className="bg-gradient-to-r from-orange-50 to-yellow-50 p-4 rounded-lg border border-orange-200">
-                  <h4 className="font-semibold text-orange-800 mb-2">Graham v. Connor Standard</h4>
-                  <p className="text-sm text-gray-700">Objective reasonableness test based on severity of crime, threat level, and resistance</p>
+                <div className="bg-gradient-to-r from-gray-50 to-slate-100 p-4 rounded-lg border border-slate-200">
+                  <h4 className="font-semibold text-slate-700 mb-2">Graham v. Connor Standard</h4>
+                  <p className="text-sm text-gray-600">Objective reasonableness test based on severity of crime, threat level, and resistance</p>
                         </div>
-                <div className="bg-gradient-to-r from-red-50 to-pink-50 p-4 rounded-lg border border-red-200">
-                  <h4 className="font-semibold text-red-800 mb-2">Force Continuum</h4>
+                <div className="bg-gradient-to-r from-gray-50 to-slate-100 p-4 rounded-lg border border-slate-200">
+                  <h4 className="font-semibold text-slate-700 mb-2">Force Continuum</h4>
                   <div className="flex items-center space-x-2 text-sm text-gray-700">
                     <span className="bg-gray-200 px-2 py-1 rounded">Presence</span>
                     <span>→</span>
@@ -1239,23 +1212,23 @@ const LessonMod1Dreams = () => {
               </div>
 
             {/* Ethics Summary */}
-            <div className="bg-gradient-to-r from-red-500 to-orange-600 text-white rounded-xl p-6">
+            <div className="bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-4">Ethical Foundation Summary</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start space-x-3">
-                  <span className="text-red-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Constitutional rights must be respected in all interactions</span>
                         </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-red-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Use of force must be objectively reasonable</span>
                         </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-red-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Implicit bias awareness prevents discriminatory practices</span>
                       </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-red-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Continuous training maintains ethical standards</span>
                     </div>
                 </div>
@@ -1265,13 +1238,13 @@ const LessonMod1Dreams = () => {
 
         {/* Topic 1.4: Trauma-informed instruction - Complete Lesson */}
         <section className="max-w-4xl mx-auto mb-12">
-          <div className="bg-gradient-to-r from-teal-50 to-cyan-100 rounded-2xl shadow-lg p-8">
+          <div className="bg-gradient-to-r from-gray-50 to-slate-100 rounded-2xl shadow-lg p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-slate-600 rounded-lg flex items-center justify-center">
                 <span className="text-2xl text-white">🧠</span>
                         </div>
               <div>
-                <span className="text-sm font-medium text-teal-600 bg-teal-100 px-3 py-1 rounded-full">Topic 1.4</span>
+                <span className="text-sm font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-full">Topic 1.4</span>
                 <h2 className="text-2xl font-bold text-gray-900 mt-1">Trauma-informed Instruction</h2>
                 <p className="text-gray-600">Supporting First Responders' Mental Health</p>
                     </div>
@@ -1280,21 +1253,21 @@ const LessonMod1Dreams = () => {
             {/* Understanding Trauma Types */}
             <div className="bg-white rounded-xl p-6 mb-6 shadow-md">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <span className="w-6 h-6 bg-teal-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
+                <span className="w-6 h-6 bg-slate-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
                 Understanding Trauma in Law Enforcement
                     </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg border-l-4 border-red-500">
-                  <h4 className="font-semibold text-red-800 mb-2">Direct Trauma</h4>
-                  <p className="text-sm text-gray-700">Personal involvement in traumatic events</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Direct Trauma</h4>
+                  <p className="text-sm text-gray-600">Personal involvement in traumatic events</p>
                         </div>
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg border-l-4 border-orange-500">
-                  <h4 className="font-semibold text-orange-800 mb-2">Vicarious Trauma</h4>
-                  <p className="text-sm text-gray-700">Exposure to others' traumatic experiences</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Vicarious Trauma</h4>
+                  <p className="text-sm text-gray-600">Exposure to others' traumatic experiences</p>
                     </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border-l-4 border-purple-500">
-                  <h4 className="font-semibold text-purple-800 mb-2">Cumulative Trauma</h4>
-                  <p className="text-sm text-gray-700">Repeated exposure over time</p>
+                <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border-l-4 border-slate-400">
+                  <h4 className="font-semibold text-slate-700 mb-2">Cumulative Trauma</h4>
+                  <p className="text-sm text-gray-600">Repeated exposure over time</p>
                   </div>
                 </div>
               </div>
@@ -1348,23 +1321,23 @@ const LessonMod1Dreams = () => {
                   </div>
 
             {/* Mental Health Summary */}
-            <div className="bg-gradient-to-r from-teal-500 to-cyan-600 text-white rounded-xl p-6">
+            <div className="bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-4">Mental Health Support Summary</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start space-x-3">
-                  <span className="text-teal-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Recognize different types of trauma exposure</span>
                       </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-teal-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Apply trauma-informed principles in training</span>
                     </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-teal-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Access appropriate support resources when needed</span>
                       </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-teal-200">✓</span>
+                  <span className="text-slate-200">✓</span>
                   <span className="text-sm">Maintain mental health through proactive support</span>
                       </div>
                     </div>

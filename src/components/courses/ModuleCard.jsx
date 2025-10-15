@@ -55,29 +55,21 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
       return;
     }
     
-    // Map courseId to module routes
-    const moduleRoutes = {
-      '1': { // Law Enforcement Training
-        1: '/courses/modules/1/lessons',
-        2: '/courses/modules/2/lessons',
-        3: '/courses/modules/3/lessons'
-      },
-      '2': { // Educator Training
-        1: '/courses/modules/4/lessons',
-        2: '/courses/modules/5/lessons',
-        3: '/courses/modules/6/lessons'
-      },
-      '3': { // Youth Advocate Training
-        1: '/courses/modules/7/lessons',
-        2: '/courses/modules/8/lessons',
-        3: '/courses/modules/9/lessons'
-      }
-    };
-
-    // Get the route based on courseId and moduleId
-    const route = moduleRoutes[courseId]?.[module.id];
-    if (route) {
-      navigate(route);
+    // Special handling for Law Enforcement Training modules (1, 2, 3)
+    if (module.id === 1) {
+      navigate('/courses/modules/1/lessons');
+    } else if (module.id === 2) {
+      navigate('/courses/modules/2/lessons');
+    } else if (module.id === 3) {
+      navigate('/courses/modules/3/lessons');
+    } 
+    // Special handling for Educator Training modules (4, 5, 6)
+    else if (module.id === 4) {
+      navigate('/courses/modules/4/lessons');
+    } else if (module.id === 5) {
+      navigate('/courses/modules/5/lessons');
+    } else if (module.id === 6) {
+      navigate('/courses/modules/6/lessons');
     } else {
       navigate(`/courses/modules/${module.id}/units`);
     }

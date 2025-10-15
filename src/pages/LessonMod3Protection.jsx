@@ -368,7 +368,7 @@ const LessonMod3Protection = () => {
               <div className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
                   {baseLang === 'hi' ? 'प्रशिक्षण वीडियो' : baseLang === 'mr' ? 'प्रशिक्षण व्हिडिओ' : 'Training Video'}
-                </h2>
+             </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   {baseLang === 'hi' ? 
                     'इस वीडियो में आप देखेंगे कि कैसे प्रभावी प्रशिक्षण परिदृश्यों को डिजाइन किया जाता है। वास्तविक मामलों के आधार पर विकसित किए गए ये परिदृश्य अधिकारियों को विभिन्न स्थितियों के लिए तैयार करते हैं।' :
@@ -383,10 +383,10 @@ const LessonMod3Protection = () => {
                   <div className="flex items-center gap-3">
                     <div className="w-6 h-6 bg-gray-300 rounded flex items-center justify-center">
                       <Volume2 className="h-3 w-3 text-gray-600" />
-                        </div>
-               <Button 
+                   </div>
+                   <Button 
                       size="sm" 
-                 variant="outline" 
+                     variant="outline" 
                       onClick={() => handleSpeakToggle('video-text', baseLang === 'hi' ? 
                         'इस वीडियो में आप देखेंगे कि कैसे प्रभावी प्रशिक्षण परिदृश्यों को डिजाइन किया जाता है।' :
                         baseLang === 'mr' ?
@@ -396,16 +396,16 @@ const LessonMod3Protection = () => {
                     >
                       {speakingBlocks['video-text'] ? <Pause className="h-3 w-3 mr-2" /> : <Play className="h-3 w-3 mr-2" />}
                       {speakingBlocks['video-text'] ? t.stop : t.listen}
-               </Button>
-                      </div>
+                   </Button>
+                 </div>
                   <div className="flex-1 bg-gray-300 rounded-full h-1">
                     <div className="bg-blue-600 h-1 rounded-full" style={{width: '25%'}}></div>
-            </div>
+               </div>
                   <span className="text-sm text-gray-600">0:22</span>
                   <span className="text-sm text-gray-600">1x</span>
                   <Volume2 className="h-4 w-4 text-gray-600" />
                   <ExternalLink className="h-4 w-4 text-gray-600" />
-          </div>
+             </div>
               </div>
              </div>
           </div>
@@ -590,7 +590,7 @@ const LessonMod3Protection = () => {
                 <iframe 
                   width="100%" 
                   height="400" 
-                  src="https://www.youtube.com/embed/Lu6FgSbXqWI?si=Aol-paS1B1be2vAh" 
+                  src="https://www.youtube.com/embed/i8OgypRCEqY?si=P84vULsqsJm_dXfF" 
                   title="YouTube video player" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -606,7 +606,7 @@ const LessonMod3Protection = () => {
                   <Button 
                     variant="outline" 
                 className="flex items-center gap-2"
-                onClick={() => window.open('https://www.youtube.com/watch?v=Lu6FgSbXqWI', '_blank')}
+                onClick={() => window.open('https://www.youtube.com/watch?v=i8OgypRCEqY', '_blank')}
                   >
                     <Play className="h-4 w-4" />
                 {baseLang === 'hi' ? 'YouTube पर देखें' : baseLang === 'mr' ? 'YouTube वर पहा' : 'Watch on YouTube'}
@@ -614,7 +614,7 @@ const LessonMod3Protection = () => {
               <Button 
                 variant="outline" 
                 className="flex items-center gap-2"
-                onClick={() => window.open('https://www.youtube.com/watch?v=Lu6FgSbXqWI', '_blank')}
+                onClick={() => window.open('https://www.youtube.com/watch?v=i8OgypRCEqY', '_blank')}
               >
                 <ExternalLink className="h-4 w-4" />
                 {baseLang === 'hi' ? 'बाहरी लिंक' : baseLang === 'mr' ? 'बाह्य दुवा' : 'External Link'}
