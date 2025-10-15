@@ -74,7 +74,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '45 minutes',
           videoUrl: 'https://images.unsplash.com/photo-1520483601560-4b17b0c93a77?w=800&h=600&fit=crop',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/Lesson1Understanding_Your_Dream.pdf',
           description: 'Master adult learning principles specifically designed for law enforcement training environments.',
           heroImage: 'https://images.unsplash.com/photo-1520483601560-4b17b0c93a77?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -86,7 +86,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '35 minutes',
           videoUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/PramericaRakshakSmart_Styled.pdf',
           description: 'Understand federal and state training requirements for law enforcement officers.',
           heroImage: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -98,7 +98,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '50 minutes',
           videoUrl: '',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/Section.pdf',
           description: 'Master the ethical foundations and civil rights principles essential for law enforcement.',
           heroImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -110,7 +110,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '40 minutes',
           videoUrl: '',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/PramericaRakshakSmart_Styled.pdf',
           description: 'Learn trauma-informed approaches for training first responders and supporting their mental health.',
           heroImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -124,7 +124,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '30 minutes',
           videoUrl: '',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/Section.pdf',
           description: 'Learn to identify and analyze key stakeholders in law enforcement training programs.',
           heroImage: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -136,7 +136,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '45 minutes',
           videoUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/PramericaRakshakSmart_Styled.pdf',
           description: 'Master the process of conducting comprehensive training needs assessments.',
           heroImage: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -148,7 +148,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '35 minutes',
           videoUrl: '',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/Section.pdf',
           description: 'Learn to prioritize training needs and effectively allocate resources for maximum impact.',
           heroImage: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -162,7 +162,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '40 minutes',
           videoUrl: '',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/PramericaRakshakSmart_Styled.pdf',
           description: 'Master the principles and processes of developing effective law enforcement curricula.',
           heroImage: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -174,7 +174,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '50 minutes',
           videoUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/Section.pdf',
           description: 'Learn to design and implement effective scenario-based training for law enforcement.',
           heroImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&h=900&fit=crop&auto=format',
           gallery: []
@@ -186,7 +186,7 @@ The regulatory framework governing business trusts varies by jurisdiction, with 
           duration: '45 minutes',
           videoUrl: '',
           audioUrl: '/placeholder-audio.mp3',
-          pdfUrl: '/placeholder.pdf',
+          pdfUrl: '/assets/PramericaRakshakSmart_Styled.pdf',
           description: 'Master comprehensive assessment and evaluation methods for law enforcement training programs.',
           heroImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop&auto=format',
           gallery: []

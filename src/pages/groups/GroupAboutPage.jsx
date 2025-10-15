@@ -11,7 +11,7 @@ const GroupAboutPage = () => {
     <div className="space-y-6 animate-fade-in p-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Group 1 Overview</h1>
+        <h1 className="text-2xl font-bold">Law Enforcement Training Group</h1>
         <Badge className="bg-green-100 text-green-800 hover:bg-green-200">
           Active
         </Badge>
@@ -19,7 +19,7 @@ const GroupAboutPage = () => {
 
       {/* Description */}
       <p className="text-gray-600">
-        This is an active learning group focused on web development and programming fundamentals
+        DOJ Law Enforcement Training Group focused on professional development, stakeholder analysis, and advanced law enforcement skills enhancement
       </p>
 
       {/* Stats Cards */}
@@ -32,7 +32,7 @@ const GroupAboutPage = () => {
               </div>
               <div>
                 <p className="text-sm text-gray-500">Members</p>
-                <p className="text-2xl font-bold">20</p>
+                <p className="text-2xl font-bold">45</p>
               </div>
             </div>
           </CardContent>
@@ -45,8 +45,8 @@ const GroupAboutPage = () => {
                 <MessageSquare className="h-5 w-5 text-green-600" />
               </div>
               <div>
-                <p className="text-sm text-gray-500">Discussions</p>
-                <p className="text-2xl font-bold">8</p>
+                <p className="text-sm text-gray-500">Training Sessions</p>
+                <p className="text-2xl font-bold">12</p>
               </div>
             </div>
           </CardContent>
@@ -59,8 +59,8 @@ const GroupAboutPage = () => {
                 <Calendar className="h-5 w-5 text-purple-600" />
               </div>
               <div>
-                <p className="text-sm text-gray-500">Events</p>
-                <p className="text-2xl font-bold">3</p>
+                <p className="text-sm text-gray-500">Certifications</p>
+                <p className="text-2xl font-bold">5</p>
               </div>
             </div>
           </CardContent>
@@ -73,8 +73,8 @@ const GroupAboutPage = () => {
                 <Settings className="h-5 w-5 text-orange-600" />
               </div>
               <div>
-                <p className="text-sm text-gray-500">Settings</p>
-                <p className="text-xl font-bold">Manage</p>
+                <p className="text-sm text-gray-500">Modules</p>
+                <p className="text-xl font-bold">3</p>
               </div>
             </div>
           </CardContent>
@@ -90,34 +90,34 @@ const GroupAboutPage = () => {
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Category</p>
-                <p className="font-medium">Web Development</p>
+                <p className="font-medium">Law Enforcement Training</p>
               </div>
               
               <div>
                 <p className="text-sm text-gray-500 mb-1">Created Date</p>
-                <p className="font-medium">March 15, 2024</p>
+                <p className="font-medium">January 15, 2024</p>
               </div>
               
               <div>
                 <p className="text-sm text-gray-500 mb-1">Last Activity</p>
-                <p className="font-medium">2 hours ago</p>
+                <p className="font-medium">1 hour ago</p>
               </div>
             </div>
             
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Status</p>
-                <p className="font-medium">Active and accepting new members</p>
+                <p className="font-medium">Active and accepting new trainees</p>
               </div>
               
               <div>
                 <p className="text-sm text-gray-500 mb-1">Total Members</p>
-                <p className="font-medium text-blue-600">20 members</p>
+                <p className="font-medium text-blue-600">45 officers</p>
               </div>
               
               <div>
                 <p className="text-sm text-gray-500 mb-1">Group Type</p>
-                <p className="font-medium">Learning Group</p>
+                <p className="font-medium">Professional Training Group</p>
               </div>
             </div>
           </div>
@@ -133,24 +133,32 @@ const GroupAboutPage = () => {
             <div className="flex items-start gap-3">
               <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
               <div>
-                <p className="font-medium">New discussion started: "React Best Practices"</p>
-                <p className="text-sm text-gray-500">2 hours ago</p>
+                <p className="font-medium">New training session: "Stakeholder Analysis & Needs Assessment"</p>
+                <p className="text-sm text-gray-500">1 hour ago</p>
               </div>
             </div>
             
             <div className="flex items-start gap-3">
               <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
               <div>
-                <p className="font-medium">3 new members joined the group</p>
-                <p className="text-sm text-gray-500">1 day ago</p>
+                <p className="font-medium">5 new officers joined the training program</p>
+                <p className="text-sm text-gray-500">2 days ago</p>
               </div>
             </div>
             
             <div className="flex items-start gap-3">
               <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
               <div>
-                <p className="font-medium">Group event scheduled for next week</p>
-                <p className="text-sm text-gray-500">3 days ago</p>
+                <p className="font-medium">Module 2 certification exam scheduled for next week</p>
+                <p className="text-sm text-gray-500">4 days ago</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+              <div>
+                <p className="font-medium">DOJ compliance training materials updated</p>
+                <p className="text-sm text-gray-500">1 week ago</p>
               </div>
             </div>
           </div>

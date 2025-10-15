@@ -271,7 +271,7 @@ const LessonMod3Protection = () => {
     if (baseLang === 'mr') return { title: 'PDF दस्तऐवज', open: 'उघडा', download: 'डाउनलोड' };
     return { title: 'PDF Document', open: 'Open', download: 'Download' };
   }, [baseLang]);
-  const pdfUrl = '/assets/Lesson3Protection_Plan.pdf';
+  const pdfUrl = '/assets/Lesson1Understanding_Your_Dream.pdf';
 
   return (
     <div className="min-h-screen bg-gray-50">

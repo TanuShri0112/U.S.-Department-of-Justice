@@ -30,47 +30,67 @@ const GroupCatalog = () => {
   const mockGroups = [
     {
       id: 1,
-      name: 'JavaScript Developers',
-      type: 'Study Group',
+      name: 'Law Enforcement Training Group',
+      type: 'Training Group',
       members: 45,
-      image: '/placeholder.svg',
-      description: 'A group for JavaScript enthusiasts to share knowledge and projects.',
+      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&auto=format',
+      description: 'DOJ Law Enforcement Training Group focused on professional development and skill enhancement.',
       privacy: 'Public',
-      category: 'Technology'
+      category: 'Law Enforcement'
     },
     {
       id: 2,
-      name: 'Project Phoenix Team',
-      type: 'Project Team',
+      name: 'Training Coordination Team',
+      type: 'Professional Development',
       members: 12,
-      image: '/placeholder.svg',
-      description: 'The core team for Project Phoenix.',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&auto=format',
+      description: 'Professional Development Coordination team for training management and administration.',
       privacy: 'Private',
-      category: 'Business'
+      category: 'Training'
     },
     {
       id: 3,
-      name: 'Weekend Hikers',
-      type: 'Social Club',
-      members: 78,
-      image: '/placeholder.svg',
-      description: 'A social group for planning weekend hiking trips.',
+      name: 'Youth Development Advocates',
+      type: 'Advocacy Group',
+      members: 28,
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format',
+      description: 'Youth Development Training Program for advocacy skills and community engagement.',
       privacy: 'Public',
-      category: 'Social'
+      category: 'Youth Development'
     },
     {
       id: 4,
-      name: 'React Study Buddies',
-      type: 'Study Group',
-      members: 23,
-      image: '/placeholder.svg',
-      description: 'Learning and mastering React together.',
+      name: 'DOJ Compliance Specialists',
+      type: 'Compliance Training',
+      members: 18,
+      image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop&auto=format',
+      description: 'Department of Justice regulatory requirements and compliance practices training group.',
       privacy: 'Public',
-      category: 'Technology'
+      category: 'Compliance'
+    },
+    {
+      id: 5,
+      name: 'Educator Professional Development',
+      type: 'Study Group',
+      members: 32,
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&auto=format',
+      description: 'Professional learning programs for educators and training coordinators.',
+      privacy: 'Public',
+      category: 'Education'
+    },
+    {
+      id: 6,
+      name: 'Stakeholder Analysis Team',
+      type: 'Project Team',
+      members: 15,
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format',
+      description: 'Advanced Law Enforcement Training Module 2: Stakeholder Analysis & Needs Assessment team.',
+      privacy: 'Private',
+      category: 'Law Enforcement'
     },
   ];
 
-  const categories = ['All', 'Study Groups', 'Project Teams', 'Social', 'Technology', 'Business'];
+  const categories = ['All', 'Law Enforcement', 'Training', 'Youth Development', 'Compliance', 'Education'];
 
   const filteredGroups = mockGroups.filter(group => {
     const matchesSearch = group.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -112,8 +132,8 @@ const GroupCatalog = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Group Catalog</h1>
-          <p className="text-muted-foreground">Discover and join groups that match your interests.</p>
+          <h1 className="text-3xl font-bold">Training Groups</h1>
+          <p className="text-muted-foreground">Discover and join U.S. Department of Justice training groups that match your professional development needs.</p>
         </div>
         <Button>Create Group</Button>
       </div>
