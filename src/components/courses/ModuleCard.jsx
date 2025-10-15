@@ -50,32 +50,42 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
     }, 100);
   };
 
-  const handleViewLessonClick = () => {
+  const handleViewLessonClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     if (module.locked && courseType === 'sequential') {
       return;
     }
     
-    // Module external links mapping (9 modules total)
+    // Get courseId from URL or props
+    const currentPath = window.location.pathname;
+    const courseId = currentPath.includes('/courses/view/') ? currentPath.split('/courses/view/')[1] : '1';
+    
+    console.log('Current path:', currentPath);
+    console.log('Course ID:', courseId);
+    console.log('Module ID:', module.id);
+    
+    // Module external links mapping by course and module
     const moduleLinks = {
-      1: 'https://example.com/law-enforcement-module-1', // Law Enforcement - Module 1
-      2: 'https://example.com/law-enforcement-module-2', // Law Enforcement - Module 2
-      3: 'https://example.com/law-enforcement-module-3', // Law Enforcement - Module 3
-      4: 'https://example.com/educator-training-module-1', // Educator Training - Module 1
-      5: 'https://example.com/educator-training-module-2', // Educator Training - Module 2
-      6: 'https://example.com/educator-training-module-3', // Educator Training - Module 3
-      7: 'https://example.com/youth-advocacy-module-1', // Youth Advocacy - Module 1
-      8: 'https://example.com/youth-advocacy-module-2', // Youth Advocacy - Module 2
-      9: 'https://example.com/youth-advocacy-module-3', // Youth Advocacy - Module 3
+      '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/law-enforcement-training-modules-scorm12-pRANQ60M/scormcontent/index.html', // Course 1 - Law Enforcement Module 1
+      '2-4': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html', // Course 2 - Educator Training Module 4
+      '3-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/youth-advocate-training-modules-scorm12-Ev2vCYOy/scormcontent/index.html', // Course 3 - Youth Advocate Module 1
     };
     
-    // Get the link for this module
-    const externalLink = moduleLinks[module.id];
+    // Create the key for this course-module combination
+    const linkKey = `${courseId}-${module.id}`;
+    const externalLink = moduleLinks[linkKey];
+    
+    console.log('Link key:', linkKey);
+    console.log('External link:', externalLink);
     
     if (externalLink) {
       // Open link in new tab
       window.open(externalLink, '_blank', 'noopener,noreferrer');
     } else {
       // Fallback to default navigation if no link is found
+      console.log('No external link found, navigating to units');
       navigate(`/courses/modules/${module.id}/units`);
     }
   };

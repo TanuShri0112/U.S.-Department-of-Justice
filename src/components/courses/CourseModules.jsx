@@ -35,18 +35,12 @@ const CourseModules = () => {
         
         if (publishedCourse.modules && publishedCourse.modules.length > 0) {
           const imageMap = {
-            // Law Enforcement Training - Updated to use local assets
-            ' Foundations of Law Enforcement Training in the U.S.': '/assets/mod-1.png',
-            'Module 2: Stakeholder Analysis & Needs Assessment': '/assets/mod-2.png',
-            'Module 3: Customized Curriculum & Scenario Design': '/assets/mod-3.png',
-            // Educator Training - Custom images for each module
-            'Foundations of Professional Learning in Education': '/assets/Gemini_Generated_Image_absskdabsskdabss.png',
-            'Module 2: Needs Assessment for Schools & Districts': '/assets/Gemini_Generated_Image_6txo8c6txo8c6txo.png',
-            'Module 3: Curriculum & Module Design for Teachers': '/assets/Gemini_Generated_Image_fnhloefnhloefnhl.png',
-            // Youth Advocacy Training - Custom Gemini-generated images
-            'Foundations of Youth Advocacy & Development': '/assets/Gemini_Generated_Image_yxldqkyxldqkyxld.png',
-            'Module 2: Needs Assessment in Youth Advocacy': '/assets/Gemini_Generated_Image_ruckriruckriruck.png',
-            'Module 3: Designing Advocacy Training Programs': '/assets/Gemini_Generated_Image_2vse392vse392vse.png'
+            // Law Enforcement Training - Use course banner
+            'Law Enforcement Training': '/assets/C-1.png',
+            // Educator Training - Use course banner
+            'Educator Training': '/assets/C-2.png',
+            // Youth Advocacy Training - Use course banner
+            'Youth Advocate Training': '/assets/C-3.png'
           };
           const courseModules = publishedCourse.modules.map((module, index) => ({
             id: module.id,
@@ -71,7 +65,7 @@ const CourseModules = () => {
             '1': [ // Law Enforcement Training
               {
                 id: 1,
-                title: "Foundations of Law Enforcement Training in the U.S.",
+                title: "Law Enforcement Training",
                 description: "Understanding the core principles and frameworks of law enforcement training",
                 units: 5,
                 assessments: 1,
@@ -103,7 +97,7 @@ const CourseModules = () => {
             '2': [ // Educator Training
               {
                 id: 4,
-                title: "Foundations of Professional Learning in Education",
+                title: "Educator Training",
                 description: "Core concepts of professional development and educator growth",
                 units: 7,
                 assessments: 2,
@@ -135,7 +129,7 @@ const CourseModules = () => {
             '3': [ // Youth Advocate Training
               {
                 id: 1,
-                title: "Foundations of Youth Advocacy & Development",
+                title: "Youth Advocate Training",
                 description: "Understanding youth development and advocacy principles",
                 units: 6,
                 assessments: 1,
@@ -171,18 +165,12 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            // Law Enforcement Training - Updated to use local assets
-            'Foundations of Law Enforcement Training in the U.S.': '/assets/mod-1.png',
-            // 'Module 2: Stakeholder Analysis & Needs Assessment': '/assets/mod-2.png',
-            // 'Module 3: Customized Curriculum & Scenario Design': '/assets/mod-3.png',
-            // Educator Training - Custom images for each module
-            'Foundations of Professional Learning in Education': '/assets/Gemini_Generated_Image_absskdabsskdabss.png',
-            // 'Module 2: Needs Assessment for Schools & Districts': '/assets/Gemini_Generated_Image_6txo8c6txo8c6txo.png',
-            // 'Module 3: Curriculum & Module Design for Teachers': '/assets/Gemini_Generated_Image_fnhloefnhloefnhl.png',
-            // Youth Advocacy Training - Custom Gemini-generated images
-            'Foundations of Youth Advocacy & Development': '/assets/Gemini_Generated_Image_yxldqkyxldqkyxld.png',
-            // 'Module 2: Needs Assessment in Youth Advocacy': '/assets/Gemini_Generated_Image_ruckriruckriruck.png',
-            // 'Module 3: Designing Advocacy Training Programs': '/assets/Gemini_Generated_Image_2vse392vse392vse.png'
+            // Law Enforcement Training - Use course banner
+            'Law Enforcement Training': '/assets/C-1.png',
+            // Educator Training - Use course banner
+            'Educator Training': '/assets/C-2.png',
+            // Youth Advocacy Training - Use course banner
+            'Youth Advocate Training': '/assets/C-3.png'
           };
           return { ...m, image: titleToImage[m.title] };
         });

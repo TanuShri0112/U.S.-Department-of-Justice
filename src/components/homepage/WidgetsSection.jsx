@@ -94,7 +94,7 @@ export default function WidgetsSection() {
         </CardHeader>
         <CardContent className="px-6 pb-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Catalog Widget */}
+        {/* Catalog Widget */}
             <motion.div 
               whileHover={{ y: -2 }} 
               transition={{ type: "spring", stiffness: 300 }}
@@ -102,8 +102,8 @@ export default function WidgetsSection() {
             >
               <div
                 className="cursor-pointer transition-all duration-300 hover:shadow-lg border border-gray-100 rounded-xl overflow-hidden h-full bg-white"
-                onClick={handleCatalogClick}
-              >
+            onClick={handleCatalogClick}
+          >
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
@@ -152,9 +152,9 @@ export default function WidgetsSection() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+        </motion.div>
 
-            {/* Groups Widget */}
+        {/* Groups Widget */}
             <motion.div 
               whileHover={{ y: -2 }} 
               transition={{ type: "spring", stiffness: 300 }}
@@ -162,15 +162,15 @@ export default function WidgetsSection() {
             >
               <div
                 className="cursor-pointer transition-all duration-300 hover:shadow-lg border border-gray-100 rounded-xl overflow-hidden h-full bg-white"
-                onClick={handleGroupsClick}
-              >
+            onClick={handleGroupsClick}
+          >
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-green-100 rounded-lg">
                         <Users className="h-5 w-5 text-green-600" />
                       </div>
-                      <div>
+                    <div>
                         <h3 className="font-semibold text-gray-800">Training Groups</h3>
                         <p className="text-sm text-gray-500">{groups.length} active groups</p>
                       </div>
@@ -214,9 +214,9 @@ export default function WidgetsSection() {
                 </div>
               </div>
             </motion.div>
-          </div>
-        </CardContent>
-      </Card>
+              </div>
+            </CardContent>
+          </Card>
     </section>
   );
 }

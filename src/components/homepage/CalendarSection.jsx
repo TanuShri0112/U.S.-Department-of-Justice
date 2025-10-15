@@ -93,7 +93,7 @@ export function CalendarSection() {
         return 'bg-gray-50 text-gray-700 border-gray-200';
     }
   };
-
+  
 
   const days = getDaysInMonth(currentDate);
 
@@ -144,8 +144,8 @@ export function CalendarSection() {
                 const isToday = day === new Date().getDate() && currentDate.getMonth() === new Date().getMonth() && currentDate.getFullYear() === new Date().getFullYear();
                 const isSelected = day === selectedDate;
                 const isCurrentMonth = day !== null;
-                
-                return (
+
+  return (
                   <button
                     key={index}
                     onClick={() => handleDateClick(day)}
@@ -177,27 +177,27 @@ export function CalendarSection() {
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {events[selectedDate] && events[selectedDate].length > 0 ? (
                 events[selectedDate].map((event) => (
-                  <div
-                    key={event.id}
+                <div
+                  key={event.id}
                     className="bg-white rounded-lg p-3 border border-gray-100 hover:shadow-sm transition-shadow"
-                  >
+                >
                     <div className="flex items-center justify-between">
-                      <div className="flex-1">
+                    <div className="flex-1">
                         <h4 className="text-sm font-medium text-gray-800 mb-1">{event.title}</h4>
-                        <p className="text-xs text-gray-600">{event.time}</p>
-                      </div>
+                      <p className="text-xs text-gray-600">{event.time}</p>
+                    </div>
                       <span className={`text-xs px-2 py-1 rounded-full border font-medium ${getEventTypeStyles(event.type)}`}>
                         {event.type}
-                      </span>
-                    </div>
+                    </span>
                   </div>
+                </div>
                 ))
               ) : (
                 <div className="text-center py-4 text-gray-500">
                   <CalendarIcon className="w-6 h-6 mx-auto mb-2 text-gray-400" />
                   <p className="text-xs">No events scheduled</p>
-                </div>
-              )}
+            </div>
+          )}
             </div>
           </div>
         </div>

@@ -1,8 +1,7 @@
 import React, { useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Book, Users, ChevronRight, ChevronLeft } from "lucide-react";
+import { Book, Users } from "lucide-react";
 
 const teachingCourses = [
   {
@@ -36,26 +35,6 @@ export default function TeachingCoursesSection() {
     navigate(`/courses/view/${courseId}`);
   };
 
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = scrollContainerRef.current.clientWidth * 0.8;
-      scrollContainerRef.current.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = scrollContainerRef.current.clientWidth * 0.8;
-      scrollContainerRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <section>
       <Card className="overflow-hidden border-0 shadow-lg bg-white">
@@ -69,24 +48,6 @@ export default function TeachingCoursesSection() {
         </CardHeader>
         <CardContent className="p-6">
           <div className="relative">
-            {/* Scroll Arrows */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 p-0 bg-white hover:bg-gray-50 shadow-xl border border-gray-200 rounded-full opacity-80 hover:opacity-100 transition-all duration-300 hover:shadow-2xl"
-              onClick={scrollLeft}
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-700" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 p-0 bg-white hover:bg-gray-50 shadow-xl border border-gray-200 rounded-full opacity-80 hover:opacity-100 transition-all duration-300 hover:shadow-2xl"
-              onClick={scrollRight}
-            >
-              <ChevronRight className="w-6 h-6 text-gray-700" />
-            </Button>
-
             {/* Horizontal Scrollable Container */}
             <div
               ref={scrollContainerRef}
