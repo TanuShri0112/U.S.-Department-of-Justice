@@ -33,11 +33,6 @@ export const CourseContextualSidebar = ({ isCollapsed }) => {
 
   const handleNavItemClick = (path) => {
     navigate(path);
-    toast({
-      title: "Navigation",
-      description: `Opened ${path.split('/').pop()}`,
-      duration: 1500,
-    });
   };
   
   const courseNavItems = [
