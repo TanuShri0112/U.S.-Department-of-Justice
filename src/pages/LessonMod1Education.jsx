@@ -301,7 +301,7 @@ const LessonMod1Education = () => {
     }
   ];
 
-  const pdfUrl = '/assets/Lesson1Understanding_Your_Dream.pdf';
+  const pdfUrl = '/assets/Us-department-of-justice.pdf';
 
   return (
     <div className="min-h-screen bg-gray-50">
