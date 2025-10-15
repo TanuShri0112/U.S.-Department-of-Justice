@@ -85,6 +85,9 @@ import LessonMod3Protection from './pages/LessonMod3Protection';
 import LessonMod1Education from './pages/LessonMod1Education';
 import LessonMod2NeedsAssessment from './pages/LessonMod2NeedsAssessment';
 import LessonMod3CurriculumDesign from './pages/LessonMod3CurriculumDesign';
+import LessonMod1YouthAdvocacy from './pages/LessonMod1YouthAdvocacy';
+import LessonMod2YouthAdvocacy from './pages/LessonMod2YouthAdvocacy';
+import LessonMod3YouthAdvocacy from './pages/LessonMod3YouthAdvocacy';
 import Chatbot from './pages/Chatbot.jsx';
 
 const queryClient = new QueryClient();
@@ -131,6 +134,10 @@ const App = () => (
                   <Route path="courses/modules/4/lessons" element={<LessonMod1Education />} />
                   <Route path="courses/modules/5/lessons" element={<LessonMod2NeedsAssessment />} />
                   <Route path="courses/modules/6/lessons" element={<LessonMod3CurriculumDesign />} />
+                  {/* Youth Advocate Training Routes */}
+                  <Route path="courses/modules/7/lessons" element={<LessonMod1YouthAdvocacy />} />
+                  <Route path="courses/modules/8/lessons" element={<LessonMod2YouthAdvocacy />} />
+                  <Route path="courses/modules/9/lessons" element={<LessonMod3YouthAdvocacy />} />
                   
                   <Route path="catalog" element={<Catalog />} />
                   <Route path="catalog/:categoryId" element={<CategoryDetail />} />

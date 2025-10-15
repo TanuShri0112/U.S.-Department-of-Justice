@@ -55,15 +55,28 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
       return;
     }
     
-    // Special handling for Law Enforcement Training modules (1, 2, 3)
-    if (module.id === 1) {
+    // Get the course type from the module title or path
+    const isYouthAdvocacy = module.title?.includes('Youth Advocacy') || window.location.pathname.includes('youth-advocacy');
+    
+    if (isYouthAdvocacy) {
+      // Youth Advocacy Training modules
+      if (module.title?.includes('Foundations') || module.title?.includes('Youth Advocacy & Development') || module.id === 1) {
+        navigate('/courses/modules/7/lessons'); // Module 1: Foundations
+      } else if (module.title?.includes('Needs Assessment') || module.title?.includes('Youth Advocacy') || module.id === 2) {
+        navigate('/courses/modules/8/lessons'); // Module 2: Needs Assessment
+      } else if (module.title?.includes('Designing') || module.title?.includes('Training Programs') || module.title?.includes('Advocacy Training') || module.id === 3) {
+        navigate('/courses/modules/9/lessons'); // Module 3: Designing Programs
+      }
+    }
+    // Law Enforcement Training modules
+    else if (module.id === 1) {
       navigate('/courses/modules/1/lessons');
     } else if (module.id === 2) {
       navigate('/courses/modules/2/lessons');
     } else if (module.id === 3) {
       navigate('/courses/modules/3/lessons');
     } 
-    // Special handling for Educator Training modules (4, 5, 6)
+    // Educator Training modules
     else if (module.id === 4) {
       navigate('/courses/modules/4/lessons');
     } else if (module.id === 5) {
