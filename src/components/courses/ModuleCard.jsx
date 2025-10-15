@@ -55,35 +55,27 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
       return;
     }
     
-    // Get the course type from the module title or path
-    const isYouthAdvocacy = module.title?.includes('Youth Advocacy') || window.location.pathname.includes('youth-advocacy');
+    // Module external links mapping (9 modules total)
+    const moduleLinks = {
+      1: 'https://example.com/law-enforcement-module-1', // Law Enforcement - Module 1
+      2: 'https://example.com/law-enforcement-module-2', // Law Enforcement - Module 2
+      3: 'https://example.com/law-enforcement-module-3', // Law Enforcement - Module 3
+      4: 'https://example.com/educator-training-module-1', // Educator Training - Module 1
+      5: 'https://example.com/educator-training-module-2', // Educator Training - Module 2
+      6: 'https://example.com/educator-training-module-3', // Educator Training - Module 3
+      7: 'https://example.com/youth-advocacy-module-1', // Youth Advocacy - Module 1
+      8: 'https://example.com/youth-advocacy-module-2', // Youth Advocacy - Module 2
+      9: 'https://example.com/youth-advocacy-module-3', // Youth Advocacy - Module 3
+    };
     
-    if (isYouthAdvocacy) {
-      // Youth Advocacy Training modules
-      if (module.title?.includes('Foundations') || module.title?.includes('Youth Advocacy & Development') || module.id === 1) {
-        navigate('/courses/modules/7/lessons'); // Module 1: Foundations
-      } else if (module.title?.includes('Needs Assessment') || module.title?.includes('Youth Advocacy') || module.id === 2) {
-        navigate('/courses/modules/8/lessons'); // Module 2: Needs Assessment
-      } else if (module.title?.includes('Designing') || module.title?.includes('Training Programs') || module.title?.includes('Advocacy Training') || module.id === 3) {
-        navigate('/courses/modules/9/lessons'); // Module 3: Designing Programs
-      }
-    }
-    // Law Enforcement Training modules
-    else if (module.id === 1) {
-      navigate('/courses/modules/1/lessons');
-    } else if (module.id === 2) {
-      navigate('/courses/modules/2/lessons');
-    } else if (module.id === 3) {
-      navigate('/courses/modules/3/lessons');
-    } 
-    // Educator Training modules
-    else if (module.id === 4) {
-      navigate('/courses/modules/4/lessons');
-    } else if (module.id === 5) {
-      navigate('/courses/modules/5/lessons');
-    } else if (module.id === 6) {
-      navigate('/courses/modules/6/lessons');
+    // Get the link for this module
+    const externalLink = moduleLinks[module.id];
+    
+    if (externalLink) {
+      // Open link in new tab
+      window.open(externalLink, '_blank', 'noopener,noreferrer');
     } else {
+      // Fallback to default navigation if no link is found
       navigate(`/courses/modules/${module.id}/units`);
     }
   };

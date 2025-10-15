@@ -441,7 +441,7 @@ const LessonMod1Dreams = () => {
     if (baseLang === 'mr') return { title: 'PDF à¤¦à¤¸à¥à¤¤à¤à¤µà¤œ', open: 'à¤‰à¤˜à¤¡à¤¾', download: 'à¤¡à¤¾à¤‰à¤¨à¤²à¥‹à¤¡' };
     return { title: 'PDF Document', open: 'Open', download: 'Download' };
   }, [baseLang]);
-  const pdfUrl = '/assets/Us-department-of-justice.pdf';
+  const pdfUrl = '/assets/Lesson1Understanding_Your_Dream.pdf';
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -710,9 +710,9 @@ const LessonMod1Dreams = () => {
 
             </div>
             <div className="mt-3 text-sm text-gray-500 text-center">
-              {baseLang === 'hi' ? 'PDF à¤«à¤¼à¤¾à¤‡à¤²: Us-department-of-justice.pdf' : 
-               baseLang === 'mr' ? 'PDF à¤«à¤¾à¤ˆà¤²: Us-department-of-justice.pdf' : 
-               'PDF File: Us-department-of-justice.pdf'}
+              {baseLang === 'hi' ? 'PDF à¤«à¤¼à¤¾à¤‡à¤²: Lesson1Understanding_Your_Dream.pdf' : 
+               baseLang === 'mr' ? 'PDF à¤«à¤¾à¤ˆà¤²: Lesson1Understanding_Your_Dream.pdf' : 
+               'PDF File: Lesson1Understanding_Your_Dream.pdf'}
             </div>
           </div>
         </section>

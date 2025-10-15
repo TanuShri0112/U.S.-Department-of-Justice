@@ -36,7 +36,7 @@ const Courses = () => {
       duration: "6 weeks",
       level: "Beginner",
       status: "Active",
-      image: " https://www.mitchellcc.edu/wp-content/uploads/2024/01/BLET.png",
+      image: "/assets/course-1.png",
       archived: false,
       deleted: false,
       catalog: "Law Enforcement"
@@ -49,7 +49,7 @@ const Courses = () => {
       duration: "5 weeks",
       level: "Beginner",
       status: "Active",
-      image: "https://openlearning.unesco.org/asset-v1:UNESCO+UNESCO-05+2021_01+type@asset+block@09TEACHERTRAINING.jpg",
+      image: "/assets/course-2.png",
       archived: false,
       deleted: false,
       catalog: "Education"
@@ -62,7 +62,7 @@ const Courses = () => {
       duration: "7 weeks",
       level: "Beginner",
       status: "Active",
-      image: "https://youthadvocacy.eu/wp-content/uploads/2023/03/cropped-cropped-image-1-1.png",
+      image: "/assets/course-3.png",
       archived: false,
       deleted: false,
       catalog: "Youth Development"

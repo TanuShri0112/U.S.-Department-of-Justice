@@ -298,7 +298,7 @@ const LessonMod2NeedsAssessment = () => {
     setCurrentTTSIndex(0);
   };
 
-  const pdfUrl = '/assets/Us-department-of-justice.pdf';
+  const pdfUrl = '/assets/Lesson1Understanding_Your_Dream.pdf';
 
   return (
     <div className="min-h-screen bg-gray-50">

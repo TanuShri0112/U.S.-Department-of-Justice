@@ -2,27 +2,27 @@ import React, { useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Book, Users } from "lucide-react";
+import { Book, Users, ChevronRight, ChevronLeft } from "lucide-react";
 
 const teachingCourses = [
   {
     id: 1,
     title: "LAW ENFORCEMENT TRAINING",
-    image: "https://www.mitchellcc.edu/wp-content/uploads/2024/01/BLET.png",
+    image: "/assets/course-1.png",
     modules: 3,
     students: 120
   },
   {
     id: 2,
     title: "EDUCATOR TRAINING",
-    image: "https://openlearning.unesco.org/asset-v1:UNESCO+UNESCO-05+2021_01+type@asset+block@09TEACHERTRAINING.jpg",
+    image: "/assets/course-2.png",
     modules: 3,
     students: 95
   },
   {
     id: 3,
     title: "YOUTH ADVOCATE TRAINING",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvu2dOLjKtc4LSGZpskZoZq5qaoJTjmyzYPMTjlZgLJG9yh0D7fZHQwSjlNg4Dnt2g0fg&usqp=CAU",
+    image: "/assets/course-3.png",
     modules: 3,
     students: 110
   }
@@ -36,6 +36,25 @@ export default function TeachingCoursesSection() {
     navigate(`/courses/view/${courseId}`);
   };
 
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = scrollContainerRef.current.clientWidth * 0.8;
+      scrollContainerRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = scrollContainerRef.current.clientWidth * 0.8;
+      scrollContainerRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <section>
@@ -50,17 +69,29 @@ export default function TeachingCoursesSection() {
         </CardHeader>
         <CardContent className="p-6">
           <div className="relative">
+            {/* Scroll Arrows */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 p-0 bg-white hover:bg-gray-50 shadow-xl border border-gray-200 rounded-full opacity-80 hover:opacity-100 transition-all duration-300 hover:shadow-2xl"
+              onClick={scrollLeft}
+            >
+              <ChevronLeft className="w-6 h-6 text-gray-700" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 p-0 bg-white hover:bg-gray-50 shadow-xl border border-gray-200 rounded-full opacity-80 hover:opacity-100 transition-all duration-300 hover:shadow-2xl"
+              onClick={scrollRight}
+            >
+              <ChevronRight className="w-6 h-6 text-gray-700" />
+            </Button>
 
             {/* Horizontal Scrollable Container */}
             <div
               ref={scrollContainerRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-2 scroll-smooth"
-              style={{ 
-                scrollbarWidth: 'none', 
-                msOverflowStyle: 'none',
-                WebkitOverflowScrolling: 'touch',
-                scrollSnapType: 'x mandatory'
-              }}
+              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-2"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {teachingCourses.map((course, index) => {
                 const colors = ['blue', 'green', 'purple'];

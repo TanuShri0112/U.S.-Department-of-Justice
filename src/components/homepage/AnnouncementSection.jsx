@@ -119,13 +119,13 @@ export function AnnouncementSection() {
           <CardTitle className="text-xl flex items-center gap-3 text-slate-800 font-bold">
             <div className="p-2 bg-blue-500 rounded-lg shadow-md">
               <Bell className="h-5 w-5 text-white" />
-            </div>
-            Announcements
-          </CardTitle>
+          </div>
+          Announcements
+        </CardTitle>
           <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-full hover:bg-blue-50 hover:text-blue-700 transition-all duration-300 hover:scale-110">
-            <Bell className="h-4 w-4" />
-            <span className="sr-only">Notification settings</span>
-          </Button>
+          <Bell className="h-4 w-4" />
+          <span className="sr-only">Notification settings</span>
+        </Button>
         </div>
       </CardHeader>
       <CardContent className="px-6 pb-6">
@@ -137,8 +137,8 @@ export function AnnouncementSection() {
                 const IconComponent = typeStyles.icon;
                 
                 return (
-                  <div
-                    key={announcement.id}
+                <div
+                  key={announcement.id}
                     className="group bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="flex items-start gap-3">

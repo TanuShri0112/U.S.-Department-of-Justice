@@ -35,15 +35,18 @@ const CourseModules = () => {
         
         if (publishedCourse.modules && publishedCourse.modules.length > 0) {
           const imageMap = {
-            'Module 1: Foundations of Law Enforcement Training in the U.S.': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
-            'Module 2: Stakeholder Analysis & Needs Assessment': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
-            'Module 3: Customized Curriculum & Scenario Design': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp',
-            'Module 1: Foundations of Professional Learning in Education': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
-            'Module 2: Needs Assessment for Schools & Districts': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
-            'Module 3: Curriculum & Module Design for Teachers': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp',
-            'Module 1: Foundations of Youth Advocacy & Development': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
-            'Module 2: Needs Assessment in Youth Advocacy': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
-            'Module 3: Designing Advocacy Training Programs': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp'
+            // Law Enforcement Training - Updated to use local assets
+            ' Foundations of Law Enforcement Training in the U.S.': '/assets/mod-1.png',
+            'Module 2: Stakeholder Analysis & Needs Assessment': '/assets/mod-2.png',
+            'Module 3: Customized Curriculum & Scenario Design': '/assets/mod-3.png',
+            // Educator Training - Custom images for each module
+            'Foundations of Professional Learning in Education': '/assets/Gemini_Generated_Image_absskdabsskdabss.png',
+            'Module 2: Needs Assessment for Schools & Districts': '/assets/Gemini_Generated_Image_6txo8c6txo8c6txo.png',
+            'Module 3: Curriculum & Module Design for Teachers': '/assets/Gemini_Generated_Image_fnhloefnhloefnhl.png',
+            // Youth Advocacy Training - Custom Gemini-generated images
+            'Foundations of Youth Advocacy & Development': '/assets/Gemini_Generated_Image_yxldqkyxldqkyxld.png',
+            'Module 2: Needs Assessment in Youth Advocacy': '/assets/Gemini_Generated_Image_ruckriruckriruck.png',
+            'Module 3: Designing Advocacy Training Programs': '/assets/Gemini_Generated_Image_2vse392vse392vse.png'
           };
           const courseModules = publishedCourse.modules.map((module, index) => ({
             id: module.id,
@@ -68,7 +71,7 @@ const CourseModules = () => {
             '1': [ // Law Enforcement Training
               {
                 id: 1,
-                title: "Module 1: Foundations of Law Enforcement Training in the U.S.",
+                title: "Foundations of Law Enforcement Training in the U.S.",
                 description: "Understanding the core principles and frameworks of law enforcement training",
                 units: 5,
                 assessments: 1,
@@ -76,31 +79,31 @@ const CourseModules = () => {
                 completed: false,
                 locked: false,
               },
-              {
-                id: 2,
-                title: "Module 2: Stakeholder Analysis & Needs Assessment",
-                description: "Identifying key stakeholders and assessing training needs in law enforcement",
-                units: 8,
-                assessments: 2,
-                duration: "4 hours",
-                completed: false,
-                locked: courseType === 'sequential',
-              },
-              {
-                id: 3,
-                title: "Module 3: Customized Curriculum & Scenario Design",
-                description: "Developing tailored training programs and realistic scenarios for law enforcement",
-                units: 6,
-                assessments: 2,
-                duration: "3 hours",
-                completed: false,
-                locked: courseType === 'sequential',
-              }
+              // {
+              //   id: 2,
+              //   title: "Module 2: Stakeholder Analysis & Needs Assessment",
+              //   description: "Identifying key stakeholders and assessing training needs in law enforcement",
+              //   units: 8,
+              //   assessments: 2,
+              //   duration: "4 hours",
+              //   completed: false,
+              //   locked: courseType === 'sequential',
+              // },
+              // {
+              //   id: 3,
+              //   title: "Module 3: Customized Curriculum & Scenario Design",
+              //   description: "Developing tailored training programs and realistic scenarios for law enforcement",
+              //   units: 6,
+              //   assessments: 2,
+              //   duration: "3 hours",
+              //   completed: false,
+              //   locked: courseType === 'sequential',
+              // }
             ],
             '2': [ // Educator Training
               {
                 id: 4,
-                title: "Module 1: Foundations of Professional Learning in Education",
+                title: "Foundations of Professional Learning in Education",
                 description: "Core concepts of professional development and educator growth",
                 units: 7,
                 assessments: 2,
@@ -108,31 +111,31 @@ const CourseModules = () => {
                 completed: false,
                 locked: false,
               },
-              {
-                id: 5,
-                title: "Module 2: Needs Assessment for Schools & Districts",
-                description: "Evaluating educational needs and identifying improvement opportunities",
-                units: 9,
-                assessments: 3,
-                duration: "5 hours",
-                completed: false,
-                locked: courseType === 'sequential',
-              },
-              {
-                id: 6,
-                title: "Module 3: Curriculum & Module Design for Teachers",
-                description: "Creating effective curriculum and training modules for educators",
-                units: 6,
-                assessments: 2,
-                duration: "4 hours",
-                completed: false,
-                locked: courseType === 'sequential',
-              }
+              // {
+              //   id: 5,
+              //   title: "Module 2: Needs Assessment for Schools & Districts",
+              //   description: "Evaluating educational needs and identifying improvement opportunities",
+              //   units: 9,
+              //   assessments: 3,
+              //   duration: "5 hours",
+              //   completed: false,
+              //   locked: courseType === 'sequential',
+              // },
+              // {
+              //   id: 6,
+              //   title: "Module 3: Curriculum & Module Design for Teachers",
+              //   description: "Creating effective curriculum and training modules for educators",
+              //   units: 6,
+              //   assessments: 2,
+              //   duration: "4 hours",
+              //   completed: false,
+              //   locked: courseType === 'sequential',
+              // }
             ],
             '3': [ // Youth Advocate Training
               {
                 id: 1,
-                title: "Module 1: Foundations of Youth Advocacy & Development",
+                title: "Foundations of Youth Advocacy & Development",
                 description: "Understanding youth development and advocacy principles",
                 units: 6,
                 assessments: 1,
@@ -140,26 +143,26 @@ const CourseModules = () => {
                 completed: false,
                 locked: false,
               },
-              {
-                id: 2,
-                title: "Module 2: Needs Assessment in Youth Advocacy",
-                description: "Identifying and analyzing the needs of youth populations",
-                units: 8,
-                assessments: 2,
-                duration: "4 hours",
-                completed: false,
-                locked: courseType === 'sequential',
-              },
-              {
-                id: 3,
-                title: "Module 3: Designing Advocacy Training Programs",
-                description: "Creating comprehensive training programs for youth advocates",
-                units: 7,
-                assessments: 2,
-                duration: "3.5 hours",
-                completed: false,
-                locked: courseType === 'sequential',
-              }
+              // {
+              //   id: 2,
+              //   title: "Module 2: Needs Assessment in Youth Advocacy",
+              //   description: "Identifying and analyzing the needs of youth populations",
+              //   units: 8,
+              //   assessments: 2,
+              //   duration: "4 hours",
+              //   completed: false,
+              //   locked: courseType === 'sequential',
+              // },
+              // {
+              //   id: 3,
+              //   title: "Module 3: Designing Advocacy Training Programs",
+              //   description: "Creating comprehensive training programs for youth advocates",
+              //   units: 7,
+              //   assessments: 2,
+              //   duration: "3.5 hours",
+              //   completed: false,
+              //   locked: courseType === 'sequential',
+              // }
             ]
           };
           
@@ -168,15 +171,18 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            'Module 1: Foundations of Law Enforcement Training in the U.S.': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
-            'Module 2: Stakeholder Analysis & Needs Assessment': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
-            'Module 3: Customized Curriculum & Scenario Design': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp',
-            'Module 1: Foundations of Professional Learning in Education': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
-            'Module 2: Needs Assessment for Schools & Districts': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
-            'Module 3: Curriculum & Module Design for Teachers': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp',
-            'Module 1: Foundations of Youth Advocacy & Development': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
-            'Module 2: Needs Assessment in Youth Advocacy': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
-            'Module 3: Designing Advocacy Training Programs': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp'
+            // Law Enforcement Training - Updated to use local assets
+            'Foundations of Law Enforcement Training in the U.S.': '/assets/mod-1.png',
+            // 'Module 2: Stakeholder Analysis & Needs Assessment': '/assets/mod-2.png',
+            // 'Module 3: Customized Curriculum & Scenario Design': '/assets/mod-3.png',
+            // Educator Training - Custom images for each module
+            'Foundations of Professional Learning in Education': '/assets/Gemini_Generated_Image_absskdabsskdabss.png',
+            // 'Module 2: Needs Assessment for Schools & Districts': '/assets/Gemini_Generated_Image_6txo8c6txo8c6txo.png',
+            // 'Module 3: Curriculum & Module Design for Teachers': '/assets/Gemini_Generated_Image_fnhloefnhloefnhl.png',
+            // Youth Advocacy Training - Custom Gemini-generated images
+            'Foundations of Youth Advocacy & Development': '/assets/Gemini_Generated_Image_yxldqkyxldqkyxld.png',
+            // 'Module 2: Needs Assessment in Youth Advocacy': '/assets/Gemini_Generated_Image_ruckriruckriruck.png',
+            // 'Module 3: Designing Advocacy Training Programs': '/assets/Gemini_Generated_Image_2vse392vse392vse.png'
           };
           return { ...m, image: titleToImage[m.title] };
         });
