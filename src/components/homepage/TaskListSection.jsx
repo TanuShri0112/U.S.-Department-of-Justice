@@ -84,8 +84,6 @@ export function TaskListSection() {
         return tasks.filter(task => !task.completed);
       case 'Closed':
         return tasks.filter(task => task.completed);
-      case 'Archived':
-        return tasks.filter(task => task.archived);
       default:
         return tasks;
     }
@@ -129,7 +127,7 @@ export function TaskListSection() {
 
         {/* Filter Tabs */}
         <div className="flex items-center gap-6">
-          {['All', 'Open', 'Closed', 'Archived'].map((filter) => {
+          {['All', 'Open', 'Closed'].map((filter) => {
             const count = filter === 'All' ? tasks.length : 
                          filter === 'Open' ? openTasks.length :
                          filter === 'Closed' ? closedTasks.length : 0;
