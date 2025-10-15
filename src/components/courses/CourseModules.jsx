@@ -35,15 +35,15 @@ const CourseModules = () => {
         
         if (publishedCourse.modules && publishedCourse.modules.length > 0) {
           const imageMap = {
-            'Module 1: Foundations of Law Enforcement Training in the U.S.': 'https://images.unsplash.com/photo-1520483601560-4b17b0c93a77?w=800&h=600&fit=crop',
-            'Module 2: Stakeholder Analysis & Needs Assessment': 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
-            'Module 3: Customized Curriculum & Scenario Design': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-            'Module 1: Foundations of Professional Learning in Education': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop',
-            'Module 2: Needs Assessment for Schools & Districts': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop',
-            'Module 3: Curriculum & Module Design for Teachers': 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop',
-            'Module 1: Foundations of Youth Advocacy & Development': 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&h=600&fit=crop',
-            'Module 2: Needs Assessment in Youth Advocacy': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop',
-            'Module 3: Designing Advocacy Training Programs': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop'
+            'Module 1: Foundations of Law Enforcement Training in the U.S.': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
+            'Module 2: Stakeholder Analysis & Needs Assessment': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
+            'Module 3: Customized Curriculum & Scenario Design': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp',
+            'Module 1: Foundations of Professional Learning in Education': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
+            'Module 2: Needs Assessment for Schools & Districts': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
+            'Module 3: Curriculum & Module Design for Teachers': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp',
+            'Module 1: Foundations of Youth Advocacy & Development': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
+            'Module 2: Needs Assessment in Youth Advocacy': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
+            'Module 3: Designing Advocacy Training Programs': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp'
           };
           const courseModules = publishedCourse.modules.map((module, index) => ({
             id: module.id,
@@ -168,15 +168,15 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            'Module 1: Foundations of Law Enforcement Training in the U.S.': 'https://images.unsplash.com/photo-1520483601560-4b17b0c93a77?w=800&h=600&fit=crop',
-            'Module 2: Stakeholder Analysis & Needs Assessment': 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop',
-            'Module 3: Customized Curriculum & Scenario Design': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-            'Module 1: Foundations of Professional Learning in Education': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop',
-            'Module 2: Needs Assessment for Schools & Districts': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop',
-            'Module 3: Curriculum & Module Design for Teachers': 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop',
-            'Module 1: Foundations of Youth Advocacy & Development': 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&h=600&fit=crop',
-            'Module 2: Needs Assessment in Youth Advocacy': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop',
-            'Module 3: Designing Advocacy Training Programs': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop'
+            'Module 1: Foundations of Law Enforcement Training in the U.S.': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
+            'Module 2: Stakeholder Analysis & Needs Assessment': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
+            'Module 3: Customized Curriculum & Scenario Design': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp',
+            'Module 1: Foundations of Professional Learning in Education': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
+            'Module 2: Needs Assessment for Schools & Districts': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
+            'Module 3: Curriculum & Module Design for Teachers': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp',
+            'Module 1: Foundations of Youth Advocacy & Development': 'https://www.wvbandcoms.com/cdn/shop/articles/pablo_34_600x600_crop_center.png?v=1750174649',
+            'Module 2: Needs Assessment in Youth Advocacy': 'https://assets.plan.io/images/blog/title-stakeholder-analysis.png',
+            'Module 3: Designing Advocacy Training Programs': 'https://m-cdn.suraasa.org/blog/types-of-curriculum/image%20of%20curriculum%20meaning.webp'
           };
           return { ...m, image: titleToImage[m.title] };
         });

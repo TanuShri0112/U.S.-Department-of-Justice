@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Home, Book, Users, Folder, FileText, BarChart2,
-  Grid, Settings, FileBox, MessageCircle, HelpCircle, Gamepad2, Bot
+  Grid, Settings, FileBox, MessageCircle, HelpCircle
 } from 'lucide-react';
 import { NavItem } from './NavItem';
 import { useSidebar } from '@/contexts/SidebarContext';
@@ -50,28 +50,6 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
     if (onItemClick) onItemClick();
   };
 
-  const handleGamesClick = () => {
-    // Open the games URL in a new tab
-    window.open('https://game-open-scene.vercel.app/', '_blank');
-    if (onItemClick) onItemClick();
-  };
-
-  const handleScenarioAssessmentClick = () => {
-    // Open Scenario Assessment in a new tab
-    window.open('https://preview--rakshak-coach-62.lovable.app/', '_blank');
-    if (onItemClick) onItemClick();
-  };
-
-  const handlePreliminaryProfileClick = () => {
-    // Open Preliminary Profile in a new tab
-    window.open('https://prudential-ai.vercel.app/', '_blank');
-    if (onItemClick) onItemClick();
-  };
-
-  const handleChatbotClick = () => {
-    navigate('/chatbot');
-    if (onItemClick) onItemClick();
-  };
 
   const handleNavItemClick = (path) => {
     navigate(path);
@@ -158,57 +136,6 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
           />
         </motion.div>
         
-        {/* Games */}
-        <motion.div variants={itemVariants}>
-          <NavItem 
-            icon={Gamepad2}
-            label="Games"
-            to="#"
-            active={false}
-            onClick={handleGamesClick}
-            collapsed={isMainCollapsed}
-            className="hover-lift"
-          />
-        </motion.div>
-        
-        {/* Scenario Assessment */}
-        <motion.div variants={itemVariants}>
-          <NavItem 
-            icon={FileText}
-            label="Scenario Assessment"
-            to="#"
-            active={false}
-            onClick={handleScenarioAssessmentClick}
-            collapsed={isMainCollapsed}
-            className="hover-lift"
-          />
-        </motion.div>
-        
-        {/* Preliminary Profile */}
-        <motion.div variants={itemVariants}>
-          <NavItem 
-            icon={FileText}
-            label="Preliminary Profile"
-            to="#"
-            active={false}
-            onClick={handlePreliminaryProfileClick}
-            collapsed={isMainCollapsed}
-            className="hover-lift"
-          />
-        </motion.div>
-
-        {/* Chatbot */}
-        <motion.div variants={itemVariants}>
-          <NavItem 
-            icon={Bot}
-            label="Chatbot"
-            to="/chatbot"
-            active={pathname.startsWith('/chatbot')}
-            onClick={handleChatbotClick}
-            collapsed={isMainCollapsed}
-            className="hover-lift"
-          />
-        </motion.div>
         
         {/* Messages */}
         <motion.div variants={itemVariants}>
