@@ -58,13 +58,59 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
       return;
     }
     
-    // Get courseId from URL or props
+    // Get courseId from URL or props - improved detection
     const currentPath = window.location.pathname;
-    const courseId = currentPath.includes('/courses/view/') ? currentPath.split('/courses/view/')[1] : '1';
+    let detectedCourseId = '1'; // default fallback
+    
+    // First, try to get courseId from props (most reliable)
+    if (courseId && courseId !== '1') {
+      detectedCourseId = courseId;
+    } else {
+      // Try multiple URL patterns to detect course ID
+      if (currentPath.includes('/courses/view/')) {
+        detectedCourseId = currentPath.split('/courses/view/')[1];
+      } else if (currentPath.includes('/courses/')) {
+        // Extract course ID from various course-related paths
+        const pathParts = currentPath.split('/');
+        const courseIndex = pathParts.indexOf('courses');
+        if (courseIndex !== -1 && pathParts[courseIndex + 1]) {
+          detectedCourseId = pathParts[courseIndex + 1];
+        }
+      } else if (currentPath.includes('/modules/')) {
+        // If we're in modules section, try to get course from referrer or use module mapping
+        const moduleId = module.id;
+        
+        // Use module title to determine course (most reliable)
+        if (module.title && module.title.includes('Law Enforcement')) {
+          detectedCourseId = '1';
+        } else if (module.title && module.title.includes('Educator')) {
+          detectedCourseId = '2';
+        } else if (module.title && module.title.includes('Youth Advocate')) {
+          detectedCourseId = '3';
+        } else {
+          // Fallback to module ID mapping
+          if (moduleId === 1) {
+            detectedCourseId = '1'; // Default to Course 1
+          } else if (moduleId === 4) {
+            detectedCourseId = '2'; // Course 2
+          }
+        }
+      } else {
+        // Final fallback - use module title to determine course
+        if (module.title && module.title.includes('Law Enforcement')) {
+          detectedCourseId = '1';
+        } else if (module.title && module.title.includes('Educator')) {
+          detectedCourseId = '2';
+        } else if (module.title && module.title.includes('Youth Advocate')) {
+          detectedCourseId = '3';
+        }
+      }
+    }
     
     console.log('Current path:', currentPath);
-    console.log('Course ID:', courseId);
+    console.log('Course ID:', detectedCourseId);
     console.log('Module ID:', module.id);
+    console.log('Module title:', module.title);
     
     // Module external links mapping by course and module
     const moduleLinks = {
@@ -74,7 +120,7 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
     };
     
     // Create the key for this course-module combination
-    const linkKey = `${courseId}-${module.id}`;
+    const linkKey = `${detectedCourseId}-${module.id}`;
     const externalLink = moduleLinks[linkKey];
     
     console.log('Link key:', linkKey);

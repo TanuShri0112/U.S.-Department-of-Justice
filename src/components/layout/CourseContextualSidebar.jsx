@@ -3,9 +3,9 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { NavItem } from './NavItem';
 import { cn } from '@/lib/utils';
 import { 
-  LayoutGrid, FileText, BarChart2, TrendingUp,
+  FileText, BarChart2, TrendingUp,
   Users, Clock, Settings, 
-  X, GraduationCap
+  X, GraduationCap, BookOpen
 } from 'lucide-react';
 import { useCourseSidebar } from '@/contexts/CourseSidebarContext';
 import { Button } from '@/components/ui/button';
@@ -41,7 +41,7 @@ export const CourseContextualSidebar = ({ isCollapsed }) => {
   };
   
   const courseNavItems = [
-    { icon: LayoutGrid, label: "Modules", path: `/courses/view/${courseId}/modules` },
+    { icon: BookOpen, label: "Modules", path: `/courses/view/${courseId}` },
     { icon: BarChart2, label: "Scores", path: `/courses/view/${courseId}/scores` },
     { icon: Users, label: "Learners", path: `/courses/view/${courseId}/learners` },
     { icon: GraduationCap, label: "Instructors", path: `/courses/view/${courseId}/instructors` },
@@ -104,20 +104,30 @@ export const CourseContextualSidebar = ({ isCollapsed }) => {
       {/* Navigation */}
       <ScrollArea className="flex-1 py-4">
         <nav className="px-3 space-y-1">
-          {courseNavItems.map((item) => (
-            <div key={item.path}>
-              {renderTooltip(item.label,
-                <NavItem
-                  icon={item.icon}
-                  label={item.label}
-                  to={item.path}
-                  active={location.pathname === item.path || location.pathname.startsWith(item.path + '/')}
-                  onClick={() => handleNavItemClick(item.path)}
-                  collapsed={isCollapsed}
-                />
-              )}
-            </div>
-          ))}
+           {courseNavItems.map((item) => {
+             // Special handling for Modules - only active when exactly on the course view page
+             let isActive = false;
+             if (item.label === "Modules") {
+               isActive = location.pathname === `/courses/view/${courseId}`;
+             } else {
+               isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
+             }
+             
+             return (
+               <div key={item.path}>
+                 {renderTooltip(item.label,
+                   <NavItem
+                     icon={item.icon}
+                     label={item.label}
+                     to={item.path}
+                     active={isActive}
+                     onClick={() => handleNavItemClick(item.path)}
+                     collapsed={isCollapsed}
+                   />
+                 )}
+               </div>
+             );
+           })}
         </nav>
       </ScrollArea>
       

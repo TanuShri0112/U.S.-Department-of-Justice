@@ -3,33 +3,46 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChevronUp } from 'lucide-react';
+import ModuleCard from '@/components/courses/ModuleCard';
 
 const CourseModules = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
   
-  // Mock data for modules
+  // Mock data for modules - updated to match ModuleCard format
   const modules = [
     { 
-      id: 'module-1', 
-      title: 'Module 1: Foundations of Life Insurance', 
-      description: 'Understanding the basics and why protection matters',
-      imageUrl: '/placeholder.svg', 
-      itemCount: 8 
+      id: 1, 
+      title: 'Law Enforcement Training', 
+      description: 'Understanding the core principles and frameworks of law enforcement training',
+      image: '/assets/C-1.png',
+      units: 5,
+      assessments: 1,
+      duration: '2 hours',
+      completed: false,
+      locked: false
     },
     { 
-      id: 'module-2', 
-      title: 'Module 2: Key Benefits & Smart Flexibility', 
-      description: 'Exploring Rakshak Smart features, terms, and assured returns',
-      imageUrl: '/placeholder.svg', 
-      itemCount: 6 
+      id: 4, 
+      title: 'Educator Training', 
+      description: 'Core concepts of professional development and educator growth',
+      image: '/assets/C-2.png',
+      units: 7,
+      assessments: 2,
+      duration: '3 hours',
+      completed: false,
+      locked: false
     },
     { 
-      id: 'module-3', 
-      title: 'Module 3: Real-Life Scenarios & Payouts', 
-      description: 'Learning through practical examples and family protection cases',
-      imageUrl: '/placeholder.svg', 
-      itemCount: 7 
+      id: 1, 
+      title: 'Youth Advocate Training', 
+      description: 'Understanding youth development and advocacy principles',
+      image: '/assets/C-3.png',
+      units: 6,
+      assessments: 1,
+      duration: '2.5 hours',
+      completed: false,
+      locked: false
     }
   ];
   
@@ -62,24 +75,16 @@ const CourseModules = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
             {modules.map((module) => (
-              <Card 
+              <ModuleCard
                 key={module.id}
-                className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
-                onClick={() => navigate(`/catalog/${courseId}/${module.id}`)}
-              >
-                <div className="h-40 bg-blue-50">
-                  <img 
-                    src={module.imageUrl} 
-                    alt={module.title}
-                    className="w-full h-full object-cover" 
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold mb-2">{module.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">{module.description}</p>
-                  <p className="text-sm text-gray-500">{module.itemCount} items</p>
-                </div>
-              </Card>
+                module={module}
+                courseId={courseId}
+                onDelete={() => {}}
+                onUpdate={() => {}}
+                onComplete={() => {}}
+                courseType="open"
+                onEdit={() => {}}
+              />
             ))}
           </div>
         </div>
