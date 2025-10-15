@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CalendarClock, Clock, Users, Lock, MoreVertical, Edit, Trash2, Archive } from 'lucide-react';
+import { CalendarClock, Clock, Users, Lock, MoreVertical, Trash2, Archive } from 'lucide-react';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useNavigate } from 'react-router-dom';
 
-const CourseGrid = ({ courses, onCourseClick, onCourseEdit, onCourseDelete, onCourseArchive, courseType = 'open' }) => {
+const CourseGrid = ({ courses, onCourseClick, onCourseDelete, onCourseArchive, courseType = 'open' }) => {
   const navigate = useNavigate();
 
   const handleCourseClick = (courseId, title, event) => {
@@ -24,11 +24,6 @@ const CourseGrid = ({ courses, onCourseClick, onCourseEdit, onCourseDelete, onCo
     navigate(`/courses/view/${courseId}/modules?type=${courseType}`);
   };
 
-  const handleCourseEdit = (courseId, title) => {
-    if (onCourseEdit) {
-      onCourseEdit(courseId, title);
-    }
-  };
 
   const handleCourseDelete = (courseId, title) => {
     if (onCourseDelete && window.confirm(`Are you sure you want to delete "${title}"?`)) {
@@ -95,13 +90,6 @@ const CourseGrid = ({ courses, onCourseClick, onCourseEdit, onCourseDelete, onCo
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="bg-white border shadow-md">
-                  <DropdownMenuItem onClick={(e) => {
-                    e.stopPropagation();
-                    handleCourseEdit(course.id, course.title);
-                  }}>
-                    <Edit className="h-4 w-4 mr-2" />
-                    Edit Course
-                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
                     Duplicate
                   </DropdownMenuItem>

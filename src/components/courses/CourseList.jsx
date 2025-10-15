@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MoreHorizontal, Users, Lock, Edit, Trash2, Archive } from 'lucide-react';
+import { MoreHorizontal, Users, Lock, Trash2, Archive } from 'lucide-react';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useNavigate } from 'react-router-dom';
 
-const CourseList = ({ courses, onCourseClick, onCourseEdit, onCourseDelete, onCourseArchive, courseType = 'open' }) => {
+const CourseList = ({ courses, onCourseClick, onCourseDelete, onCourseArchive, courseType = 'open' }) => {
   const navigate = useNavigate();
 
   const getStatusColor = (status) => {
@@ -27,11 +27,6 @@ const CourseList = ({ courses, onCourseClick, onCourseEdit, onCourseDelete, onCo
     navigate(`/courses/view/${courseId}/modules?type=${courseType}`);
   };
 
-  const handleCourseEdit = (courseId, title) => {
-    if (onCourseEdit) {
-      onCourseEdit(courseId, title);
-    }
-  };
 
   const handleCourseDelete = (courseId, title) => {
     if (onCourseDelete && window.confirm(`Are you sure you want to delete "${title}"?`)) {
@@ -104,13 +99,6 @@ const CourseList = ({ courses, onCourseClick, onCourseEdit, onCourseDelete, onCo
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="bg-white border shadow-md">
-                    <DropdownMenuItem onClick={(e) => {
-                      e.stopPropagation();
-                      handleCourseEdit(course.id, course.title);
-                    }}>
-                      <Edit className="h-4 w-4 mr-2" />
-                      Edit Course
-                    </DropdownMenuItem>
                     <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
                       Duplicate
                     </DropdownMenuItem>

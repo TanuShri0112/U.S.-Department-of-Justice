@@ -1,5 +1,5 @@
 import React from 'react';
-import { MoreVertical, Edit, Trash2, Image, Archive, RotateCcw } from 'lucide-react';
+import { MoreVertical, Trash2, Image, Archive, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,7 +14,6 @@ import { toast } from '@/hooks/use-toast';
 export const CourseOptionsMenu = ({ 
   courseId, 
   courseName, 
-  onEdit, 
   onArchive, 
   onDelete, 
   onRestore,
@@ -22,17 +21,6 @@ export const CourseOptionsMenu = ({
 }) => {
   const navigate = useNavigate();
 
-  const handleUpdate = () => {
-    if (onEdit) {
-      onEdit(courseId, courseName);
-    } else {
-      navigate(`/courses/edit/${courseId}`);
-      toast({
-        title: "Edit Course",
-        description: `Opening edit page for ${courseName}`,
-      });
-    }
-  };
 
   const handleUpdateImage = () => {
     toast({
@@ -74,10 +62,6 @@ export const CourseOptionsMenu = ({
           </DropdownMenuItem>
         ) : (
           <>
-            <DropdownMenuItem onClick={handleUpdate}>
-              <Edit className="mr-2 h-4 w-4" />
-              Edit Course
-            </DropdownMenuItem>
             <DropdownMenuItem onClick={handleUpdateImage}>
               <Image className="mr-2 h-4 w-4" />
               Update Image
