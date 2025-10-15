@@ -504,7 +504,7 @@ const LessonMod1Dreams = () => {
     if (baseLang === 'mr') return { title: 'PDF अ¦अ¸à¥अ¤अअµअœ', open: 'अ‰अ˜अ¡अ¾', download: 'अ¡अ¾अ‰अ¨अ²à¥‹अ¡' };
     return { title: 'Law Enforcement Training Manual', open: 'Open', download: 'Download' };
   }, [baseLang]);
-  const pdfUrl = '/assets/Lesson1Understanding_Your_Dream.pdf';
+  const pdfUrl = '/assets/Us-department-of-justice.pdf';
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
