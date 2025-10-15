@@ -1,40 +1,53 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Clock, ChevronRight, Plus } from 'lucide-react';
+import { Check, Clock, ChevronRight, Plus, User } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useNavigate } from 'react-router-dom';
 
 export function TaskListSection() {
   const navigate = useNavigate();
+  const [activeFilter, setActiveFilter] = useState('All');
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: 'Complete Insurance Sales Assignment',
+      title: 'Complete Law Enforcement Module 1',
+      description: 'Foundations of Law Enforcement Training',
       dueDate: '2023-07-10',
+      time: '10:00 PM - 11:45 PM',
       completed: false,
-      priority: 'high'
+      priority: 'high',
+      course: 'Law Enforcement',
+      assignees: [
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&auto=format'
+      ]
     },
     {
       id: 2,
-      title: 'Review Life Insurance Documentation',
+      title: 'Review Educator Training Assessment',
+      description: 'Professional Learning in Education',
       dueDate: '2023-07-12',
+      time: '2:00 PM - 3:30 PM',
       completed: false,
-      priority: 'medium'
+      priority: 'medium',
+      course: 'Education',
+      assignees: [
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format'
+      ]
     },
     {
       id: 3,
-      title: 'Submit Sales Proposal',
+      title: 'Submit Youth Advocate Module 2',
+      description: 'Needs Assessment in Youth Advocacy',
       dueDate: '2023-07-15',
+      time: '9:00 AM - 11:00 AM',
       completed: true,
-      priority: 'high'
-    },
-    {
-      id: 4,
-      title: 'Watch Lecture on Sales Techniques',
-      dueDate: '2023-07-08',
-      completed: false,
-      priority: 'low'
+      priority: 'high',
+      course: 'Youth Development',
+      assignees: [
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format'
+      ]
     }
   ]);
 
@@ -65,95 +78,158 @@ export function TaskListSection() {
     }
   };
 
+  const getFilteredTasks = () => {
+    switch (activeFilter) {
+      case 'Open':
+        return tasks.filter(task => !task.completed);
+      case 'Closed':
+        return tasks.filter(task => task.completed);
+      case 'Archived':
+        return tasks.filter(task => task.archived);
+      default:
+        return tasks;
+    }
+  };
+
+  const filteredTasks = getFilteredTasks();
+  const openTasks = tasks.filter(task => !task.completed);
+  const closedTasks = tasks.filter(task => task.completed);
+
   const formatDueDate = (dateString) => {
     const options = { weekday: 'short', month: 'short', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const pendingTasks = tasks.filter(task => !task.completed).slice(0, 5);
-  const completedTasks = tasks.filter(task => task.completed).slice(0, 3);
+  const getTodayDate = () => {
+    const options = { weekday: 'long', day: 'numeric', month: 'long' };
+    return new Date().toLocaleDateString(undefined, options);
+  };
 
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <Check className="h-5 w-5 text-primary" />
-            My Tasks
-          </CardTitle>
+    <Card className="border-0 shadow-lg bg-white overflow-hidden">
+      <CardHeader className="pb-4 pt-5 px-6">
+        {/* Header Section */}
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <CardTitle className="text-xl font-bold text-gray-800 mb-1">
+              Today's Task
+            </CardTitle>
+            <p className="text-sm text-gray-500">{getTodayDate()}</p>
+          </div>
           <Button 
-            variant="ghost" 
+            variant="outline" 
             size="sm" 
-            className="h-8"
+            className="bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100 transition-all duration-300"
             onClick={handleAddTask}
           >
-            <Plus className="h-4 w-4 mr-1" /> Add
+            <Plus className="h-4 w-4 mr-2" />
+            New Task
           </Button>
         </div>
+
+        {/* Filter Tabs */}
+        <div className="flex items-center gap-6">
+          {['All', 'Open', 'Closed', 'Archived'].map((filter) => {
+            const count = filter === 'All' ? tasks.length : 
+                         filter === 'Open' ? openTasks.length :
+                         filter === 'Closed' ? closedTasks.length : 0;
+            
+            return (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`flex items-center gap-2 text-sm font-medium transition-all duration-300 ${
+                  activeFilter === filter 
+                    ? 'text-blue-600' 
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                <span>{filter}</span>
+                <span className={`px-2 py-1 rounded-full text-xs ${
+                  activeFilter === filter 
+                    ? 'bg-blue-100 text-blue-600' 
+                    : 'bg-gray-100 text-gray-500'
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </CardHeader>
-      <CardContent className="p-0">
-        <div className="divide-y">
-          {pendingTasks.length > 0 ? (
-            pendingTasks.map((task) => (
-              <div key={task.id} className="p-4 hover:bg-muted/50 transition-colors">
-                <div className="flex items-center space-x-3">
+
+      <CardContent className="px-6 pb-6">
+        {/* Task Cards */}
+        <div className="space-y-3">
+          {filteredTasks.slice(0, 5).map((task) => (
+            <div
+              key={task.id}
+              className="group bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all duration-300 cursor-pointer"
+              onClick={() => toggleTask(task.id)}
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex items-start gap-3 flex-1">
                   <Checkbox 
-                    id={`task-${task.id}`} 
                     checked={task.completed}
                     onCheckedChange={() => toggleTask(task.id)}
+                    className="mt-1"
                   />
                   <div className="flex-1 min-w-0">
-                    <label
-                      htmlFor={`task-${task.id}`}
-                      className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${
-                        task.completed ? 'line-through text-muted-foreground' : ''
-                      }`}
-                    >
+                    <h3 className={`font-semibold text-gray-800 mb-1 ${
+                      task.completed ? 'line-through text-gray-400' : ''
+                    }`}>
                       {task.title}
-                    </label>
-                    <div className="flex items-center mt-1 text-xs text-muted-foreground">
-                      <Clock className="h-3 w-3 mr-1" />
-                      Due {formatDueDate(task.dueDate)}
-                      <span className={`h-2 w-2 rounded-full ml-2 ${getPriorityColor(task.priority)}`} />
+                    </h3>
+                    <p className={`text-sm text-gray-500 mb-3 ${
+                      task.completed ? 'line-through' : ''
+                    }`}>
+                      {task.description}
+                    </p>
+                    
+                    {/* Task Details */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1 text-xs text-gray-400">
+                        <Clock className="h-3 w-3" />
+                        <span>{task.time}</span>
+                      </div>
+                      
+                      {/* Assignee Avatars */}
+                      <div className="flex items-center -space-x-2">
+                        {task.assignees.map((avatar, index) => (
+                          <img
+                            key={index}
+                            src={avatar}
+                            alt={`Assignee ${index + 1}`}
+                            className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
+                
+                {/* Completion Indicator */}
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                  task.completed 
+                    ? 'bg-blue-500 border-blue-500' 
+                    : 'border-gray-300 hover:border-blue-300'
+                }`}>
+                  {task.completed && <Check className="w-3 h-3 text-white" />}
+                </div>
               </div>
-            ))
-          ) : (
-            <div className="p-4 text-center text-sm text-muted-foreground">
-              No pending tasks. Great job!
             </div>
-          )}
+          ))}
         </div>
 
-        {completedTasks.length > 0 && (
-          <div className="border-t">
-            <div className="p-3 text-xs font-medium text-muted-foreground">
-              Recently Completed
-            </div>
-            <div className="divide-y">
-              {completedTasks.map((task) => (
-                <div key={`completed-${task.id}`} className="p-4 hover:bg-muted/30 transition-colors">
-                  <div className="flex items-center space-x-3">
-                    <Check className="h-4 w-4 text-green-500" />
-                    <span className="text-sm line-through text-muted-foreground">
-                      {task.title}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
+        {/* View All Button */}
         <Button 
           variant="ghost" 
           size="sm" 
-          className="w-full rounded-none border-t"
+          className="w-full mt-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
           onClick={handleViewAllTasks}
         >
           View All Tasks
+          <ChevronRight className="w-4 h-4 ml-2" />
         </Button>
       </CardContent>
     </Card>

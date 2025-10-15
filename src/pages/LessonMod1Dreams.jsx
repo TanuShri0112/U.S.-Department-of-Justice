@@ -1,7 +1,7 @@
 ﻿import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Volume2, Play, Pause, X, Heart, ExternalLink, FileDown } from 'lucide-react';
+import { ArrowLeft, Volume2, Play, Pause, X, Heart, ExternalLink, FileDown, FileText } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
@@ -1431,31 +1431,60 @@ const LessonMod1Dreams = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* PDF Document */}
               <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
-                <div className="flex items-center justify-between mb-4">
+                <div className="mb-4">
                   <h3 className="text-lg font-semibold text-blue-800 flex items-center gap-2">
                     📄 Training Manual
                   </h3>
-                  <div className="flex items-center gap-2">
-                    <Button asChild variant="outline" size="sm">
-                      <a href={pdfUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2">
-                        <ExternalLink className="h-4 w-4" /> {pdfUi.open}
-                      </a>
-                    </Button>
-                    <Button asChild size="sm">
-                      <a href={pdfUrl} download className="flex items-center gap-2">
-                        <FileDown className="h-4 w-4" /> {pdfUi.download}
-                      </a>
-                    </Button>
-                    </div>
                       </div>
                 <p className="text-sm text-blue-700 mb-4">
                   Comprehensive training manual covering all aspects of Law Enforcement Training fundamentals.
                 </p>
-                <div className="text-xs text-blue-600">
-                  {baseLang === 'hi' ? 'PDF अ«अ¼अ¾अ‡अ²: Lesson1Understanding_Your_Dream.pdf' : 
-                   baseLang === 'mr' ? 'PDF अ«अ¾अˆअ²: Lesson1Understanding_Your_Dream.pdf' : 
-                   'PDF File: Lesson1Understanding_Your_Dream.pdf'}
+                <div className="text-xs text-blue-600 mb-4">
+                  
                     </div>
+                
+                {/* PDF Preview */}
+                <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-blue-200 hover:shadow-md transition-shadow duration-300">
+                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-2 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <FileText className="h-4 w-4 text-white" />
+                      <span className="text-white text-sm font-medium">PDF Preview</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+                      <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+                      <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+                    </div>
+                  </div>
+                  <div className="p-4 bg-gray-50 min-h-[200px] flex flex-col justify-center items-center">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <FileText className="h-8 w-8 text-blue-600" />
+                      </div>
+                      <h4 className="text-sm font-semibold text-gray-800 mb-1">Understanding Your Dream</h4>
+                      <p className="text-xs text-gray-600 mb-3">Law Enforcement Training Manual</p>
+                      <div className="flex gap-2 justify-center">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-3">24 pages • 2.4 MB</p>
+                      <div className="flex gap-2 justify-center mt-4">
+                        <Button asChild size="sm" variant="outline" className="text-xs">
+                          <a href={pdfUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1">
+                            <ExternalLink className="h-3 w-3" /> {pdfUi.open}
+                          </a>
+                        </Button>
+                        <Button asChild size="sm" className="text-xs">
+                          <a href={pdfUrl} download className="flex items-center gap-1">
+                            <FileDown className="h-3 w-3" /> {pdfUi.download}
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                       </div>
 
               {/* Video Resource */}

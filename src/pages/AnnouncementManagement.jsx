@@ -14,19 +14,20 @@ import { useNavigate } from 'react-router-dom';
 const AnnouncementManagement = () => {
   const navigate = useNavigate();
   const [announcements, setAnnouncements] = useState([
-    { id: 1, title: 'New React Course Module Available', source: 'Instructor', time: '2 hours ago', content: 'A comprehensive module on React Hooks has been added to the React Development course.', priority: 'high', audience: 'React Students', type: 'course' },
-    { id: 2, title: 'Office Hours This Week', source: 'Instructor', time: '1 day ago', content: 'Office hours will be held every Tuesday and Thursday from 2-4 PM for student consultations.', priority: 'medium', audience: 'All Students', type: 'general' },
-    { id: 3, title: 'Machine Learning Assignment Deadline', source: 'Instructor', time: '3 days ago', content: 'Reminder: The final project for Machine Learning course is due next Friday.', priority: 'high', audience: 'ML Students', type: 'course' },
-    { id: 4, title: 'Node.js Workshop Registration Open', source: 'Instructor', time: '1 week ago', content: 'Register now for the advanced Node.js workshop scheduled for next month.', priority: 'medium', audience: 'Node.js Students', type: 'event' },
+    { id: 1, title: 'New Law Enforcement Module 2 Available', source: 'DOJ Training Coordinator', time: '2 hours ago', content: 'Advanced Law Enforcement Training Module 2: Stakeholder Analysis & Needs Assessment is now available for enrollment.', priority: 'high', audience: 'Law Enforcement Students', type: 'course' },
+    { id: 2, title: 'Training Office Hours This Week', source: 'Training Specialist', time: '1 day ago', content: 'Office hours will be held every Tuesday and Thursday from 2-4 PM for training consultation and support.', priority: 'medium', audience: 'All Students', type: 'general' },
+    { id: 3, title: 'Youth Advocate Certification Deadline', source: 'Training Manager', time: '3 days ago', content: 'Reminder: Youth Advocate Training Module 1 final assessment is due next Friday. Complete all required modules to earn certification.', priority: 'high', audience: 'Youth Development Students', type: 'course' },
+    { id: 4, title: 'DOJ Compliance Workshop Registration Open', source: 'Legal Training Department', time: '1 week ago', content: 'Register now for the Department of Justice compliance workshop scheduled for next month covering latest regulatory requirements.', priority: 'medium', audience: 'Law Enforcement Students', type: 'event' },
+    { id: 5, title: 'Educator Professional Development Survey', source: 'Training Evaluation Team', time: '2 weeks ago', content: 'Please complete the training effectiveness survey to help us improve our professional development programs for educators.', priority: 'low', audience: 'Education Students', type: 'survey' },
   ]);
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingAnnouncement, setEditingAnnouncement] = useState(null);
   const [newAnnouncement, setNewAnnouncement] = useState({ title: '', content: '', priority: 'medium', audience: 'All Students', type: 'general' });
 
-  const audiences = ['All Students', 'React Students', 'Node.js Students', 'ML Students', 'Specific Course'];
+  const audiences = ['All Students', 'Law Enforcement Students', 'Education Students', 'Youth Development Students', 'Training Staff'];
   const priorities = ['high', 'medium', 'low'];
-  const types = ['general', 'course', 'system', 'event'];
+  const types = ['general', 'course', 'workshop', 'deadline', 'survey'];
 
   const addAnnouncement = () => {
     if (!newAnnouncement.title.trim() || !newAnnouncement.content.trim()) {
@@ -64,8 +65,9 @@ const AnnouncementManagement = () => {
 
   const getTypeColor = type => {
     if (type === 'course') return 'bg-blue-50 text-blue-700 border-blue-200';
-    if (type === 'event') return 'bg-purple-50 text-purple-700 border-purple-200';
-    if (type === 'system') return 'bg-orange-50 text-orange-700 border-orange-200';
+    if (type === 'workshop') return 'bg-purple-50 text-purple-700 border-purple-200';
+    if (type === 'deadline') return 'bg-red-50 text-red-700 border-red-200';
+    if (type === 'survey') return 'bg-green-50 text-green-700 border-green-200';
     return 'bg-gray-50 text-gray-700 border-gray-200';
   };
 

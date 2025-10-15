@@ -16,17 +16,17 @@ const TaskManagement = () => {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: 'Review Insurance Sales Materials',
-      description: 'Review and update insurance sales training materials for new agents',
+      title: 'Review Law Enforcement Module 1 Content',
+      description: 'Review and update Law Enforcement Training Module 1: Foundations content for accuracy and compliance',
       deadline: 'Today',
       priority: 'high',
       status: 'pending',
-      category: 'Sales Training'
+      category: 'Course Development'
     },
     {
       id: 2,
-      title: 'Grade Sales Technique Assessments',
-      description: 'Evaluate recent sales technique assessments and provide feedback',
+      title: 'Grade Educator Training Assessments',
+      description: 'Evaluate recent Educator Professional Development assessments and provide detailed feedback to participants',
       deadline: 'Tomorrow',
       priority: 'medium',
       status: 'in-progress',
@@ -34,8 +34,8 @@ const TaskManagement = () => {
     },
     {
       id: 3,
-      title: 'Prepare Insurance License Quiz',
-      description: 'Create quiz questions for upcoming insurance license preparation',
+      title: 'Prepare Youth Advocate Certification Exam',
+      description: 'Create comprehensive exam questions for Youth Advocate Training Module 1 final assessment',
       deadline: 'Next week',
       priority: 'high',
       status: 'pending',
@@ -43,21 +43,30 @@ const TaskManagement = () => {
     },
     {
       id: 4,
-      title: 'Update Sales Training Syllabus',
-      description: 'Make necessary updates to insurance sales training syllabus',
+      title: 'Update DOJ Compliance Training Materials',
+      description: 'Update Department of Justice compliance training materials with latest regulatory requirements',
       deadline: 'In 2 weeks',
       priority: 'medium',
       status: 'pending',
-      category: 'Planning'
+      category: 'Content Updates'
     },
     {
       id: 5,
-      title: 'Schedule Sales Coaching Sessions',
-      description: 'Set up coaching schedule for sales agents',
+      title: 'Schedule Training Instructor Sessions',
+      description: 'Set up training schedule for law enforcement, education, and youth development instructors',
       deadline: 'Next month',
       priority: 'low',
       status: 'completed',
       category: 'Administration'
+    },
+    {
+      id: 6,
+      title: 'Review Stakeholder Analysis Module',
+      description: 'Final review of Stakeholder Analysis & Needs Assessment module content before publication',
+      deadline: 'This Friday',
+      priority: 'high',
+      status: 'pending',
+      category: 'Course Development'
     },
   ]);
 
@@ -69,7 +78,7 @@ const TaskManagement = () => {
     deadline: '',
     priority: 'medium',
     status: 'pending',
-    category: 'Sales Training'
+    category: 'Course Development'
   });
 
   const addTask = () => {
@@ -89,7 +98,7 @@ const TaskManagement = () => {
     };
 
     setTasks([...tasks, task]);
-    setNewTask({ title: '', description: '', deadline: '', priority: 'medium', status: 'pending', category: 'Sales Training' });
+    setNewTask({ title: '', description: '', deadline: '', priority: 'medium', status: 'pending', category: 'Course Development' });
     setIsAddDialogOpen(false);
     toast.success('Task added successfully');
   };
@@ -145,7 +154,7 @@ const TaskManagement = () => {
 
   const priorities = ['high', 'medium', 'low'];
   const statuses = ['pending', 'in-progress', 'completed'];
-  const categories = ['Sales Training', 'Assessment', 'Planning', 'Administration', 'Compliance'];
+  const categories = ['Course Development', 'Assessment', 'Content Updates', 'Administration', 'Compliance', 'Training Delivery'];
 
   const handleBackToHome = () => {
     navigate('/');
