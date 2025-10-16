@@ -154,6 +154,19 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
             className="hover-lift"
           />
         </motion.div>
+
+        {/* Messages */}
+        <motion.div variants={itemVariants}>
+          <NavItem 
+            icon={MessageCircle}
+            label="Messages"
+            to="/messages"
+            active={pathname.startsWith('/messages')}
+            onClick={() => handleNavItemClick('/messages')}
+            collapsed={isMainCollapsed}
+            className="hover-lift"
+          />
+        </motion.div>
         
         {/* Evaluation and Feedback */}
         <motion.div variants={itemVariants}>
@@ -314,15 +327,6 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
               to="/announcements"
               active={pathname === '/announcements'}
               onClick={() => handleNavItemClick('/announcements')}
-              collapsed={isMainCollapsed}
-              className="hover-lift"
-            />
-            <NavItem 
-              icon={MessageCircle}
-              label="Messages"
-              to="/messages"
-              active={pathname.startsWith('/messages')}
-              onClick={() => handleNavItemClick('/messages')}
               collapsed={isMainCollapsed}
               className="hover-lift"
             />
