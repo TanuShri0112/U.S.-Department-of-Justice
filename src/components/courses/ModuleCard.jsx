@@ -112,11 +112,32 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
     console.log('Module ID:', module.id);
     console.log('Module title:', module.title);
     
-    // Module external links mapping by course and module
+    // Module external links mapping by course and module - ALL modules now open SCORM
     const moduleLinks = {
-      '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/law-enforcement-training-modules-scorm12-pRANQ60M/scormcontent/index.html', // Course 1 - Law Enforcement Module 1
-      '2-4': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html', // Course 2 - Educator Training Module 4
-      '3-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/youth-advocate-training-modules-scorm12-Ev2vCYOy/scormcontent/index.html', // Course 3 - Youth Advocate Module 1
+      // Course 1 - Law Enforcement Training
+      '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/law-enforcement-training-modules-scorm12-pRANQ60M/scormcontent/index.html',
+      
+      // Course 2 - Educator Training  
+      '2-4': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html',
+      
+      // Course 3 - Youth Advocate Training
+      '3-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/youth-advocate-training-modules-scorm12-Ev2vCYOy/scormcontent/index.html',
+      
+      // Fallback SCORM links for any missing combinations
+      // Default Law Enforcement SCORM for Course 1 modules
+      '1-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/law-enforcement-training-modules-scorm12-pRANQ60M/scormcontent/index.html',
+      '1-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/law-enforcement-training-modules-scorm12-pRANQ60M/scormcontent/index.html',
+      
+      // Default Educator SCORM for Course 2 modules  
+      '2-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html',
+      '2-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html',
+      '2-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html',
+      '2-5': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html',
+      '2-6': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html',
+      
+      // Default Youth Advocate SCORM for Course 3 modules
+      '3-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/youth-advocate-training-modules-scorm12-Ev2vCYOy/scormcontent/index.html',
+      '3-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/youth-advocate-training-modules-scorm12-Ev2vCYOy/scormcontent/index.html',
     };
     
     // Create the key for this course-module combination
@@ -127,12 +148,30 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
     console.log('External link:', externalLink);
     
     if (externalLink) {
-      // Open link in new tab
+      // Open SCORM link in new tab
       window.open(externalLink, '_blank', 'noopener,noreferrer');
     } else {
-      // Fallback to default navigation if no link is found
-      console.log('No external link found, navigating to units');
-      navigate(`/courses/modules/${module.id}/units`);
+      // Fallback to default SCORM based on course type if no specific link is found
+      console.log('No specific SCORM link found, using default SCORM for course type');
+      
+      // Determine default SCORM based on course type
+      let defaultScormLink;
+      if (detectedCourseId === '1') {
+        // Law Enforcement Training SCORM
+        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/law-enforcement-training-modules-scorm12-pRANQ60M/scormcontent/index.html';
+      } else if (detectedCourseId === '2') {
+        // Educator Training SCORM
+        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/educator-training-modules-scorm12-f-vnldQ9/scormcontent/index.html';
+      } else if (detectedCourseId === '3') {
+        // Youth Advocate Training SCORM
+        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/youth-advocate-training-modules-scorm12-Ev2vCYOy/scormcontent/index.html';
+      } else {
+        // Ultimate fallback - Law Enforcement SCORM
+        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/law-enforcement-training-modules-scorm12-pRANQ60M/scormcontent/index.html';
+      }
+      
+      console.log('Using default SCORM:', defaultScormLink);
+      window.open(defaultScormLink, '_blank', 'noopener,noreferrer');
     }
   };
 

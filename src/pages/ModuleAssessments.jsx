@@ -367,12 +367,12 @@ const ModuleAssessments = () => {
       <div className="p-6 animate-fade-in max-w-4xl mx-auto">
         <div className="flex items-center gap-4 mb-6">
           <Button 
-            onClick={() => navigate('/courses')} 
+            onClick={() => navigate('/courses/view/1757539/modules')} 
             variant="outline"
             className="flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back
+            Back to Modules
           </Button>
           <div className="flex-1">
             <h1 className="text-2xl font-bold">Module {moduleId} - Assessments</h1>
