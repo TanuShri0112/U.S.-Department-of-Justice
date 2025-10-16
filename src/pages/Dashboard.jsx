@@ -19,17 +19,15 @@ const Dashboard = () => {
   return (
     <div className="animate-fade-in">
       {/* Admin Portal Toggle */}
-      <div className="bg-white border-b border-gray-200 px-4 py-3">
-        <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Shield className="h-5 w-5 text-blue-600" />
-            <span className="text-sm font-medium text-gray-700">Admin Portal</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-600">Enable Admin Portal</span>
+      <div className="bg-white border-b border-gray-200 px-4 py-2">
+        <div className="max-w-[1600px] mx-auto flex justify-end">
+          <div className="flex items-center gap-3 bg-blue-50 rounded-lg px-4 py-2 border border-blue-200">
+            <Shield className="h-4 w-4 text-blue-600" />
+            <span className="text-sm font-medium text-blue-700">Admin Portal</span>
             <Switch
               checked={isAdminPortalEnabled}
               onCheckedChange={setIsAdminPortalEnabled}
+              className="scale-90"
             />
           </div>
         </div>
