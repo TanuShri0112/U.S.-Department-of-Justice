@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MainNavigation } from './MainNavigation';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Shield } from 'lucide-react';
 import { Button } from '../ui/button';
+import { Switch } from '../ui/switch';
 import { cn } from '@/lib/utils';
 import { useSidebar } from '@/contexts/SidebarContext';
+import { useAdminPortal } from '@/contexts/AdminPortalContext';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 export const SidebarNav = ({ onCloseMobile }) => {
@@ -14,6 +16,8 @@ export const SidebarNav = ({ onCloseMobile }) => {
     isMainCollapsed, 
     setMainCollapsed
   } = useSidebar();
+  
+  const { isAdminPortalEnabled, setIsAdminPortalEnabled } = useAdminPortal();
   
   const handleClick = () => {
     if (onCloseMobile) {
@@ -104,6 +108,26 @@ export const SidebarNav = ({ onCloseMobile }) => {
       {/* Navigation content */}
       <div className="flex-1 overflow-y-auto py-4">
         <MainNavigation pathname={pathname} onItemClick={handleClick} />
+      </div>
+      
+      {/* Admin Portal Toggle at Bottom */}
+      <div className="border-t border-gray-200 p-4">
+        {renderTooltip("Admin Portal", (
+          <div className={cn(
+            "flex items-center gap-3 bg-blue-50 rounded-lg px-3 py-2 border border-blue-200 hover:bg-blue-100 transition-colors",
+            isMainCollapsed && "justify-center px-2"
+          )}>
+            <Shield className="h-4 w-4 text-blue-600 flex-shrink-0" />
+            {!isMainCollapsed && (
+              <span className="text-sm font-medium text-blue-700 flex-1">Admin Portal</span>
+            )}
+            <Switch
+              checked={isAdminPortalEnabled}
+              onCheckedChange={setIsAdminPortalEnabled}
+              className="scale-75"
+            />
+          </div>
+        ))}
       </div>
     </nav>
   );

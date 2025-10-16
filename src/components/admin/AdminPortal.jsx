@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Upload, Video, Calendar, Bell, Users, BarChart2, ClipboardCheck,
-  Shield, ArrowLeft
+  Shield
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
+import { useAdminPortal } from '@/contexts/AdminPortalContext';
 
 // Import admin page components
 import WebinarManagement from '../../pages/admin/WebinarManagement';
@@ -18,6 +20,7 @@ import AdminFeedbackReports from '../../pages/admin/AdminFeedbackReports';
 const AdminPortal = ({ onToggle }) => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('overview');
+  const { isAdminPortalEnabled, setIsAdminPortalEnabled } = useAdminPortal();
 
   const adminSections = [
     { id: 'overview', label: 'Overview', icon: BarChart2 },
@@ -446,30 +449,17 @@ const AdminPortal = ({ onToggle }) => {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <Shield className="w-6 h-6 text-blue-600" />
-                <h1 className="text-xl font-semibold text-gray-900">Admin Portal</h1>
-              </div>
+            <div className="flex items-center gap-3">
+              <Shield className="w-6 h-6 text-blue-600" />
+              <h1 className="text-xl font-semibold text-gray-900">Admin Portal</h1>
             </div>
-            
-            <Button
-              onClick={onToggle}
-              variant="outline"
-              className="flex items-center gap-2"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              User View
-            </Button>
-          </div>
         </div>
       </div>
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
-          <div className="p-4">
+        <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+          <div className="flex-1 overflow-y-auto p-4">
             <nav className="space-y-1">
               {adminSections.map((section) => {
                 const Icon = section.icon;
@@ -494,6 +484,19 @@ const AdminPortal = ({ onToggle }) => {
                 );
               })}
             </nav>
+          </div>
+          
+          {/* Admin Portal Toggle at Bottom */}
+          <div className="border-t border-gray-200 p-4">
+            <div className="flex items-center gap-3 bg-blue-50 rounded-lg px-3 py-2 border border-blue-200 hover:bg-blue-100 transition-colors">
+              <Shield className="h-4 w-4 text-blue-600 flex-shrink-0" />
+              <span className="text-sm font-medium text-blue-700 flex-1">Admin Portal</span>
+              <Switch
+                checked={isAdminPortalEnabled}
+                onCheckedChange={setIsAdminPortalEnabled}
+                className="scale-75"
+              />
+            </div>
           </div>
         </div>
 
