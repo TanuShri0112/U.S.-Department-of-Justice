@@ -6,18 +6,19 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 // Module information mapping
-const getModuleName = (moduleId) => {
-  const moduleNames = {
-    '1': 'Law Enforcement Training Principles',
-    '2': 'Advanced Training Methodologies', 
-    '3': 'Training Evaluation & Assessment'
+const getModuleName = (courseId) => {
+  const courseNames = {
+    '1': 'Law Enforcement Training',
+    '2': 'Educator Training', 
+    '3': 'Youth Advocacy Training',
+    '1757539': 'Advanced Credit Analysis'
   };
-  return moduleNames[moduleId] || 'Module Assessment';
+  return courseNames[courseId] || 'Training Module';
 };
 
 // Quiz questions for different modules
-const getModuleQuestions = (moduleId) => {
-  if (moduleId === '1') {
+const getModuleQuestions = (courseId, moduleId) => {
+  if (courseId === '1' || (courseId === '1757539' && moduleId === '1')) {
     return {
       id: 'module-1-quiz',
       title: 'Law Enforcement Training Assessment',
@@ -114,14 +115,14 @@ const getModuleQuestions = (moduleId) => {
         }
       ]
     };
-  } else if (moduleId === '2') {
+  } else if (courseId === '2' || (courseId === '1757539' && moduleId === '2')) {
     return {
       id: 'module-2-quiz',
       title: 'Educator Training Assessment',
       description: 'Test your knowledge of educator training principles, regulations, and professional development frameworks',
-      type: 'general',
+    type: 'general',
       timeLimit: '30 minutes',
-      attempts: 'unlimited',
+    attempts: 'unlimited',
       questions: 10,
       difficulty: 'Medium',
       questionData: [
@@ -211,12 +212,109 @@ const getModuleQuestions = (moduleId) => {
         }
       ]
     };
-  } else {
-    // Default questions for other modules - using Module 1 questions as fallback
+  } else if (courseId === '3' || (courseId === '1757539' && moduleId === '3')) {
     return {
-      id: 'module-default-quiz',
-      title: 'Training Assessment',
-      description: 'Test your knowledge of training principles and methodologies',
+      id: 'module-3-quiz',
+      title: 'Youth Advocacy Training Assessment',
+      description: 'Test your knowledge of youth advocacy principles, juvenile justice, and community engagement strategies',
+      type: 'general',
+      timeLimit: '30 minutes',
+      attempts: 'unlimited',
+      questions: 10,
+      difficulty: 'Medium',
+      questionData: [
+        {
+          id: 1,
+          type: 'multiple_choice',
+          question: 'Youth advocacy training programs should primarily focus on:',
+          options: [
+            'Youth as passive participants',
+            'Youth as community consumers',
+            'Youth as partners and active contributors',
+            'Youth only in school settings'
+          ],
+          correct: 2
+        },
+        {
+          id: 2,
+          type: 'multiple_choice',
+          question: 'Which approach does juvenile justice emphasize?',
+          options: [
+            'Punitive measures',
+            'Restorative measures',
+            'Detention only',
+            'Zero tolerance'
+          ],
+          correct: 1
+        },
+        {
+          id: 3,
+          type: 'multiple_choice',
+          question: 'What law sets clear boundaries on data sharing and confidentiality in youth advocacy?',
+          options: [
+            'FERPA',
+            'IDEA',
+            'COPPA',
+            'HIPAA'
+          ],
+          correct: 2
+        },
+        {
+          id: 4,
+          type: 'multiple_choice',
+          question: 'What is a key strategy to ensure youth advocacy programs are responsive and equitable?',
+          options: [
+            'Using only quantitative data',
+            'Conducting comprehensive needs assessments including youth voices',
+            'Designing programs without community input',
+            'Limiting digital outreach'
+          ],
+          correct: 1
+        },
+        {
+          id: 5,
+          type: 'true_false',
+          question: 'Youth engagement means recognizing young people as partners in decision-making.',
+          correct: true
+        },
+        {
+          id: 6,
+          type: 'true_false',
+          question: 'Digital outreach is not recommended for youth advocacy due to safety concerns.',
+          correct: false
+        },
+        {
+          id: 7,
+          type: 'true_false',
+          question: 'Evaluation of advocacy programs should include both qualitative and quantitative methods.',
+          correct: true
+        },
+        {
+          id: 8,
+          type: 'fill_blank',
+          question: '________ emphasizes belonging, competence, and contribution in youth development.',
+          correct: 'Positive Youth Development'
+        },
+        {
+          id: 9,
+          type: 'fill_blank',
+          question: 'Laws such as ________ and mandated reporting guidelines set confidentiality standards in youth advocacy.',
+          correct: 'COPPA'
+        },
+        {
+          id: 10,
+          type: 'fill_blank',
+          question: 'A comprehensive ________ includes both data and youth lived experiences to identify community needs.',
+          correct: 'needs assessment'
+        }
+      ]
+    };
+  } else {
+    // Fallback to Module 1 questions for any other module IDs
+    return {
+      id: 'module-1-quiz',
+      title: 'Law Enforcement Training Assessment',
+      description: 'Test your knowledge of law enforcement training principles, standards, and best practices',
       type: 'general',
       timeLimit: '30 minutes',
       attempts: 'unlimited',
@@ -314,9 +412,9 @@ const getModuleQuestions = (moduleId) => {
 
 
 const ModuleAssessments = () => {
-  const { moduleId } = useParams();
+  const { courseId, moduleId } = useParams();
   const navigate = useNavigate();
-  const [currentQuiz] = useState(() => getModuleQuestions(moduleId));
+  const [currentQuiz] = useState(() => getModuleQuestions(courseId, moduleId));
   const [isQuizStarted, setIsQuizStarted] = useState(false);
 
   const handleStartQuiz = () => {
@@ -324,7 +422,7 @@ const ModuleAssessments = () => {
     // Store quiz data in localStorage for the quiz page to access
     localStorage.setItem('currentQuiz', JSON.stringify(currentQuiz));
     // Navigate to quiz page
-    navigate(`/courses/modules/${moduleId}/quiz`);
+    navigate(`/courses/${courseId}/modules/${moduleId}/quiz`);
   };
 
 
@@ -346,7 +444,7 @@ const ModuleAssessments = () => {
       <div className="p-6 animate-fade-in max-w-4xl mx-auto">
         <div className="flex items-center gap-4 mb-6">
           <Button 
-            onClick={() => navigate('/courses/view/1757539/modules')} 
+            onClick={() => navigate(`/courses/view/${courseId}/modules`)}
             variant="outline"
             className="flex items-center gap-2"
           >
@@ -354,7 +452,7 @@ const ModuleAssessments = () => {
             Back to Modules
           </Button>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold">{getModuleName(moduleId)} - Assessment</h1>
+            <h1 className="text-2xl font-bold">{getModuleName(courseId)} - Assessment</h1>
             <p className="text-gray-600">
               Complete your knowledge assessment for this module
             </p>
@@ -363,13 +461,15 @@ const ModuleAssessments = () => {
 
         <Card className="mb-6 bg-gradient-to-r from-purple-100 to-blue-100 border-purple-200">
           <CardHeader>
-            <CardTitle className="text-purple-800">{getModuleName(moduleId)}</CardTitle>
+            <CardTitle className="text-purple-800">{getModuleName(courseId)}</CardTitle>
             <p className="text-purple-600">
-              {moduleId === '1' 
+              {courseId === '1' 
                 ? 'Master the core principles of effective law enforcement training, including adult learning theory, standards compliance, and evidence-based methodologies.'
-                : moduleId === '2'
-                ? 'Explore advanced training techniques, scenario-based learning, and innovative approaches to law enforcement education.'
-                : 'Learn comprehensive evaluation methods, assessment strategies, and performance measurement in law enforcement training.'
+                : courseId === '2'
+                ? 'Explore educator training principles, professional development frameworks, regulations compliance, and classroom-focused learning strategies.'
+                : courseId === '3'
+                ? 'Learn youth advocacy principles, juvenile justice approaches, community engagement strategies, and youth-centered program development.'
+                : 'Test your knowledge of training principles and methodologies.'
               }
             </p>
             <div className="flex items-center gap-2 text-sm text-purple-600">

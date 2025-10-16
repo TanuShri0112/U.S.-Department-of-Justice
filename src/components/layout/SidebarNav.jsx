@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MainNavigation } from './MainNavigation';
-import { ChevronLeft, BookOpen } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import { useSidebar } from '@/contexts/SidebarContext';
@@ -61,7 +61,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
       {/* Header */}
       <div 
         className={cn(
-          "flex h-16 items-center border-b border-gray-100 bg-blue-600",
+          "flex h-20 items-center border-b border-gray-100 bg-blue-600",
           isMainCollapsed ? "px-3 justify-center" : "px-6 justify-between"
         )}
       >
@@ -70,16 +70,20 @@ export const SidebarNav = ({ onCloseMobile }) => {
           onClick={handleLogoClick}
         >
           {isMainCollapsed ? (
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/20">
-              <BookOpen className="w-5 h-5 text-white" />
-            </div>
+            <img 
+              src="/assets/Image_20251016_124608_576-removebg-preview.png" 
+              alt="DOJ Logo" 
+              className="w-12 h-12 object-contain"
+            />
           ) : (
-            <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/20">
-                <BookOpen className="w-5 h-5 text-white" />
-              </div>
+            <div className="flex items-center gap-4">
+              <img 
+                src="/assets/Image_20251016_124608_576-removebg-preview.png" 
+                alt="DOJ Logo" 
+                className="w-12 h-12 object-contain"
+              />
               <div className="text-white">
-                <h1 className="text-lg font-semibold">U.S. Department of Justice</h1>
+                <h1 className="text-lg font-semibold leading-tight">U.S. Department of Justice</h1>
               </div>
             </div>
           )}

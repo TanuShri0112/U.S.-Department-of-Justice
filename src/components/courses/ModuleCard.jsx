@@ -179,7 +179,7 @@ const ModuleCard = ({ module, onDelete, onUpdate, onComplete, courseType = 'open
     if (module.locked && courseType === 'sequential') {
       return;
     }
-    navigate(`/courses/modules/${module.id}/assessments`);
+    navigate(`/courses/${courseId}/modules/${module.id}/assessments`);
   };
 
   const handleCompleteModule = () => {

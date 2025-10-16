@@ -117,8 +117,8 @@ const App = () => (
                   <Route path="courses/view/:courseId/*" element={<CourseDetail />} />
                   <Route path="courses/view/:courseId/news" element={<CourseNewsPage />} />
                   <Route path="courses/view/:courseId/attendance" element={<CourseAttendance />} />
-                  <Route path="courses/modules/:moduleId/assessments" element={<ModuleAssessments />} />
-                  <Route path="courses/modules/:moduleId/quiz" element={<QuizPage />} />
+                  <Route path="courses/:courseId/modules/:moduleId/assessments" element={<ModuleAssessments />} />
+                  <Route path="courses/:courseId/modules/:moduleId/quiz" element={<QuizPage />} />
                   <Route path="courses/modules/:moduleId/assignments/:assignmentId" element={<AssignmentInstructorPage />} />
                   <Route path="courses/modules/:moduleId/debates/:debateId" element={<DebateInstructorPage />} />
                   <Route path="courses/modules/:moduleId/quizzes/:quizId" element={<QuizInstructorPage />} />

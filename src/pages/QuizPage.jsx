@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 
 const QuizPage = () => {
-  const { moduleId } = useParams();
+  const { courseId, moduleId } = useParams();
   const navigate = useNavigate();
   const [currentQuiz, setCurrentQuiz] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -28,9 +28,9 @@ const QuizPage = () => {
       setCurrentQuiz(quizData);
     } else {
       // If no quiz data, redirect back
-      navigate(`/courses/modules/${moduleId}/assessments`);
+      navigate(`/courses/${courseId}/modules/${moduleId}/assessments`);
     }
-  }, [moduleId, navigate]);
+  }, [courseId, moduleId, navigate]);
 
   useEffect(() => {
     // Timer countdown
@@ -138,7 +138,7 @@ const QuizPage = () => {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-6">
             <Button 
-              onClick={() => navigate(`/courses/modules/${moduleId}/assessments`)} 
+              onClick={() => navigate(`/courses/${courseId}/modules/${moduleId}/assessments`)} 
               variant="outline"
               className="flex items-center gap-2"
             >
@@ -189,7 +189,7 @@ const QuizPage = () => {
               Retake Quiz
             </Button>
             <Button 
-              onClick={() => navigate(`/courses/modules/${moduleId}/assessments`)}
+              onClick={() => navigate(`/courses/${courseId}/modules/${moduleId}/assessments`)}
               variant="outline"
             >
               Back to Module
@@ -209,7 +209,7 @@ const QuizPage = () => {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             <Button 
-              onClick={() => navigate(`/courses/modules/${moduleId}/assessments`)} 
+              onClick={() => navigate(`/courses/${courseId}/modules/${moduleId}/assessments`)} 
               variant="outline"
               className="flex items-center gap-2"
             >
