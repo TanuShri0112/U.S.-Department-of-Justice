@@ -86,6 +86,7 @@ import CourseAttendance from "./components/courses/CourseAttendance";
 import CourseEdit from "./pages/CourseEdit";
 import EditModulePage from './pages/EditModulePage';
 import Chatbot from './pages/Chatbot.jsx';
+import Webinars from './pages/Webinars.jsx';
 
 const queryClient = new QueryClient();
 
@@ -158,6 +159,7 @@ const App = () => (
                   <Route path="help" element={<Help />} />
                   <Route path="profile" element={<Profile />} />
                   <Route path="chatbot" element={<Chatbot />} />
+                  <Route path="webinars" element={<Webinars />} />
                   
                   {/* New Instructor Dashboard Routes */}
                   <Route path="tasks" element={<TaskManagement />} />
