@@ -2,12 +2,15 @@ import React from 'react';
 import { 
   Home, Book, Users, Folder, FileText, BarChart2,
   Grid, Settings, FileBox, MessageCircle, HelpCircle,
+  GraduationCap, Upload, Video, Bell, Calendar,
   ClipboardCheck, TrendingUp, Star, CheckSquare
 } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
 import { NavItem } from './NavItem';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { useUserFilter } from '@/contexts/UserFilterContext';
 import { useCourseSidebar } from '@/contexts/CourseSidebarContext';
+import { useInstructorPortal } from '@/contexts/InstructorPortalContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -23,6 +26,7 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
   const { isMainCollapsed } = useSidebar();
   const { isFilterMenuOpen, setIsFilterMenuOpen } = useUserFilter();
   const { openCourseSidebar, setCourseTitle } = useCourseSidebar();
+  const { isInstructorMode, setInstructorMode } = useInstructorPortal();
   const location = useLocation();
   const navigate = useNavigate();
   
@@ -138,32 +142,6 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
         </motion.div>
         
         
-        {/* Messages */}
-        <motion.div variants={itemVariants}>
-          <NavItem 
-            icon={MessageCircle}
-            label="Messages"
-            to="/messages"
-            active={pathname.startsWith('/messages')}
-            onClick={() => handleNavItemClick('/messages')}
-            collapsed={isMainCollapsed}
-            className="hover-lift"
-          />
-        </motion.div>
-        
-        {/* Users */}
-        <motion.div variants={itemVariants} className="relative">
-          <NavItem 
-            icon={FileText} 
-            label="Users" 
-            to="/users" 
-            active={pathname.startsWith('/users')} 
-            onClick={handleUserClick}
-            collapsed={isMainCollapsed}
-            className="hover-lift"
-          />
-        </motion.div>
-        
         {/* Resources */}
         <motion.div variants={itemVariants}>
           <NavItem
@@ -204,7 +182,7 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
         </motion.div>
       </motion.div>
 
-      {/* Help & Support - Sticky at bottom */}
+      {/* Help & Support */}
       <div className="border-t border-gray-100 p-2">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -267,6 +245,122 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+      </div>
+
+      {/* Spacer */}
+      <div className="flex-1 min-h-4"></div>
+
+      {/* Instructor Portal Toggle - At the very bottom */}
+      <div className="border-t border-gray-100 p-2">
+        <button
+          onClick={() => setInstructorMode(!isInstructorMode)}
+          className={cn(
+            "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg",
+            "transition-all duration-200 hover:bg-gray-50",
+            "hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500/20",
+            "hover:shadow-sm transform hover:-translate-y-0.5",
+            isMainCollapsed ? "justify-center" : "justify-between"
+          )}
+        >
+          <div className="flex items-center gap-3">
+            <GraduationCap className={cn(
+              "flex-shrink-0 h-5 w-5",
+              isInstructorMode ? "text-blue-600" : "text-gray-500",
+              "transition-all duration-200 group-hover:scale-110"
+            )} />
+            {!isMainCollapsed && (
+              <span className={cn(
+                "text-sm font-medium",
+                isInstructorMode ? "text-blue-600" : "text-gray-700"
+              )}>
+                Instructor Mode
+              </span>
+            )}
+          </div>
+          <div className="flex items-center">
+            <Switch
+              checked={isInstructorMode}
+              onCheckedChange={setInstructorMode}
+              className={cn(
+                isMainCollapsed && "scale-75",
+                "transition-transform duration-200"
+              )}
+            />
+          </div>
+        </button>
+
+        {isInstructorMode && (
+          <div className="space-y-1 px-2 mt-2">
+            {/* Course Management */}
+            <NavItem 
+              icon={Upload}
+              label="Upload Courses"
+              to="/courses/create"
+              active={pathname === '/courses/create'}
+              onClick={() => handleNavItemClick('/courses/create')}
+              collapsed={isMainCollapsed}
+              className="hover-lift"
+            />
+            <NavItem 
+              icon={Video}
+              label="Webinars"
+              to="/webinars"
+              active={pathname.startsWith('/webinars')}
+              onClick={() => handleNavItemClick('/webinars')}
+              collapsed={isMainCollapsed}
+              className="hover-lift"
+            />
+            <NavItem 
+              icon={Calendar}
+              label="Schedule"
+              to="/calendar"
+              active={pathname === '/calendar'}
+              onClick={() => handleNavItemClick('/calendar')}
+              collapsed={isMainCollapsed}
+              className="hover-lift"
+            />
+
+            {/* Communication */}
+            <NavItem 
+              icon={Bell}
+              label="Announcements"
+              to="/announcements"
+              active={pathname === '/announcements'}
+              onClick={() => handleNavItemClick('/announcements')}
+              collapsed={isMainCollapsed}
+              className="hover-lift"
+            />
+            <NavItem 
+              icon={MessageCircle}
+              label="Messages"
+              to="/messages"
+              active={pathname.startsWith('/messages')}
+              onClick={() => handleNavItemClick('/messages')}
+              collapsed={isMainCollapsed}
+              className="hover-lift"
+            />
+
+            {/* Monitoring */}
+            <NavItem 
+              icon={Users}
+              label="Users"
+              to="/users"
+              active={pathname.startsWith('/users')}
+              onClick={handleUserClick}
+              collapsed={isMainCollapsed}
+              className="hover-lift"
+            />
+            <NavItem 
+              icon={BarChart2}
+              label="Reports"
+              to="/reports"
+              active={pathname.startsWith('/reports')}
+              onClick={() => handleNavItemClick('/reports')}
+              collapsed={isMainCollapsed}
+              className="hover-lift"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

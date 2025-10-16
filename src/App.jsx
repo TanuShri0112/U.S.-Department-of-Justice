@@ -7,6 +7,7 @@ import { AdminLayout } from "./components/layout/AdminLayout";
 import { SidebarProvider } from "./contexts/SidebarContext";
 import { UserFilterProvider } from "./contexts/UserFilterContext";
 import { CourseSidebarProvider } from "./contexts/CourseSidebarContext";
+import { InstructorPortalProvider } from "./contexts/InstructorPortalContext";
 // Import all assessment components
 import MultipleChoiceQuiz from "./components/assessments/MultipleChoiceQuiz";
 import TrueFalseQuiz from "./components/assessments/TrueFalseQuiz";
@@ -94,6 +95,7 @@ const App = () => (
         <SidebarProvider>
           <UserFilterProvider>
             <CourseSidebarProvider>
+              <InstructorPortalProvider>
               <Routes>
                 <Route path="/" element={<AdminLayout />}>
                   {/* Main pages */}
@@ -174,6 +176,7 @@ const App = () => (
                   <Route path="assessment/proctored" element={<ProcturedExamination />} />
                 </Route>
               </Routes>
+              </InstructorPortalProvider>
             </CourseSidebarProvider>
           </UserFilterProvider>
         </SidebarProvider>
