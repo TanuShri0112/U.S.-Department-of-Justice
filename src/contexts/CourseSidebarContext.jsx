@@ -37,7 +37,7 @@ export function CourseSidebarProvider({ children }) {
       // Only open sidebar if it's not already open
       if (!isCourseSidebarOpen) {
         setCourseSidebarOpen(true);
-        setMainCollapsed(true);
+        setMainCollapsed(false); // Keep main sidebar open when viewing courses
         
         // Close other contextual sidebars
         setAdminSidebarOpen(false);
@@ -59,7 +59,7 @@ export function CourseSidebarProvider({ children }) {
     // Use a small delay to ensure state updates are processed
     setTimeout(() => {
       setCourseSidebarOpen(true);
-      setMainCollapsed(true);
+      setMainCollapsed(false); // Keep main sidebar open when viewing courses
       
       // Close other contextual sidebars
       setAdminSidebarOpen(false);

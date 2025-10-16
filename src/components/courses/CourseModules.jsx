@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
-import { Plus, ArrowLeft, BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
-import AddModuleDialog from './AddModuleDialog';
 import ModuleCard from './ModuleCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import EditModuleDialog from './EditModuleDialog';
@@ -16,11 +15,25 @@ const CourseModules = () => {
   const courseType = searchParams.get('type') || 'open';
   
   const [modules, setModules] = useState([]);
-  const [isAddModuleDialogOpen, setIsAddModuleDialogOpen] = useState(false);
   const [isPublishedCourse, setIsPublishedCourse] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [moduleToEdit, setModuleToEdit] = useState(null);
+
+  // Get course name based on courseId
+  const getCourseName = (courseId) => {
+    const courseNames = {
+      '1757539': 'Advanced Credit Analysis',
+      'nodejs101': 'Node.js Fundamentals',
+      'reactjs202': 'React.js Advanced',
+      'ml506': 'Machine Learning',
+      'data345': 'Data Analysis',
+      '1': 'Law Enforcement Training',
+      '2': 'Educator Training', 
+      '3': 'Youth Advocate Training'
+    };
+    return courseNames[courseId] || 'Course';
+  };
 
   // Load modules data based on courseId
   useEffect(() => {
@@ -194,13 +207,6 @@ const CourseModules = () => {
     }
   }, [modules, isPublishedCourse, courseId]);
 
-  const handleAddModule = useCallback(() => {
-    setIsAddModuleDialogOpen(true);
-  }, []);
-
-  const handleModuleAdd = useCallback((newModule) => {
-    setModules(prev => [...prev, newModule]);
-  }, []);
 
   const handleModuleDelete = useCallback((moduleId) => {
     setModules(prev => prev.filter(module => module.id !== moduleId));
@@ -258,14 +264,10 @@ const CourseModules = () => {
               Back to Courses
             </Button>
             <div>
-              <h1 className="text-2xl font-bold">Course Modules</h1>
+              <h1 className="text-2xl font-bold">{getCourseName(courseId)}</h1>
               <p className="text-gray-600">No modules found for this course</p>
             </div>
           </div>
-          <Button onClick={handleAddModule} className="bg-ca-primary hover:bg-ca-secondary">
-            <Plus className="h-4 w-4 mr-2" />
-            Add Module
-          </Button>
         </div>
 
         <Card className="max-w-md mx-auto mt-8">
@@ -279,18 +281,9 @@ const CourseModules = () => {
             <p className="text-gray-600 mb-6">
               This course doesn't have any modules yet. Create your first module to get started.
             </p>
-            <Button onClick={handleAddModule} className="w-full bg-ca-primary hover:bg-ca-secondary">
-              <Plus className="h-4 w-4 mr-2" />
-              Create First Module
-            </Button>
           </CardContent>
         </Card>
 
-        <AddModuleDialog
-          open={isAddModuleDialogOpen}
-          onOpenChange={setIsAddModuleDialogOpen}
-          onModuleAdd={handleModuleAdd}
-        />
       </div>
     );
   }
@@ -308,7 +301,7 @@ const CourseModules = () => {
             Back to Courses
           </Button>
           <div>
-            <h1 className="text-2xl font-bold">Course Modules</h1>
+            <h1 className="text-2xl font-bold">{getCourseName(courseId)}</h1>
             <p className="text-gray-600">
               {courseType === 'sequential' 
                 ? 'Complete modules in order to unlock the next one' 
@@ -317,10 +310,6 @@ const CourseModules = () => {
             </p>
           </div>
         </div>
-        <Button onClick={handleAddModule} className="bg-ca-primary hover:bg-ca-secondary">
-          <Plus className="h-4 w-4 mr-2" />
-          Add Module
-        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -338,11 +327,6 @@ const CourseModules = () => {
         ))}
       </div>
 
-      <AddModuleDialog
-        open={isAddModuleDialogOpen}
-        onOpenChange={setIsAddModuleDialogOpen}
-        onModuleAdd={handleModuleAdd}
-      />
 
       {moduleToEdit && (
         <EditModuleDialog

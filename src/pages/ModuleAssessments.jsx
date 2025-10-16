@@ -1,353 +1,332 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Plus, MessageSquare, FileText, Clock, Target, RotateCcw } from 'lucide-react';
+import { ArrowLeft, FileText, Clock, Target, RotateCcw } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import AssignmentListing  from '@/components/assignments/AssignmentListing';
 
-// Sample quiz data
-const sampleQuizzes = [
-  {
-    id: 'quiz-1',
-    title: 'Quiz 1',
-    description: 'Assessment Quiz - 10 questions covering various topics',
+// Module information mapping
+const getModuleName = (moduleId) => {
+  const moduleNames = {
+    '1': 'Law Enforcement Training Principles',
+    '2': 'Advanced Training Methodologies', 
+    '3': 'Training Evaluation & Assessment'
+  };
+  return moduleNames[moduleId] || 'Module Assessment';
+};
+
+// Quiz questions for different modules
+const getModuleQuestions = (moduleId) => {
+  if (moduleId === '1') {
+    return {
+      id: 'module-1-quiz',
+      title: 'Law Enforcement Training Assessment',
+      description: 'Test your knowledge of law enforcement training principles, standards, and methodologies',
     type: 'general',
     timeLimit: '30 minutes',
     attempts: 'unlimited',
     questions: 10,
-    difficulty: 'Medium'
-  },
-  {
-    id: 'quiz-2',
-    title: 'Quiz 2',
-    description: 'Assessment Quiz - 10 questions covering various topics',
-    type: 'general',
-    timeLimit: '25 minutes',
-    attempts: '3',
-    questions: 10,
-    difficulty: 'Medium'
-  },
-  {
-    id: 'quiz-3',
-    title: 'Quiz 3',
-    description: 'Assessment Quiz - 10 questions covering various topics',
-    type: 'final',
-    timeLimit: '45 minutes',
-    attempts: '1',
-    questions: 15,
-    difficulty: 'Hard'
-  },
-  {
-    id: 'quiz-4',
-    title: 'Quiz 4',
-    description: 'Assessment Quiz - 10 questions covering various topics',
-    type: 'general',
-    timeLimit: '20 minutes',
-    attempts: 'unlimited',
-    questions: 8,
-    difficulty: 'Easy'
-  },
-  {
-    id: 'quiz-5',
-    title: 'Quiz 5',
-    description: 'Assessment Quiz - 10 questions covering various topics',
-    type: 'general',
-    timeLimit: '35 minutes',
-    attempts: '2',
-    questions: 12,
-    difficulty: 'Medium'
-  },
-  {
-    id: 'quiz-6',
-    title: 'Quiz 6',
-    description: 'Assessment Quiz - 10 questions covering various topics',
-    type: 'final',
-    timeLimit: '60 minutes',
-    attempts: '1',
-    questions: 20,
-    difficulty: 'Hard'
+      difficulty: 'Medium',
+      questionData: [
+        {
+          id: 1,
+          type: 'multiple_choice',
+          question: 'Which principle should law enforcement training emphasize to engage adult learners?',
+          options: [
+            'Memorization of facts',
+            'Passive listening', 
+            'Reflection, discussion, and practice-based scenarios',
+            'Repetition of written policies'
+          ],
+          correct: 2
+        },
+        {
+          id: 2,
+          type: 'multiple_choice',
+          question: 'According to U.S. standards, which topics are core to police training requirements?',
+          options: [
+            'Forensic photography and patrol tactics',
+            'Use of force, ethics, civil rights, and bias awareness',
+            'Advanced driving and weapon handling',
+            'Criminal profiling and detective work'
+          ],
+          correct: 1
+        },
+        {
+          id: 3,
+          type: 'multiple_choice',
+          question: 'What is a defining feature of trauma-informed instruction for first responders?',
+          options: [
+            'Strict grading',
+            'Emphasizing physical fitness',
+            'Creating a learning environment based on safety, trust, and respect',
+            'Reducing training hours'
+          ],
+          correct: 2
+        },
+        {
+          id: 4,
+          type: 'multiple_choice',
+          question: 'Which model focuses on context, input, process, and product for program evaluation?',
+          options: [
+            'Kirkpatrick Model',
+            'CIPP Model',
+            'ADDIE Model',
+            'Bloom\'s Taxonomy'
+          ],
+          correct: 1
+        },
+        {
+          id: 5,
+          type: 'true_false',
+          question: 'All law enforcement training must align with DOJ and POST standards.',
+          correct: true
+        },
+        {
+          id: 6,
+          type: 'true_false',
+          question: 'The Kirkpatrick model only examines the context of training, not outcomes.',
+          correct: false
+        },
+        {
+          id: 7,
+          type: 'true_false',
+          question: 'Scenario-based simulations help officers practice decision-making under pressure.',
+          correct: true
+        },
+        {
+          id: 8,
+          type: 'fill_blank',
+          question: 'Training programs begin with a comprehensive ___ to identify skill gaps and stakeholder expectations.',
+          correct: 'needs assessment'
+        },
+        {
+          id: 9,
+          type: 'fill_blank',
+          question: '_____ requires officers to practice fair treatment, clear communication, and impartial actions in all scenarios.',
+          correct: 'Procedural justice'
+        },
+        {
+          id: 10,
+          type: 'fill_blank',
+          question: '_____ in law enforcement combines in-person workshops with digital modules for flexibility and engagement.',
+          correct: 'Blended learning'
+        }
+      ]
+    };
+  } else if (moduleId === '2') {
+    return {
+      id: 'module-2-quiz',
+      title: 'Educator Training Assessment',
+      description: 'Test your knowledge of educator training principles, regulations, and professional development frameworks',
+      type: 'general',
+      timeLimit: '30 minutes',
+      attempts: 'unlimited',
+      questions: 10,
+      difficulty: 'Medium',
+      questionData: [
+        {
+          id: 1,
+          type: 'multiple_choice',
+          question: 'Which principle makes professional learning more effective for educators?',
+          options: [
+            'Memorization of teaching standards',
+            'Connection to classroom realities',
+            'Focusing only on theory',
+            'Avoiding reflection and collaboration'
+          ],
+          correct: 1
+        },
+        {
+          id: 2,
+          type: 'multiple_choice',
+          question: 'Which regulation protects the privacy of student educational records?',
+          options: [
+            'IDEA',
+            'FERPA',
+            'ESSA',
+            'ADA'
+          ],
+          correct: 1
+        },
+        {
+          id: 3,
+          type: 'multiple_choice',
+          question: 'Which framework helps evaluate teacher performance through structured observation?',
+          options: [
+            'ADDIE Model',
+            'Kirkpatrick Model',
+            'Danielson Framework',
+            'UDL (Universal Design for Learning)'
+          ],
+          correct: 2
+        },
+        {
+          id: 4,
+          type: 'multiple_choice',
+          question: 'Which of the following tools supports hybrid or digital professional development?',
+          options: [
+            'Google Classroom',
+            'Blackboard',
+            'Zoom',
+            'All of the above'
+          ],
+          correct: 3
+        },
+        {
+          id: 5,
+          type: 'true_false',
+          question: 'Professional learning is most effective when connected to educators\' daily classroom realities.',
+          correct: true
+        },
+        {
+          id: 6,
+          type: 'true_false',
+          question: 'The ESSA law focuses primarily on student data privacy protections.',
+          correct: false
+        },
+        {
+          id: 7,
+          type: 'true_false',
+          question: 'Skilled facilitation requires balancing structure with empathy during professional development.',
+          correct: true
+        },
+        {
+          id: 8,
+          type: 'fill_blank',
+          question: '________ ensures students with disabilities receive proper support and access to education.',
+          correct: 'IDEA'
+        },
+        {
+          id: 9,
+          type: 'fill_blank',
+          question: 'A strong ____ ensures professional development initiatives are targeted, data-driven, and aligned with district priorities.',
+          correct: 'needs assessment'
+        },
+        {
+          id: 10,
+          type: 'fill_blank',
+          question: 'Professional learning programs should integrate __ at every stage to maintain compliance and protect both students and educators.',
+          correct: 'policy awareness'
+        }
+      ]
+    };
+  } else {
+    // Default questions for other modules - using Module 1 questions as fallback
+    return {
+      id: 'module-default-quiz',
+      title: 'Training Assessment',
+      description: 'Test your knowledge of training principles and methodologies',
+      type: 'general',
+      timeLimit: '30 minutes',
+      attempts: 'unlimited',
+      questions: 10,
+      difficulty: 'Medium',
+      questionData: [
+        {
+          id: 1,
+          type: 'multiple_choice',
+          question: 'Which principle should law enforcement training emphasize to engage adult learners?',
+          options: [
+            'Memorization of facts',
+            'Passive listening', 
+            'Reflection, discussion, and practice-based scenarios',
+            'Repetition of written policies'
+          ],
+          correct: 2
+        },
+        {
+          id: 2,
+          type: 'multiple_choice',
+          question: 'According to U.S. standards, which topics are core to police training requirements?',
+          options: [
+            'Forensic photography and patrol tactics',
+            'Use of force, ethics, civil rights, and bias awareness',
+            'Advanced driving and weapon handling',
+            'Criminal profiling and detective work'
+          ],
+          correct: 1
+        },
+        {
+          id: 3,
+          type: 'multiple_choice',
+          question: 'What is a defining feature of trauma-informed instruction for first responders?',
+          options: [
+            'Strict grading',
+            'Emphasizing physical fitness',
+            'Creating a learning environment based on safety, trust, and respect',
+            'Reducing training hours'
+          ],
+          correct: 2
+        },
+        {
+          id: 4,
+          type: 'multiple_choice',
+          question: 'Which model focuses on context, input, process, and product for program evaluation?',
+          options: [
+            'Kirkpatrick Model',
+            'CIPP Model',
+            'ADDIE Model',
+            'Bloom\'s Taxonomy'
+          ],
+          correct: 1
+        },
+        {
+          id: 5,
+          type: 'true_false',
+          question: 'All law enforcement training must align with DOJ and POST standards.',
+          correct: true
+        },
+        {
+          id: 6,
+          type: 'true_false',
+          question: 'The Kirkpatrick model only examines the context of training, not outcomes.',
+          correct: false
+        },
+        {
+          id: 7,
+          type: 'true_false',
+          question: 'Scenario-based simulations help officers practice decision-making under pressure.',
+          correct: true
+        },
+        {
+          id: 8,
+          type: 'fill_blank',
+          question: 'Training programs begin with a comprehensive ___ to identify skill gaps and stakeholder expectations.',
+          correct: 'needs assessment'
+        },
+        {
+          id: 9,
+          type: 'fill_blank',
+          question: '_____ requires officers to practice fair treatment, clear communication, and impartial actions in all scenarios.',
+          correct: 'Procedural justice'
+        },
+        {
+          id: 10,
+          type: 'fill_blank',
+          question: '_____ in law enforcement combines in-person workshops with digital modules for flexibility and engagement.',
+          correct: 'Blended learning'
+        }
+      ]
+    };
   }
-];
+};
 
-// Sample debate data
-const sampleDebates = [
-  {
-    id: 'debate-1',
-    title: 'Debate 1: Technology\'s Impact on Society',
-    description: 'Discuss whether technology has done more harm than good to modern society.',
-    topic: 'Technology has done more harm than good to society',
-    maxScore: 50,
-    difficulty: 'Medium',
-    format: 'Class discussion',
-    participants: [
-      {
-        id: 'user-1',
-        name: 'John Smith',
-        email: 'john@example.com',
-        avatar: '/lovable-uploads/b22d4431-7c74-430d-aa30-15d8739a7fbf.png',
-        team: 'for',
-        status: 'completed'
-      },
-      {
-        id: 'user-2',
-        name: 'Sarah Johnson',
-        email: 'sarah@example.com',
-        avatar: '/lovable-uploads/b22d4431-7c74-430d-aa30-15d8739a7fbf.png',
-        team: 'against',
-        status: 'pending'
-      },
-      {
-        id: 'user-3',
-        name: 'Mike Wilson',
-        email: 'mike@example.com',
-        avatar: '/lovable-uploads/b22d4431-7c74-430d-aa30-15d8739a7fbf.png',
-        team: 'for',
-        status: 'not-attempted'
-      }
-    ],
-    forUsers: ['user-1', 'user-3'],
-    againstUsers: ['user-2'],
-    submissions: [
-      {
-        id: 'sub-1',
-        userId: 'user-1',
-        userName: 'John Smith',
-        position: 'for',
-        response: 'Technology has revolutionized healthcare, education, and communication, making our lives significantly better. The benefits far outweigh the drawbacks.',
-        score: 42,
-        submittedAt: '2024-01-15T10:30:00Z'
-      },
-      {
-        id: 'sub-2',
-        userId: 'user-2',
-        userName: 'Sarah Johnson',
-        position: 'against',
-        response: 'While technology has benefits, it has also led to social isolation, job displacement, and privacy concerns that are harming society.',
-        submittedAt: '2024-01-15T11:15:00Z'
-      }
-    ]
-  },
-  {
-    id: 'debate-2',
-    title: 'Debate 2: Climate Change Solutions',
-    description: 'Debate the effectiveness of individual vs. governmental action on climate change.',
-    topic: 'Individual actions are more important than government policies for climate change',
-    maxScore: 60,
-    difficulty: 'Hard',
-    format: 'Open forum',
-    participants: [
-      {
-        id: 'user-4',
-        name: 'Emily Davis',
-        email: 'emily@example.com',
-        avatar: '/lovable-uploads/b22d4431-7c74-430d-aa30-15d8739a7fbf.png',
-        team: 'for',
-        status: 'completed'
-      },
-      {
-        id: 'user-5',
-        name: 'Robert Brown',
-        email: 'robert@example.com',
-        avatar: '/lovable-uploads/b22d4431-7c74-430d-aa30-15d8739a7fbf.png',
-        team: 'against',
-        status: 'completed'
-      }
-    ],
-    forUsers: ['user-4'],
-    againstUsers: ['user-5'],
-    submissions: [
-      {
-        id: 'sub-3',
-        userId: 'user-4',
-        userName: 'Emily Davis',
-        position: 'for',
-        response: 'Individual actions create awareness and drive demand for sustainable products, ultimately forcing policy changes.',
-        score: 55,
-        submittedAt: '2024-01-16T09:20:00Z'
-      },
-      {
-        id: 'sub-4',
-        userId: 'user-5',
-        userName: 'Robert Brown',
-        position: 'against',
-        response: 'Government policies have the scale and authority to create systemic changes that individual actions cannot achieve.',
-        score: 58,
-        submittedAt: '2024-01-16T10:45:00Z'
-      }
-    ]
-  }
-];
-
-// Sample essay data
-const sampleEssays = [
-  {
-    id: 'essay-1',
-    title: 'Essay 1: Technology and Society',
-    description: 'Write a comprehensive essay on the impact of technology on modern society and human relationships.',
-    topic: 'Analyze how technology has transformed the way we communicate, work, and interact in the 21st century.',
-    timeLimit: 120,
-    wordLimit: 1000,
-    difficulty: 'Medium',
-    maxScore: 100
-  },
-  {
-    id: 'essay-2',
-    title: 'Essay 2: Climate Change Solutions',
-    description: 'Analyze various approaches to addressing climate change and propose innovative solutions.',
-    topic: 'Evaluate current climate change mitigation strategies and propose sustainable solutions for the future.',
-    timeLimit: 150,
-    wordLimit: 1200,
-    difficulty: 'Hard',
-    maxScore: 120
-  },
-  {
-    id: 'essay-3',
-    title: 'Essay 3: Economic Inequality',
-    description: 'Examine the causes and consequences of economic inequality in modern society.',
-    topic: 'Discuss the factors contributing to economic inequality and propose potential solutions.',
-    timeLimit: 135,
-    wordLimit: 1100,
-    difficulty: 'Medium',
-    maxScore: 110
-  }
-];
-
-// Sample survey data
-const sampleSurveys = [
-  {
-    id: 'survey-1',
-    title: 'Survey 1',
-    topic: 'Course Feedback Survey',
-    description: 'Help us improve the course content and delivery by sharing your feedback on the learning experience.',
-    timeLimit: 15,
-    questions: 8,
-    totalResponses: 24,
-    totalStudents: 30
-  },
-  {
-    id: 'survey-2',
-    title: 'Survey 2', 
-    topic: 'Module Assessment Survey',
-    description: 'Evaluate your understanding and satisfaction with the current module content and structure.',
-    timeLimit: 10,
-    questions: 6,
-    totalResponses: 18,
-    totalStudents: 30
-  },
-  {
-    id: 'survey-3',
-    title: 'Survey 3',
-    topic: 'Learning Experience Survey', 
-    description: 'Share your thoughts on the overall learning experience and suggest improvements.',
-    timeLimit: 12,
-    questions: 7,
-    totalResponses: 12,
-    totalStudents: 30
-  },
-  {
-    id: 'survey-4',
-    title: 'Survey 4',
-    topic: 'Content Quality Survey',
-    description: 'Rate the quality and relevance of the course materials and resources provided.',
-    timeLimit: 8,
-    questions: 5,
-    totalResponses: 22,
-    totalStudents: 30
-  }
-];
 
 const ModuleAssessments = () => {
   const { moduleId } = useParams();
   const navigate = useNavigate();
-  const [debates] = useState(sampleDebates);
-  const [quizzes] = useState(sampleQuizzes);
-  const [essays] = useState(sampleEssays);
-  const [surveys] = useState(sampleSurveys);
-  const [quizFilter, setQuizFilter] = useState('general');
+  const [currentQuiz] = useState(() => getModuleQuestions(moduleId));
+  const [isQuizStarted, setIsQuizStarted] = useState(false);
 
-  const handleDebateClick = (debate) => {
-    navigate(`/courses/modules/${moduleId}/debates/${debate.id}`);
+  const handleStartQuiz = () => {
+    setIsQuizStarted(true);
+    // Store quiz data in localStorage for the quiz page to access
+    localStorage.setItem('currentQuiz', JSON.stringify(currentQuiz));
+    // Navigate to quiz page
+    navigate(`/courses/modules/${moduleId}/quiz`);
   };
 
-  const handleQuizClick = (quiz) => {
-    navigate(`/courses/modules/${moduleId}/quizzes/${quiz.id}`);
-  };
-
-  const handleEssayClick = (essay) => {
-    navigate(`/courses/modules/${moduleId}/essays/${essay.id}`);
-  };
-
-  const handleSurveyClick = (survey) => {
-    navigate(`/courses/modules/${moduleId}/surveys/${survey.id}`);
-  };
-
-  const handleAddNewAssessment = () => {
-    navigate(`/courses/builder/1757539/modules/${moduleId}/assessments/creator`);
-  };
-
-  const filteredQuizzes = quizFilter === 'general' ? quizzes.filter(quiz => quiz.type === 'general') : quizzes.filter(quiz => quiz.type === 'final');
-
-  const getAssignmentCount = () => {
-    const savedAssignments = JSON.parse(localStorage.getItem('assignments') || '[]');
-    const moduleAssignments = savedAssignments.filter((a) => a.id.includes(moduleId)) || [];
-    return moduleAssignments.length > 0 ? moduleAssignments.length : 3;
-  };
-
-  const assessmentSections = [
-    {
-      id: 'quiz',
-      title: 'Quiz Section',
-      description: 'Test your knowledge with various question formats',
-      icon: '📝',
-      color: 'bg-blue-50 border-blue-200',
-      iconBg: 'bg-blue-100',
-      items: filteredQuizzes
-    },
-    {
-      id: 'assignment',
-      title: 'Assignment Section', 
-      description: 'Submit projects and practical assignments',
-      icon: '📁',
-      color: 'bg-green-50 border-green-200',
-      iconBg: 'bg-green-100',
-      items: []
-    },
-    {
-      id: 'essay',
-      title: 'Essay Section',
-      description: 'Write detailed essays and analytical pieces',
-      icon: '✍️',
-      color: 'bg-purple-50 border-purple-200', 
-      iconBg: 'bg-purple-100',
-      items: essays
-    },
-    {
-      id: 'survey',
-      title: 'Survey Section',
-      description: 'Participate in course feedback and surveys',
-      icon: '📊',
-      color: 'bg-yellow-50 border-yellow-200',
-      iconBg: 'bg-yellow-100',
-      items: surveys
-    },
-    {
-      id: 'debate',
-      title: 'Debate Section',
-      description: 'Engage in structured debates and discussions',
-      icon: '💬',
-      color: 'bg-red-50 border-red-200',
-      iconBg: 'bg-red-100',
-      items: debates
-    }
-  ];
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty.toLowerCase()) {
@@ -375,313 +354,117 @@ const ModuleAssessments = () => {
             Back to Modules
           </Button>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold">Module {moduleId} - Assessments</h1>
+            <h1 className="text-2xl font-bold">{getModuleName(moduleId)} - Assessment</h1>
             <p className="text-gray-600">
-              Explore and create assessments for this module
+              Complete your knowledge assessment for this module
             </p>
           </div>
-          <Button 
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-            onClick={handleAddNewAssessment}
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            Add New Assessment
-          </Button>
         </div>
 
         <Card className="mb-6 bg-gradient-to-r from-purple-100 to-blue-100 border-purple-200">
           <CardHeader>
-            <CardTitle className="text-purple-800">Introduction to Business Trust</CardTitle>
+            <CardTitle className="text-purple-800">{getModuleName(moduleId)}</CardTitle>
             <p className="text-purple-600">
-              Learn the fundamentals of business trusts, their structure, and legal implications in modern business practices.
+              {moduleId === '1' 
+                ? 'Master the core principles of effective law enforcement training, including adult learning theory, standards compliance, and evidence-based methodologies.'
+                : moduleId === '2'
+                ? 'Explore advanced training techniques, scenario-based learning, and innovative approaches to law enforcement education.'
+                : 'Learn comprehensive evaluation methods, assessment strategies, and performance measurement in law enforcement training.'
+              }
             </p>
             <div className="flex items-center gap-2 text-sm text-purple-600">
-              <span>⏱️ Estimated time: 2 hours 30 minutes</span>
+              <span>⏱️ Estimated time: 30 minutes</span>
             </div>
           </CardHeader>
         </Card>
 
-        <div className="space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto">
-          <h2 className="text-xl font-semibold mb-4">Assessment Categories</h2>
-          <p className="text-gray-600 mb-6">Create and manage different types of assessments for your course</p>
-          
-          <Accordion type="multiple" className="space-y-4">
-            {assessmentSections.map((section) => (
-              <AccordionItem key={section.id} value={section.id} className="border-0">
-                <Card className={`${section.color} transition-all duration-200 hover:shadow-md`}>
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                    <div className="flex items-center gap-4 w-full">
-                      <div className={`w-10 h-10 ${section.iconBg} rounded-lg flex items-center justify-center text-lg`}>
-                        {section.icon}
+        {/* Assessment Section */}
+        <div className="space-y-6">
+          {/* Quiz Instructions */}
+          <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200 shadow-sm">
+            <CardContent className="p-8">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                  <FileText className="h-6 w-6 text-blue-600" />
                       </div>
-                      <div className="flex-1 text-left">
-                        <h3 className="font-semibold text-gray-800">{section.title}</h3>
-                        <p className="text-sm text-gray-600">{section.description}</p>
-                      </div>
-                      {section.id === 'quiz' && (
-                        <div className="flex items-center gap-4">
-                          <Select value={quizFilter} onValueChange={setQuizFilter}>
-                            <SelectTrigger className="w-40 bg-white">
-                              <SelectValue placeholder="Filter quizzes" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="general">General Quiz</SelectItem>
-                              <SelectItem value="final">Final Quiz</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <Badge className="bg-blue-100 text-blue-800">
-                            {filteredQuizzes.length} quizzes
-                          </Badge>
+                <div>
+                  <h3 className="text-xl font-bold text-blue-800">Assessment Instructions</h3>
+                  <p className="text-blue-600">Please read the instructions carefully before starting</p>
+                                    </div>
+                                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-700">
+                <div className="flex items-start gap-3">
+                  <span className="text-lg">📝</span>
+                  <span>Read each question carefully before selecting your answer.</span>
+                                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-lg">⏱️</span>
+                  <span>Time limit: {currentQuiz.timeLimit}. You cannot submit after time expires.</span>
                         </div>
-                      )}
-                      {section.id === 'assignment' && (
-                        <Badge className="bg-green-100 text-green-800">
-                          {getAssignmentCount()} assignments
-                        </Badge>
-                      )}
-                      {section.id === 'essay' && section.items.length > 0 && (
-                        <Badge className="bg-purple-100 text-purple-800">
-                          {section.items.length} essays
-                        </Badge>
-                      )}
-                      {section.id === 'survey' && section.items.length > 0 && (
-                        <Badge className="bg-yellow-100 text-yellow-800">
-                          {section.items.length} surveys
-                        </Badge>
-                      )}
-                      {section.id === 'debate' && section.items.length > 0 && (
-                        <Badge className="bg-red-100 text-red-800">
-                          {section.items.length} debates
-                        </Badge>
-                      )}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4">
-                    <div className="pt-4 border-t border-gray-200 max-h-96 overflow-y-auto">
-                      {section.id === 'assignment' ? (
-                        <AssignmentListing moduleId={moduleId || ''} />
-                      ) : section.id === 'survey' && section.items.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {section.items.map((survey) => (
-                            <Card key={survey.id} className="bg-white hover:shadow-md transition-shadow cursor-pointer border border-yellow-200" onClick={() => handleSurveyClick(survey)}>
-                              <CardContent className="p-4">
-                                <div className="space-y-3">
-                                  <div className="flex items-start justify-between">
-                                    <div className="flex items-center gap-2">
-                                      <MessageSquare className="h-5 w-5 text-yellow-600" />
-                                      <h4 className="font-semibold text-gray-900 text-sm">{survey.title}</h4>
+                <div className="flex items-start gap-3">
+                  <span className="text-lg">🔄</span>
+                  <span>Attempts: {currentQuiz.attempts}. Take your time to answer correctly.</span>
                                     </div>
-                                    <Badge className="bg-yellow-100 text-yellow-800">Survey</Badge>
+                <div className="flex items-start gap-3">
+                  <span className="text-lg">✅</span>
+                  <span>Review your answers before submitting. Changes cannot be made after submission.</span>
                                   </div>
-                                  
-                                  <div className="space-y-1">
-                                    <p className="text-xs font-medium text-yellow-700">Topic: {survey.topic}</p>
-                                    <p className="text-xs text-gray-600 line-clamp-2">{survey.description}</p>
-                                  </div>
-                                  
-                                  <div className="space-y-2">
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <Clock className="h-3 w-3" />
-                                      <span>Time: {survey.timeLimit} minutes</span>
+                <div className="flex items-start gap-3">
+                  <span className="text-lg">📊</span>
+                  <span>Your score will be displayed immediately after completion.</span>
                                     </div>
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <Target className="h-3 w-3" />
-                                      <span>{survey.questions} questions</span>
+                <div className="flex items-start gap-3">
+                  <span className="text-lg">🎯</span>
+                  <span>This assessment contains {currentQuiz.questions} questions of various types.</span>
                                     </div>
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <MessageSquare className="h-3 w-3" />
-                                      <span>{survey.totalResponses}/{survey.totalStudents} responses</span>
-                                    </div>
-                                  </div>
-                                  
-                                  <Button 
-                                    size="sm" 
-                                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleSurveyClick(survey);
-                                    }}
-                                  >
-                                    View Survey
-                                  </Button>
                                 </div>
                               </CardContent>
                             </Card>
-                          ))}
+
+          {/* Single Quiz Card */}
+          <Card className="bg-white border-2 border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardContent className="p-8">
+              <div className="text-center space-y-6">
+                <div className="flex items-center justify-center gap-3">
+                  <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+                    <FileText className="h-8 w-8 text-blue-600" />
+                                    </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-800">{currentQuiz.title}</h2>
+                    <p className="text-gray-600">{currentQuiz.description}</p>
+                                    </div>
+                                  </div>
+                                  
+                <div className="flex items-center justify-center gap-8 py-4">
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <Clock className="h-5 w-5 text-blue-500" />
+                    <span className="font-medium">{currentQuiz.timeLimit}</span>
+                                </div>
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <Target className="h-5 w-5 text-green-500" />
+                    <span className="font-medium">{currentQuiz.questions} Questions</span>
                         </div>
-                      ) : section.id === 'quiz' && section.items.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {section.items.map((quiz) => (
-                            <Card key={quiz.id} className="bg-white hover:shadow-md transition-shadow cursor-pointer border border-blue-200" onClick={() => handleQuizClick(quiz)}>
-                              <CardContent className="p-4">
-                                <div className="space-y-3">
-                                  <div className="flex items-start justify-between">
-                                    <div className="flex items-center gap-2">
-                                      <FileText className="h-5 w-5 text-blue-600" />
-                                      <h4 className="font-semibold text-gray-900 text-sm">{quiz.title}</h4>
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <RotateCcw className="h-5 w-5 text-purple-500" />
+                    <span className="font-medium">{currentQuiz.attempts} Attempts</span>
                                     </div>
-                                    <Badge className={getQuizTypeColor(quiz.type)}>
-                                      {quiz.type === 'final' ? 'Final Quiz' : 'General Quiz'}
+                  <Badge className={`${getDifficultyColor(currentQuiz.difficulty)} px-3 py-1 text-sm font-medium`}>
+                    {currentQuiz.difficulty}
                                     </Badge>
                                   </div>
                                   
-                                  <p className="text-xs text-gray-600 line-clamp-2">{quiz.description}</p>
-                                  
-                                  <div className="space-y-2">
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <Clock className="h-3 w-3" />
-                                      <span>Time: {quiz.timeLimit}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <RotateCcw className="h-3 w-3" />
-                                      <span>Attempts: {quiz.attempts}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <Target className="h-3 w-3" />
-                                      <span>{quiz.questions} questions</span>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                                    <Badge className={getDifficultyColor(quiz.difficulty)}>
-                                      {quiz.difficulty}
-                                    </Badge>
-                                  </div>
-                                  
+                <div className="pt-4">
                                   <Button 
-                                    size="sm" 
-                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleQuizClick(quiz);
-                                    }}
-                                  >
-                                    View Quiz
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold text-lg px-12 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    onClick={handleStartQuiz}
+                  >
+                    🚀 Start Assessment
                                   </Button>
+                </div>
                                 </div>
                               </CardContent>
                             </Card>
-                          ))}
-                        </div>
-                      ) : section.id === 'essay' && section.items.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {section.items.map((essay) => (
-                            <Card key={essay.id} className="bg-white hover:shadow-md transition-shadow cursor-pointer border border-purple-200" onClick={() => handleEssayClick(essay)}>
-                              <CardContent className="p-4">
-                                <div className="space-y-3">
-                                  <div className="flex items-start justify-between">
-                                    <div className="flex items-center gap-2">
-                                      <FileText className="h-5 w-5 text-purple-600" />
-                                      <h4 className="font-semibold text-gray-900 text-sm">{essay.title}</h4>
-                                    </div>
-                                    <Badge className={getDifficultyColor(essay.difficulty)}>
-                                      {essay.difficulty}
-                                    </Badge>
-                                  </div>
-                                  
-                                  <p className="text-xs text-gray-600 line-clamp-2">{essay.description}</p>
-                                  
-                                  <div className="space-y-2">
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <Clock className="h-3 w-3" />
-                                      <span>Time: {essay.timeLimit} minutes</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <FileText className="h-3 w-3" />
-                                      <span>Word Limit: {essay.wordLimit}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                                      <Target className="h-3 w-3" />
-                                      <span>Max Score: {essay.maxScore}</span>
-                                    </div>
-                                  </div>
-                                  
-                                  <Button 
-                                    size="sm" 
-                                    className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleEssayClick(essay);
-                                    }}
-                                  >
-                                    View Essay
-                                  </Button>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          ))}
-                        </div>
-                      ) : section.id === 'debate' && section.items.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {section.items.map((debate) => (
-                            <Card key={debate.id} className="bg-white hover:shadow-md transition-shadow cursor-pointer border border-red-200" onClick={() => handleDebateClick(debate)}>
-                              <CardContent className="p-4">
-                                <div className="space-y-3">
-                                  <div className="flex items-start justify-between">
-                                    <div className="flex items-center gap-2">
-                                      <MessageSquare className="h-5 w-5 text-red-600" />
-                                      <h4 className="font-semibold text-gray-900 text-sm">{debate.title}</h4>
-                                    </div>
-                                    <Badge className={getDifficultyColor(debate.difficulty)}>
-                                      {debate.difficulty}
-                                    </Badge>
-                                  </div>
-                                  
-                                  <p className="text-xs text-gray-600 line-clamp-2">{debate.description}</p>
-                                  
-                                  <div className="text-xs text-gray-500 italic">
-                                    Topic: {debate.topic}
-                                  </div>
-                                  
-                                  <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                                    <div className="flex items-center gap-3 text-xs text-gray-600">
-                                      <span>Max Score: {debate.maxScore}</span>
-                                      <span>Format: {debate.format}</span>
-                                    </div>
-                                  </div>
-                                  
-                                  <Button 
-                                    size="sm" 
-                                    className="w-full bg-red-600 hover:bg-red-700 text-white"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleDebateClick(debate);
-                                    }}
-                                  >
-                                    View Debate
-                                  </Button>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          ))}
-                        </div>
-                      ) : section.items.length === 0 && section.id !== 'assignment' ? (
-                        <div className="text-center py-8 text-gray-500">
-                          <p className="mb-4">No assessments in this section yet</p>
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            className="bg-white hover:bg-gray-50"
-                          >
-                            <Plus className="h-4 w-4 mr-2" />
-                            Create First Assessment
-                          </Button>
-                        </div>
-                      ) : (
-                        <div className="space-y-2">
-                          {section.items.map((item, index) => (
-                            <div key={index} className="p-3 bg-white rounded border">
-                              {item.title}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </AccordionContent>
-                </Card>
-              </AccordionItem>
-            ))}
-          </Accordion>
         </div>
       </div>
     </div>

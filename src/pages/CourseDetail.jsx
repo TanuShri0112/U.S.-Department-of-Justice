@@ -59,7 +59,7 @@ const CourseDetail = () => {
     }
   }, [courseId, setCourseTitle, location.pathname, isCourseSidebarOpen, openDialog, closeDialog]);
 
-  // Handle sidebar collapsing for unit creator and builder - keep main sidebar collapsed in course section
+  // Handle sidebar collapsing for unit creator and builder - keep main sidebar open in course section
   useEffect(() => {
     const isInUnitCreator = location.pathname.includes('/units/creator') || 
                            location.pathname.includes('/unit_') ||
@@ -67,10 +67,10 @@ const CourseDetail = () => {
     
     const isInCourseSection = location.pathname.includes('/courses/view/');
     
-    console.log('Current path:', location.pathname, 'Should collapse:', isInUnitCreator || isInCourseSection);
+    console.log('Current path:', location.pathname, 'Should collapse:', isInUnitCreator);
     
-    // Keep main sidebar collapsed when in course section or unit creator
-    if (isInUnitCreator || isInCourseSection) {
+    // Only collapse sidebar for unit creator/builder, keep it open for course sections
+    if (isInUnitCreator) {
       setMainCollapsed(true);
     } else {
       setMainCollapsed(false);

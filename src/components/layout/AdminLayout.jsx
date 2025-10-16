@@ -3,7 +3,6 @@ import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { SidebarNav } from './SidebarNav';
 import { Header } from './Header';
 import { GroupContextualSidebar } from './GroupContextualSidebar';
-import { CourseContextualSidebar } from './CourseContextualSidebar';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { cn } from '@/lib/utils';
 import AdminContextualSidebar from './AdminContextualSidebar';
@@ -37,8 +36,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
     activeGroupId,
   } = useSidebar();
 
-  const { isCourseSection, isCourseSidebarOpen, setCourseTitle } =
-    useCourseSidebar();
+  const { setCourseTitle } = useCourseSidebar();
 
   const { isFilterMenuOpen } = useUserFilter();
 
@@ -123,22 +121,6 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
           </motion.div>
         )}
 
-        {/* Course Contextual Sidebar */}
-        {isCourseSection && isCourseSidebarOpen && (
-          <motion.div
-            key="course-sidebar"
-            className={cn(
-              'z-40 h-screen fixed top-0 md:sticky md:left-0',
-              isMainCollapsed ? 'left-16' : 'left-64 md:left-0'
-            )}
-            initial={{ x: '-100%', opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: '-100%', opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-          >
-            <CourseContextualSidebar isCollapsed={false} />
-          </motion.div>
-        )}
       </AnimatePresence>
 
       {/* Main Content */}

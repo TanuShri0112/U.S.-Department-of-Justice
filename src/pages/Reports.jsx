@@ -1,428 +1,566 @@
-import React, { useState } from 'react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Plus, ChevronLeft, Search } from 'lucide-react';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import CustomReportDialog from '@/components/reports/CustomReportDialog';
-import AssessmentReportDetail from '@/components/reports/AssessmentReportDetail';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { 
+  Download, 
+  FileSpreadsheet, 
+  FileText, 
+  TrendingUp, 
+  Users, 
+  Clock, 
+  Target,
+  BarChart3,
+  PieChart,
+  LineChart,
+  MapPin
+} from 'lucide-react';
+import { 
+  PieChart as RechartsPieChart, 
+  Pie,
+  Cell, 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  Legend, 
+  ResponsiveContainer,
+  LineChart as RechartsLineChart,
+  Line,
+  ComposedChart
+} from 'recharts';
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
-const initialAssessmentReports = [
-  {
-    id: 'admin-course-eval',
-    title: "Admin's Course Evaluation Report",
-    image: '/lovable-uploads/a7f0fcd0-363d-47fe-9b05-2b59cc82bea8.png',
-    date: 'Wed Jan 24, 2024',
-    description: "Admin's Course Evaluation Report",
-    library: 'Built-in'
-  },
-  {
-    id: 'admin-feedback',
-    title: "Admin's User Feedback Report",
-    image: '/lovable-uploads/a7f0fcd0-363d-47fe-9b05-2b59cc82bea8.png',
-    date: 'Wed Jan 24, 2024',
-    description: "Admin's User Feedback Report",
-    library: 'Built-in'
-  },
-  {
-    id: 'assessment-usage',
-    title: "Assessment usage",
-    image: '/lovable-uploads/a7f0fcd0-363d-47fe-9b05-2b59cc82bea8.png',
-    date: 'Thu Jul 13, 2017',
-    description: "See how various assessment types are being used.",
-    library: 'Built-in'
-  },
-  {
-    id: 'manager-competency',
-    title: "Manager's Competency Assessment Report",
-    image: '/lovable-uploads/a7f0fcd0-363d-47fe-9b05-2b59cc82bea8.png',
-    date: 'Wed Jan 24, 2024',
-    description: "Manager's Competency Assessment Report",
-    library: 'Built-in'
-  },
-  {
-    id: 'manager-course-eval',
-    title: "Manager's Course Evaluation Trends Report",
-    image: '/lovable-uploads/a7f0fcd0-363d-47fe-9b05-2b59cc82bea8.png',
-    date: 'Wed Jan 24, 2024',
-    description: "Manager's Course Evaluation Trends Report",
-    library: 'Built-in'
-  }
-];
-
-const initialCategoryReports = {
-  assessments: initialAssessmentReports,
-  certificates: [
-    {
-      id: 'certificate-1',
-      title: 'Certificate of Completion',
-      image: '/lovable-uploads/d2ec9d1c-262f-43d8-b29e-5098dc49bf32.png',
-      date: 'Wed Jan 24, 2024',
-      description: 'Certificate of Completion for courses.',
-      library: 'Built-in',
-    },
+// Mock data for the reports
+const mockData = {
+  enrollmentByRegion: [
+    { name: 'North', value: 450, color: '#8884d8' },
+    { name: 'South', value: 320, color: '#82ca9d' },
+    { name: 'East', value: 280, color: '#ffc658' },
+    { name: 'West', value: 380, color: '#ff7c7c' },
+    { name: 'Central', value: 220, color: '#8dd1e1' }
   ],
-  courses: [
-    {
-      id: 'course-1',
-      title: 'Course Progress Report',
-      image: '/lovable-uploads/9583fabd-1d7a-4162-b184-ca09ea10d280.png',
-      date: 'Wed Jan 24, 2024',
-      description: 'Shows progress of all users in courses.',
-      library: 'Built-in',
-    },
+  completionRateOverTime: [
+    { month: 'Jan', rate: 65 },
+    { month: 'Feb', rate: 72 },
+    { month: 'Mar', rate: 68 },
+    { month: 'Apr', rate: 75 },
+    { month: 'May', rate: 78 },
+    { month: 'Jun', rate: 82 },
+    { month: 'Jul', rate: 79 },
+    { month: 'Aug', rate: 85 },
+    { month: 'Sep', rate: 88 },
+    { month: 'Oct', rate: 91 },
+    { month: 'Nov', rate: 87 },
+    { month: 'Dec', rate: 93 }
   ],
-  compliance: [
-    {
-      id: 'compliance-1',
-      title: 'Compliance Status Report',
-      image: '/lovable-uploads/3457f0a5-e623-4454-ad61-76766d94d02e.png',
-      date: 'Wed Jan 24, 2024',
-      description: 'Compliance course completion status.',
-      library: 'Built-in',
-    },
+  communityHoursLogged: [
+    { month: 'Jan', hours: 240 },
+    { month: 'Feb', hours: 320 },
+    { month: 'Mar', hours: 280 },
+    { month: 'Apr', hours: 380 },
+    { month: 'May', hours: 420 },
+    { month: 'Jun', hours: 350 },
+    { month: 'Jul', hours: 410 },
+    { month: 'Aug', hours: 390 },
+    { month: 'Sep', hours: 450 },
+    { month: 'Oct', hours: 480 },
+    { month: 'Nov', hours: 440 },
+    { month: 'Dec', hours: 520 }
   ],
-  groups: [
-    {
-      id: 'group-1',
-      title: 'Group Participation Report',
-      image: '/lovable-uploads/bf4e7c38-d052-456d-8727-1a69d00eadd3.png',
-      date: 'Wed Jan 24, 2024',
-      description: 'Participation stats for groups.',
-      library: 'Built-in',
-    },
+  impactMetrics: [
+    { month: 'Jan', campaigns: 12, surveys: 8 },
+    { month: 'Feb', campaigns: 15, surveys: 10 },
+    { month: 'Mar', campaigns: 18, surveys: 12 },
+    { month: 'Apr', campaigns: 22, surveys: 15 },
+    { month: 'May', campaigns: 25, surveys: 18 },
+    { month: 'Jun', campaigns: 28, surveys: 20 },
+    { month: 'Jul', campaigns: 30, surveys: 22 },
+    { month: 'Aug', campaigns: 32, surveys: 25 },
+    { month: 'Sep', campaigns: 35, surveys: 28 },
+    { month: 'Oct', campaigns: 38, surveys: 30 },
+    { month: 'Nov', campaigns: 40, surveys: 32 },
+    { month: 'Dec', campaigns: 42, surveys: 35 }
   ],
-  orders: [
-    {
-      id: 'order-1',
-      title: 'Order Summary Report',
-      image: '/placeholder.svg',
-      date: 'Wed Jan 24, 2024',
-      description: 'Summary of all orders.',
-      library: 'Built-in',
-    },
-  ],
-  organizations: [
-    {
-      id: 'org-1',
-      title: 'Organization Overview Report',
-      image: '/placeholder.svg',
-      date: 'Wed Jan 24, 2024',
-      description: 'Overview of organizations.',
-      library: 'Built-in',
-    },
-  ],
-  users: [
-    {
-      id: 'user-1',
-      title: 'User Activity Report',
-      image: '/placeholder.svg',
-      date: 'Wed Jan 24, 2024',
-      description: 'Activity details for users.',
-      library: 'Built-in',
-    },
-  ],
+  reportsTable: [
+    { year: 2024, region: 'North', enrollments: 450, completions: 405, outreachHours: 2400, campaigns: 42, surveys: 35 },
+    { year: 2024, region: 'South', enrollments: 320, completions: 288, outreachHours: 1800, campaigns: 38, surveys: 30 },
+    { year: 2024, region: 'East', enrollments: 280, completions: 252, outreachHours: 1600, campaigns: 35, surveys: 28 },
+    { year: 2024, region: 'West', enrollments: 380, completions: 342, outreachHours: 2200, campaigns: 40, surveys: 32 },
+    { year: 2024, region: 'Central', enrollments: 220, completions: 198, outreachHours: 1200, campaigns: 32, surveys: 25 },
+    { year: 2023, region: 'North', enrollments: 420, completions: 378, outreachHours: 2200, campaigns: 38, surveys: 30 },
+    { year: 2023, region: 'South', enrollments: 300, completions: 270, outreachHours: 1600, campaigns: 35, surveys: 28 },
+    { year: 2023, region: 'East', enrollments: 260, completions: 234, outreachHours: 1400, campaigns: 32, surveys: 25 },
+    { year: 2023, region: 'West', enrollments: 350, completions: 315, outreachHours: 2000, campaigns: 38, surveys: 30 },
+    { year: 2023, region: 'Central', enrollments: 200, completions: 180, outreachHours: 1100, campaigns: 28, surveys: 22 }
+  ]
 };
 
-const Reports = () => {
-  const [activeTab, setActiveTab] = useState('catalog');
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedReport, setSelectedReport] = useState(null);
-  const [isCustomReportDialogOpen, setIsCustomReportDialogOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [categoryReports, setCategoryReports] = useState(initialCategoryReports);
-
-  const handleCategoryClick = (categoryId) => {
-    setSelectedCategory(categoryId);
-    setSelectedReport(null);
-  };
-
-  const handleBackToCatalog = () => {
-    setSelectedCategory(null);
-    setSelectedReport(null);
-  };
-
-  const handleReportClick = (reportId) => {
-    setSelectedReport(reportId);
-  };
-
-  const openCustomReportDialog = () => {
-    setIsCustomReportDialogOpen(true);
-  };
-
-  const closeCustomReportDialog = () => {
-    setIsCustomReportDialogOpen(false);
-  };
-
-  // Add custom report handler
-  const handleAddCustomReport = (report) => {
-    const { name, description, library, category } = report;
-    const newReport = {
-      id: `${category}-custom-${Date.now()}`,
-      title: name,
-      image: '/placeholder.svg',
-      date: new Date().toLocaleDateString(),
-      description,
-      library,
-    };
-    setCategoryReports((prev) => ({
-      ...prev,
-      [category]: prev[category] ? [newReport, ...prev[category]] : [newReport],
-    }));
-    setSelectedCategory(category); // Optionally switch to the category
-    setIsCustomReportDialogOpen(false);
-  };
-
-  const reportCategories = [
-    { id: 'assessments', title: 'Assessments', image: '/lovable-uploads/a7f0fcd0-363d-47fe-9b05-2b59cc82bea8.png', count: categoryReports.assessments.length },
-    { id: 'certificates', title: 'Certificates', image: '/lovable-uploads/d2ec9d1c-262f-43d8-b29e-5098dc49bf32.png', count: categoryReports.certificates.length },
-    { id: 'compliance', title: 'Compliance courses', image: '/lovable-uploads/3457f0a5-e623-4454-ad61-76766d94d02e.png', count: categoryReports.compliance.length },
-    { id: 'courses', title: 'Courses', image: '/lovable-uploads/9583fabd-1d7a-4162-b184-ca09ea10d280.png', count: categoryReports.courses.length },
-    { id: 'groups', title: 'Groups', image: '/lovable-uploads/bf4e7c38-d052-456d-8727-1a69d00eadd3.png', count: categoryReports.groups.length },
-    { id: 'orders', title: 'Orders', image: '/placeholder.svg', count: categoryReports.orders.length },
-    { id: 'organizations', title: 'Organizations', image: '/placeholder.svg', count: categoryReports.organizations.length },
-    { id: 'users', title: 'Users', image: '/placeholder.svg', count: categoryReports.users.length },
-  ];
-
-  const myReports = [
-    {
-      id: 1,
-      icon: '📊',
-      title: 'Our canned reports cover a wide range of common reporting such as the completion status of courses.',
-      number: 1
-    },
-    {
-      id: 2,
-      icon: '📈',
-      title: 'Ad-hoc reporting allows you to create your own custom reports, which can include charts, HTML, and CSV output.',
-      number: 2
-    },
-    {
-      id: 3,
-      icon: '➕',
-      title: 'To create a custom report, click +Custom report and follow the directions.',
-      number: 3
-    }
-  ];
-
-  // Filter reports based on search query
-  const filteredCategories = reportCategories.filter(category =>
-    category.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const filteredAssessmentReports = categoryReports.assessments.filter(report =>
-    report.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    report.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const filteredMyReports = myReports.filter(report =>
-    report.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  return (
-    <div className="container mx-auto p-6 animate-fade-in max-w-7xl">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Reports</h1>
-      </div>
-
-      {/* Search Bar */}
-      <div className="mb-6">
-        <div className="relative max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-          <Input
-            type="text"
-            placeholder="Search reports..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+// StatCard Component for KPI cards
+const StatCard = ({ title, value, icon: Icon, trend, color = "blue" }) => (
+  <Card className="hover:shadow-lg transition-shadow duration-200">
+    <CardContent className="p-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm font-medium text-gray-600">{title}</p>
+          <p className="text-3xl font-bold text-gray-900">{value}</p>
+          {trend && (
+            <div className="flex items-center mt-2">
+              <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
+              <span className="text-sm text-green-600">{trend}</span>
+            </div>
+          )}
+        </div>
+        <div className={`p-3 rounded-full bg-${color}-100`}>
+          <Icon className={`h-6 w-6 text-${color}-600`} />
         </div>
       </div>
+    </CardContent>
+  </Card>
+);
 
-      <div className="w-full">
-        {selectedReport ? (
-          <AssessmentReportDetail
-            reportId={selectedReport}
-            onBack={() => setSelectedReport(null)}
-          />
-        ) : (
-          <div className="mb-6">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="bg-transparent border-b w-full flex justify-start rounded-none gap-1 h-auto p-0">
-                <TabsTrigger value="catalog" className="rounded-full py-2 px-6 data-[state=active]:bg-blue-500 data-[state=active]:text-white">Catalog</TabsTrigger>
-                <TabsTrigger value="myreports" className="rounded-full py-2 px-6 data-[state=active]:bg-blue-500 data-[state=active]:text-white">My reports</TabsTrigger>
-                <TabsTrigger value="history" className="rounded-full py-2 px-6 data-[state=active]:bg-blue-500 data-[state=active]:text-white">History</TabsTrigger>
-                <TabsTrigger value="scheduled" className="rounded-full py-2 px-6 data-[state=active]:bg-blue-500 data-[state=active]:text-white">Scheduled</TabsTrigger>
-              </TabsList>
-
-              <div className="mt-4">
-                <TabsContent value="catalog" className="mt-0">
-                  <div className="flex justify-between items-center mb-6">
-                    <div>
-                      {selectedCategory && (
-                        <Button
-                          variant="ghost"
-                          onClick={handleBackToCatalog}
-                          className="flex items-center text-blue-500"
-                        >
-                          <ChevronLeft className="h-4 w-4 mr-1" />
-                          Back to Catalog
-                        </Button>
-                      )}
-                    </div>
-                    <Button
-                      className="bg-blue-500 hover:bg-blue-600 flex items-center gap-2"
-                      onClick={openCustomReportDialog}
-                    >
-                      <Plus className="h-4 w-4" />
-                      Custom report
-                    </Button>
-                  </div>
-
-                  {!selectedCategory ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                      {filteredCategories.map((category) => (
-                        <Card
-                          key={category.id}
-                          className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
-                          onClick={() => handleCategoryClick(category.id)}
-                        >
-                          <div className="h-40 bg-blue-50">
-                            <img
-                              src={category.image}
-                              alt={category.title}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="p-4">
-                            <h3 className="text-lg font-semibold mb-2">{category.title}</h3>
-                            <p className="text-sm text-gray-500">{category.count} Reports</p>
-                          </div>
-                        </Card>
-                      ))}
-                    </div>
-                  ) : (
-                    <div>
-                      <h2 className="text-xl font-semibold text-blue-500 mb-4">
-                        {reportCategories.find(cat => cat.id === selectedCategory)?.title || 'Reports'}
-                      </h2>
-                      {(() => {
-                        const reports = categoryReports[selectedCategory] || [];
-                        const filteredReports = reports.filter(report =>
-                          report.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          (report.description && report.description.toLowerCase().includes(searchQuery.toLowerCase()))
-                        );
-                        if (filteredReports.length > 0) {
-                          return (
-                            <div className="space-y-4">
-                              {filteredReports.map((report) => (
-                                <div
-                                  key={report.id}
-                                  className="flex border rounded-lg overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
-                                  onClick={() => handleReportClick(report.id)}
-                                >
-                                  <div className="w-24 bg-blue-50 flex-shrink-0">
-                                    <img
-                                      src={report.image}
-                                      alt={report.title}
-                                      className="w-full h-full object-cover"
-                                    />
-                                  </div>
-                                  <div className="flex-1 p-4">
-                                    <div className="flex justify-between items-start">
-                                      <div>
-                                        <h3 className="text-lg font-semibold mb-1">{report.title}</h3>
-                                        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-2">
-                                          <div className="flex items-center gap-2">
-                                            <Checkbox id={`myreport-${report.id}`} />
-                                            <label htmlFor={`myreport-${report.id}`}>In My reports</label>
-                                          </div>
-                                          <div>Library: {report.library}</div>
-                                          <div>Created: {report.date}</div>
-                                        </div>
-                                        <p className="text-gray-700">{report.description}</p>
-                                      </div>
-                                      <Button
-                                        className="bg-blue-500 hover:bg-blue-600 whitespace-nowrap"
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          handleReportClick(report.id);
-                                        }}
-                                      >
-                                        Run
-                                      </Button>
-                                    </div>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          );
-                        } else {
-                          return (
-                            <div className="text-center py-8">
-                              <p className="text-gray-500">Sample reports for {
-                                reportCategories.find(cat => cat.id === selectedCategory)?.title || 'this category'
-                              } will appear here.</p>
-                            </div>
-                          );
-                        }
-                      })()}
-                    </div>
-                  )}
-                </TabsContent>
-
-                <TabsContent value="myreports" className="mt-0">
-                  <div className="flex justify-between items-center mb-6">
-                    <div></div>
-                    <Button
-                      className="bg-blue-500 hover:bg-blue-600 flex items-center gap-2"
-                      onClick={openCustomReportDialog}
-                    >
-                      <Plus className="h-4 w-4" />
-                      Custom report
-                    </Button>
-                  </div>
-
-                  <h2 className="text-xl font-semibold mb-2">My reports</h2>
-                  <p className="text-gray-500 mb-6">Click on a report to run it, or visit the catalog to browse other available reports.</p>
-
-                  <div className="space-y-6">
-                    {filteredMyReports.map((report) => (
-                      <div key={report.id} className="flex gap-4 items-center bg-white border rounded-lg p-4">
-                        <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-blue-100 rounded-md">
-                          <span className="text-2xl">{report.icon}</span>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium">{report.number} {report.title}</h3>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="history" className="mt-0">
-                  <div className="text-center py-12">
-                    <p className="text-gray-500 text-lg">There is no history of run reports.</p>
-                  </div>
-                </TabsContent>
-
-                <TabsContent value="scheduled" className="mt-0">
-                  <div className="text-center py-12">
-                    <p className="text-gray-500 text-lg">There are no scheduled reports.</p>
-                  </div>
-                </TabsContent>
-              </div>
-            </Tabs>
+// Loading Skeleton Component
+const LoadingSkeleton = () => (
+  <div className="animate-pulse">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      {[1, 2, 3, 4].map((i) => (
+        <Card key={i} className="p-6">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
+            </div>
+            <div className="h-12 w-12 bg-gray-200 rounded-full"></div>
           </div>
-        )}
+        </Card>
+      ))}
+    </div>
+  </div>
+);
+
+const Reports = () => {
+  const [loading, setLoading] = useState(false);
+  const [timeFilter, setTimeFilter] = useState('2024');
+  const [regionFilter, setRegionFilter] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Calculate KPIs from mock data
+  const kpis = useMemo(() => {
+    const currentYearData = mockData.reportsTable.filter(item => item.year.toString() === timeFilter);
+    const totalEnrollments = currentYearData.reduce((sum, item) => sum + item.enrollments, 0);
+    const totalCompletions = currentYearData.reduce((sum, item) => sum + item.completions, 0);
+    const totalOutreachHours = currentYearData.reduce((sum, item) => sum + item.outreachHours, 0);
+    const totalCampaigns = currentYearData.reduce((sum, item) => sum + item.campaigns, 0);
+    const totalSurveys = currentYearData.reduce((sum, item) => sum + item.surveys, 0);
+    
+    const completionRate = totalEnrollments > 0 ? Math.round((totalCompletions / totalEnrollments) * 100) : 0;
+    const impactMetrics = totalCampaigns + totalSurveys;
+
+    return {
+      totalEnrollments,
+      completionRate,
+      totalOutreachHours,
+      impactMetrics
+    };
+  }, [timeFilter]);
+
+  // Filter table data
+  const filteredTableData = useMemo(() => {
+    let filtered = mockData.reportsTable.filter(item => item.year.toString() === timeFilter);
+    
+    if (regionFilter !== 'all') {
+      filtered = filtered.filter(item => item.region.toLowerCase() === regionFilter.toLowerCase());
+    }
+    
+    if (searchTerm) {
+      filtered = filtered.filter(item => 
+        item.region.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    return filtered;
+  }, [timeFilter, regionFilter, searchTerm]);
+
+  // Export to Excel
+  const exportToExcel = () => {
+    try {
+      setLoading(true);
+      
+      const worksheet = XLSX.utils.json_to_sheet(filteredTableData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Reports');
+      
+      // Add summary sheet
+      const summaryData = [
+        ['Metric', 'Value'],
+        ['Total Enrollments', kpis.totalEnrollments],
+        ['Completion Rate', `${kpis.completionRate}%`],
+        ['Total Outreach Hours', kpis.totalOutreachHours],
+        ['Impact Metrics', kpis.impactMetrics]
+      ];
+      const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
+      XLSX.utils.book_append_sheet(workbook, summarySheet, 'Summary');
+      
+      XLSX.writeFile(workbook, `reports_${timeFilter}_${new Date().toISOString().split('T')[0]}.xlsx`);
+      
+      setTimeout(() => setLoading(false), 500);
+    } catch (error) {
+      console.error('Excel Export Error:', error);
+      alert('Error exporting Excel file. Please try again.');
+      setLoading(false);
+    }
+  };
+
+  // Export to PDF
+  const exportToPDF = () => {
+    try {
+      setLoading(true);
+      
+      const doc = new jsPDF();
+      
+      // Title
+      doc.setFontSize(20);
+      doc.text('Data & Reporting Summary', 20, 30);
+      
+      // Summary section
+      doc.setFontSize(12);
+      doc.text(`Report Period: ${timeFilter}`, 20, 50);
+      doc.text(`Generated: ${new Date().toLocaleDateString()}`, 20, 60);
+      
+      // KPIs
+      doc.setFontSize(16);
+      doc.text('Key Performance Indicators', 20, 80);
+      doc.setFontSize(12);
+      doc.text(`Total Enrollments: ${kpis.totalEnrollments.toLocaleString()}`, 20, 95);
+      doc.text(`Completion Rate: ${kpis.completionRate}%`, 20, 105);
+      doc.text(`Total Outreach Hours: ${kpis.totalOutreachHours.toLocaleString()}`, 20, 115);
+      doc.text(`Impact Metrics: ${kpis.impactMetrics}`, 20, 125);
+      
+      // Simple table without autoTable
+      doc.setFontSize(14);
+      doc.text('Detailed Reports', 20, 145);
+      
+      // Table headers
+      doc.setFontSize(10);
+      const startY = 155;
+      const colWidths = [15, 25, 25, 25, 30, 20, 20];
+      const headers = ['Year', 'Region', 'Enrollments', 'Completions', 'Hours', 'Campaigns', 'Surveys'];
+      
+      // Draw headers
+      let currentX = 20;
+      headers.forEach((header, index) => {
+        doc.text(header, currentX, startY);
+        currentX += colWidths[index];
+      });
+      
+      // Draw data rows
+      let currentY = startY + 10;
+      filteredTableData.slice(0, 15).forEach(row => {
+        currentX = 20;
+        const rowData = [
+          row.year.toString(),
+          row.region,
+          row.enrollments.toString(),
+          row.completions.toString(),
+          row.outreachHours.toString(),
+          row.campaigns.toString(),
+          row.surveys.toString()
+        ];
+        
+        rowData.forEach((data, index) => {
+          doc.text(data, currentX, currentY);
+          currentX += colWidths[index];
+        });
+        currentY += 8;
+      });
+      
+      // Footer
+      doc.setFontSize(8);
+      doc.text('Generated by U.S. Department of Justice Training System', 20, doc.internal.pageSize.height - 20);
+      
+      doc.save(`reports_${timeFilter}_${new Date().toISOString().split('T')[0]}.pdf`);
+      
+      setTimeout(() => setLoading(false), 500);
+    } catch (error) {
+      console.error('PDF Export Error:', error);
+      setLoading(false);
+      
+      // Fallback: Create a simple text-based PDF
+      try {
+        const fallbackDoc = new jsPDF();
+        fallbackDoc.setFontSize(20);
+        fallbackDoc.text('Data & Reporting Summary', 20, 30);
+        fallbackDoc.setFontSize(12);
+        fallbackDoc.text(`Report Period: ${timeFilter}`, 20, 50);
+        fallbackDoc.text(`Total Enrollments: ${kpis.totalEnrollments}`, 20, 70);
+        fallbackDoc.text(`Completion Rate: ${kpis.completionRate}%`, 20, 85);
+        fallbackDoc.text(`Total Outreach Hours: ${kpis.totalOutreachHours}`, 20, 100);
+        fallbackDoc.text(`Impact Metrics: ${kpis.impactMetrics}`, 20, 115);
+        fallbackDoc.text('Generated by U.S. Department of Justice', 20, 150);
+        fallbackDoc.save(`reports_simple_${timeFilter}.pdf`);
+      } catch (fallbackError) {
+        console.error('Fallback PDF Error:', fallbackError);
+        alert('PDF export failed. Please try again later.');
+      }
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="p-6">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">📊 Data & Reporting</h1>
+          <p className="text-gray-600">Track enrollments, completions, outreach, and impact metrics.</p>
+        </div>
+        <LoadingSkeleton />
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6 space-y-8">
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">📊 Data & Reporting</h1>
+        <p className="text-gray-600">Track enrollments, completions, outreach, and impact metrics.</p>
       </div>
 
-      <CustomReportDialog
-        isOpen={isCustomReportDialogOpen}
-        onClose={closeCustomReportDialog}
-        onAddCustomReport={handleAddCustomReport}
-      />
+      {/* KPI Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatCard
+          title="Enrollment by Region"
+          value={kpis.totalEnrollments.toLocaleString()}
+          icon={Users}
+          trend="+12% vs last year"
+          color="blue"
+        />
+        <StatCard
+          title="Completion Rate"
+          value={`${kpis.completionRate}%`}
+          icon={Target}
+          trend="+5% vs last year"
+          color="green"
+        />
+        <StatCard
+          title="Community Outreach Hours"
+          value={kpis.totalOutreachHours.toLocaleString()}
+          icon={Clock}
+          trend="+18% vs last year"
+          color="purple"
+        />
+        <StatCard
+          title="Impact Metrics"
+          value={kpis.impactMetrics}
+          icon={BarChart3}
+          trend="+22% vs last year"
+          color="orange"
+        />
+      </div>
+
+      {/* Charts Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Analytics Dashboard</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="enrollment" className="space-y-4">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="enrollment" className="flex items-center gap-2">
+                <PieChart className="h-4 w-4" />
+                Enrollment
+              </TabsTrigger>
+              <TabsTrigger value="completion" className="flex items-center gap-2">
+                <LineChart className="h-4 w-4" />
+                Completion
+              </TabsTrigger>
+              <TabsTrigger value="outreach" className="flex items-center gap-2">
+                <BarChart3 className="h-4 w-4" />
+                Outreach
+              </TabsTrigger>
+              <TabsTrigger value="impact" className="flex items-center gap-2">
+                <Target className="h-4 w-4" />
+                Impact
+              </TabsTrigger>
+              </TabsList>
+
+            <TabsContent value="enrollment" className="space-y-4">
+              <h3 className="text-lg font-semibold">Enrollment by Region</h3>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RechartsPieChart>
+                    <Pie
+                      data={mockData.enrollmentByRegion}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      outerRadius={120}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {mockData.enrollmentByRegion.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </RechartsPieChart>
+                </ResponsiveContainer>
+                    </div>
+                </TabsContent>
+
+            <TabsContent value="completion" className="space-y-4">
+              <h3 className="text-lg font-semibold">Completion Rate Over Time</h3>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RechartsLineChart data={mockData.completionRateOverTime}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="rate" stroke="#8884d8" strokeWidth={2} name="Completion Rate %" />
+                  </RechartsLineChart>
+                </ResponsiveContainer>
+                  </div>
+                </TabsContent>
+
+            <TabsContent value="outreach" className="space-y-4">
+              <h3 className="text-lg font-semibold">Community Hours Logged</h3>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={mockData.communityHoursLogged}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Bar dataKey="hours" fill="#82ca9d" name="Hours Logged" />
+                  </BarChart>
+                </ResponsiveContainer>
+                  </div>
+                </TabsContent>
+
+            <TabsContent value="impact" className="space-y-4">
+              <h3 className="text-lg font-semibold">Impact Metrics (Campaigns vs Surveys)</h3>
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <ComposedChart data={mockData.impactMetrics}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="campaigns" fill="#8884d8" name="Campaigns" />
+                    <Bar dataKey="surveys" fill="#82ca9d" name="Surveys" />
+                  </ComposedChart>
+                </ResponsiveContainer>
+                  </div>
+                </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
+
+      {/* Reports Table Section */}
+      <Card>
+        <CardHeader>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <CardTitle>Detailed Reports</CardTitle>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Select value={timeFilter} onValueChange={setTimeFilter}>
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Time Period" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="2024">2024</SelectItem>
+                  <SelectItem value="2023">2023</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <Select value={regionFilter} onValueChange={setRegionFilter}>
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Region" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Regions</SelectItem>
+                  <SelectItem value="north">North</SelectItem>
+                  <SelectItem value="south">South</SelectItem>
+                  <SelectItem value="east">East</SelectItem>
+                  <SelectItem value="west">West</SelectItem>
+                  <SelectItem value="central">Central</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <Input
+                placeholder="Search regions..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-48"
+              />
+              
+              <div className="flex gap-2">
+                <Button onClick={exportToExcel} variant="outline" size="sm" className="flex items-center gap-2">
+                  <FileSpreadsheet className="h-4 w-4" />
+                  Excel
+                </Button>
+                <Button onClick={exportToPDF} variant="outline" size="sm" className="flex items-center gap-2">
+                  <FileText className="h-4 w-4" />
+                  PDF
+                </Button>
+              </div>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="rounded-md border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Year</TableHead>
+                  <TableHead>Region</TableHead>
+                  <TableHead>Enrollments</TableHead>
+                  <TableHead>Completions</TableHead>
+                  <TableHead>Outreach Hours</TableHead>
+                  <TableHead>Campaigns</TableHead>
+                  <TableHead>Surveys</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredTableData.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell className="font-medium">{row.year}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-gray-400" />
+                        {row.region}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="secondary">{row.enrollments.toLocaleString()}</Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">{row.completions.toLocaleString()}</Badge>
+                    </TableCell>
+                    <TableCell>{row.outreachHours.toLocaleString()}</TableCell>
+                    <TableCell>
+                      <Badge className="bg-blue-100 text-blue-800">{row.campaigns}</Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Badge className="bg-green-100 text-green-800">{row.surveys}</Badge>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

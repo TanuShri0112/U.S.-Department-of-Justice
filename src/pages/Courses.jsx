@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Users, Clock, Filter, Search, Plus, Compass, UserPlus, FileText } from 'lucide-react';
+import { BookOpen, Users, Clock, Filter, Search, Plus, Compass, FileText } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/shared/PageHeader';
-import { EnrollCourseDialog } from '@/components/courses/EnrollCourseDialog';
 import { CourseOptionsMenu } from '@/components/courses/CourseOptionsMenu';
 import { Tabs, TabsList, TabsTrigger, PillTabsTrigger } from '@/components/ui/tabs';
 import { 
@@ -20,7 +19,6 @@ import { toast } from '@/hooks/use-toast';
 
 const Courses = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [isEnrollDialogOpen, setIsEnrollDialogOpen] = useState(false);
   // Removed course access type (open/sequential)
   const [activeTab, setActiveTab] = useState('courses');
   const navigate = useNavigate();
@@ -171,20 +169,6 @@ const Courses = () => {
             Manage your course catalog and create new learning experiences
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button 
-            variant="outline" 
-            onClick={() => setIsEnrollDialogOpen(true)}
-            className="flex items-center gap-2"
-          >
-            <UserPlus className="h-4 w-4" />
-            Enroll
-          </Button>
-          <Button onClick={handleCreateCourse}>
-            <Plus className="h-4 w-4 mr-2" />
-            Create Course
-          </Button>
-        </div>
       </div>
 
       {/* Course Tabs - Templates removed */}
@@ -319,10 +303,6 @@ const Courses = () => {
           ))}
         </div>
 
-      <EnrollCourseDialog 
-        open={isEnrollDialogOpen} 
-        onOpenChange={setIsEnrollDialogOpen} 
-      />
     </div>
   );
 };

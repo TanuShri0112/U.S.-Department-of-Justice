@@ -31,10 +31,12 @@ import Courses from "./pages/Courses.jsx";
 import Groups from "./pages/Groups.jsx";
 import Users from "./pages/Users";
 import Reports from "./pages/Reports.jsx";
+import EvaluationFeedback from "./pages/EvaluationFeedback.jsx";
 import Resources from "./pages/Resources.jsx";
 import Messages from "./pages/Messages.jsx";
 import Help from "./pages/Help.jsx";
 import ModuleAssessments from "./pages/ModuleAssessments.jsx";
+import QuizPage from "./pages/QuizPage.jsx";
 import DebateInstructorPage from "./pages/DebateInstructorPage";
 import Catalog from "./pages/Catalog.jsx";
 import CategoryDetail from "./pages/CategoryDetail.jsx";
@@ -111,6 +113,7 @@ const App = () => (
                   <Route path="courses/view/:courseId/news" element={<CourseNewsPage />} />
                   <Route path="courses/view/:courseId/attendance" element={<CourseAttendance />} />
                   <Route path="courses/modules/:moduleId/assessments" element={<ModuleAssessments />} />
+                  <Route path="courses/modules/:moduleId/quiz" element={<QuizPage />} />
                   <Route path="courses/modules/:moduleId/assignments/:assignmentId" element={<AssignmentInstructorPage />} />
                   <Route path="courses/modules/:moduleId/debates/:debateId" element={<DebateInstructorPage />} />
                   <Route path="courses/modules/:moduleId/quizzes/:quizId" element={<QuizInstructorPage />} />
@@ -141,6 +144,7 @@ const App = () => (
                   
                   <Route path="users" element={<Users />} />
                   <Route path="reports" element={<Reports />} />
+                  <Route path="evaluation" element={<EvaluationFeedback />} />
                   <Route path="resources" element={<Resources />} />
                   <Route path="messages" element={<Messages />} />
                   <Route path="help" element={<Help />} />

@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
   Home, Book, Users, Folder, FileText, BarChart2,
-  Grid, Settings, FileBox, MessageCircle, HelpCircle
+  Grid, Settings, FileBox, MessageCircle, HelpCircle,
+  ClipboardCheck, TrendingUp, Star, CheckSquare
 } from 'lucide-react';
 import { NavItem } from './NavItem';
 import { useSidebar } from '@/contexts/SidebarContext';
@@ -184,6 +185,19 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
             to="/reports"
             active={pathname === '/reports'}
             onClick={() => handleNavItemClick('/reports')}
+            collapsed={isMainCollapsed}
+            className="hover-lift"
+          />
+        </motion.div>
+        
+        {/* Evaluation and Feedback */}
+        <motion.div variants={itemVariants}>
+          <NavItem 
+            icon={ClipboardCheck}
+            label="Evaluation & Feedback"
+            to="/evaluation"
+            active={pathname.startsWith('/evaluation')}
+            onClick={() => handleNavItemClick('/evaluation')}
             collapsed={isMainCollapsed}
             className="hover-lift"
           />
