@@ -33,6 +33,9 @@ import Groups from "./pages/Groups.jsx";
 import Users from "./pages/Users";
 import Reports from "./pages/Reports.jsx";
 import EvaluationFeedback from "./pages/EvaluationFeedback.jsx";
+import DEAAdmin from "./pages/DEAAdmin.jsx";
+import Survey from "./pages/Survey.jsx";
+import SelfAssessment from "./pages/SelfAssessment.jsx";
 import Resources from "./pages/Resources.jsx";
 import Messages from "./pages/Messages.jsx";
 import Help from "./pages/Help.jsx";
@@ -147,6 +150,9 @@ const App = () => (
                   <Route path="users" element={<Users />} />
                   <Route path="reports" element={<Reports />} />
                   <Route path="evaluation" element={<EvaluationFeedback />} />
+                  <Route path="feedback-reports" element={<DEAAdmin />} />
+                  <Route path="survey" element={<Survey />} />
+                  <Route path="self-assessment" element={<SelfAssessment />} />
                   <Route path="resources" element={<Resources />} />
                   <Route path="messages" element={<Messages />} />
                   <Route path="help" element={<Help />} />

@@ -155,19 +155,6 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
           />
         </motion.div>
         
-        {/* Reports */}
-        <motion.div variants={itemVariants}>
-          <NavItem 
-            icon={BarChart2}
-            label="Reports"
-            to="/reports"
-            active={pathname === '/reports'}
-            onClick={() => handleNavItemClick('/reports')}
-            collapsed={isMainCollapsed}
-            className="hover-lift"
-          />
-        </motion.div>
-        
         {/* Evaluation and Feedback */}
         <motion.div variants={itemVariants}>
           <NavItem 
@@ -350,18 +337,27 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
               collapsed={isMainCollapsed}
               className="hover-lift"
             />
-            <NavItem 
-              icon={BarChart2}
-              label="Reports"
-              to="/reports"
-              active={pathname.startsWith('/reports')}
-              onClick={() => handleNavItemClick('/reports')}
-              collapsed={isMainCollapsed}
-              className="hover-lift"
-            />
-          </div>
-        )}
-      </div>
+             <NavItem 
+               icon={BarChart2}
+               label="Reports"
+               to="/reports"
+               active={pathname.startsWith('/reports')}
+               onClick={() => handleNavItemClick('/reports')}
+               collapsed={isMainCollapsed}
+               className="hover-lift"
+             />
+             <NavItem 
+               icon={ClipboardCheck}
+               label="Feedback Reports"
+               to="/feedback-reports"
+               active={pathname.startsWith('/feedback-reports')}
+               onClick={() => handleNavItemClick('/feedback-reports')}
+               collapsed={isMainCollapsed}
+               className="hover-lift"
+             />
+           </div>
+         )}
+       </div>
     </div>
   );
 };
