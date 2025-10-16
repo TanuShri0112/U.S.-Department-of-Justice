@@ -7,6 +7,14 @@ import {
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
+import { toast, Toaster } from 'react-hot-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useAdminPortal } from '@/contexts/AdminPortalContext';
 
 // Import admin page components
@@ -20,6 +28,36 @@ import AdminFeedbackReports from '../../pages/admin/AdminFeedbackReports';
 const AdminPortal = ({ onToggle }) => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('overview');
+  const [courseForm, setCourseForm] = useState({
+    title: '',
+    category: 'Law Enforcement Training',
+    duration: '',
+    difficulty: 'Beginner',
+    description: '',
+    learningObjectives: ''
+  });
+  
+  const [courseFilter, setCourseFilter] = useState('all');
+  const [isDragging, setIsDragging] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  
+  const [metrics, setMetrics] = useState({
+    totalUsers: 1234,
+    activeCourses: 24,
+    scheduledWebinars: 8,
+    pendingReports: 12,
+    courseCompletions: 847,
+    activeSessions: 156,
+    newRegistrations: 89,
+    supportTickets: 23,
+    systemUptime: 94,
+    avgLoadTime: 4.2,
+    userSatisfaction: 87
+  });
+  
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showActionFeedback, setShowActionFeedback] = useState(false);
+  const [actionMessage, setActionMessage] = useState('');
   const { isAdminPortalEnabled, setIsAdminPortalEnabled } = useAdminPortal();
 
   const adminSections = [
@@ -33,9 +71,106 @@ const AdminPortal = ({ onToggle }) => {
     { id: 'feedback', label: 'Feedback Reports', icon: ClipboardCheck },
   ];
 
+  const handleFileUpload = (files) => {
+    if (files.length === 0) return;
+    
+    const loadingToast = toast.loading(`Uploading ${files.length} file${files.length > 1 ? 's' : ''}...`);
+    
+    // Simulate file upload progress
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 20;
+      if (progress > 100) {
+        clearInterval(interval);
+        progress = 100;
+        toast.success(`Successfully uploaded ${files.length} file${files.length > 1 ? 's' : ''}`, {
+          id: loadingToast
+        });
+        setUploadProgress(0);
+      }
+      setUploadProgress(Math.min(progress, 100));
+    }, 500);
+  };
+
+  const handleCreateCourse = () => {
+    // Validate form
+    if (!courseForm.title || !courseForm.duration || !courseForm.description || !courseForm.learningObjectives) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
+    const loadingToast = toast.loading('Creating course...');
+    
+    // Simulate API call
+    setTimeout(() => {
+      toast.success('Course created successfully!', { id: loadingToast });
+      
+      // Update metrics
+      setMetrics(prev => ({
+        ...prev,
+        activeCourses: prev.activeCourses + 1
+      }));
+
+      // Reset form
+      setCourseForm({
+        title: '',
+        category: 'Law Enforcement Training',
+        duration: '',
+        difficulty: 'Beginner',
+        description: '',
+        learningObjectives: ''
+      });
+    }, 1500);
+  };
+
+  const handleSaveAsDraft = () => {
+    const loadingToast = toast.loading('Saving draft...');
+    
+    setTimeout(() => {
+      toast.success('Draft saved successfully!', { id: loadingToast });
+    }, 1000);
+  };
+
+  const handleFilterChange = (filter) => {
+    setCourseFilter(filter);
+    const loadingToast = toast.loading('Updating course list...');
+    
+    setTimeout(() => {
+      toast.success('Course list updated', { id: loadingToast });
+    }, 500);
+  };
+
   const handleSectionClick = (sectionId) => {
-    setActiveSection(sectionId);
-    // Don't navigate - just change the active section to show content inline
+    const loadingToast = toast.loading(`Loading ${sectionId} section...`);
+    
+    // Simulate loading state
+    setTimeout(() => {
+      setActiveSection(sectionId);
+      
+      // Update metrics if returning to overview
+      if (sectionId === 'overview') {
+        setMetrics(prev => ({
+          ...prev,
+          totalUsers: prev.totalUsers + Math.floor(Math.random() * 10),
+          activeCourses: prev.activeCourses + Math.floor(Math.random() * 2),
+          scheduledWebinars: prev.scheduledWebinars + Math.floor(Math.random() * 2),
+          pendingReports: Math.max(0, prev.pendingReports + Math.floor(Math.random() * 3 - 1))
+        }));
+      }
+
+      const messages = {
+        overview: 'Dashboard updated with latest metrics',
+        courses: 'Course management loaded successfully',
+        webinars: 'Webinar management ready',
+        schedule: 'Calendar and schedule loaded',
+        announcements: 'Announcement system ready',
+        users: 'User management loaded',
+        reports: 'Reports dashboard ready',
+        feedback: 'Feedback system loaded'
+      };
+
+      toast.success(messages[sectionId], { id: loadingToast });
+    }, 800);
   };
 
   const renderContent = () => {
@@ -60,41 +195,41 @@ const AdminPortal = ({ onToggle }) => {
                    <div className="flex items-center justify-between">
                      <div>
                        <p className="text-sm font-medium text-blue-600">Total Users</p>
-                       <p className="text-2xl font-bold text-blue-900">1,234</p>
-                       <p className="text-xs text-blue-600 mt-1">+12% this month</p>
-                     </div>
-                     <Users className="w-8 h-8 text-blue-500" />
-                   </div>
-                 </div>
-                 
-                 <div className="bg-green-50 rounded-lg p-4">
-                   <div className="flex items-center justify-between">
-                     <div>
-                       <p className="text-sm font-medium text-green-600">Active Courses</p>
-                       <p className="text-2xl font-bold text-green-900">24</p>
-                       <p className="text-xs text-green-600 mt-1">3 new this week</p>
-                     </div>
-                     <Upload className="w-8 h-8 text-green-500" />
-                   </div>
-                 </div>
-                 
-                 <div className="bg-purple-50 rounded-lg p-4">
-                   <div className="flex items-center justify-between">
-                     <div>
-                       <p className="text-sm font-medium text-purple-600">Scheduled Webinars</p>
-                       <p className="text-2xl font-bold text-purple-900">8</p>
-                       <p className="text-xs text-purple-600 mt-1">2 this week</p>
-                     </div>
-                     <Video className="w-8 h-8 text-purple-500" />
-                   </div>
-                 </div>
-                 
-                 <div className="bg-orange-50 rounded-lg p-4">
-                   <div className="flex items-center justify-between">
-                     <div>
-                       <p className="text-sm font-medium text-orange-600">Pending Reports</p>
-                       <p className="text-2xl font-bold text-orange-900">12</p>
-                       <p className="text-xs text-orange-600 mt-1">Due this week</p>
+                      <p className="text-2xl font-bold text-blue-900">{metrics.totalUsers.toLocaleString()}</p>
+                      <p className="text-xs text-blue-600 mt-1">+{Math.floor(metrics.totalUsers * 0.012)}% this month</p>
+                    </div>
+                    <Users className="w-8 h-8 text-blue-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                  </div>
+                </div>
+                
+                <div className="bg-green-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-green-600">Active Courses</p>
+                      <p className="text-2xl font-bold text-green-900">{metrics.activeCourses}</p>
+                      <p className="text-xs text-green-600 mt-1">{Math.ceil(metrics.activeCourses * 0.12)} new this week</p>
+                    </div>
+                    <Upload className="w-8 h-8 text-green-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                  </div>
+                </div>
+                
+                <div className="bg-purple-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-purple-600">Scheduled Webinars</p>
+                      <p className="text-2xl font-bold text-purple-900">{metrics.scheduledWebinars}</p>
+                      <p className="text-xs text-purple-600 mt-1">{Math.ceil(metrics.scheduledWebinars * 0.25)} this week</p>
+                    </div>
+                    <Video className="w-8 h-8 text-purple-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                  </div>
+                </div>
+                
+                <div className="bg-orange-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-orange-600">Pending Reports</p>
+                      <p className="text-2xl font-bold text-orange-900">{metrics.pendingReports}</p>
+                      <p className="text-xs text-orange-600 mt-1">Due this week</p>
                      </div>
                      <BarChart2 className="w-8 h-8 text-orange-500" />
                    </div>
@@ -193,22 +328,58 @@ const AdminPortal = ({ onToggle }) => {
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                 <button className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
-                   <Upload className="w-6 h-6 text-blue-600" />
-                   <span className="text-sm font-medium text-gray-700">Upload Course</span>
-                 </button>
-                 <button className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
-                   <Video className="w-6 h-6 text-purple-600" />
-                   <span className="text-sm font-medium text-gray-700">Schedule Webinar</span>
-                 </button>
-                 <button className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
-                   <Bell className="w-6 h-6 text-orange-600" />
-                   <span className="text-sm font-medium text-gray-700">Send Announcement</span>
-                 </button>
-                 <button className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
-                   <BarChart2 className="w-6 h-6 text-green-600" />
-                   <span className="text-sm font-medium text-gray-700">Generate Report</span>
-                 </button>
+                <button 
+                  onClick={() => {
+                    setActiveSection('courses');
+                    const loadingToast = toast.loading('Preparing course upload...');
+                    setTimeout(() => {
+                      toast.success('Ready to upload new course', { id: loadingToast });
+                    }, 1000);
+                  }}
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
+                >
+                  <Upload className="w-6 h-6 text-blue-600" />
+                  <span className="text-sm font-medium text-gray-700">Upload Course</span>
+                </button>
+                <button 
+                  onClick={() => {
+                    setActiveSection('webinars');
+                    const loadingToast = toast.loading('Opening webinar scheduler...');
+                    setTimeout(() => {
+                      toast.success('Ready to schedule webinar', { id: loadingToast });
+                    }, 1000);
+                  }}
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
+                >
+                  <Video className="w-6 h-6 text-purple-600" />
+                  <span className="text-sm font-medium text-gray-700">Schedule Webinar</span>
+                </button>
+                <button 
+                  onClick={() => {
+                    setActiveSection('announcements');
+                    const loadingToast = toast.loading('Opening announcement creator...');
+                    setTimeout(() => {
+                      toast.success('Ready to create announcement', { id: loadingToast });
+                    }, 1000);
+                  }}
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
+                >
+                  <Bell className="w-6 h-6 text-orange-600" />
+                  <span className="text-sm font-medium text-gray-700">Send Announcement</span>
+                </button>
+                <button 
+                  onClick={() => {
+                    setActiveSection('reports');
+                    const loadingToast = toast.loading('Preparing report generator...');
+                    setTimeout(() => {
+                      toast.success('Ready to generate reports', { id: loadingToast });
+                    }, 1000);
+                  }}
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
+                >
+                  <BarChart2 className="w-6 h-6 text-green-600" />
+                  <span className="text-sm font-medium text-gray-700">Generate Report</span>
+                </button>
                </div>
              </div>
            </div>
@@ -233,14 +404,71 @@ const AdminPortal = ({ onToggle }) => {
              {/* Upload Section */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                <h3 className="text-lg font-semibold text-gray-900 mb-4">Upload New Course</h3>
-               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
-                 <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                 <h4 className="text-lg font-medium text-gray-900 mb-2">Drop files here or click to upload</h4>
-                 <p className="text-gray-600 mb-4">Support for SCORM, PDF, Video, and other formats</p>
-                 <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                   Choose Files
-                 </button>
-               </div>
+              <div 
+                className={cn(
+                  "border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200",
+                  isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-blue-400",
+                  "relative cursor-pointer"
+                )}
+                onDragEnter={(e) => {
+                  e.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={(e) => {
+                  e.preventDefault();
+                  setIsDragging(false);
+                }}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  setIsDragging(false);
+                  const files = Array.from(e.dataTransfer.files);
+                  handleFileUpload(files);
+                }}
+                onClick={() => document.getElementById('fileInput').click()}
+              >
+                <input
+                  type="file"
+                  id="fileInput"
+                  multiple
+                  className="hidden"
+                  onChange={(e) => handleFileUpload(Array.from(e.target.files))}
+                  accept=".pdf,.scorm,.mp4,.zip"
+                />
+                <Upload className={cn(
+                  "w-12 h-12 mx-auto mb-4 transition-transform duration-200",
+                  isDragging ? "text-blue-500 scale-110" : "text-gray-400",
+                  "transform hover:scale-110"
+                )} />
+                <h4 className="text-lg font-medium text-gray-900 mb-2">
+                  {isDragging ? "Drop files to upload" : "Drop files here or click to upload"}
+                </h4>
+                <p className="text-gray-600 mb-4">Support for SCORM, PDF, Video, and other formats</p>
+                <button 
+                  className={cn(
+                    "px-6 py-2 rounded-lg font-medium transition-all duration-200",
+                    "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg",
+                    "transform hover:-translate-y-0.5 active:translate-y-0"
+                  )}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    document.getElementById('fileInput').click();
+                  }}
+                >
+                  Choose Files
+                </button>
+                {uploadProgress > 0 && (
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded-b-lg overflow-hidden">
+                    <div 
+                      className="h-full bg-blue-600 transition-all duration-300"
+                      style={{ width: `${uploadProgress}%` }}
+                    />
+                  </div>
+                )}
+              </div>
              </div>
 
              {/* Course Creation Form */}
@@ -249,61 +477,88 @@ const AdminPortal = ({ onToggle }) => {
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div>
                    <label className="block text-sm font-medium text-gray-700 mb-2">Course Title</label>
-                   <input 
-                     type="text" 
-                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                     placeholder="Enter course title"
-                   />
-                 </div>
-                 <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                   <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                     <option>Law Enforcement Training</option>
-                     <option>Educator Training</option>
-                     <option>Youth Advocacy Training</option>
-                     <option>General Training</option>
-                   </select>
-                 </div>
-                 <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">Duration (hours)</label>
-                   <input 
-                     type="number" 
-                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                     placeholder="Enter duration"
-                   />
-                 </div>
-                 <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">Difficulty Level</label>
-                   <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                     <option>Beginner</option>
-                     <option>Intermediate</option>
-                     <option>Advanced</option>
-                   </select>
-                 </div>
-                 <div className="md:col-span-2">
-                   <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                   <textarea 
-                     rows={4}
-                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                     placeholder="Enter course description"
-                   />
-                 </div>
-                 <div className="md:col-span-2">
-                   <label className="block text-sm font-medium text-gray-700 mb-2">Learning Objectives</label>
-                   <textarea 
-                     rows={3}
-                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                     placeholder="List the key learning objectives for this course"
-                   />
+                  <input 
+                    type="text" 
+                    value={courseForm.title}
+                    onChange={(e) => setCourseForm(prev => ({ ...prev, title: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    placeholder="Enter course title"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <select 
+                    value={courseForm.category}
+                    onChange={(e) => setCourseForm(prev => ({ ...prev, category: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                  >
+                    <option>Law Enforcement Training</option>
+                    <option>Educator Training</option>
+                    <option>Youth Advocacy Training</option>
+                    <option>General Training</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Duration (hours)</label>
+                  <input 
+                    type="number" 
+                    value={courseForm.duration}
+                    onChange={(e) => setCourseForm(prev => ({ ...prev, duration: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    placeholder="Enter duration"
+                    min="1"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Difficulty Level</label>
+                  <select 
+                    value={courseForm.difficulty}
+                    onChange={(e) => setCourseForm(prev => ({ ...prev, difficulty: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                  >
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                  </select>
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                  <textarea 
+                    rows={4}
+                    value={courseForm.description}
+                    onChange={(e) => setCourseForm(prev => ({ ...prev, description: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    placeholder="Enter course description"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Learning Objectives</label>
+                  <textarea 
+                    rows={3}
+                    value={courseForm.learningObjectives}
+                    onChange={(e) => setCourseForm(prev => ({ ...prev, learningObjectives: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    placeholder="List the key learning objectives for this course"
+                  />
                  </div>
                </div>
                <div className="flex gap-3 mt-6">
-                 <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                   Create Course
-                 </button>
-                 <button className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors">
-                   Save as Draft
-                 </button>
+                <button 
+                  onClick={handleCreateCourse}
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg transform transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
+                >
+                  <Upload className="w-4 h-4" />
+                  Create Course
+                </button>
+                <button 
+                  onClick={handleSaveAsDraft}
+                  className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 hover:shadow transition-all duration-200 flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                  </svg>
+                  Save as Draft
+                </button>
                </div>
              </div>
 
@@ -312,9 +567,39 @@ const AdminPortal = ({ onToggle }) => {
                <div className="flex items-center justify-between mb-4">
                  <h3 className="text-lg font-semibold text-gray-900">Existing Courses</h3>
                  <div className="flex gap-2">
-                   <button className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg">All</button>
-                   <button className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg">Published</button>
-                   <button className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg">Drafts</button>
+                  <button 
+                    onClick={() => handleFilterChange('all')}
+                    className={cn(
+                      "px-3 py-1 text-sm rounded-lg transition-all duration-200",
+                      courseFilter === 'all' 
+                        ? "bg-blue-100 text-blue-700 shadow-sm" 
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    )}
+                  >
+                    All
+                  </button>
+                  <button 
+                    onClick={() => handleFilterChange('published')}
+                    className={cn(
+                      "px-3 py-1 text-sm rounded-lg transition-all duration-200",
+                      courseFilter === 'published' 
+                        ? "bg-green-100 text-green-700 shadow-sm" 
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    )}
+                  >
+                    Published
+                  </button>
+                  <button 
+                    onClick={() => handleFilterChange('drafts')}
+                    className={cn(
+                      "px-3 py-1 text-sm rounded-lg transition-all duration-200",
+                      courseFilter === 'drafts' 
+                        ? "bg-yellow-100 text-yellow-700 shadow-sm" 
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    )}
+                  >
+                    Drafts
+                  </button>
                  </div>
                </div>
                
@@ -446,6 +731,31 @@ const AdminPortal = ({ onToggle }) => {
 
   return (
     <div className="h-screen bg-gray-50 flex flex-col">
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#fff',
+            color: '#363636',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+            borderRadius: '0.75rem',
+            padding: '1rem',
+          },
+          success: {
+            iconTheme: {
+              primary: '#3B82F6',
+              secondary: '#fff',
+            },
+          },
+          loading: {
+            iconTheme: {
+              primary: '#3B82F6',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="px-6 py-4">
