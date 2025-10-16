@@ -25,42 +25,16 @@ const Courses = () => {
   const mockCourses = [
     {
       id: 1,
-      title: "LAW ENFORCEMENT TRAINING",
+      title: "U.S. Department of Justice- National Community Outreach & Prevention",
       description: "Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals",
       students: 120,
       duration: "6 weeks",
       level: "Beginner",
       status: "Active",
-      image: "/assets/course-1.png",
+      image: "/assets/us-1.png",
       archived: false,
       deleted: false,
       catalog: "Law Enforcement"
-    },
-    {
-      id: 2,
-      title: "EDUCATOR TRAINING",
-      description: "Professional learning program for educators focusing on needs assessment, curriculum design, and module development",
-      students: 95,
-      duration: "5 weeks",
-      level: "Beginner",
-      status: "Active",
-      image: "/assets/course-2.png",
-      archived: false,
-      deleted: false,
-      catalog: "Education"
-    },
-    {
-      id: 3,
-      title: "YOUTH ADVOCATE TRAINING",
-      description: "Training program for youth advocates covering advocacy foundations, needs assessment, and program design",
-      students: 110,
-      duration: "7 weeks",
-      level: "Beginner",
-      status: "Active",
-      image: "/assets/course-3.png",
-      archived: false,
-      deleted: false,
-      catalog: "Youth Development"
     }
   ];
 

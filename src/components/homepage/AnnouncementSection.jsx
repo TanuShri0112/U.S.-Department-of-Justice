@@ -9,33 +9,13 @@ export function AnnouncementSection() {
   const announcements = [
     {
       id: 1,
-      title: 'New Law Enforcement Module Available',
+      title: 'New National Community Outreach & Prevention Module Available',
       source: 'DOJ Training Coordinator',
       time: '2 hours ago',
-      content: 'Advanced Law Enforcement Training Module 2: Stakeholder Analysis & Needs Assessment is now available for enrollment.',
+      content: 'Advanced National Community Outreach & Prevention Module 2: Stakeholder Analysis & Needs Assessment is now available for enrollment.',
       type: 'course',
       priority: 'high',
       course: 'Law Enforcement'
-    },
-    {
-      id: 2,
-      title: 'Educator Training Office Hours',
-      source: 'Education Specialist',
-      time: '1 day ago',
-      content: 'Office hours will be held Tuesday and Thursday from 2-4 PM for educator training consultation and support.',
-      type: 'general',
-      priority: 'medium',
-      course: 'Education'
-    },
-    {
-      id: 3,
-      title: 'Youth Advocate Certification Deadline',
-      source: 'Training Manager',
-      time: '3 days ago',
-      content: 'Youth Advocate Training Module 1 final assessment is due next Friday. Complete all required modules to earn certification.',
-      type: 'deadline',
-      priority: 'high',
-      course: 'Youth Development'
     },
     {
       id: 4,

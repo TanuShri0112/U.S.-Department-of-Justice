@@ -145,7 +145,7 @@ const AdminPortal = ({ onToggle }) => {
     
     // Simulate loading state
     setTimeout(() => {
-      setActiveSection(sectionId);
+    setActiveSection(sectionId);
       
       // Update metrics if returning to overview
       if (sectionId === 'overview') {
@@ -234,9 +234,9 @@ const AdminPortal = ({ onToggle }) => {
                      <BarChart2 className="w-8 h-8 text-orange-500" />
                    </div>
                  </div>
-               </div>
-             </div>
-
+                   </div>
+                 </div>
+                 
              {/* Secondary Stats */}
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -245,7 +245,7 @@ const AdminPortal = ({ onToggle }) => {
                    <div className="flex items-center justify-between">
                      <span className="text-sm text-gray-600">Course Completions</span>
                      <span className="text-sm font-medium text-gray-900">847</span>
-                   </div>
+                     </div>
                    <div className="flex items-center justify-between">
                      <span className="text-sm text-gray-600">Active Sessions</span>
                      <span className="text-sm font-medium text-gray-900">156</span>
@@ -253,14 +253,14 @@ const AdminPortal = ({ onToggle }) => {
                    <div className="flex items-center justify-between">
                      <span className="text-sm text-gray-600">New Registrations</span>
                      <span className="text-sm font-medium text-gray-900">89</span>
-                   </div>
+                 </div>
                    <div className="flex items-center justify-between">
                      <span className="text-sm text-gray-600">Support Tickets</span>
                      <span className="text-sm font-medium text-gray-900">23</span>
                    </div>
+                   </div>
                  </div>
-               </div>
-
+                 
                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
                  <div className="space-y-4">
@@ -340,7 +340,7 @@ const AdminPortal = ({ onToggle }) => {
                 >
                   <Upload className="w-6 h-6 text-blue-600" />
                   <span className="text-sm font-medium text-gray-700">Upload Course</span>
-                </button>
+                 </button>
                 <button 
                   onClick={() => {
                     setActiveSection('webinars');
@@ -353,7 +353,7 @@ const AdminPortal = ({ onToggle }) => {
                 >
                   <Video className="w-6 h-6 text-purple-600" />
                   <span className="text-sm font-medium text-gray-700">Schedule Webinar</span>
-                </button>
+                 </button>
                 <button 
                   onClick={() => {
                     setActiveSection('announcements');
@@ -366,7 +366,7 @@ const AdminPortal = ({ onToggle }) => {
                 >
                   <Bell className="w-6 h-6 text-orange-600" />
                   <span className="text-sm font-medium text-gray-700">Send Announcement</span>
-                </button>
+                 </button>
                 <button 
                   onClick={() => {
                     setActiveSection('reports');
@@ -379,7 +379,7 @@ const AdminPortal = ({ onToggle }) => {
                 >
                   <BarChart2 className="w-6 h-6 text-green-600" />
                   <span className="text-sm font-medium text-gray-700">Generate Report</span>
-                </button>
+                 </button>
                </div>
              </div>
            </div>
@@ -458,8 +458,8 @@ const AdminPortal = ({ onToggle }) => {
                     document.getElementById('fileInput').click();
                   }}
                 >
-                  Choose Files
-                </button>
+                   Choose Files
+                 </button>
                 {uploadProgress > 0 && (
                   <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded-b-lg overflow-hidden">
                     <div 
@@ -468,7 +468,7 @@ const AdminPortal = ({ onToggle }) => {
                     />
                   </div>
                 )}
-              </div>
+               </div>
              </div>
 
              {/* Course Creation Form */}
@@ -477,49 +477,49 @@ const AdminPortal = ({ onToggle }) => {
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div>
                    <label className="block text-sm font-medium text-gray-700 mb-2">Course Title</label>
-                  <input 
-                    type="text" 
+                   <input 
+                     type="text" 
                     value={courseForm.title}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, title: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="Enter course title"
-                  />
-                </div>
-                <div>
+                     placeholder="Enter course title"
+                   />
+                 </div>
+                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
                   <select 
                     value={courseForm.category}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, category: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                   >
-                    <option>Law Enforcement Training</option>
-                    <option>Educator Training</option>
-                    <option>Youth Advocacy Training</option>
-                    <option>General Training</option>
-                  </select>
-                </div>
-                <div>
+                     <option>Law Enforcement Training</option>
+                     <option>Educator Training</option>
+                     <option>Youth Advocacy Training</option>
+                     <option>General Training</option>
+                   </select>
+                 </div>
+                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Duration (hours)</label>
-                  <input 
-                    type="number" 
+                   <input 
+                     type="number" 
                     value={courseForm.duration}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, duration: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="Enter duration"
+                     placeholder="Enter duration"
                     min="1"
-                  />
-                </div>
-                <div>
+                   />
+                 </div>
+                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Difficulty Level</label>
                   <select 
                     value={courseForm.difficulty}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, difficulty: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                   >
-                    <option>Beginner</option>
-                    <option>Intermediate</option>
-                    <option>Advanced</option>
-                  </select>
+                     <option>Beginner</option>
+                     <option>Intermediate</option>
+                     <option>Advanced</option>
+                   </select>
                 </div>
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
@@ -548,8 +548,8 @@ const AdminPortal = ({ onToggle }) => {
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg transform transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
                 >
                   <Upload className="w-4 h-4" />
-                  Create Course
-                </button>
+                   Create Course
+                 </button>
                 <button 
                   onClick={handleSaveAsDraft}
                   className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 hover:shadow transition-all duration-200 flex items-center gap-2"
@@ -557,8 +557,8 @@ const AdminPortal = ({ onToggle }) => {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
                   </svg>
-                  Save as Draft
-                </button>
+                   Save as Draft
+                 </button>
                </div>
              </div>
 
@@ -759,10 +759,10 @@ const AdminPortal = ({ onToggle }) => {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="px-6 py-4">
-            <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Admin Portal</h1>
-            </div>
+              <div className="flex items-center gap-3">
+                <Shield className="w-6 h-6 text-blue-600" />
+                <h1 className="text-xl font-semibold text-gray-900">Admin Portal</h1>
+          </div>
         </div>
       </div>
 

@@ -34,40 +34,13 @@ const groups = [
 const catalog = [
   {
     id: 1,
-    name: "Law Enforcement Training",
+    name: "U.S. Department of Justice- National Community Outreach & Prevention",
     description: "Foundations & Advanced Modules",
-    img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=40&q=80",
+    img: "/assets/us-1.png",
     modules: 3,
     students: 120,
     icon: Shield
-  },
-  {
-    id: 2,
-    name: "Educator Professional Development",
-    description: "Professional Learning Programs",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&q=80",
-    modules: 3,
-    students: 95,
-    icon: GraduationCap
-  },
-  {
-    id: 3,
-    name: "Youth Advocate Training",
-    description: "Advocacy & Development Skills",
-    img: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&q=80",
-    modules: 3,
-    students: 110,
-    icon: Users
-  },
-  {
-    id: 4,
-    name: "DOJ Compliance Training",
-    description: "Regulatory Requirements",
-    img: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=40&q=80",
-    modules: 2,
-    students: 85,
-    icon: BookOpen
-  },
+  }
 ];
 
 export default function WidgetsSection() {

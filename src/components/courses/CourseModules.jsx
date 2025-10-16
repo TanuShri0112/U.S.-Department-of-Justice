@@ -28,9 +28,7 @@ const CourseModules = () => {
       'reactjs202': 'React.js Advanced',
       'ml506': 'Machine Learning',
       'data345': 'Data Analysis',
-      '1': 'Law Enforcement Training',
-      '2': 'Educator Training', 
-      '3': 'Youth Advocate Training'
+      '1': 'U.S. Department of Justice- National Community Outreach & Prevention'
     };
     return courseNames[courseId] || 'Course';
   };
@@ -75,11 +73,11 @@ const CourseModules = () => {
         // Course-specific modules based on courseId
         const getCourseModules = (courseId) => {
           const courseModules = {
-            '1': [ // Law Enforcement Training
+            '1': [ // U.S. Department of Justice- National Community Outreach & Prevention
               {
                 id: 1,
-                title: "Law Enforcement Training",
-                description: "Understanding the core principles and frameworks of law enforcement training",
+                title: "National Community Outreach & Prevention",
+                description: "Understanding the core principles and frameworks of community outreach and prevention",
                 units: 5,
                 assessments: 1,
                 duration: "2 hours",
@@ -106,70 +104,6 @@ const CourseModules = () => {
               //   completed: false,
               //   locked: courseType === 'sequential',
               // }
-            ],
-            '2': [ // Educator Training
-              {
-                id: 4,
-                title: "Educator Training",
-                description: "Core concepts of professional development and educator growth",
-                units: 7,
-                assessments: 2,
-                duration: "3 hours",
-                completed: false,
-                locked: false,
-              },
-              // {
-              //   id: 5,
-              //   title: "Module 2: Needs Assessment for Schools & Districts",
-              //   description: "Evaluating educational needs and identifying improvement opportunities",
-              //   units: 9,
-              //   assessments: 3,
-              //   duration: "5 hours",
-              //   completed: false,
-              //   locked: courseType === 'sequential',
-              // },
-              // {
-              //   id: 6,
-              //   title: "Module 3: Curriculum & Module Design for Teachers",
-              //   description: "Creating effective curriculum and training modules for educators",
-              //   units: 6,
-              //   assessments: 2,
-              //   duration: "4 hours",
-              //   completed: false,
-              //   locked: courseType === 'sequential',
-              // }
-            ],
-            '3': [ // Youth Advocate Training
-              {
-                id: 1,
-                title: "Youth Advocate Training",
-                description: "Understanding youth development and advocacy principles",
-                units: 6,
-                assessments: 1,
-                duration: "2.5 hours",
-                completed: false,
-                locked: false,
-              },
-              // {
-              //   id: 2,
-              //   title: "Module 2: Needs Assessment in Youth Advocacy",
-              //   description: "Identifying and analyzing the needs of youth populations",
-              //   units: 8,
-              //   assessments: 2,
-              //   duration: "4 hours",
-              //   completed: false,
-              //   locked: courseType === 'sequential',
-              // },
-              // {
-              //   id: 3,
-              //   title: "Module 3: Designing Advocacy Training Programs",
-              //   description: "Creating comprehensive training programs for youth advocates",
-              //   units: 7,
-              //   assessments: 2,
-              //   duration: "3.5 hours",
-              //   completed: false,
-              //   locked: courseType === 'sequential',
-              // }
             ]
           };
           
@@ -178,12 +112,8 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            // Law Enforcement Training - Use course banner
-            'Law Enforcement Training': '/assets/C-1.png',
-            // Educator Training - Use course banner
-            'Educator Training': '/assets/C-2.png',
-            // Youth Advocacy Training - Use course banner
-            'Youth Advocate Training': '/assets/C-3.png'
+            // National Community Outreach & Prevention - Use course banner
+            'National Community Outreach & Prevention': '/assets/us-2.png'
           };
           return { ...m, image: titleToImage[m.title] };
         });

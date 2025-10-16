@@ -8,9 +8,7 @@ import { Badge } from '@/components/ui/badge';
 // Module information mapping
 const getModuleName = (courseId) => {
   const courseNames = {
-    '1': 'Law Enforcement Training',
-    '2': 'Educator Training', 
-    '3': 'Youth Advocacy Training',
+    '1': 'U.S. Department of Justice- National Community Outreach & Prevention',
     '1757539': 'Advanced Credit Analysis'
   };
   return courseNames[courseId] || 'Training Module';
@@ -21,8 +19,8 @@ const getModuleQuestions = (courseId, moduleId) => {
   if (courseId === '1' || (courseId === '1757539' && moduleId === '1')) {
     return {
       id: 'module-1-quiz',
-      title: 'Law Enforcement Training Assessment',
-      description: 'Test your knowledge of law enforcement training principles, standards, and methodologies',
+      title: 'National Community Outreach & Prevention Assessment',
+      description: 'Test your knowledge of community outreach and prevention principles, training methodologies, and best practices',
     type: 'general',
     timeLimit: '30 minutes',
     attempts: 'unlimited',
@@ -44,36 +42,36 @@ const getModuleQuestions = (courseId, moduleId) => {
         {
           id: 2,
           type: 'multiple_choice',
-          question: 'According to U.S. standards, which topics are core to police training requirements?',
-          options: [
-            'Forensic photography and patrol tactics',
-            'Use of force, ethics, civil rights, and bias awareness',
-            'Advanced driving and weapon handling',
-            'Criminal profiling and detective work'
-          ],
-          correct: 1
-        },
-        {
-          id: 3,
-          type: 'multiple_choice',
-          question: 'What is a defining feature of trauma-informed instruction for first responders?',
-          options: [
-            'Strict grading',
-            'Emphasizing physical fitness',
-            'Creating a learning environment based on safety, trust, and respect',
-            'Reducing training hours'
-          ],
-          correct: 2
-        },
-        {
-          id: 4,
-          type: 'multiple_choice',
           question: 'Which model focuses on context, input, process, and product for program evaluation?',
           options: [
             'Kirkpatrick Model',
             'CIPP Model',
             'ADDIE Model',
             'Bloom\'s Taxonomy'
+          ],
+          correct: 1
+        },
+        {
+          id: 3,
+          type: 'multiple_choice',
+          question: 'Which principle makes professional learning more effective for educators?',
+          options: [
+            'Memorization of teaching standards',
+            'Connection to classroom realities',
+            'Focusing only on theory',
+            'Avoiding reflection and collaboration'
+          ],
+          correct: 1
+        },
+        {
+          id: 4,
+          type: 'multiple_choice',
+          question: 'What is a key strategy to ensure youth advocacy programs are responsive and equitable?',
+          options: [
+            'Using only quantitative data',
+            'Conducting comprehensive needs assessments including youth voices',
+            'Designing programs without community input',
+            'Limiting digital outreach'
           ],
           correct: 1
         },
@@ -86,32 +84,32 @@ const getModuleQuestions = (courseId, moduleId) => {
         {
           id: 6,
           type: 'true_false',
-          question: 'The Kirkpatrick model only examines the context of training, not outcomes.',
-          correct: false
+          question: 'Professional learning is most effective when connected to educators\' daily classroom realities.',
+          correct: true
         },
         {
           id: 7,
           type: 'true_false',
-          question: 'Scenario-based simulations help officers practice decision-making under pressure.',
-          correct: true
+          question: 'Digital outreach is not recommended for youth advocacy due to safety concerns.',
+          correct: false
         },
         {
           id: 8,
           type: 'fill_blank',
-          question: 'Training programs begin with a comprehensive ___ to identify skill gaps and stakeholder expectations.',
-          correct: 'needs assessment'
+          question: '_______ in law enforcement combines in-person workshops with digital modules for flexibility and engagement.',
+          correct: 'Blended learning'
         },
         {
           id: 9,
           type: 'fill_blank',
-          question: '_____ requires officers to practice fair treatment, clear communication, and impartial actions in all scenarios.',
-          correct: 'Procedural justice'
+          question: '________ ensures students with disabilities receive proper support and access to education.',
+          correct: 'IDEA'
         },
         {
           id: 10,
           type: 'fill_blank',
-          question: '_____ in law enforcement combines in-person workshops with digital modules for flexibility and engagement.',
-          correct: 'Blended learning'
+          question: '________ emphasizes belonging, competence, and contribution in youth development.',
+          correct: 'Positive Youth Development'
         }
       ]
     };

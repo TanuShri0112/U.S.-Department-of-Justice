@@ -13,34 +13,12 @@ const CourseModules = () => {
   const modules = [
     { 
       id: 1, 
-      title: 'Law Enforcement Training', 
-      description: 'Understanding the core principles and frameworks of law enforcement training',
-      image: '/assets/C-1.png',
+      title: 'National Community Outreach & Prevention', 
+      description: 'Understanding the core principles and frameworks of community outreach and prevention',
+      image: '/assets/us-2.png',
       units: 5,
       assessments: 1,
       duration: '2 hours',
-      completed: false,
-      locked: false
-    },
-    { 
-      id: 4, 
-      title: 'Educator Training', 
-      description: 'Core concepts of professional development and educator growth',
-      image: '/assets/C-2.png',
-      units: 7,
-      assessments: 2,
-      duration: '3 hours',
-      completed: false,
-      locked: false
-    },
-    { 
-      id: 1, 
-      title: 'Youth Advocate Training', 
-      description: 'Understanding youth development and advocacy principles',
-      image: '/assets/C-3.png',
-      units: 6,
-      assessments: 1,
-      duration: '2.5 hours',
       completed: false,
       locked: false
     }

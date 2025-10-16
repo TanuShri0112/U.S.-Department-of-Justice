@@ -15,47 +15,14 @@ const Catalog = () => {
   const [catalogs, setCatalogs] = useState([
     {
       id: 1,
-      name: 'Law Enforcement Training',
+      name: 'U.S. Department of Justice- National Community Outreach & Prevention',
       description: 'Foundations of law enforcement training, stakeholder analysis, and needs assessment',
-      imageUrl: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&auto=format',
+      imageUrl: '/assets/us-1.png',
       courseCount: 3,
       studentCount: 120,
       duration: '12 weeks',
       difficulty: 'Intermediate',
       tags: ['Law Enforcement', 'Training', 'DOJ']
-    },
-    {
-      id: 2,
-      name: 'Educator Professional Development',
-      description: 'Professional learning programs for educators and training coordinators',
-      imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&auto=format',
-      courseCount: 3,
-      studentCount: 95,
-      duration: '8 weeks',
-      difficulty: 'Beginner',
-      tags: ['Education', 'Professional Development', 'Training']
-    },
-    {
-      id: 3,
-      name: 'Youth Advocate Training',
-      description: 'Advocacy skills, youth development, and stakeholder engagement',
-      imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format',
-      courseCount: 3,
-      studentCount: 110,
-      duration: '10 weeks',
-      difficulty: 'Intermediate',
-      tags: ['Youth Development', 'Advocacy', 'Community']
-    },
-    {
-      id: 4,
-      name: 'DOJ Compliance Training',
-      description: 'Department of Justice regulatory requirements and compliance practices',
-      imageUrl: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop&auto=format',
-      courseCount: 2,
-      studentCount: 85,
-      duration: '6 weeks',
-      difficulty: 'Advanced',
-      tags: ['Compliance', 'DOJ', 'Regulations']
     }
   ]);
 

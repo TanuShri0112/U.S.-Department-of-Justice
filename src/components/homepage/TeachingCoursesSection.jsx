@@ -6,24 +6,10 @@ import { Book, Users } from "lucide-react";
 const teachingCourses = [
   {
     id: 1,
-    title: "LAW ENFORCEMENT TRAINING",
-    image: "/assets/course-1.png",
+    title: "U.S. Department of Justice- National Community Outreach & Prevention",
+    image: "/assets/us-1.png",
     modules: 3,
     students: 120
-  },
-  {
-    id: 2,
-    title: "EDUCATOR TRAINING",
-    image: "/assets/course-2.png",
-    modules: 3,
-    students: 95
-  },
-  {
-    id: 3,
-    title: "YOUTH ADVOCATE TRAINING",
-    image: "/assets/course-3.png",
-    modules: 3,
-    students: 110
   }
 ];
 
