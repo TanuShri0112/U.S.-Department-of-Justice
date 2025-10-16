@@ -141,7 +141,8 @@ const AdminPortal = ({ onToggle }) => {
   };
 
   const handleSectionClick = (sectionId) => {
-    const loadingToast = toast.loading(`Loading ${sectionId} section...`);
+    // Removed loading toast to prevent system status notifications
+    // const loadingToast = toast.loading(`Loading ${sectionId} section...`);
     
     // Simulate loading state
     setTimeout(() => {
@@ -158,18 +159,8 @@ const AdminPortal = ({ onToggle }) => {
         }));
       }
 
-      const messages = {
-        overview: 'Dashboard updated with latest metrics',
-        courses: 'Course management loaded successfully',
-        webinars: 'Webinar management ready',
-        schedule: 'Calendar and schedule loaded',
-        announcements: 'Announcement system ready',
-        users: 'User management loaded',
-        reports: 'Reports dashboard ready',
-        feedback: 'Feedback system loaded'
-      };
-
-      toast.success(messages[sectionId], { id: loadingToast });
+      // Removed toast messages to prevent system status notifications
+      // toast.success(messages[sectionId], { id: loadingToast });
     }, 800);
   };
 
@@ -331,10 +322,11 @@ const AdminPortal = ({ onToggle }) => {
                 <button 
                   onClick={() => {
                     setActiveSection('courses');
-                    const loadingToast = toast.loading('Preparing course upload...');
-                    setTimeout(() => {
-                      toast.success('Ready to upload new course', { id: loadingToast });
-                    }, 1000);
+                    // Removed toast messages to prevent system status notifications
+                    // const loadingToast = toast.loading('Preparing course upload...');
+                    // setTimeout(() => {
+                    //   toast.success('Ready to upload new course', { id: loadingToast });
+                    // }, 1000);
                   }}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
                 >
@@ -344,10 +336,11 @@ const AdminPortal = ({ onToggle }) => {
                 <button 
                   onClick={() => {
                     setActiveSection('webinars');
-                    const loadingToast = toast.loading('Opening webinar scheduler...');
-                    setTimeout(() => {
-                      toast.success('Ready to schedule webinar', { id: loadingToast });
-                    }, 1000);
+                    // Removed toast messages to prevent system status notifications
+                    // const loadingToast = toast.loading('Opening webinar scheduler...');
+                    // setTimeout(() => {
+                    //   toast.success('Ready to schedule webinar', { id: loadingToast });
+                    // }, 1000);
                   }}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
                 >
@@ -357,10 +350,11 @@ const AdminPortal = ({ onToggle }) => {
                 <button 
                   onClick={() => {
                     setActiveSection('announcements');
-                    const loadingToast = toast.loading('Opening announcement creator...');
-                    setTimeout(() => {
-                      toast.success('Ready to create announcement', { id: loadingToast });
-                    }, 1000);
+                    // Removed toast messages to prevent system status notifications
+                    // const loadingToast = toast.loading('Opening announcement creator...');
+                    // setTimeout(() => {
+                    //   toast.success('Ready to create announcement', { id: loadingToast });
+                    // }, 1000);
                   }}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
                 >
@@ -370,10 +364,11 @@ const AdminPortal = ({ onToggle }) => {
                 <button 
                   onClick={() => {
                     setActiveSection('reports');
-                    const loadingToast = toast.loading('Preparing report generator...');
-                    setTimeout(() => {
-                      toast.success('Ready to generate reports', { id: loadingToast });
-                    }, 1000);
+                    // Removed toast messages to prevent system status notifications
+                    // const loadingToast = toast.loading('Preparing report generator...');
+                    // setTimeout(() => {
+                    //   toast.success('Ready to generate reports', { id: loadingToast });
+                    // }, 1000);
                   }}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
                 >

@@ -46,7 +46,7 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
   };
 
   const handleGamesClick = () => {
-    window.open('https://preview--community-quest-3d-25725-57941-94857-79690.lovable.app/', '_blank');
+    window.open('https://preview--community-quest-3d-25725-57941-94857.lovable.app/', '_blank');
   };
 
   // const handleResourcesClick = () => {
