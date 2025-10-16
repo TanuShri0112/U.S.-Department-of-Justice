@@ -50,10 +50,10 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
     if (onItemClick) onItemClick();
   };
 
-  const handleResourcesClick = () => {
-    navigate('/resources');
-    if (onItemClick) onItemClick();
-  };
+  // const handleResourcesClick = () => {
+  //   navigate('/resources');
+  //   if (onItemClick) onItemClick();
+  // };
 
 
   const handleNavItemClick = (path) => {
@@ -115,11 +115,11 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
           />
         </motion.div>
         
-        {/* Groups */}
+        {/* Community Resources */}
         <motion.div variants={itemVariants}>
           <NavItem 
             icon={Users} 
-            label="Groups" 
+            label="Community Resources" 
             to="/groups" 
             active={pathname.startsWith('/groups')}
             onClick={handleGroupsClick}
@@ -142,8 +142,8 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
         </motion.div>
         
         
-        {/* Resources */}
-        <motion.div variants={itemVariants}>
+        {/* Resources - Commented out as requested */}
+        {/* <motion.div variants={itemVariants}>
           <NavItem
             icon={FileBox}
             label="Resources"
@@ -153,7 +153,7 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
             collapsed={isMainCollapsed}
             className="hover-lift"
           />
-        </motion.div>
+        </motion.div> */}
         
         {/* Evaluation and Feedback */}
         <motion.div variants={itemVariants}>

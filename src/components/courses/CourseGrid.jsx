@@ -83,35 +83,6 @@ const CourseGrid = ({ courses, onCourseClick, onCourseDelete, onCourseArchive, c
           <CardContent className="pt-4">
             <div className="flex justify-between items-start mb-2">
               <h3 className="font-medium text-lg text-blue-600">{course.title}</h3>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild data-dropdown-trigger>
-                  <Button variant="ghost" size="icon" className="h-8 w-8" onClick={(e) => e.stopPropagation()}>
-                    <MoreVertical className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="bg-white border shadow-md">
-                  <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
-                    Duplicate
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={(e) => {
-                    e.stopPropagation();
-                    handleCourseArchive(course.id, course.title);
-                  }}>
-                    <Archive className="h-4 w-4 mr-2" />
-                    Archive Course
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCourseDelete(course.id, course.title);
-                    }} 
-                    className="text-red-600"
-                  >
-                    <Trash2 className="h-4 w-4 mr-2" />
-                    Delete Course
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
             </div>
             
             <p className="text-sm text-gray-500 mb-2">{course.category}</p>

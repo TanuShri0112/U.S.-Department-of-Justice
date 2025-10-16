@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { CourseOptionsMenu } from '@/components/courses/CourseOptionsMenu';
-import { Tabs, TabsList, TabsTrigger, PillTabsTrigger } from '@/components/ui/tabs';
 import { 
   Select,
   SelectContent,
@@ -20,7 +19,6 @@ import { toast } from '@/hooks/use-toast';
 const Courses = () => {
   const [searchQuery, setSearchQuery] = useState('');
   // Removed course access type (open/sequential)
-  const [activeTab, setActiveTab] = useState('courses');
   const navigate = useNavigate();
 
   // U.S. Department of Justice Training Courses
@@ -74,11 +72,7 @@ const Courses = () => {
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          course.description.toLowerCase().includes(searchQuery.toLowerCase());
     
-    if (activeTab === 'courses') return matchesSearch && !course.archived && !course.deleted;
-    if (activeTab === 'archived') return matchesSearch && course.archived && !course.deleted;
-    if (activeTab === 'deleted') return matchesSearch && course.deleted;
-    
-    return matchesSearch;
+    return matchesSearch && !course.archived && !course.deleted;
   });
 
   const handleCourseClick = (courseId) => {
@@ -171,22 +165,6 @@ const Courses = () => {
         </div>
       </div>
 
-      {/* Course Tabs - Templates removed */}
-      <div className="flex items-center gap-4">
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-cyan-50 p-1">
-            <PillTabsTrigger value="courses" className="data-[state=active]:bg-cyan-400 data-[state=active]:text-white">
-              Courses {courses.filter(c => !c.archived && !c.deleted).length}
-            </PillTabsTrigger>
-            <PillTabsTrigger value="archived" className="data-[state=active]:bg-cyan-400 data-[state=active]:text-white">
-              Archived {courses.filter(c => c.archived && !c.deleted).length}
-            </PillTabsTrigger>
-            <PillTabsTrigger value="deleted" className="data-[state=active]:bg-cyan-400 data-[state=active]:text-white">
-              Deleted {courses.filter(c => c.deleted).length}
-            </PillTabsTrigger>
-          </TabsList>
-        </Tabs>
-      </div>
 
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-4">

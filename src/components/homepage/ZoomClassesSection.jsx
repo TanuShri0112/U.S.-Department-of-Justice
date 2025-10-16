@@ -73,63 +73,14 @@ const ZoomClassesSection = () => {
     }
   ]);
 
-  const [isScheduleDialogOpen, setIsScheduleDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isRecordingDialogOpen, setIsRecordingDialogOpen] = useState(false);
   const [editingClass, setEditingClass] = useState(null);
   const [selectedRecording, setSelectedRecording] = useState(null);
-  const [newClass, setNewClass] = useState({
-    title: '',
-    date: '',
-    time: '',
-    duration: '1 hour',
-    description: '',
-    zoomLink: '',
-    meetingId: ''
-  });
 
   const upcomingClasses = classes.filter(cls => !cls.isCompleted);
   const completedClasses = classes.filter(cls => cls.isCompleted);
 
-  const handleScheduleClass = () => {
-    if (!newClass.title || !newClass.date || !newClass.time) {
-      toast.error('Please fill in all required fields');
-      return;
-    }
-
-    const formattedDate = new Date(newClass.date).toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric'
-    });
-
-    const newZoomClass = {
-      id: Math.max(...classes.map(c => c.id)) + 1,
-      title: newClass.title,
-      date: formattedDate,
-      time: newClass.time,
-      duration: newClass.duration,
-      description: newClass.description,
-      zoomLink: newClass.zoomLink || `https://zoom.us/j/${Math.random().toString().substring(2, 11)}`,
-      meetingId: newClass.meetingId || Math.random().toString().substring(2, 11).replace(/(.{3})/g, '$1 ').trim(),
-      attendance: 0,
-      totalStudents: 25,
-      isCompleted: false
-    };
-
-    setClasses([...classes, newZoomClass]);
-    setNewClass({
-      title: '',
-      date: '',
-      time: '',
-      duration: '1 hour',
-      description: '',
-      zoomLink: '',
-      meetingId: ''
-    });
-    setIsScheduleDialogOpen(false);
-    toast.success('Class scheduled successfully!');
-  };
 
   const handleEditClass = () => {
     if (!editingClass) return;
@@ -180,94 +131,6 @@ const ZoomClassesSection = () => {
               </div>
               Zoom Classes Management
             </CardTitle>
-            <Dialog open={isScheduleDialogOpen} onOpenChange={setIsScheduleDialogOpen}>
-              <DialogTrigger asChild>
-                <Button className="bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Schedule New Class
-                </Button>
-              </DialogTrigger>
-            <DialogContent className="max-w-md">
-              <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                  <Video className="h-5 w-5" />
-                  Schedule New Class
-                </DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="title">Class Title *</Label>
-                  <Input
-                    id="title"
-                    placeholder="Enter class title"
-                    value={newClass.title}
-                    onChange={(e) => setNewClass({...newClass, title: e.target.value})}
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="date">Date *</Label>
-                    <Input
-                      id="date"
-                      type="date"
-                      value={newClass.date}
-                      onChange={(e) => setNewClass({...newClass, date: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="time">Time *</Label>
-                    <Input
-                      id="time"
-                      type="time"
-                      value={newClass.time}
-                      onChange={(e) => setNewClass({...newClass, time: e.target.value})}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <Label htmlFor="duration">Duration</Label>
-                  <Select value={newClass.duration} onValueChange={(value) => setNewClass({...newClass, duration: value})}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="30 minutes">30 minutes</SelectItem>
-                      <SelectItem value="1 hour">1 hour</SelectItem>
-                      <SelectItem value="1.5 hours">1.5 hours</SelectItem>
-                      <SelectItem value="2 hours">2 hours</SelectItem>
-                      <SelectItem value="3 hours">3 hours</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="description">Description</Label>
-                  <Textarea
-                    id="description"
-                    placeholder="Enter class description"
-                    value={newClass.description}
-                    onChange={(e) => setNewClass({...newClass, description: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="zoomLink">Zoom Meeting Link (optional)</Label>
-                  <Input
-                    id="zoomLink"
-                    placeholder="https://zoom.us/j/..."
-                    value={newClass.zoomLink}
-                    onChange={(e) => setNewClass({...newClass, zoomLink: e.target.value})}
-                  />
-                </div>
-                <div className="flex gap-2 pt-4">
-                  <Button onClick={handleScheduleClass} className="flex-1">
-                    Schedule Class
-                  </Button>
-                  <Button variant="outline" onClick={() => setIsScheduleDialogOpen(false)}>
-                    Cancel
-                  </Button>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
           </div>
         </CardHeader>
         <CardContent className="px-6 pb-6">

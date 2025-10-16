@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, Search, Filter, Plus, Compass } from 'lucide-react';
+import { Users, Search, Plus, Compass } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -82,12 +82,8 @@ const GroupsContent = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader 
-        title="My Groups" 
-        description="Manage and participate in your enrolled groups"
-        action={{
-          label: "Create Group",
-          onClick: () => setIsAddGroupOpen(true)
-        }}
+        title="My Community Resources" 
+        description="Manage and participate in your enrolled community resources"
       />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -127,9 +123,6 @@ const GroupsContent = () => {
             </SelectContent>
           </Select>
           
-          <Button variant="outline" className="flex gap-1 items-center">
-            <Filter className="h-4 w-4" /> More filters
-          </Button>
         </div>
       </div>
 

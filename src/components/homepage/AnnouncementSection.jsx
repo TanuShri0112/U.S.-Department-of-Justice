@@ -4,10 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Bell, AlertCircle, Info, CheckCircle, Calendar } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useNavigate } from 'react-router-dom';
-
 export function AnnouncementSection() {
-  const navigate = useNavigate();
   
   const announcements = [
     {
@@ -62,9 +59,6 @@ export function AnnouncementSection() {
     }
   ];
 
-  const handleViewAllAnnouncements = () => {
-    navigate('/announcements');
-  };
 
   const getAnnouncementTypeStyles = (type) => {
     switch (type) {
@@ -178,14 +172,6 @@ export function AnnouncementSection() {
             </div>
           )}
         </ScrollArea>
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className="w-full mt-4 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300 transition-all duration-300 font-semibold border-gray-200 rounded-lg"
-          onClick={handleViewAllAnnouncements}
-        >
-          View All Announcements
-        </Button>
       </CardContent>
     </Card>
   );

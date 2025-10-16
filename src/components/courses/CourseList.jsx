@@ -91,36 +91,6 @@ const CourseList = ({ courses, onCourseClick, onCourseDelete, onCourseArchive, c
               </td>
               <td className="py-3 px-4 text-slate-600">{course.lastUpdated}</td>
               <td className="py-3 px-4">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                      <MoreHorizontal className="h-4 w-4" />
-                      <span className="sr-only">Actions</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-white border shadow-md">
-                    <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
-                      Duplicate
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={(e) => {
-                      e.stopPropagation();
-                      handleCourseArchive(course.id, course.title);
-                    }}>
-                      <Archive className="h-4 w-4 mr-2" />
-                      Archive Course
-                    </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCourseDelete(course.id, course.title);
-                      }} 
-                      className="text-red-600"
-                    >
-                      <Trash2 className="h-4 w-4 mr-2" />
-                      Delete Course
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
               </td>
             </tr>
           ))}

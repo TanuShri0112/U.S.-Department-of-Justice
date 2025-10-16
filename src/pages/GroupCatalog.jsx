@@ -132,10 +132,9 @@ const GroupCatalog = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Training Groups</h1>
-          <p className="text-muted-foreground">Discover and join U.S. Department of Justice training groups that match your professional development needs.</p>
+          <h1 className="text-3xl font-bold">Community Resources</h1>
+          <p className="text-muted-foreground">Discover and join U.S. Department of Justice community resources that match your professional development needs.</p>
         </div>
-        <Button>Create Group</Button>
       </div>
 
       {/* Search and Filters */}

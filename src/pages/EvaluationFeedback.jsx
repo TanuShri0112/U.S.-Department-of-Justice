@@ -12,7 +12,10 @@ import {
   Users,
   Target,
   Award,
-  MessageSquare
+  MessageSquare,
+  BarChart3,
+  Clock,
+  User
 } from 'lucide-react';
 
 const EvaluationFeedback = () => {
@@ -51,126 +54,169 @@ const EvaluationFeedback = () => {
   };
 
   return (
-    <div className="p-6 space-y-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
-          <ClipboardCheck className="h-8 w-8 text-blue-600" />
-          Evaluation & Feedback
-        </h1>
-        <p className="text-gray-600">
-          Track learner progress, collect feedback, and analyze training effectiveness.
-        </p>
-      </div>
+    <div className="min-h-screen bg-white">
+      <div className="p-6 max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Evaluation & Feedback</h1>
+          <p className="text-gray-600">Monitor your learning progress and training effectiveness.</p>
+        </div>
 
-      {/* Learner View Content */}
-      <div className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Post-Training Surveys */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MessageSquare className="h-5 w-5 text-green-600" />
-                  Post-Training Surveys
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Completion Rate</span>
-                  <Badge variant="secondary">{mockData.surveys.completionRate}%</Badge>
-                </div>
-                
-                <Progress value={mockData.surveys.completionRate} className="h-2" />
-                
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between text-sm">
-                    <span>Average Satisfaction</span>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                      <span className="font-medium">{mockData.surveys.averageSatisfaction}/5.0</span>
-                    </div>
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <Card className="border-l-4 border-l-blue-500 hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <MessageSquare className="h-6 w-6 text-blue-600" />
                   </div>
-                  
-                  <div className="flex items-center justify-between text-sm">
-                    <span>Total Responses</span>
-                    <span className="font-medium">{mockData.surveys.totalResponses.toLocaleString()}</span>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Post-Training Surveys</h3>
+                    <p className="text-sm text-gray-500">Share your training experience</p>
                   </div>
                 </div>
-
-                <Button className="w-full" variant="outline" onClick={handleTakeSurvey}>
+                <Button onClick={handleTakeSurvey} className="bg-blue-600 hover:bg-blue-700">
                   <CheckSquare className="h-4 w-4 mr-2" />
                   Take Survey
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </CardContent>
+          </Card>
 
-            {/* Self-Assessment Tools */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Target className="h-5 w-5 text-blue-600" />
-                  Self-Assessment Tools
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Overall Score</span>
-                  <Badge className="bg-blue-100 text-blue-800">
-                    {mockData.selfAssessments.averageScore}%
-                  </Badge>
+          <Card className="border-l-4 border-l-green-500 hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Target className="h-6 w-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Self-Assessment</h3>
+                    <p className="text-sm text-gray-500">Evaluate your skills and progress</p>
+                  </div>
                 </div>
-
-                <div className="space-y-3">
-                  <h4 className="font-medium text-sm">Improvement Areas</h4>
-                  {mockData.selfAssessments.improvementAreas.map((area, index) => (
-                    <div key={index} className="space-y-1">
-                      <div className="flex items-center justify-between text-xs">
-                        <span>{area.topic}</span>
-                        <span>{area.percentage}%</span>
-                      </div>
-                      <Progress value={area.percentage} className="h-1" />
-                    </div>
-                  ))}
-                </div>
-
-                <Button className="w-full" onClick={handleStartAssessment}>
+                <Button onClick={handleStartAssessment} className="bg-green-600 hover:bg-green-700">
                   <Award className="h-4 w-4 mr-2" />
                   Start Assessment
                 </Button>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
-          {/* Recent Survey Responses */}
+        {/* Statistics Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">Survey Completion</p>
+                  <p className="text-2xl font-bold text-gray-900">{mockData.surveys.completionRate}%</p>
+                </div>
+                <BarChart3 className="h-8 w-8 text-blue-600" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">Average Rating</p>
+                  <p className="text-2xl font-bold text-gray-900 flex items-center gap-1">
+                    <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                    {mockData.surveys.averageSatisfaction}
+                  </p>
+                </div>
+                <Star className="h-8 w-8 text-yellow-600" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">Total Responses</p>
+                  <p className="text-2xl font-bold text-gray-900">{mockData.surveys.totalResponses.toLocaleString()}</p>
+                </div>
+                <Users className="h-8 w-8 text-purple-600" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">Overall Score</p>
+                  <p className="text-2xl font-bold text-gray-900">{mockData.selfAssessments.averageScore}%</p>
+                </div>
+                <Target className="h-8 w-8 text-green-600" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Skills Assessment */}
+          <Card className="lg:col-span-1">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-purple-600" />
-                Recent Survey Responses
+                <Target className="h-5 w-5 text-green-600" />
+                Skill Assessment
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {mockData.selfAssessments.improvementAreas.map((area, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="font-medium text-gray-700">{area.topic}</span>
+                    <span className="text-gray-900">{area.percentage}%</span>
+                  </div>
+                  <Progress value={area.percentage} className="h-2" />
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Recent Feedback */}
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-blue-600" />
+                Recent Feedback
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {mockData.surveys.recentResponses.map((response) => (
-                  <div key={response.id} className="border rounded-lg p-4 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-medium">{response.course}</h4>
-                      <div className="flex items-center gap-2">
+                  <div key={response.id} className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg">
+                    <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <User className="h-5 w-5 text-gray-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="font-medium text-gray-900">{response.course}</h4>
                         <div className="flex items-center gap-1">
                           <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                          <span className="text-sm font-medium">{response.rating}</span>
+                          <span className="text-sm font-medium text-gray-900">{response.rating}</span>
                         </div>
-                        <Badge variant="outline" className="text-xs">
-                          {new Date(response.date).toLocaleDateString()}
-                        </Badge>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-2">{response.feedback}</p>
+                      <div className="flex items-center gap-1 text-xs text-gray-500">
+                        <Clock className="h-3 w-3" />
+                        {new Date(response.date).toLocaleDateString()}
                       </div>
                     </div>
-                    <p className="text-sm text-gray-600">{response.feedback}</p>
                   </div>
                 ))}
               </div>
             </CardContent>
           </Card>
+        </div>
       </div>
     </div>
   );
