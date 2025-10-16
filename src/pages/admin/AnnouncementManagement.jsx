@@ -3,6 +3,8 @@ import { Bell, Send, Edit, Trash2, Plus, Users, Eye, Calendar } from 'lucide-rea
 
 const AnnouncementManagement = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [editingAnnouncement, setEditingAnnouncement] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('all');
   const [announcements, setAnnouncements] = useState([
     {
       id: 1,
@@ -50,6 +52,19 @@ const AnnouncementManagement = () => {
     category: 'General'
   });
 
+  // Effect to populate form when editing
+  React.useEffect(() => {
+    if (editingAnnouncement) {
+      setNewAnnouncement({
+        title: editingAnnouncement.title,
+        content: editingAnnouncement.content,
+        priority: editingAnnouncement.priority,
+        targetAudience: editingAnnouncement.targetAudience,
+        category: editingAnnouncement.category
+      });
+    }
+  }, [editingAnnouncement]);
+
   const priorities = [
     { value: 'High', color: 'bg-red-100 text-red-700', icon: '🔴' },
     { value: 'Medium', color: 'bg-yellow-100 text-yellow-700', icon: '🟡' },
@@ -76,15 +91,27 @@ const AnnouncementManagement = () => {
   ];
 
   const handleCreateAnnouncement = () => {
-    const announcement = {
-      ...newAnnouncement,
-      id: announcements.length + 1,
-      status: 'Published',
-      publishDate: new Date().toISOString().split('T')[0],
-      author: 'Admin',
-      views: 0
-    };
-    setAnnouncements([announcement, ...announcements]);
+    if (editingAnnouncement) {
+      // Update existing announcement
+      setAnnouncements(announcements.map(a => 
+        a.id === editingAnnouncement.id 
+          ? { ...a, ...newAnnouncement }
+          : a
+      ));
+      setEditingAnnouncement(null);
+    } else {
+      // Create new announcement
+      const announcement = {
+        ...newAnnouncement,
+        id: announcements.length + 1,
+        status: 'Published',
+        publishDate: new Date().toISOString().split('T')[0],
+        author: 'Admin',
+        views: 0
+      };
+      setAnnouncements([announcement, ...announcements]);
+    }
+    
     setNewAnnouncement({
       title: '',
       content: '',
@@ -118,136 +145,225 @@ const AnnouncementManagement = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 transform transition-all duration-200 hover:shadow-md">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-              <Bell className="w-6 h-6 text-orange-600" />
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-pink-100 rounded-2xl flex items-center justify-center transform transition-transform duration-200 hover:scale-105 hover:rotate-3">
+              <Bell className="w-7 h-7 text-orange-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Announcement Management</h1>
-              <p className="text-gray-600">Create, manage, and track platform announcements</p>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+                Announcement Management
+              </h1>
+              <p className="text-gray-600 mt-1 text-lg">Create, manage, and track platform announcements</p>
             </div>
           </div>
-          <button
-            onClick={() => setIsCreateModalOpen(true)}
-            className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            Create Announcement
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                const now = new Date();
+                setNewAnnouncement(prev => ({
+                  ...prev,
+                  publishDate: now.toISOString().split('T')[0]
+                }));
+                setIsCreateModalOpen(true);
+              }}
+              className="bg-gradient-to-r from-orange-600 to-pink-600 text-white px-6 py-3 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-2 font-medium"
+            >
+              <Plus className="w-5 h-5" />
+              Create Announcement
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Analytics */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Announcement Analytics</h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Bell className="w-8 h-8 text-orange-600" />
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 transform transition-all duration-200 hover:shadow-md">
+        <div className="flex items-center gap-3 mb-6">
+          <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+            Analytics Overview
+          </h3>
+          <div className="h-6 w-px bg-gray-200"></div>
+          <p className="text-gray-600">Real-time announcement metrics</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="bg-gradient-to-br from-orange-50 to-pink-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
+            <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+              <Bell className="w-10 h-10 text-orange-600" />
             </div>
-            <p className="text-sm font-medium text-gray-900">Total Announcements</p>
-            <p className="text-2xl font-bold text-orange-600">{announcements.length}</p>
-          </div>
-          <div className="text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Send className="w-8 h-8 text-green-600" />
-            </div>
-            <p className="text-sm font-medium text-gray-900">Published</p>
-            <p className="text-2xl font-bold text-green-600">
-              {announcements.filter(a => a.status === 'Published').length}
+            <p className="text-base font-semibold text-gray-900 text-center">Total Announcements</p>
+            <p className="text-3xl font-bold text-center mt-2 bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+              {announcements.length}
             </p>
           </div>
-          <div className="text-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Eye className="w-8 h-8 text-blue-600" />
+          <div className="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
+            <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+              <Send className="w-10 h-10 text-green-600" />
             </div>
-            <p className="text-sm font-medium text-gray-900">Total Views</p>
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-base font-semibold text-gray-900 text-center">Published</p>
+            <div className="flex items-center justify-center gap-2 mt-2">
+              <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                {announcements.filter(a => a.status === 'Published').length}
+              </p>
+              <span className="text-sm text-green-600">Active</span>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
+            <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+              <Eye className="w-10 h-10 text-blue-600" />
+            </div>
+            <p className="text-base font-semibold text-gray-900 text-center">Total Views</p>
+            <p className="text-3xl font-bold text-center mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
               {announcements.reduce((sum, a) => sum + a.views, 0)}
             </p>
           </div>
-          <div className="text-center">
-            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Users className="w-8 h-8 text-purple-600" />
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
+            <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+              <Users className="w-10 h-10 text-purple-600" />
             </div>
-            <p className="text-sm font-medium text-gray-900">Avg Views</p>
-            <p className="text-2xl font-bold text-purple-600">
-              {Math.round(announcements.reduce((sum, a) => sum + a.views, 0) / announcements.length) || 0}
-            </p>
+            <p className="text-base font-semibold text-gray-900 text-center">Avg Views</p>
+            <div className="flex items-center justify-center gap-2 mt-2">
+              <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                {Math.round(announcements.reduce((sum, a) => sum + a.views, 0) / announcements.length) || 0}
+              </p>
+              <span className="text-sm text-purple-600">per post</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Announcements List */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">All Announcements</h3>
-          <div className="flex gap-2">
-            <button className="px-3 py-1 text-sm bg-orange-100 text-orange-700 rounded-lg">All</button>
-            <button className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg">Published</button>
-            <button className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg">Drafts</button>
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 transform transition-all duration-200 hover:shadow-md">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+              Announcements
+            </h3>
+            <p className="text-gray-600 mt-1">Manage and monitor your announcements</p>
+          </div>
+          <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-xl">
+            <button 
+              onClick={() => setActiveFilter('all')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                activeFilter === 'all' 
+                  ? 'bg-white text-orange-600 shadow-sm' 
+                  : 'text-gray-600 hover:text-orange-600'
+              }`}
+            >
+              All
+            </button>
+            <button 
+              onClick={() => setActiveFilter('published')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                activeFilter === 'published' 
+                  ? 'bg-white text-orange-600 shadow-sm' 
+                  : 'text-gray-600 hover:text-orange-600'
+              }`}
+            >
+              Published
+            </button>
+            <button 
+              onClick={() => setActiveFilter('drafts')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                activeFilter === 'drafts' 
+                  ? 'bg-white text-orange-600 shadow-sm' 
+                  : 'text-gray-600 hover:text-orange-600'
+              }`}
+            >
+              Drafts
+            </button>
           </div>
         </div>
         
         <div className="space-y-4">
-          {announcements.map((announcement) => (
-            <div key={announcement.id} className="border border-gray-200 rounded-lg p-4">
+          {announcements
+            .filter(announcement => {
+              if (activeFilter === 'all') return true;
+              if (activeFilter === 'published') return announcement.status === 'Published';
+              if (activeFilter === 'drafts') return announcement.status === 'Draft';
+              return true;
+            })
+            .map((announcement) => (
+            <div 
+              key={announcement.id} 
+              className="group bg-white border border-gray-200 rounded-xl p-6 transform transition-all duration-200 hover:shadow-lg hover:scale-[1.01] hover:border-orange-200"
+            >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h4 className="font-medium text-gray-900">{announcement.title}</h4>
-                    <span className={`px-2 py-1 text-xs rounded-full ${getPriorityStyle(announcement.priority)}`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <h4 className="text-lg font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                      {announcement.title}
+                    </h4>
+                    <span className={`px-3 py-1 text-xs font-medium rounded-full ${getPriorityStyle(announcement.priority)}`}>
                       {announcement.priority}
                     </span>
-                    <span className={`px-2 py-1 text-xs rounded-full ${getStatusStyle(announcement.status)}`}>
+                    <span className={`px-3 py-1 text-xs font-medium rounded-full ${getStatusStyle(announcement.status)}`}>
                       {announcement.status}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">{announcement.content}</p>
-                  <div className="flex items-center gap-4 text-xs text-gray-500">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
+                  <p className="text-gray-600 mb-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                    {announcement.content}
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
+                        <Calendar className="w-4 h-4 text-gray-400" />
+                      </div>
                       {announcement.publishDate}
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-3 h-3" />
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
+                        <Users className="w-4 h-4 text-gray-400" />
+                      </div>
                       {announcement.targetAudience}
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Eye className="w-3 h-3" />
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
+                        <Eye className="w-4 h-4 text-gray-400" />
+                      </div>
                       {announcement.views} views
                     </div>
-                    <span>By {announcement.author}</span>
-                    <span className="px-2 py-1 bg-gray-100 rounded">{announcement.category}</span>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
+                        <Bell className="w-4 h-4 text-gray-400" />
+                      </div>
+                      {announcement.category}
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-2 ml-4">
-                  <button
-                    onClick={() => handleToggleStatus(announcement.id)}
-                    className={`px-3 py-1 text-xs rounded-lg transition-colors ${
-                      announcement.status === 'Published' 
-                        ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200' 
-                        : 'bg-green-100 text-green-700 hover:bg-green-200'
-                    }`}
-                  >
-                    {announcement.status === 'Published' ? 'Unpublish' : 'Publish'}
-                  </button>
-                  <button
-                    onClick={() => {/* Edit functionality */}}
-                    className="p-1 text-gray-400 hover:text-blue-600 transition-colors"
-                    title="Edit Announcement"
-                  >
-                    <Edit className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => handleDeleteAnnouncement(announcement.id)}
-                    className="p-1 text-gray-400 hover:text-red-600 transition-colors"
-                    title="Delete Announcement"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="text-sm text-gray-600">
+                      By <span className="font-medium">{announcement.author}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleToggleStatus(announcement.id)}
+                        className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                          announcement.status === 'Published' 
+                            ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200' 
+                            : 'bg-green-100 text-green-700 hover:bg-green-200'
+                        }`}
+                      >
+                        {announcement.status === 'Published' ? 'Unpublish' : 'Publish'}
+                      </button>
+                      <button
+                        onClick={() => {
+                          setEditingAnnouncement(announcement);
+                          setIsCreateModalOpen(true);
+                        }}
+                        className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
+                        title="Edit Announcement"
+                      >
+                        <Edit className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteAnnouncement(announcement.id)}
+                        className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
+                        title="Delete Announcement"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -278,36 +394,69 @@ const AnnouncementManagement = () => {
       {/* Create Announcement Modal */}
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Create New Announcement</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-2xl p-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-pink-100 rounded-xl flex items-center justify-center">
+                  <Bell className="w-6 h-6 text-orange-600" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+                    {editingAnnouncement ? 'Edit Announcement' : 'Create New Announcement'}
+                  </h3>
+                  <p className="text-gray-600 mt-1">
+                    {editingAnnouncement ? 'Update the announcement details' : 'Create and publish a new announcement'}
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => {
+                  setIsCreateModalOpen(false);
+                  setEditingAnnouncement(null);
+                  setNewAnnouncement({
+                    title: '',
+                    content: '',
+                    priority: 'Medium',
+                    targetAudience: 'All Users',
+                    category: 'General'
+                  });
+                }}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-400" />
+              </button>
+            </div>
+
+            <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
                 <input 
                   type="text" 
                   value={newAnnouncement.title}
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, title: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                  placeholder="Enter announcement title"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
+                  placeholder="Enter a descriptive title for your announcement"
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
                 <textarea 
                   rows={6}
                   value={newAnnouncement.content}
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, content: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                  placeholder="Enter announcement content"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
+                  placeholder="Write your announcement content here..."
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
                   <select 
                     value={newAnnouncement.priority}
                     onChange={(e) => setNewAnnouncement({...newAnnouncement, priority: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
                   >
                     {priorities.map(priority => (
                       <option key={priority.value} value={priority.value}>
@@ -316,45 +465,58 @@ const AnnouncementManagement = () => {
                     ))}
                   </select>
                 </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Target Audience</label>
                   <select 
                     value={newAnnouncement.targetAudience}
                     onChange={(e) => setNewAnnouncement({...newAnnouncement, targetAudience: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
                   >
                     {targetAudiences.map(audience => (
                       <option key={audience} value={audience}>{audience}</option>
                     ))}
                   </select>
                 </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <select 
+                    value={newAnnouncement.category}
+                    onChange={(e) => setNewAnnouncement({...newAnnouncement, category: e.target.value})}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
+                  >
+                    {categories.map(category => (
+                      <option key={category} value={category}>{category}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                <select 
-                  value={newAnnouncement.category}
-                  onChange={(e) => setNewAnnouncement({...newAnnouncement, category: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+
+              <div className="flex justify-end gap-3 mt-8 pt-6 border-t border-gray-100">
+                <button 
+                  onClick={() => {
+                    setIsCreateModalOpen(false);
+                    setEditingAnnouncement(null);
+                    setNewAnnouncement({
+                      title: '',
+                      content: '',
+                      priority: 'Medium',
+                      targetAudience: 'All Users',
+                      category: 'General'
+                    });
+                  }}
+                  className="px-6 py-3 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
                 >
-                  {categories.map(category => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
+                  Cancel
+                </button>
+                <button 
+                  onClick={handleCreateAnnouncement}
+                  className="px-6 py-3 bg-gradient-to-r from-orange-600 to-pink-600 text-white rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 font-medium"
+                >
+                  {editingAnnouncement ? 'Update Announcement' : 'Publish Announcement'}
+                </button>
               </div>
-            </div>
-            <div className="flex gap-3 mt-6">
-              <button 
-                onClick={handleCreateAnnouncement}
-                className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition-colors"
-              >
-                Publish Announcement
-              </button>
-              <button 
-                onClick={() => setIsCreateModalOpen(false)}
-                className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors"
-              >
-                Cancel
-              </button>
             </div>
           </div>
         </div>

@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import { MessageSquare, Star, TrendingUp, Users, Download, Filter, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { toast, Toaster } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area } from 'recharts';
 
 const AdminFeedbackReports = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [dateRange, setDateRange] = useState('30');
+  const [metrics, setMetrics] = useState({
+    avgSatisfaction: 4.3,
+    totalResponses: 1247,
+    responseRate: 78,
+    positiveSentiment: 72,
+    satisfactionChange: 0.2,
+    responseGrowth: 15,
+    rateChange: 3,
+    sentimentChange: 5
+  });
 
   // Mock data for feedback analytics
   const satisfactionData = [
@@ -100,6 +111,28 @@ const AdminFeedbackReports = () => {
 
   return (
     <div className="space-y-6">
+      <Toaster position="top-right" toastOptions={{
+        duration: 3000,
+        style: {
+          background: '#fff',
+          color: '#363636',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+          borderRadius: '0.75rem',
+          padding: '1rem',
+        },
+        success: {
+          iconTheme: {
+            primary: '#EC4899',
+            secondary: '#fff',
+          },
+        },
+        loading: {
+          iconTheme: {
+            primary: '#EC4899',
+            secondary: '#fff',
+          },
+        },
+      }} />
       {/* Header */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between">
@@ -115,15 +148,94 @@ const AdminFeedbackReports = () => {
           <div className="flex items-center gap-3">
             <select
               value={dateRange}
-              onChange={(e) => setDateRange(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
+              onChange={(e) => {
+                const newRange = e.target.value;
+                setDateRange(newRange);
+                
+                // Simulate data refresh with loading state
+                const loadingToast = toast.loading('Updating feedback data...');
+                
+                setTimeout(() => {
+                  // Update metrics based on date range
+                  const rangeMultiplier = {
+                    '7': 0.4,
+                    '30': 1,
+                    '90': 2.5,
+                    '365': 8
+                  };
+                  
+                  const growthMultiplier = {
+                    '7': 0.5,
+                    '30': 1,
+                    '90': 1.8,
+                    '365': 3
+                  };
+
+                  setMetrics({
+                    avgSatisfaction: (4.3 * (1 + (Math.random() * 0.1 - 0.05))).toFixed(1),
+                    totalResponses: Math.round(1247 * rangeMultiplier[newRange]),
+                    responseRate: Math.min(100, Math.round(78 * (1 + (Math.random() * 0.1 - 0.05)))),
+                    positiveSentiment: Math.min(100, Math.round(72 * (1 + (Math.random() * 0.1 - 0.05)))),
+                    satisfactionChange: (0.2 * growthMultiplier[newRange]).toFixed(1),
+                    responseGrowth: Math.round(15 * growthMultiplier[newRange]),
+                    rateChange: Math.round(3 * growthMultiplier[newRange]),
+                    sentimentChange: Math.round(5 * growthMultiplier[newRange])
+                  });
+
+                  toast.success(`Data updated for last ${newRange} days`, { id: loadingToast });
+                }, 1000);
+              }}
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 hover:border-pink-400 transition-colors cursor-pointer"
             >
               <option value="7">Last 7 days</option>
               <option value="30">Last 30 days</option>
               <option value="90">Last 90 days</option>
               <option value="365">Last year</option>
             </select>
-            <button className="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors flex items-center gap-2">
+            <button 
+              onClick={() => {
+                const loadingToast = toast.loading('Preparing export...');
+                
+                setTimeout(() => {
+                  try {
+                    // Prepare export data
+                    const exportData = {
+                      reportDate: new Date().toISOString(),
+                      dateRange: `Last ${dateRange} days`,
+                      metrics: {
+                        avgSatisfaction: metrics.avgSatisfaction,
+                        totalResponses: metrics.totalResponses,
+                        responseRate: metrics.responseRate,
+                        positiveSentiment: metrics.positiveSentiment
+                      },
+                      satisfactionTrend: satisfactionData,
+                      feedbackCategories,
+                      courseFeedback,
+                      recentFeedback
+                    };
+
+                    // Create and download file
+                    const jsonString = JSON.stringify(exportData, null, 2);
+                    const blob = new Blob([jsonString], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `feedback-report-${new Date().toISOString().split('T')[0]}.json`;
+                    
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+
+                    toast.success('Report exported successfully!', { id: loadingToast });
+                  } catch (error) {
+                    toast.error('Failed to export report', { id: loadingToast });
+                    console.error('Export error:', error);
+                  }
+                }, 1500);
+              }}
+              className="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-200 flex items-center gap-2 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+            >
               <Download className="w-4 h-4" />
               Export
             </button>
@@ -138,7 +250,31 @@ const AdminFeedbackReports = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  const loadingToast = toast.loading(`Loading ${tab.label.toLowerCase()} data...`);
+                  
+                  setTimeout(() => {
+                    setActiveTab(tab.id);
+                    
+                    // Simulate different loading times for different tabs
+                    const delay = Math.random() * 500 + 800; // Random delay between 800-1300ms
+                    
+                    setTimeout(() => {
+                      // Show success message with tab-specific information
+                      const messages = {
+                        overview: 'Overview metrics updated with latest data',
+                        satisfaction: 'Satisfaction metrics and trends refreshed',
+                        categories: 'Category analysis updated successfully',
+                        courses: 'Course feedback data loaded'
+                      };
+                      
+                      toast.success(messages[tab.id], { 
+                        id: loadingToast,
+                        duration: 3000
+                      });
+                    }, delay);
+                  }, 100);
+                }}
                 className={`flex items-center gap-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                   activeTab === tab.id
                     ? 'border-pink-500 text-pink-600'
@@ -162,38 +298,38 @@ const AdminFeedbackReports = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-pink-600">Avg Satisfaction</p>
-                      <p className="text-3xl font-bold text-pink-900">4.3/5</p>
-                      <p className="text-sm text-pink-600">+0.2 from last month</p>
+                      <p className="text-3xl font-bold text-pink-900">{metrics.avgSatisfaction}/5</p>
+                      <p className="text-sm text-pink-600">+{metrics.satisfactionChange} from last month</p>
                     </div>
                     <Star className="w-8 h-8 text-pink-600" />
                   </div>
                 </div>
-                <div className="bg-green-50 p-6 rounded-lg">
+                <div className="bg-green-50 p-6 rounded-lg transform transition-all duration-200 hover:scale-105">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-green-600">Total Responses</p>
-                      <p className="text-3xl font-bold text-green-900">1,247</p>
-                      <p className="text-sm text-green-600">+15% from last month</p>
+                      <p className="text-3xl font-bold text-green-900">{metrics.totalResponses.toLocaleString()}</p>
+                      <p className="text-sm text-green-600">+{metrics.responseGrowth}% from last month</p>
                     </div>
                     <MessageSquare className="w-8 h-8 text-green-600" />
                   </div>
                 </div>
-                <div className="bg-blue-50 p-6 rounded-lg">
+                <div className="bg-blue-50 p-6 rounded-lg transform transition-all duration-200 hover:scale-105">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-blue-600">Response Rate</p>
-                      <p className="text-3xl font-bold text-blue-900">78%</p>
-                      <p className="text-sm text-blue-600">+3% from last month</p>
+                      <p className="text-3xl font-bold text-blue-900">{metrics.responseRate}%</p>
+                      <p className="text-sm text-blue-600">+{metrics.rateChange}% from last month</p>
                     </div>
                     <TrendingUp className="w-8 h-8 text-blue-600" />
                   </div>
                 </div>
-                <div className="bg-purple-50 p-6 rounded-lg">
+                <div className="bg-purple-50 p-6 rounded-lg transform transition-all duration-200 hover:scale-105">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-purple-600">Positive Sentiment</p>
-                      <p className="text-3xl font-bold text-purple-900">72%</p>
-                      <p className="text-sm text-purple-600">+5% from last month</p>
+                      <p className="text-3xl font-bold text-purple-900">{metrics.positiveSentiment}%</p>
+                      <p className="text-sm text-purple-600">+{metrics.sentimentChange}% from last month</p>
                     </div>
                     <ThumbsUp className="w-8 h-8 text-purple-600" />
                   </div>

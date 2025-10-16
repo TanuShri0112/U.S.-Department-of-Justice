@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Users, Search, Filter, Plus, Edit, Trash2, Mail, Shield, UserCheck, UserX, Eye } from 'lucide-react';
+import { Users, Search, Filter, Plus, Edit, Trash2, Mail, Shield, UserCheck, UserX, Eye, X } from 'lucide-react';
 
 const UserManagement = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [editingUser, setEditingUser] = useState(null);
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -117,16 +118,36 @@ const UserManagement = () => {
   };
 
   const handleCreateUser = () => {
-    const user = {
-      ...newUser,
-      id: users.length + 1,
-      lastLogin: new Date().toISOString().split('T')[0] + ' ' + new Date().toTimeString().split(' ')[0],
-      joinDate: new Date().toISOString().split('T')[0],
-      coursesCompleted: 0,
-      totalHours: 0,
-      avatar: null
-    };
-    setUsers([user, ...users]);
+    if (editingUser) {
+      // Update existing user
+      setUsers(users.map(user => 
+        user.id === editingUser.id 
+          ? { 
+              ...user, 
+              ...newUser,
+              lastLogin: user.lastLogin, // Preserve existing timestamps
+              joinDate: user.joinDate,
+              coursesCompleted: user.coursesCompleted,
+              totalHours: user.totalHours
+            }
+          : user
+      ));
+      setEditingUser(null);
+    } else {
+      // Create new user
+      const user = {
+        ...newUser,
+        id: users.length + 1,
+        lastLogin: new Date().toISOString().split('T')[0] + ' ' + new Date().toTimeString().split(' ')[0],
+        joinDate: new Date().toISOString().split('T')[0],
+        coursesCompleted: 0,
+        totalHours: 0,
+        avatar: null
+      };
+      setUsers([user, ...users]);
+    }
+
+    // Reset form
     setNewUser({
       name: '',
       email: '',
@@ -152,6 +173,19 @@ const UserManagement = () => {
       } : u
     ));
   };
+
+  // Effect to populate form when editing
+  React.useEffect(() => {
+    if (editingUser) {
+      setNewUser({
+        name: editingUser.name,
+        email: editingUser.email,
+        role: editingUser.role,
+        department: editingUser.department,
+        status: editingUser.status
+      });
+    }
+  }, [editingUser]);
 
   const getInitials = (name) => {
     return name.split(' ').map(n => n[0]).join('').toUpperCase();
@@ -346,7 +380,10 @@ const UserManagement = () => {
                         {user.status === 'Active' ? <UserX className="w-4 h-4" /> : <UserCheck className="w-4 h-4" />}
                       </button>
                       <button
-                        onClick={() => {/* Edit functionality */}}
+                        onClick={() => {
+                      setEditingUser(user);
+                      setIsCreateModalOpen(true);
+                    }}
                         className="text-gray-400 hover:text-blue-600 transition-colors"
                         title="Edit User"
                       >
@@ -448,7 +485,37 @@ const UserManagement = () => {
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Add New User</h3>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-teal-100 rounded-xl flex items-center justify-center">
+                  <Users className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                    {editingUser ? 'Edit User' : 'Add New User'}
+                  </h3>
+                  <p className="text-gray-600 mt-1">
+                    {editingUser ? 'Update user information' : 'Create a new user account'}
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => {
+                  setIsCreateModalOpen(false);
+                  setEditingUser(null);
+                  setNewUser({
+                    name: '',
+                    email: '',
+                    role: 'Student',
+                    department: '',
+                    status: 'Active'
+                  });
+                }}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-400" />
+              </button>
+            </div>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
@@ -511,7 +578,7 @@ const UserManagement = () => {
                 onClick={handleCreateUser}
                 className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
               >
-                Create User
+                {editingUser ? 'Update User' : 'Create User'}
               </button>
               <button 
                 onClick={() => setIsCreateModalOpen(false)}
