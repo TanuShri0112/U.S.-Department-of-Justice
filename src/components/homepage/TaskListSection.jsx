@@ -121,7 +121,7 @@ export function TaskListSection() {
   };
 
   return (
-    <Card className="border-0 shadow-lg bg-white overflow-hidden">
+    <Card className="border-0 shadow-lg bg-white/80 backdrop-blur overflow-hidden">
       <CardHeader className="pb-4 pt-5 px-6">
         {/* Header Section */}
         <div className="flex items-center justify-between mb-4">
@@ -181,7 +181,7 @@ export function TaskListSection() {
           {filteredTasks.slice(0, 5).map((task) => (
             <div
               key={task.id}
-              className="group bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all duration-300 cursor-pointer"
+              className="group bg-white/90 backdrop-blur rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
               onClick={() => toggleTask(task.id)}
             >
               <div className="flex items-start justify-between">

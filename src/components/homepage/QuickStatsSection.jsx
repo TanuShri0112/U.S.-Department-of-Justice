@@ -77,7 +77,7 @@ export default function QuickStatsSection() {
           return (
             <div
               key={stat.id}
-              className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group cursor-pointer transform hover:-translate-y-1 h-40 relative flex flex-col justify-between"
+              className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group cursor-pointer transform hover:-translate-y-1 h-44 relative flex flex-col justify-between"
             >
               {/* Title (Top-Left) */}
               <div className="text-sm font-medium text-gray-600 uppercase tracking-wide">
@@ -86,7 +86,7 @@ export default function QuickStatsSection() {
               
               {/* Icon (Top-Right) */}
               <div className="absolute top-6 right-6">
-                <div className={`w-12 h-12 rounded-full ${stat.iconColor} flex items-center justify-center`}>
+                <div className={`w-12 h-12 rounded-full ${stat.iconColor} flex items-center justify-center ring-1 ring-black/5 transition-transform duration-300 group-hover:rotate-3`}>
                   <IconComponent className={`w-6 h-6 ${stat.iconTextColor}`} />
                 </div>
               </div>
@@ -99,7 +99,7 @@ export default function QuickStatsSection() {
               </div>
               
               {/* Trend Indicator (Bottom-Left) */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2" title={`+${stat.trendPercentage}% ${stat.trendDescription}`}>
                 <div className="flex items-center gap-1">
                   <ArrowUp className="w-4 h-4 text-green-500" />
                   <span className="text-sm font-semibold text-green-500">
@@ -110,15 +110,30 @@ export default function QuickStatsSection() {
                   {stat.trendDescription}
                 </span>
               </div>
+              {/* Progress bar reflecting percentage */}
+              <div className="mt-2">
+                <div className="h-1.5 w-full rounded-full bg-gray-100 overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500 group-hover:opacity-90"
+                    style={{ width: `${stat.percentage}%` }}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={stat.percentage}
+                    role="progressbar"
+                  />
+                </div>
+              </div>
+              {/* Accent gradient underline on hover */}
+              <div className="pointer-events-none absolute inset-x-6 bottom-4 h-[3px] rounded-full bg-gradient-to-r from-blue-500/0 via-blue-500/30 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           );
         })}
       </div>
       
       {/* Progress Over Time Graph */}
-      <div className="mt-8 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <div className="mt-12 bg-white/80 backdrop-blur rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('progressOverTime')}</h3>
-        <div className="h-64 flex items-end justify-between">
+        <div className="h-64 flex items-end justify-between rounded-xl bg-gradient-to-b from-slate-50/70 to-transparent p-2">
           {/* Y-axis labels */}
           <div className="flex flex-col justify-between h-full text-xs text-gray-500 mr-2">
             <span>10</span>
@@ -149,7 +164,17 @@ export default function QuickStatsSection() {
                   <stop offset="0%" stopColor="#3B82F6" />
                   <stop offset="100%" stopColor="#8B5CF6" />
                 </linearGradient>
+                <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.18" />
+                  <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
+                </linearGradient>
               </defs>
+              {/* Soft area under the curve */}
+              <path
+                d="M 20 160 Q 80 120 120 100 T 200 80 T 280 60 T 360 40 L 360 200 L 20 200 Z"
+                fill="url(#areaGradient)"
+                opacity="0.7"
+              />
               <path
                 d="M 20 160 Q 80 120 120 100 T 200 80 T 280 60 T 360 40"
                 stroke="url(#progressGradient)"
@@ -170,14 +195,17 @@ export default function QuickStatsSection() {
                 { x: 320, y: 50 },
                 { x: 360, y: 40 }
               ].map((point, index) => (
-                <circle
-                  key={index}
-                  cx={point.x}
-                  cy={point.y}
-                  r="4"
-                  fill={index < 5 ? "#3B82F6" : "#8B5CF6"}
-                  className="drop-shadow-sm"
-                />
+                <g key={index}>
+                  <circle
+                    cx={point.x}
+                    cy={point.y}
+                    r="4"
+                    fill={index < 5 ? "#3B82F6" : "#8B5CF6"}
+                    className="drop-shadow-sm transition-transform duration-200 hover:scale-125"
+                  >
+                    <title>{`Point ${index + 1}`}</title>
+                  </circle>
+                </g>
               ))}
             </svg>
           </div>

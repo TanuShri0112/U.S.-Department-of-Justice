@@ -47,7 +47,7 @@ export default function TeachingCoursesSection() {
 
   return (
     <section>
-      <Card className="overflow-hidden border-0 shadow-lg bg-white">
+      <Card className="overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur">
         <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100/50 flex flex-row items-center justify-between pb-4 pt-5 px-6 border-b border-blue-100/50">
           <CardTitle className="text-xl flex items-center gap-3 text-slate-800 font-bold">
             <div className="p-2 bg-blue-500 rounded-lg shadow-md">
@@ -82,6 +82,13 @@ export default function TeachingCoursesSection() {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Hover overlay CTA */}
+                      <div className="absolute inset-x-0 bottom-0 translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
+                        <div className="m-3 px-3 py-1.5 text-xs font-medium text-white bg-black/50 backdrop-blur rounded-full inline-flex items-center gap-1">
+                          <span>View course</span>
+                          <span aria-hidden>→</span>
+                        </div>
+                      </div>
                       
                       {/* Color Accent */}
                       <div className={`absolute top-3 left-3 w-3 h-3 rounded-full ${
@@ -92,10 +99,9 @@ export default function TeachingCoursesSection() {
 
                     {/* Course Content */}
                     <div className="p-5">
-                      <h3 className="font-bold text-base text-gray-800 mb-4 leading-tight group-hover:text-blue-600 transition-colors duration-300">
+                      <h3 className="font-bold text-base text-gray-800 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                         {course.title}
                       </h3>
-                      
                       {/* Stats with better styling */}
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4 text-sm text-gray-600">
@@ -125,6 +131,8 @@ export default function TeachingCoursesSection() {
                           </div>
                         </div>
                       </div>
+                      {/* Accent underline */}
+                      <div className="mt-4 h-[3px] rounded-full bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </div>
                 );

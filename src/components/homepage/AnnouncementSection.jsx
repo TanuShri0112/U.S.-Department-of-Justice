@@ -109,7 +109,7 @@ export function AnnouncementSection() {
 
 
   return (
-    <Card className="shadow-lg border-0 bg-white overflow-hidden">
+    <Card className="shadow-lg border-0 bg-white/80 backdrop-blur overflow-hidden">
       <CardHeader className="pb-4 pt-5 px-6">
         <div className="flex items-center justify-between">
           <CardTitle className="text-xl flex items-center gap-3 text-slate-800 font-bold">
@@ -125,7 +125,7 @@ export function AnnouncementSection() {
         </div>
       </CardHeader>
       <CardContent className="px-6 pb-6">
-        <ScrollArea className="h-[280px] pr-3">
+        <ScrollArea className="h![280px] pr-3">
           {announcements.length > 0 ? (
             <div className="space-y-4">
               {announcements.slice(0, 4).map((announcement) => {
@@ -135,7 +135,7 @@ export function AnnouncementSection() {
                 return (
                 <div
                   key={announcement.id}
-                    className="group bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                    className="group bg-white/90 backdrop-blur rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="flex items-start gap-3">
                       <div className={`w-8 h-8 rounded-full ${typeStyles.bgColor} flex items-center justify-center flex-shrink-0`}>
