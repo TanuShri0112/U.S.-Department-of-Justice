@@ -124,7 +124,7 @@ const ZoomClassesSection = () => {
 
   return (
     <section className="mb-6">
-      <Card className="overflow-hidden border-0 shadow-lg bg-white">
+      <Card className="overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur">
         <CardHeader className="pb-4 pt-5 px-6">
           <div className="flex items-center justify-between mb-4">
             <CardTitle className="text-xl flex items-center gap-3 text-slate-800 font-bold">
@@ -137,7 +137,7 @@ const ZoomClassesSection = () => {
         </CardHeader>
         <CardContent className="px-6 pb-6">
           <Tabs defaultValue="upcoming" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded-xl mb-6">
+            <TabsList className="grid w-full grid-cols-2 rounded-xl mb-6 bg-white/60 backdrop-blur p-1 border border-gray-100 shadow-inner">
               <TabsTrigger value="upcoming" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Calendar className="h-4 w-4" />
                 {t('upcomingClasses')}
@@ -152,7 +152,9 @@ const ZoomClassesSection = () => {
               <div className="space-y-4">
                 {upcomingClasses.length > 0 ? (
                   upcomingClasses.map((cls) => (
-                    <div key={cls.id} className="group bg-white rounded-xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div key={cls.id} className="group relative bg-white/90 backdrop-blur rounded-xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                      {/* Accent gradient bar */}
+                      <div className="pointer-events-none absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-blue-500 to-purple-500" />
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
@@ -214,7 +216,8 @@ const ZoomClassesSection = () => {
                             <Button
                               size="sm"
                               onClick={() => handleJoinZoom(cls.zoomLink, cls.title)}
-                              className="bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg transition-all duration-300"
+                              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-md hover:shadow-lg transition-all duration-300"
+                              aria-label={`Join class ${cls.title}`}
                             >
                               <ExternalLink className="h-4 w-4 mr-2" />
                               {t('joinClass')}
@@ -238,7 +241,8 @@ const ZoomClassesSection = () => {
               <div className="space-y-4">
                 {completedClasses.length > 0 ? (
                   completedClasses.map((cls) => (
-                    <div key={cls.id} className="group bg-white rounded-xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div key={cls.id} className="group relative bg-white/90 backdrop-blur rounded-xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                      <div className="pointer-events-none absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-green-500 to-emerald-500" />
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">

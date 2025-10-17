@@ -98,9 +98,9 @@ export function CalendarSection() {
   const days = getDaysInMonth(currentDate);
 
   return (
-    <Card className="shadow-lg border-0 bg-white overflow-hidden">
+    <Card className="shadow-lg border-0 bg-white/80 backdrop-blur overflow-hidden">
       <CardContent className="p-4">
-        <div className="bg-blue-50 rounded-2xl p-4">
+        <div className="bg-blue-50/80 rounded-2xl p-4">
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-gray-800">
@@ -158,7 +158,7 @@ export function CalendarSection() {
                         ? 'bg-blue-600 text-white font-semibold'
                         : isSelected
                         ? 'bg-blue-100 text-blue-700 border-2 border-blue-300'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        : 'text-gray-700 hover:bg-gray-100 hover:ring-1 hover:ring-blue-200'
                       }
                     `}
                   >

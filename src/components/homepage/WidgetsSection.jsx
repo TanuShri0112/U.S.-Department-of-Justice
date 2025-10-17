@@ -56,7 +56,7 @@ export default function WidgetsSection() {
 
   return (
     <section className="mb-6">
-      <Card className="overflow-hidden border-0 shadow-lg bg-white">
+      <Card className="overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur">
         <CardHeader className="pb-4 pt-5 px-6">
           <CardTitle className="text-xl flex items-center gap-3 text-slate-800 font-bold">
             <div className="p-2 bg-blue-500 rounded-lg shadow-md">
@@ -74,7 +74,7 @@ export default function WidgetsSection() {
               className="group"
             >
               <div
-                className="cursor-pointer transition-all duration-300 hover:shadow-lg border border-gray-100 rounded-xl overflow-hidden h-full bg-white"
+                className="cursor-pointer transition-all duration-300 hover:shadow-lg border border-gray-100 rounded-xl overflow-hidden h-full bg-white/90 backdrop-blur"
             onClick={handleCatalogClick}
           >
                 <div className="p-5">
@@ -134,7 +134,7 @@ export default function WidgetsSection() {
               className="group"
             >
               <div
-                className="cursor-pointer transition-all duration-300 hover:shadow-lg border border-gray-100 rounded-xl overflow-hidden h-full bg-white"
+                className="cursor-pointer transition-all duration-300 hover:shadow-lg border border-gray-100 rounded-xl overflow-hidden h-full bg-white/90 backdrop-blur"
             onClick={handleGroupsClick}
           >
                 <div className="p-5">
