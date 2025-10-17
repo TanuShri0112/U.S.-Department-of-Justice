@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { CourseOptionsMenu } from '@/components/courses/CourseOptionsMenu';
+import { useTranslation } from '@/hooks/useTranslation';
 import { 
   Select,
   SelectContent,
@@ -17,6 +18,7 @@ import {
 import { toast } from '@/hooks/use-toast';
 
 const Courses = () => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   // Removed course access type (open/sequential)
   const navigate = useNavigate();
@@ -26,15 +28,15 @@ const Courses = () => {
     {
       id: 1,
       title: "Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention",
-      description: "Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals",
+      description: t('comprehensiveTrainingProgram'),
       students: 120,
       duration: "6 weeks",
-      level: "Beginner",
-      status: "Active",
+      level: t('beginner'),
+      status: t('active'),
       image: "/assets/us-1.png",
       archived: false,
       deleted: false,
-      catalog: "Law Enforcement"
+      catalog: t('lawEnforcement')
     }
   ];
 
@@ -56,8 +58,8 @@ const Courses = () => {
   const handleCatalogClick = () => {
     navigate('/catalog');
     toast({
-      title: "Catalog",
-      description: "Redirecting to course catalog",
+      title: t('catalog'),
+      description: t('catalogRedirecting'),
     });
   };
 
@@ -68,8 +70,8 @@ const Courses = () => {
   const handleCourseEdit = (courseId, courseName) => {
     navigate(`/courses/edit/${courseId}`);
     toast({
-      title: "Edit Course",
-      description: `Opening edit page for ${courseName}`,
+      title: t('editCourse'),
+      description: `${t('openingEditPage')} ${courseName}`,
     });
   };
 
@@ -80,8 +82,8 @@ const Courses = () => {
       )
     );
     toast({
-      title: "Course Archived",
-      description: `${courseName} has been moved to archived courses.`,
+      title: t('courseArchived'),
+      description: `${courseName} ${t('courseMovedToArchived')}`,
     });
   };
 
@@ -92,8 +94,8 @@ const Courses = () => {
       )
     );
     toast({
-      title: "Course Deleted",
-      description: `${courseName} has been moved to deleted courses.`,
+      title: t('courseDeleted'),
+      description: `${courseName} ${t('courseMovedToDeleted')}`,
     });
   };
 
@@ -104,8 +106,8 @@ const Courses = () => {
       )
     );
     toast({
-      title: "Course Restored",
-      description: `${courseName} has been restored to active courses.`,
+      title: t('courseRestored'),
+      description: `${courseName} ${t('courseRestoredToActive')}`,
     });
   };
 
@@ -132,9 +134,9 @@ const Courses = () => {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Courses</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('courses')}</h1>
           <p className="text-muted-foreground mt-2">
-            Manage your course catalog and create new learning experiences
+            {t('manageCourseCatalog')}
           </p>
         </div>
       </div>
@@ -146,7 +148,7 @@ const Courses = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input 
               className="pl-9" 
-              placeholder="Search courses..." 
+              placeholder={t('searchCourses')} 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -154,25 +156,25 @@ const Courses = () => {
           
           <Select>
             <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder="All levels" />
+              <SelectValue placeholder={t('allLevels')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All levels</SelectItem>
-              <SelectItem value="beginner">Beginner</SelectItem>
-              <SelectItem value="intermediate">Intermediate</SelectItem>
-              <SelectItem value="advanced">Advanced</SelectItem>
+              <SelectItem value="all">{t('allLevels')}</SelectItem>
+              <SelectItem value="beginner">{t('beginner')}</SelectItem>
+              <SelectItem value="intermediate">{t('intermediate')}</SelectItem>
+              <SelectItem value="advanced">{t('advanced')}</SelectItem>
             </SelectContent>
           </Select>
           
           <Select>
             <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder="All status" />
+              <SelectValue placeholder={t('allStatus')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All status</SelectItem>
-              <SelectItem value="active">Active</SelectItem>
-              <SelectItem value="draft">Draft</SelectItem>
-              <SelectItem value="archived">Archived</SelectItem>
+              <SelectItem value="all">{t('allStatus')}</SelectItem>
+              <SelectItem value="active">{t('active')}</SelectItem>
+              <SelectItem value="draft">{t('draft')}</SelectItem>
+              <SelectItem value="archived">{t('archived')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -185,7 +187,7 @@ const Courses = () => {
             className="flex items-center gap-2"
           >
             <Compass className="h-4 w-4" />
-            Catalog
+            {t('catalog')}
           </Button>
 
           {/* Removed Sequential/Open Toggle */}
@@ -243,7 +245,7 @@ const Courses = () => {
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4" />
-                    <span>{course.students} students</span>
+                    <span>{course.students} {t('students')}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />

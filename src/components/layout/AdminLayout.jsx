@@ -157,7 +157,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
         </main>
       </div>
       
-      {/* Admin Portal Overlay */}
+      {/* Trainer Portal Overlay */}
       {isAdminPortalEnabled && (
         <div className="fixed inset-0 z-50 bg-white">
           <AdminPortal onToggle={closeAdminPortal} />

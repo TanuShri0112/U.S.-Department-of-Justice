@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { MessageSquare, Star, TrendingUp, Users, Download, Filter, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area } from 'recharts';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const AdminFeedbackReports = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('overview');
   const [dateRange, setDateRange] = useState('30');
   const [metrics, setMetrics] = useState({
@@ -28,23 +30,24 @@ const AdminFeedbackReports = () => {
   ];
 
   const feedbackCategories = [
-    { category: 'Content Quality', positive: 78, negative: 12, neutral: 10 },
-    { category: 'Instructor Performance', positive: 85, negative: 8, neutral: 7 },
-    { category: 'Course Structure', positive: 72, negative: 15, neutral: 13 },
-    { category: 'Technical Issues', positive: 68, negative: 22, neutral: 10 },
-    { category: 'Learning Materials', positive: 81, negative: 9, neutral: 10 }
+    { category: t('contentQuality'), positive: 78, negative: 12, neutral: 10 },
+    { category: t('instructorPerformance'), positive: 85, negative: 8, neutral: 7 },
+    { category: t('courseStructure'), positive: 72, negative: 15, neutral: 13 },
+    { category: t('technicalIssues'), positive: 68, negative: 22, neutral: 10 },
+    { category: t('learningMaterials'), positive: 81, negative: 9, neutral: 10 }
   ];
 
   const courseFeedback = [
-    { course: 'Law Enforcement', rating: 4.5, reviews: 234, improvements: 12 },
-    { course: 'Education', rating: 4.3, reviews: 189, improvements: 8 },
-    { course: 'Youth Advocacy', rating: 4.2, reviews: 156, improvements: 15 }
+    { course: t('principlesAssessmentLearning'), rating: 4.5, reviews: 234, improvements: 12 },
+    { course: t('trainingStrategiesFeedback'), rating: 4.3, reviews: 189, improvements: 8 },
+    { course: t('digitalToolsFormativeAssessment'), rating: 4.2, reviews: 156, improvements: 15 },
+    { course: t('designRubricsEvaluationCriteria'), rating: 4.4, reviews: 142, improvements: 10 }
   ];
 
   const sentimentData = [
-    { name: 'Positive', value: 72, color: '#10B981' },
-    { name: 'Neutral', value: 18, color: '#F59E0B' },
-    { name: 'Negative', value: 10, color: '#EF4444' }
+    { name: t('positive'), value: 72, color: '#10B981' },
+    { name: t('neutral'), value: 18, color: '#F59E0B' },
+    { name: t('negative'), value: 10, color: '#EF4444' }
   ];
 
   const responseTrendData = [
@@ -59,30 +62,39 @@ const AdminFeedbackReports = () => {
   const recentFeedback = [
     {
       id: 1,
-      user: 'Sarah Johnson',
-      course: 'Law Enforcement Training',
+      user: 'Dr. Maria Rodriguez',
+      course: t('principlesAssessmentLearning'),
       rating: 5,
-      comment: 'Excellent course content and very practical examples. The instructor was knowledgeable and engaging.',
+      comment: t('excellentCourseContent'),
       date: '2024-01-15',
       sentiment: 'positive'
     },
     {
       id: 2,
-      user: 'Mike Chen',
-      course: 'Education Training',
+      user: 'Prof. Carlos Mendez',
+      course: t('trainingStrategiesFeedback'),
       rating: 4,
-      comment: 'Good overall, but some technical issues with the video playback. Content was relevant and useful.',
+      comment: t('goodOverallTechnicalIssues'),
       date: '2024-01-14',
       sentiment: 'neutral'
     },
     {
       id: 3,
-      user: 'Lisa Rodriguez',
-      course: 'Youth Advocacy',
+      user: 'Dr. Ana Gutierrez',
+      course: t('digitalToolsFormativeAssessment'),
       rating: 3,
-      comment: 'The course was okay, but I expected more interactive elements. Some modules felt too theoretical.',
+      comment: t('courseOkayExpectedMore'),
       date: '2024-01-13',
       sentiment: 'negative'
+    },
+    {
+      id: 4,
+      user: 'Dr. Luis Fernandez',
+      course: t('designRubricsEvaluationCriteria'),
+      rating: 4,
+      comment: t('comprehensiveGuideRubrics'),
+      date: '2024-01-12',
+      sentiment: 'positive'
     }
   ];
 
@@ -103,10 +115,10 @@ const AdminFeedbackReports = () => {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: TrendingUp },
-    { id: 'satisfaction', label: 'Satisfaction', icon: Star },
-    { id: 'categories', label: 'Categories', icon: MessageSquare },
-    { id: 'courses', label: 'Courses', icon: Users }
+    { id: 'overview', label: t('overview'), icon: TrendingUp },
+    { id: 'satisfaction', label: t('satisfaction'), icon: Star },
+    { id: 'categories', label: t('categories'), icon: MessageSquare },
+    { id: 'courses', label: t('courses'), icon: Users }
   ];
 
   return (
@@ -141,8 +153,8 @@ const AdminFeedbackReports = () => {
               <MessageSquare className="w-6 h-6 text-pink-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Feedback Reports</h1>
-              <p className="text-gray-600">Analyze learner feedback and satisfaction metrics</p>
+              <h1 className="text-2xl font-bold text-gray-900">{t('feedbackReports')}</h1>
+              <p className="text-gray-600">{t('analyzeLearnerFeedback')}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -187,10 +199,10 @@ const AdminFeedbackReports = () => {
               }}
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 hover:border-pink-400 transition-colors cursor-pointer"
             >
-              <option value="7">Last 7 days</option>
-              <option value="30">Last 30 days</option>
-              <option value="90">Last 90 days</option>
-              <option value="365">Last year</option>
+              <option value="7">{t('last7Days')}</option>
+              <option value="30">{t('last30Days')}</option>
+              <option value="90">{t('last90Days')}</option>
+              <option value="365">{t('lastYear')}</option>
             </select>
             <button 
               onClick={() => {
@@ -543,15 +555,15 @@ const AdminFeedbackReports = () => {
                   <h4 className="font-medium text-gray-900 mb-4">Top Positive Feedback</h4>
                   <div className="space-y-3">
                     <div className="p-3 bg-green-50 rounded-lg">
-                      <p className="text-sm text-gray-700">"Excellent course content and very practical examples."</p>
+                      <p className="text-sm text-gray-700">"{t('excellentCourseContent')}"</p>
                       <p className="text-xs text-gray-500 mt-1">Content Quality</p>
                     </div>
                     <div className="p-3 bg-green-50 rounded-lg">
-                      <p className="text-sm text-gray-700">"Instructor was knowledgeable and engaging throughout."</p>
+                      <p className="text-sm text-gray-700">"{t('instructorKnowledgeableEngaging')}"</p>
                       <p className="text-xs text-gray-500 mt-1">Instructor Performance</p>
                     </div>
                     <div className="p-3 bg-green-50 rounded-lg">
-                      <p className="text-sm text-gray-700">"Great learning materials and resources provided."</p>
+                      <p className="text-sm text-gray-700">"{t('greatLearningMaterials')}"</p>
                       <p className="text-xs text-gray-500 mt-1">Learning Materials</p>
                     </div>
                   </div>
@@ -561,15 +573,15 @@ const AdminFeedbackReports = () => {
                   <h4 className="font-medium text-gray-900 mb-4">Areas for Improvement</h4>
                   <div className="space-y-3">
                     <div className="p-3 bg-red-50 rounded-lg">
-                      <p className="text-sm text-gray-700">"Technical issues with video playback need fixing."</p>
+                      <p className="text-sm text-gray-700">"{t('technicalIssuesVideoPlayback')}"</p>
                       <p className="text-xs text-gray-500 mt-1">Technical Issues</p>
                     </div>
                     <div className="p-3 bg-red-50 rounded-lg">
-                      <p className="text-sm text-gray-700">"Course structure could be more interactive."</p>
+                      <p className="text-sm text-gray-700">"{t('courseStructureMoreInteractive')}"</p>
                       <p className="text-xs text-gray-500 mt-1">Course Structure</p>
                     </div>
                     <div className="p-3 bg-red-50 rounded-lg">
-                      <p className="text-sm text-gray-700">"Some modules felt too theoretical."</p>
+                      <p className="text-sm text-gray-700">"{t('modulesTooTheoretical')}"</p>
                       <p className="text-xs text-gray-500 mt-1">Content Quality</p>
                     </div>
                   </div>

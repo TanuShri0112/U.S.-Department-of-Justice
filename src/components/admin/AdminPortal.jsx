@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 import { toast, Toaster } from 'react-hot-toast';
+import { useTranslation } from '@/hooks/useTranslation';
 import {
   Dialog,
   DialogContent,
@@ -26,13 +27,14 @@ import AdminReports from '../../pages/admin/AdminReports';
 import AdminFeedbackReports from '../../pages/admin/AdminFeedbackReports';
 
 const AdminPortal = ({ onToggle }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('overview');
   const [courseForm, setCourseForm] = useState({
     title: '',
-    category: 'Law Enforcement Training',
+    category: t('principlesAssessmentLearning'),
     duration: '',
-    difficulty: 'Beginner',
+    difficulty: t('beginner'),
     description: '',
     learningObjectives: ''
   });
@@ -61,20 +63,20 @@ const AdminPortal = ({ onToggle }) => {
   const { isAdminPortalEnabled, setIsAdminPortalEnabled } = useAdminPortal();
 
   const adminSections = [
-    { id: 'overview', label: 'Overview', icon: BarChart2 },
-    { id: 'courses', label: 'Upload Courses', icon: Upload },
-    { id: 'webinars', label: 'Webinars', icon: Video },
-    { id: 'schedule', label: 'Schedule', icon: Calendar },
-    { id: 'announcements', label: 'Announcements', icon: Bell },
-    { id: 'users', label: 'Users', icon: Users },
-    { id: 'reports', label: 'Reports', icon: BarChart2 },
-    { id: 'feedback', label: 'Feedback Reports', icon: ClipboardCheck },
+    { id: 'overview', label: t('overview'), icon: BarChart2 },
+    { id: 'courses', label: t('uploadCourses'), icon: Upload },
+    { id: 'webinars', label: t('webinars'), icon: Video },
+    { id: 'schedule', label: t('schedule'), icon: Calendar },
+    { id: 'announcements', label: t('announcements'), icon: Bell },
+    { id: 'users', label: t('users'), icon: Users },
+    { id: 'reports', label: t('reports'), icon: BarChart2 },
+    { id: 'feedback', label: t('feedbackReports'), icon: ClipboardCheck },
   ];
 
   const handleFileUpload = (files) => {
     if (files.length === 0) return;
     
-    const loadingToast = toast.loading(`Uploading ${files.length} file${files.length > 1 ? 's' : ''}...`);
+    const loadingToast = toast.loading(`${t('uploadingFiles')} ${files.length} ${t('files')}...`);
     
     // Simulate file upload progress
     let progress = 0;
@@ -83,7 +85,7 @@ const AdminPortal = ({ onToggle }) => {
       if (progress > 100) {
         clearInterval(interval);
         progress = 100;
-        toast.success(`Successfully uploaded ${files.length} file${files.length > 1 ? 's' : ''}`, {
+        toast.success(`${t('successfullyUploaded')} ${files.length} ${t('files')}`, {
           id: loadingToast
         });
         setUploadProgress(0);
@@ -95,15 +97,15 @@ const AdminPortal = ({ onToggle }) => {
   const handleCreateCourse = () => {
     // Validate form
     if (!courseForm.title || !courseForm.duration || !courseForm.description || !courseForm.learningObjectives) {
-      toast.error('Please fill in all required fields');
+      toast.error(t('pleaseFillRequired'));
       return;
     }
 
-    const loadingToast = toast.loading('Creating course...');
+    const loadingToast = toast.loading(t('creatingCourse'));
     
     // Simulate API call
     setTimeout(() => {
-      toast.success('Course created successfully!', { id: loadingToast });
+      toast.success(t('courseCreatedSuccessfully'), { id: loadingToast });
       
       // Update metrics
       setMetrics(prev => ({
@@ -114,9 +116,9 @@ const AdminPortal = ({ onToggle }) => {
       // Reset form
       setCourseForm({
         title: '',
-        category: 'Law Enforcement Training',
+        category: t('principlesAssessmentLearning'),
         duration: '',
-        difficulty: 'Beginner',
+        difficulty: t('beginner'),
         description: '',
         learningObjectives: ''
       });
@@ -124,19 +126,19 @@ const AdminPortal = ({ onToggle }) => {
   };
 
   const handleSaveAsDraft = () => {
-    const loadingToast = toast.loading('Saving draft...');
+    const loadingToast = toast.loading(t('savingDraft'));
     
     setTimeout(() => {
-      toast.success('Draft saved successfully!', { id: loadingToast });
+      toast.success(t('draftSavedSuccessfully'), { id: loadingToast });
     }, 1000);
   };
 
   const handleFilterChange = (filter) => {
     setCourseFilter(filter);
-    const loadingToast = toast.loading('Updating course list...');
+    const loadingToast = toast.loading(t('updatingCourseList'));
     
     setTimeout(() => {
-      toast.success('Course list updated', { id: loadingToast });
+      toast.success(t('courseListUpdated'), { id: loadingToast });
     }, 500);
   };
 
@@ -176,8 +178,8 @@ const AdminPortal = ({ onToggle }) => {
                    <BarChart2 className="w-6 h-6 text-blue-600" />
                  </div>
                  <div>
-                   <h1 className="text-2xl font-bold text-gray-900">Overview Summary</h1>
-                   <p className="text-gray-600">Dashboard analytics and key metrics</p>
+                   <h1 className="text-2xl font-bold text-gray-900">{t('overviewSummary')}</h1>
+                   <p className="text-gray-600">{t('dashboardAnalytics')}</p>
                  </div>
                </div>
                
@@ -185,9 +187,9 @@ const AdminPortal = ({ onToggle }) => {
                  <div className="bg-blue-50 rounded-lg p-4">
                    <div className="flex items-center justify-between">
                      <div>
-                       <p className="text-sm font-medium text-blue-600">Total Users</p>
+                       <p className="text-sm font-medium text-blue-600">{t('totalUsers')}</p>
                       <p className="text-2xl font-bold text-blue-900">{metrics.totalUsers.toLocaleString()}</p>
-                      <p className="text-xs text-blue-600 mt-1">+{Math.floor(metrics.totalUsers * 0.012)}% this month</p>
+                      <p className="text-xs text-blue-600 mt-1">+{Math.floor(metrics.totalUsers * 0.012)}% {t('thisMonth')}</p>
                     </div>
                     <Users className="w-8 h-8 text-blue-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
                   </div>
@@ -196,9 +198,9 @@ const AdminPortal = ({ onToggle }) => {
                 <div className="bg-green-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-green-600">Active Courses</p>
+                      <p className="text-sm font-medium text-green-600">{t('activeCourses')}</p>
                       <p className="text-2xl font-bold text-green-900">{metrics.activeCourses}</p>
-                      <p className="text-xs text-green-600 mt-1">{Math.ceil(metrics.activeCourses * 0.12)} new this week</p>
+                      <p className="text-xs text-green-600 mt-1">{Math.ceil(metrics.activeCourses * 0.12)} {t('newThisWeek')}</p>
                     </div>
                     <Upload className="w-8 h-8 text-green-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
                   </div>
@@ -207,9 +209,9 @@ const AdminPortal = ({ onToggle }) => {
                 <div className="bg-purple-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-purple-600">Scheduled Webinars</p>
+                      <p className="text-sm font-medium text-purple-600">{t('scheduledWebinars')}</p>
                       <p className="text-2xl font-bold text-purple-900">{metrics.scheduledWebinars}</p>
-                      <p className="text-xs text-purple-600 mt-1">{Math.ceil(metrics.scheduledWebinars * 0.25)} this week</p>
+                      <p className="text-xs text-purple-600 mt-1">{Math.ceil(metrics.scheduledWebinars * 0.25)} {t('thisWeek')}</p>
                     </div>
                     <Video className="w-8 h-8 text-purple-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
                   </div>
@@ -218,9 +220,9 @@ const AdminPortal = ({ onToggle }) => {
                 <div className="bg-orange-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-orange-600">Pending Reports</p>
+                      <p className="text-sm font-medium text-orange-600">{t('pendingReports')}</p>
                       <p className="text-2xl font-bold text-orange-900">{metrics.pendingReports}</p>
-                      <p className="text-xs text-orange-600 mt-1">Due this week</p>
+                      <p className="text-xs text-orange-600 mt-1">{t('dueThisWeek')}</p>
                      </div>
                      <BarChart2 className="w-8 h-8 text-orange-500" />
                    </div>
@@ -231,56 +233,56 @@ const AdminPortal = ({ onToggle }) => {
              {/* Secondary Stats */}
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Platform Activity</h3>
+                 <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('platformActivity')}</h3>
                  <div className="space-y-4">
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Course Completions</span>
+                     <span className="text-sm text-gray-600">{t('courseCompletions')}</span>
                      <span className="text-sm font-medium text-gray-900">847</span>
                      </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Active Sessions</span>
+                     <span className="text-sm text-gray-600">{t('activeSessions')}</span>
                      <span className="text-sm font-medium text-gray-900">156</span>
                    </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">New Registrations</span>
+                     <span className="text-sm text-gray-600">{t('newRegistrations')}</span>
                      <span className="text-sm font-medium text-gray-900">89</span>
                  </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Support Tickets</span>
+                     <span className="text-sm text-gray-600">{t('supportTickets')}</span>
                      <span className="text-sm font-medium text-gray-900">23</span>
                    </div>
                    </div>
                  </div>
                  
                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
+                 <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('recentActivity')}</h3>
                  <div className="space-y-4">
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">New course "Advanced Training" uploaded</p>
-                       <p className="text-xs text-gray-500">2 hours ago</p>
+                       <p className="text-sm text-gray-900">{t('newCourseUploaded')}</p>
+                       <p className="text-xs text-gray-500">2 {t('hoursAgo')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">Webinar "Safety Protocols" scheduled</p>
-                       <p className="text-xs text-gray-500">4 hours ago</p>
+                       <p className="text-sm text-gray-900">{t('webinarScheduled')}</p>
+                       <p className="text-xs text-gray-500">4 {t('hoursAgo')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">Monthly report generated</p>
-                       <p className="text-xs text-gray-500">6 hours ago</p>
+                       <p className="text-sm text-gray-900">{t('reportGenerated')}</p>
+                       <p className="text-xs text-gray-500">6 {t('hoursAgo')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">15 new users registered</p>
-                       <p className="text-xs text-gray-500">8 hours ago</p>
+                       <p className="text-sm text-gray-900">15 {t('userRegistered')}</p>
+                       <p className="text-xs text-gray-500">8 {t('hoursAgo')}</p>
                      </div>
                    </div>
                  </div>
@@ -390,15 +392,15 @@ const AdminPortal = ({ onToggle }) => {
                    <Upload className="w-6 h-6 text-blue-600" />
                  </div>
                  <div>
-                   <h1 className="text-2xl font-bold text-gray-900">Course Management</h1>
-                   <p className="text-gray-600">Upload, manage, and organize training courses</p>
+                   <h1 className="text-2xl font-bold text-gray-900">{t('courseManagement')}</h1>
+                   <p className="text-gray-600">{t('uploadManageOrganize')}</p>
                  </div>
                </div>
              </div>
 
              {/* Upload Section */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-               <h3 className="text-lg font-semibold text-gray-900 mb-4">Upload New Course</h3>
+               <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('uploadNewCourse')}</h3>
               <div 
                 className={cn(
                   "border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200",
@@ -439,9 +441,9 @@ const AdminPortal = ({ onToggle }) => {
                   "transform hover:scale-110"
                 )} />
                 <h4 className="text-lg font-medium text-gray-900 mb-2">
-                  {isDragging ? "Drop files to upload" : "Drop files here or click to upload"}
+                  {isDragging ? t('dropFilesToUpload') : t('dropFilesHereOrClick')}
                 </h4>
-                <p className="text-gray-600 mb-4">Support for SCORM, PDF, Video, and other formats</p>
+                <p className="text-gray-600 mb-4">{t('supportForFormats')}</p>
                 <button 
                   className={cn(
                     "px-6 py-2 rounded-lg font-medium transition-all duration-200",
@@ -453,7 +455,7 @@ const AdminPortal = ({ onToggle }) => {
                     document.getElementById('fileInput').click();
                   }}
                 >
-                   Choose Files
+                   {t('chooseFiles')}
                  </button>
                 {uploadProgress > 0 && (
                   <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded-b-lg overflow-hidden">
@@ -468,72 +470,72 @@ const AdminPortal = ({ onToggle }) => {
 
              {/* Course Creation Form */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-               <h3 className="text-lg font-semibold text-gray-900 mb-4">Create New Course</h3>
+               <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('createNewCourse')}</h3>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">Course Title</label>
+                   <label className="block text-sm font-medium text-gray-700 mb-2">{t('courseTitle')}</label>
                    <input 
                      type="text" 
                     value={courseForm.title}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, title: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                     placeholder="Enter course title"
+                     placeholder={t('enterCourseTitle')}
                    />
                  </div>
                  <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('category')}</label>
                   <select 
                     value={courseForm.category}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, category: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                   >
-                     <option>Law Enforcement Training</option>
-                     <option>Educator Training</option>
-                     <option>Youth Advocacy Training</option>
-                     <option>General Training</option>
+                     <option>{t('principlesAssessmentLearning')}</option>
+                     <option>{t('trainingStrategiesFeedback')}</option>
+                     <option>{t('digitalToolsFormativeAssessment')}</option>
+                     <option>{t('designRubricsEvaluationCriteria')}</option>
                    </select>
                  </div>
                  <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Duration (hours)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('durationHours')}</label>
                    <input 
                      type="number" 
                     value={courseForm.duration}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, duration: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                     placeholder="Enter duration"
+                     placeholder={t('enterDuration')}
                     min="1"
                    />
                  </div>
                  <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Difficulty Level</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('difficultyLevel')}</label>
                   <select 
                     value={courseForm.difficulty}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, difficulty: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                   >
-                     <option>Beginner</option>
-                     <option>Intermediate</option>
-                     <option>Advanced</option>
+                     <option>{t('beginner')}</option>
+                     <option>{t('intermediate')}</option>
+                     <option>{t('advanced')}</option>
                    </select>
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('description')}</label>
                   <textarea 
                     rows={4}
                     value={courseForm.description}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, description: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="Enter course description"
+                    placeholder={t('enterCourseDescription')}
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Learning Objectives</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('learningObjectives')}</label>
                   <textarea 
                     rows={3}
                     value={courseForm.learningObjectives}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, learningObjectives: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="List the key learning objectives for this course"
+                    placeholder={t('listLearningObjectives')}
                   />
                  </div>
                </div>
@@ -543,7 +545,7 @@ const AdminPortal = ({ onToggle }) => {
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg transform transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
                 >
                   <Upload className="w-4 h-4" />
-                   Create Course
+                   {t('createCourse')}
                  </button>
                 <button 
                   onClick={handleSaveAsDraft}
@@ -552,7 +554,7 @@ const AdminPortal = ({ onToggle }) => {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
                   </svg>
-                   Save as Draft
+                   {t('saveAsDraft')}
                  </button>
                </div>
              </div>
@@ -560,7 +562,7 @@ const AdminPortal = ({ onToggle }) => {
              {/* Existing Courses */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                <div className="flex items-center justify-between mb-4">
-                 <h3 className="text-lg font-semibold text-gray-900">Existing Courses</h3>
+                 <h3 className="text-lg font-semibold text-gray-900">{t('existingCourses')}</h3>
                  <div className="flex gap-2">
                   <button 
                     onClick={() => handleFilterChange('all')}
@@ -605,8 +607,8 @@ const AdminPortal = ({ onToggle }) => {
                        <Upload className="w-5 h-5 text-blue-600" />
                      </div>
                      <div>
-                       <h4 className="font-medium text-gray-900">Law Enforcement Fundamentals</h4>
-                       <p className="text-sm text-gray-600">12 hours • 156 students</p>
+                       <h4 className="font-medium text-gray-900">{t('principlesAssessmentLearning')}</h4>
+                       <p className="text-sm text-gray-600">12 {t('hours')} • 156 {t('students')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-2">
@@ -625,8 +627,8 @@ const AdminPortal = ({ onToggle }) => {
                        <Upload className="w-5 h-5 text-green-600" />
                      </div>
                      <div>
-                       <h4 className="font-medium text-gray-900">Educator Training Program</h4>
-                       <p className="text-sm text-gray-600">8 hours • 89 students</p>
+                       <h4 className="font-medium text-gray-900">{t('trainingStrategiesFeedback')}</h4>
+                       <p className="text-sm text-gray-600">8 {t('hours')} • 89 {t('students')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-2">
@@ -645,12 +647,32 @@ const AdminPortal = ({ onToggle }) => {
                        <Upload className="w-5 h-5 text-orange-600" />
                      </div>
                      <div>
-                       <h4 className="font-medium text-gray-900">Youth Advocacy Workshop</h4>
-                       <p className="text-sm text-gray-600">6 hours • Draft</p>
+                       <h4 className="font-medium text-gray-900">{t('digitalToolsFormativeAssessment')}</h4>
+                       <p className="text-sm text-gray-600">6 {t('hours')} • {t('draft')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-2">
                      <span className="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full">Draft</span>
+                     <button className="p-1 text-gray-400 hover:text-gray-600">
+                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                       </svg>
+                     </button>
+                   </div>
+                 </div>
+
+                 <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                   <div className="flex items-center gap-3">
+                     <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                       <Upload className="w-5 h-5 text-purple-600" />
+                     </div>
+                     <div>
+                       <h4 className="font-medium text-gray-900">{t('designRubricsEvaluationCriteria')}</h4>
+                       <p className="text-sm text-gray-600">10 {t('hours')} • 45 {t('students')}</p>
+                     </div>
+                   </div>
+                   <div className="flex items-center gap-2">
+                     <span className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">Published</span>
                      <button className="p-1 text-gray-400 hover:text-gray-600">
                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
@@ -756,7 +778,7 @@ const AdminPortal = ({ onToggle }) => {
         <div className="px-6 py-4">
               <div className="flex items-center gap-3">
                 <Shield className="w-6 h-6 text-blue-600" />
-                <h1 className="text-xl font-semibold text-gray-900">Admin Portal</h1>
+                <h1 className="text-xl font-semibold text-gray-900">Trainer Portal</h1>
           </div>
         </div>
       </div>
@@ -791,11 +813,11 @@ const AdminPortal = ({ onToggle }) => {
             </nav>
           </div>
           
-          {/* Admin Portal Toggle at Bottom */}
+          {/* Trainer Portal Toggle at Bottom */}
           <div className="border-t border-gray-200 p-4">
             <div className="flex items-center gap-3 bg-blue-50 rounded-lg px-3 py-2 border border-blue-200 hover:bg-blue-100 transition-colors">
               <Shield className="h-4 w-4 text-blue-600 flex-shrink-0" />
-              <span className="text-sm font-medium text-blue-700 flex-1">Admin Portal</span>
+              <span className="text-sm font-medium text-blue-700 flex-1">Trainer Portal</span>
               <Switch
                 checked={isAdminPortalEnabled}
                 onCheckedChange={setIsAdminPortalEnabled}

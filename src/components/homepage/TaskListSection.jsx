@@ -13,13 +13,13 @@ export function TaskListSection() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: t('welcomeTitle'),
-      description: t('welcomeSubtitle'),
+      title: t('principlesAssessmentLearning'),
+      description: t('assessmentLearningDescription'),
       dueDate: '2023-07-10',
       time: '10:00 PM - 11:45 PM',
       completed: false,
       priority: 'high',
-      course: 'Law Enforcement',
+      course: t('principlesAssessmentLearning'),
       assignees: [
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format',
         'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&auto=format'
@@ -27,28 +27,41 @@ export function TaskListSection() {
     },
     {
       id: 2,
-      title: 'Review Educator Training Assessment',
-      description: 'Professional Learning in Education',
+      title: t('trainingStrategiesFeedback'),
+      description: t('trainingStrategiesDescription'),
       dueDate: '2023-07-12',
       time: '2:00 PM - 3:30 PM',
       completed: false,
       priority: 'medium',
-      course: 'Education',
+      course: t('trainingStrategiesFeedback'),
       assignees: [
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format'
       ]
     },
     {
       id: 3,
-      title: 'Submit Youth Advocate Module 2',
-      description: 'Needs Assessment in Youth Advocacy',
+      title: t('digitalToolsFormativeAssessment'),
+      description: t('digitalToolsDescription'),
       dueDate: '2023-07-15',
       time: '9:00 AM - 11:00 AM',
       completed: true,
       priority: 'high',
-      course: 'Youth Development',
+      course: t('digitalToolsFormativeAssessment'),
       assignees: [
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format'
+      ]
+    },
+    {
+      id: 4,
+      title: t('designRubricsEvaluationCriteria'),
+      description: t('rubricsDesignDescription'),
+      dueDate: '2023-07-18',
+      time: '1:00 PM - 3:00 PM',
+      completed: false,
+      priority: 'medium',
+      course: t('designRubricsEvaluationCriteria'),
+      assignees: [
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format'
       ]
     }
   ]);

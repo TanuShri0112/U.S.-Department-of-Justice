@@ -7,6 +7,7 @@ import { Search, Users, Globe, Lock } from 'lucide-react';
 import { GroupOptionsMenu } from '@/components/groups/GroupOptionsMenu';
 import { GroupEditDialog } from '@/components/groups/GroupEditDialog';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from '@/hooks/useTranslation';
 
 /**
  * @typedef {object} Group
@@ -25,6 +26,7 @@ const GroupCatalog = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [editingGroup, setEditingGroup] = useState(null);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   /** @type {Group[]} */
   const mockGroups = [
@@ -132,8 +134,8 @@ const GroupCatalog = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Community Resources</h1>
-          <p className="text-muted-foreground">Discover and join Corporación Municipal de Desarrollo Social de Antofagasta community resources that match your professional development needs.</p>
+          <h1 className="text-3xl font-bold">{t('communityResources')}</h1>
+          <p className="text-muted-foreground">{t('discoverJoinResources')}</p>
         </div>
       </div>
 
@@ -143,7 +145,7 @@ const GroupCatalog = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             className="pl-10"
-            placeholder="Search for groups..."
+            placeholder={t('searchForGroups')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -188,7 +190,7 @@ const GroupCatalog = () => {
                 <p className="text-sm text-muted-foreground flex-grow">{group.description}</p>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Members</span>
+                  <span className="text-sm text-gray-600">{t('members')}</span>
                   <Badge variant="secondary">{group.members}</Badge>
                 </div>
                 
@@ -202,7 +204,7 @@ const GroupCatalog = () => {
                 </div>
 
                 <Button className="w-full mt-auto" variant="outline">
-                  Join Group
+                  {t('joinGroup')}
                 </Button>
               </div>
             </CardContent>

@@ -14,8 +14,10 @@ import {
   User, 
   X 
 } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const WebinarManagement = () => {
+  const { t } = useTranslation();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedWebinar, setSelectedWebinar] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
@@ -23,42 +25,55 @@ const WebinarManagement = () => {
   const [webinars, setWebinars] = useState([
     {
       id: 1,
-      title: "Advanced Law Enforcement Techniques",
-      instructor: "Dr. Sarah Johnson",
+      title: t('principlesAssessmentLearning'),
+      instructor: "Dr. Maria Rodriguez",
       date: "2024-01-15",
       time: "14:00",
       duration: 90,
       maxParticipants: 100,
       currentParticipants: 45,
-      category: "Law Enforcement",
-      status: "Scheduled",
-      description: "Comprehensive training on advanced law enforcement techniques and procedures."
+      category: t('principlesAssessmentLearning'),
+      status: t('scheduled'),
+      description: t('assessmentLearningDescription')
     },
     {
       id: 2,
-      title: "Educational Technology Integration",
-      instructor: "Prof. Michael Chen",
+      title: t('trainingStrategiesFeedback'),
+      instructor: "Prof. Carlos Mendez",
       date: "2024-01-19",
       time: "10:00",
       duration: 60,
       maxParticipants: 50,
       currentParticipants: 23,
-      category: "Education",
-      status: "Scheduled",
-      description: "Learn how to integrate technology effectively in educational settings."
+      category: t('trainingStrategiesFeedback'),
+      status: t('scheduled'),
+      description: t('trainingStrategiesDescription')
     },
     {
       id: 3,
-      title: "Youth Advocacy Best Practices",
-      instructor: "Dr. Lisa Rodriguez",
+      title: t('digitalToolsFormativeAssessment'),
+      instructor: "Dr. Ana Gutierrez",
       date: "2024-01-22",
       time: "15:00",
       duration: 75,
       maxParticipants: 75,
       currentParticipants: 67,
-      category: "Youth Advocacy",
-      status: "Scheduled",
-      description: "Best practices for effective youth advocacy and community engagement."
+      category: t('digitalToolsFormativeAssessment'),
+      status: t('scheduled'),
+      description: t('digitalToolsDescription')
+    },
+    {
+      id: 4,
+      title: t('designRubricsEvaluationCriteria'),
+      instructor: "Dr. Luis Fernandez",
+      date: "2024-01-25",
+      time: "11:00",
+      duration: 80,
+      maxParticipants: 60,
+      currentParticipants: 42,
+      category: t('designRubricsEvaluationCriteria'),
+      status: t('scheduled'),
+      description: t('rubricsDesignDescription')
     }
   ]);
 
@@ -69,7 +84,7 @@ const WebinarManagement = () => {
     time: '',
     duration: 60,
     maxParticipants: 50,
-    category: 'General Training',
+    category: t('principlesAssessmentLearning'),
     description: ''
   });
 
@@ -105,7 +120,7 @@ const WebinarManagement = () => {
       time: '',
       duration: 60,
       maxParticipants: 50,
-      category: 'General Training',
+      category: t('principlesAssessmentLearning'),
       description: ''
     });
     setIsCreateModalOpen(false);
@@ -147,9 +162,9 @@ const WebinarManagement = () => {
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Webinar Management
+                {t('webinarManagement')}
               </h1>
-              <p className="text-gray-600 mt-1 text-lg">Schedule, manage, and track webinar sessions</p>
+              <p className="text-gray-600 mt-1 text-lg">{t('scheduleManageTrack')}</p>
             </div>
           </div>
           <button
@@ -157,7 +172,7 @@ const WebinarManagement = () => {
             className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-3 font-medium"
           >
             <Plus className="w-5 h-5" />
-            Schedule Webinar
+            {t('scheduleWebinar')}
           </button>
         </div>
       </div>
@@ -166,7 +181,7 @@ const WebinarManagement = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 transform transition-all duration-200 hover:shadow-md">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
           <BarChart3 className="w-6 h-6 text-purple-600" />
-          Webinar Performance
+          {t('webinarPerformance')}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
@@ -175,8 +190,8 @@ const WebinarManagement = () => {
                 {webinars.length}
               </span>
             </div>
-            <p className="text-base font-semibold text-gray-900 text-center">Scheduled</p>
-            <p className="text-sm text-gray-600 text-center mt-1">This month</p>
+            <p className="text-base font-semibold text-gray-900 text-center">{t('scheduled')}</p>
+            <p className="text-sm text-gray-600 text-center mt-1">{t('thisMonth')}</p>
           </div>
           <div className="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
             <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
@@ -184,7 +199,7 @@ const WebinarManagement = () => {
                 {webinars.reduce((sum, w) => sum + w.currentParticipants, 0)}
               </span>
             </div>
-            <p className="text-base font-semibold text-gray-900 text-center">Total Attendees</p>
+            <p className="text-base font-semibold text-gray-900 text-center">{t('totalAttendees')}</p>
             <div className="flex items-center justify-center gap-1 mt-1">
               <TrendingUp className="w-4 h-4 text-green-600" />
               <p className="text-sm text-green-600">+23% this month</p>
@@ -196,8 +211,8 @@ const WebinarManagement = () => {
                 89%
               </span>
             </div>
-            <p className="text-base font-semibold text-gray-900 text-center">Attendance Rate</p>
-            <p className="text-sm text-gray-600 text-center mt-1">Average</p>
+            <p className="text-base font-semibold text-gray-900 text-center">{t('attendanceRate')}</p>
+            <p className="text-sm text-gray-600 text-center mt-1">{t('average')}</p>
           </div>
           <div className="bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
             <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
@@ -212,8 +227,8 @@ const WebinarManagement = () => {
                 </div>
               </div>
             </div>
-            <p className="text-base font-semibold text-gray-900 text-center">Avg Rating</p>
-            <p className="text-sm text-gray-600 text-center mt-1">Based on 89 reviews</p>
+            <p className="text-base font-semibold text-gray-900 text-center">{t('avgRating')}</p>
+            <p className="text-sm text-gray-600 text-center mt-1">{t('basedOnReviews')}</p>
           </div>
         </div>
       </div>
@@ -224,9 +239,9 @@ const WebinarManagement = () => {
           <div>
             <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <Calendar className="w-6 h-6 text-purple-600" />
-              Upcoming Webinars
+              {t('upcomingWebinars')}
             </h3>
-            <p className="text-gray-600 mt-1">Manage your scheduled webinar sessions</p>
+            <p className="text-gray-600 mt-1">{t('manageScheduledSessions')}</p>
           </div>
           <div className="flex gap-3">
             <button 
@@ -237,7 +252,7 @@ const WebinarManagement = () => {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              All Sessions
+              {t('allSessions')}
             </button>
             <button 
               onClick={() => setActiveFilter('thisWeek')}
@@ -247,7 +262,7 @@ const WebinarManagement = () => {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              This Week
+              {t('thisWeek')}
             </button>
             <button 
               onClick={() => setActiveFilter('thisMonth')}
@@ -257,7 +272,7 @@ const WebinarManagement = () => {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              This Month
+              {t('thisMonth')}
             </button>
           </div>
         </div>
@@ -315,12 +330,12 @@ const WebinarManagement = () => {
                 <div className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-gray-400" />
                   <span className="text-sm text-gray-600">
-                    {webinar.currentParticipants}/{webinar.maxParticipants} participants
+                    {webinar.currentParticipants}/{webinar.maxParticipants} {t('participants')}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">{webinar.duration} minutes</span>
+                  <span className="text-sm text-gray-600">{webinar.duration} {t('minutes')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4 text-gray-400" />
@@ -385,9 +400,9 @@ const WebinarManagement = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    {selectedWebinar ? 'Edit Webinar' : 'Schedule New Webinar'}
+                    {selectedWebinar ? t('editWebinar') : t('scheduleNewWebinar')}
                   </h3>
-                  <p className="text-gray-600">Fill in the details for your webinar session</p>
+                  <p className="text-gray-600">{t('fillInDetails')}</p>
                 </div>
               </div>
               <button 
@@ -401,40 +416,40 @@ const WebinarManagement = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Webinar Title</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('webinarTitle')}</label>
                   <input 
                     type="text" 
                     value={newWebinar.title}
                     onChange={(e) => setNewWebinar({...newWebinar, title: e.target.value})}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
-                    placeholder="Enter webinar title"
+                    placeholder={t('enterWebinarTitle')}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Instructor</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('selectInstructor')}</label>
                   <select 
                     value={newWebinar.instructor}
                     onChange={(e) => setNewWebinar({...newWebinar, instructor: e.target.value})}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                   >
-                    <option value="">Select Instructor</option>
-                    <option>Dr. Sarah Johnson</option>
-                    <option>Prof. Michael Chen</option>
-                    <option>Dr. Lisa Rodriguez</option>
-                    <option>Capt. David Wilson</option>
+                    <option value="">{t('selectInstructor')}</option>
+                    <option>Dr. Maria Rodriguez</option>
+                    <option>Prof. Carlos Mendez</option>
+                    <option>Dr. Ana Gutierrez</option>
+                    <option>Dr. Luis Fernandez</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('category')}</label>
                   <select 
                     value={newWebinar.category}
                     onChange={(e) => setNewWebinar({...newWebinar, category: e.target.value})}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                   >
-                    <option>Law Enforcement</option>
-                    <option>Education</option>
-                    <option>Youth Advocacy</option>
-                    <option>General Training</option>
+                    <option>{t('principlesAssessmentLearning')}</option>
+                    <option>{t('trainingStrategiesFeedback')}</option>
+                    <option>{t('digitalToolsFormativeAssessment')}</option>
+                    <option>{t('designRubricsEvaluationCriteria')}</option>
                   </select>
                 </div>
               </div>
@@ -488,13 +503,13 @@ const WebinarManagement = () => {
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('description')}</label>
                 <textarea 
                   rows={4}
                   value={newWebinar.description}
                   onChange={(e) => setNewWebinar({...newWebinar, description: e.target.value})}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
-                  placeholder="Enter webinar description"
+                  placeholder={t('enterWebinarDescription')}
                 />
               </div>
             </div>
@@ -510,7 +525,7 @@ const WebinarManagement = () => {
                 onClick={handleCreateWebinar}
                 className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 font-medium"
               >
-                {selectedWebinar ? 'Update Webinar' : 'Schedule Webinar'}
+                {selectedWebinar ? t('updateWebinar') : t('scheduleWebinar')}
               </button>
             </div>
           </div>

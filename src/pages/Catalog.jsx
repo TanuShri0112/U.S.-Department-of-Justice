@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { useTranslation } from '@/hooks/useTranslation';
 import { Search, BookOpen, Users, Clock, ChevronRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Catalog = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -16,13 +18,13 @@ const Catalog = () => {
     {
       id: 1,
       name: 'Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention',
-      description: 'Foundations of law enforcement training, stakeholder analysis, and needs assessment',
+      description: t('foundationsLawEnforcement'),
       imageUrl: '/assets/us-1.png',
       courseCount: 3,
       studentCount: 120,
       duration: '12 weeks',
-      difficulty: 'Intermediate',
-      tags: ['Law Enforcement', 'Training', 'DOJ']
+      difficulty: t('intermediate'),
+      tags: [t('lawEnforcement'), t('training'), t('cmds')]
     }
   ]);
 
@@ -63,11 +65,11 @@ const Catalog = () => {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Training Catalog
+              {t('trainingCatalog')}
               <Sparkles className="inline-block ml-2 h-6 w-6 sm:h-8 sm:w-8 text-yellow-400" />
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Explore our comprehensive collection of Corporación Municipal de Desarrollo Social de Antofagasta training programs
+              {t('exploreComprehensiveCollection')}
             </p>
           </motion.div>
         </div>
@@ -78,7 +80,7 @@ const Catalog = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <Input
               type="text"
-              placeholder="Search by name, description, or tags..."
+              placeholder={t('searchByNameDescription')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-12 pr-4 py-3 w-full text-lg border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all duration-200"
@@ -130,11 +132,11 @@ const Catalog = () => {
                    <div className="flex items-center justify-between mb-3 h-6 flex-shrink-0">
                      <div className="flex items-center gap-1 text-blue-600">
                        <BookOpen className="h-4 w-4" />
-                       <span className="text-xs font-medium">{catalog.courseCount} Courses</span>
+                       <span className="text-xs font-medium">{catalog.courseCount} {t('courses')}</span>
                      </div>
                      <div className="flex items-center gap-1 text-green-600">
                        <Users className="h-4 w-4" />
-                       <span className="text-xs font-medium">{catalog.studentCount} Students</span>
+                       <span className="text-xs font-medium">{catalog.studentCount} {t('students')}</span>
                      </div>
                      <div className="flex items-center gap-1 text-purple-600">
                        <Clock className="h-4 w-4" />
@@ -165,7 +167,7 @@ const Catalog = () => {
                        handleCatalogClick(catalog);
                      }}
                    >
-                     Explore Catalog
+                     {t('exploreCatalog')}
                      <ChevronRight className="h-4 w-4" />
                    </Button>
                  </CardContent>
@@ -182,9 +184,9 @@ const Catalog = () => {
           >
             <div className="bg-gray-50 rounded-2xl p-8 max-w-md mx-auto">
               <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">No Results Found</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{t('noResultsFound')}</h3>
               <p className="text-gray-600">
-                We couldn't find any catalogs matching your search. Try adjusting your search terms.
+                {t('noResultsDescription')}
               </p>
             </div>
           </motion.div>

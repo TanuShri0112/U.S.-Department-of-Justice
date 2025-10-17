@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useTranslation } from '@/hooks/useTranslation';
 import { 
   Search, 
   Send, 
@@ -38,6 +39,7 @@ import {
 } from "@/components/ui/dialog";
 
 const Messages = () => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedContact, setSelectedContact] = useState(null);
   const [newMessage, setNewMessage] = useState('');
@@ -65,7 +67,7 @@ const Messages = () => {
         id: '1',
         name: 'Sarah Wilson',
         avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=150',
-        lastMessage: 'Hey there!',
+        lastMessage: t('heyThere'),
         timestamp: '12:30 PM',
         unreadCount: 0
       },
@@ -73,7 +75,7 @@ const Messages = () => {
         id: '2',
         name: 'Michael Chen',
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd722b5bc?w=150',
-        lastMessage: "Let's catch up later",
+        lastMessage: t('letsCatchUpLater'),
         timestamp: '11:45 AM',
         unreadCount: 0
       },
@@ -81,7 +83,7 @@ const Messages = () => {
         id: '3',
         name: 'Emily Brown',
         avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
-        lastMessage: 'Did you see the new course?',
+        lastMessage: t('didYouSeeNewCourse'),
         timestamp: '10:20 AM',
         unreadCount: 1
       },
@@ -89,7 +91,7 @@ const Messages = () => {
         id: '4',
         name: 'David Kim',
         avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
-        lastMessage: 'Thanks for your help!',
+        lastMessage: t('thanksForYourHelp'),
         timestamp: 'Yesterday',
         unreadCount: 0
       },
@@ -97,7 +99,7 @@ const Messages = () => {
         id: '5',
         name: 'Jessica Taylor',
         avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
-        lastMessage: 'Are you free tomorrow?',
+        lastMessage: t('areYouFreeTomorrow'),
         timestamp: 'Yesterday',
         unreadCount: 2
       },
@@ -379,11 +381,11 @@ const Messages = () => {
       )}>
         {/* Header */}
         <div className="p-4 border-b border-gray-100 bg-white">
-          <h1 className="text-xl font-semibold text-gray-800 mb-3">Messages</h1>
+          <h1 className="text-xl font-semibold text-gray-800 mb-3">{t('messages')}</h1>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search contacts..."
+              placeholder={t('searchContacts')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
@@ -673,7 +675,7 @@ const Messages = () => {
 
                 <div className="flex-1 relative">
                   <Input
-                    placeholder="Type a message..."
+                    placeholder={t('typeMessage')}
                     value={newMessage}
                     onChange={handleInputChange}
                     onKeyPress={handleKeyPress}
@@ -783,8 +785,8 @@ const Messages = () => {
               <div className="mx-auto w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <MessageCircle className="h-12 w-12 text-blue-500" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Select a conversation to start messaging</h3>
-              <p className="text-gray-500 leading-relaxed">Choose from your existing conversations or start a new one to connect with your learning community</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('selectConversationToStart')}</h3>
+              <p className="text-gray-500 leading-relaxed">{t('chooseFromExisting')}</p>
             </div>
           </div>
         )}

@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { useTranslation } from '@/hooks/useTranslation';
 import { 
   ClipboardCheck, 
   TrendingUp, 
@@ -20,6 +21,7 @@ import {
 
 const EvaluationFeedback = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleTakeSurvey = () => {
     navigate('/survey');
@@ -36,19 +38,19 @@ const EvaluationFeedback = () => {
       averageSatisfaction: 4.2,
       totalResponses: 1247,
       recentResponses: [
-        { id: 1, course: 'Law Enforcement Training', rating: 4.5, date: '2024-01-15', feedback: 'Excellent course content and practical examples.' },
-        { id: 2, course: 'Educator Training', rating: 4.0, date: '2024-01-14', feedback: 'Very helpful for understanding student needs.' },
-        { id: 3, course: 'Community Outreach', rating: 4.8, date: '2024-01-13', feedback: 'Outstanding program with real-world applications.' }
+        { id: 1, course: t('lawEnforcementTraining'), rating: 4.5, date: '2024-01-15', feedback: t('excellentCourseContent') },
+        { id: 2, course: t('educatorTraining'), rating: 4.0, date: '2024-01-14', feedback: t('veryHelpfulUnderstanding') },
+        { id: 3, course: t('communityOutreach'), rating: 4.8, date: '2024-01-13', feedback: t('outstandingProgram') }
       ]
     },
     selfAssessments: {
       totalAssessments: 892,
       averageScore: 78,
       improvementAreas: [
-        { topic: 'Communication Skills', percentage: 65 },
-        { topic: 'Technical Knowledge', percentage: 82 },
-        { topic: 'Leadership Skills', percentage: 71 },
-        { topic: 'Problem Solving', percentage: 88 }
+        { topic: t('communicationSkills'), percentage: 65 },
+        { topic: t('technicalKnowledge'), percentage: 82 },
+        { topic: t('leadershipSkills'), percentage: 71 },
+        { topic: t('problemSolving'), percentage: 88 }
       ]
     }
   };
@@ -58,8 +60,8 @@ const EvaluationFeedback = () => {
       <div className="p-6 max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Evaluation & Feedback</h1>
-          <p className="text-gray-600">Monitor your learning progress and training effectiveness.</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">{t('evaluationFeedback')}</h1>
+          <p className="text-gray-600">{t('monitorLearningProgress')}</p>
         </div>
 
         {/* Quick Actions */}
@@ -72,13 +74,13 @@ const EvaluationFeedback = () => {
                     <MessageSquare className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Post-Training Surveys</h3>
-                    <p className="text-sm text-gray-500">Share your training experience</p>
+                    <h3 className="font-semibold text-gray-900">{t('postTrainingSurveys')}</h3>
+                    <p className="text-sm text-gray-500">{t('shareTrainingExperience')}</p>
                   </div>
                 </div>
                 <Button onClick={handleTakeSurvey} className="bg-blue-600 hover:bg-blue-700">
                   <CheckSquare className="h-4 w-4 mr-2" />
-                  Take Survey
+                  {t('takeSurvey')}
                 </Button>
               </div>
             </CardContent>
@@ -92,13 +94,13 @@ const EvaluationFeedback = () => {
                     <Target className="h-6 w-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Self-Assessment</h3>
-                    <p className="text-sm text-gray-500">Evaluate your skills and progress</p>
+                    <h3 className="font-semibold text-gray-900">{t('selfAssessment')}</h3>
+                    <p className="text-sm text-gray-500">{t('evaluateSkillsProgress')}</p>
                   </div>
                 </div>
                 <Button onClick={handleStartAssessment} className="bg-green-600 hover:bg-green-700">
                   <Award className="h-4 w-4 mr-2" />
-                  Start Assessment
+                  {t('startAssessment')}
                 </Button>
               </div>
             </CardContent>
@@ -111,7 +113,7 @@ const EvaluationFeedback = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Survey Completion</p>
+                  <p className="text-sm font-medium text-gray-600">{t('surveyCompletion')}</p>
                   <p className="text-2xl font-bold text-gray-900">{mockData.surveys.completionRate}%</p>
                 </div>
                 <BarChart3 className="h-8 w-8 text-blue-600" />
@@ -123,7 +125,7 @@ const EvaluationFeedback = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Average Rating</p>
+                  <p className="text-sm font-medium text-gray-600">{t('averageRating')}</p>
                   <p className="text-2xl font-bold text-gray-900 flex items-center gap-1">
                     <Star className="h-5 w-5 text-yellow-500 fill-current" />
                     {mockData.surveys.averageSatisfaction}
@@ -138,7 +140,7 @@ const EvaluationFeedback = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Responses</p>
+                  <p className="text-sm font-medium text-gray-600">{t('totalResponses')}</p>
                   <p className="text-2xl font-bold text-gray-900">{mockData.surveys.totalResponses.toLocaleString()}</p>
                 </div>
                 <Users className="h-8 w-8 text-purple-600" />
@@ -150,7 +152,7 @@ const EvaluationFeedback = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Overall Score</p>
+                  <p className="text-sm font-medium text-gray-600">{t('overallScore')}</p>
                   <p className="text-2xl font-bold text-gray-900">{mockData.selfAssessments.averageScore}%</p>
                 </div>
                 <Target className="h-8 w-8 text-green-600" />
@@ -166,7 +168,7 @@ const EvaluationFeedback = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5 text-green-600" />
-                Skill Assessment
+                {t('skillAssessment')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -187,7 +189,7 @@ const EvaluationFeedback = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-blue-600" />
-                Recent Feedback
+                {t('recentFeedback')}
               </CardTitle>
             </CardHeader>
             <CardContent>

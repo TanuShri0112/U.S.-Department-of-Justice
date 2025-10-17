@@ -2,20 +2,44 @@ import React, { useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { Book, Users } from "lucide-react";
+import { useTranslation } from '@/hooks/useTranslation';
 
-const teachingCourses = [
+const getTeachingCourses = (t) => [
   {
     id: 1,
-    title: "Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention",
+    title: t('principlesAssessmentLearning'),
     image: "/assets/us-1.png",
+    modules: 4,
+    students: 45
+  },
+  {
+    id: 2,
+    title: t('trainingStrategiesFeedback'),
+    image: "/assets/us-2.png",
     modules: 3,
-    students: 120
+    students: 32
+  },
+  {
+    id: 3,
+    title: t('digitalToolsFormativeAssessment'),
+    image: "/assets/us-1.png",
+    modules: 5,
+    students: 28
+  },
+  {
+    id: 4,
+    title: t('designRubricsEvaluationCriteria'),
+    image: "/assets/us-2.png",
+    modules: 4,
+    students: 18
   }
 ];
 
 export default function TeachingCoursesSection() {
   const navigate = useNavigate();
   const scrollContainerRef = useRef(null);
+  const { t } = useTranslation();
+  const teachingCourses = getTeachingCourses(t);
 
   const handleCourseClick = (courseId) => {
     navigate(`/courses/view/${courseId}`);
@@ -29,7 +53,7 @@ export default function TeachingCoursesSection() {
             <div className="p-2 bg-blue-500 rounded-lg shadow-md">
               <Book className="h-5 w-5 text-white" />
             </div>
-            My Courses
+            {t('myCourses')}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
@@ -85,7 +109,7 @@ export default function TeachingCoursesSection() {
                                 courseColor === 'green' ? 'text-green-600' : 'text-purple-600'
                               }`} />
                             </div>
-                            <span className="font-medium">{course.modules} modules</span>
+                            <span className="font-medium">{course.modules} {t('modules')}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
@@ -97,7 +121,7 @@ export default function TeachingCoursesSection() {
                                 courseColor === 'green' ? 'text-green-600' : 'text-purple-600'
                               }`} />
                             </div>
-                            <span className="font-medium">{course.students} students</span>
+                            <span className="font-medium">{course.students} {t('students')}</span>
                           </div>
                         </div>
                       </div>

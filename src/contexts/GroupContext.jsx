@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 /**
  * @typedef {object} Group
@@ -28,36 +29,43 @@ const GroupContext = createContext(undefined);
  * @param {React.ReactNode} props.children - The child components that will consume the context.
  */
 export function GroupProvider({ children }) {
-  const [groups, setGroups] = useState([
-    { 
-      id: 1, 
-      name: 'Law Enforcement Officers', 
-      members: 45, 
-      type: 'Training group', 
-      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&auto=format'
-    },
-    { 
-      id: 2, 
-      name: 'Training Coordinators', 
-      members: 12, 
-      type: 'Professional development', 
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&auto=format'
-    },
-    { 
-      id: 3, 
-      name: 'Youth Advocates', 
-      members: 28, 
-      type: 'Advocacy group', 
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format'
-    },
-    { 
-      id: 4, 
-      name: 'DOJ Compliance Specialists', 
-      members: 18, 
-      type: 'Compliance training', 
-      image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop&auto=format'
-    },
-  ]);
+  const { t } = useTranslation();
+  const [groups, setGroups] = useState([]);
+
+  // Update groups when language changes
+  useEffect(() => {
+    const updatedGroups = [
+      { 
+        id: 1, 
+        name: t('assessmentLearningSpecialists'), 
+        members: 45, 
+        type: t('educationalAssessment'), 
+        image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&auto=format'
+      },
+      { 
+        id: 2, 
+        name: t('trainingStrategiesCoordinators'), 
+        members: 12, 
+        type: t('professionalDevelopment'), 
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&auto=format'
+      },
+      { 
+        id: 3, 
+        name: t('digitalAssessmentTools'), 
+        members: 28, 
+        type: t('technologyIntegration'), 
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format'
+      },
+      { 
+        id: 4, 
+        name: t('rubricsDesignExperts'), 
+        members: 18, 
+        type: t('evaluationDesign'), 
+        image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop&auto=format'
+      },
+    ];
+    setGroups(updatedGroups);
+  }, [t]);
 
   /**
    * Updates a group's data.

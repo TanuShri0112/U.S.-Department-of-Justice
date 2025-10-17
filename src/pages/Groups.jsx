@@ -9,6 +9,7 @@ import { AddGroupDialog } from '@/components/groups/AddGroupDialog';
 import { GroupEditDialog } from '@/components/groups/GroupEditDialog';
 import { GroupOptionsMenu } from '@/components/groups/GroupOptionsMenu';
 import { GroupProvider, useGroup } from '@/contexts/GroupContext';
+import { useTranslation } from '@/hooks/useTranslation';
 import { 
   Select,
   SelectContent,
@@ -33,6 +34,7 @@ const GroupsContent = () => {
   const [isEditGroupOpen, setIsEditGroupOpen] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState(null);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   const { groups, updateGroup, deleteGroup, addGroup } = useGroup();
 
@@ -73,7 +75,7 @@ const GroupsContent = () => {
     const newGroup = {
       name: groupData.name,
       members: 0,
-      type: 'Study group', // Default type
+      type: t('studyGroups'), // Default type
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&auto=format' // Default image
     };
     addGroup(newGroup);
@@ -82,8 +84,8 @@ const GroupsContent = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader 
-        title="My Community Resources" 
-        description="Manage and participate in your enrolled community resources"
+        title={t('myCommunityResources')} 
+        description={t('manageParticipateResources')}
       />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -94,7 +96,7 @@ const GroupsContent = () => {
             className="flex items-center gap-2"
           >
             <Compass className="h-4 w-4" />
-            Discover Groups
+            {t('discoverGroups')}
           </Button>
         </div>
       </div>
@@ -104,7 +106,7 @@ const GroupsContent = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input 
             className="pl-9" 
-            placeholder="Search my groups..." 
+            placeholder={t('searchMyGroups')} 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -113,13 +115,13 @@ const GroupsContent = () => {
         <div className="flex items-center gap-2">
           <Select>
             <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder="All types" />
+              <SelectValue placeholder={t('allTypes')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All types</SelectItem>
-              <SelectItem value="interest">Interest groups</SelectItem>
-              <SelectItem value="study">Study groups</SelectItem>
-              <SelectItem value="business">Business groups</SelectItem>
+              <SelectItem value="all">{t('allTypes')}</SelectItem>
+              <SelectItem value="interest">{t('interestGroups')}</SelectItem>
+              <SelectItem value="study">{t('studyGroups')}</SelectItem>
+              <SelectItem value="business">{t('businessGroups')}</SelectItem>
             </SelectContent>
           </Select>
           
@@ -137,7 +139,7 @@ const GroupsContent = () => {
               />
               <div className="absolute top-2 right-2 flex items-center gap-2">
                 <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200">
-                  Enrolled
+                  {t('enrolled')}
                 </Badge>
                 <div className="bg-white/90 rounded-md">
                   <GroupOptionsMenu 
@@ -159,7 +161,7 @@ const GroupsContent = () => {
             <CardContent>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Members</span>
+                  <span className="text-muted-foreground">{t('members')}</span>
                   <span className="font-medium">{group.members}</span>
                 </div>
                 <Button 
@@ -167,7 +169,7 @@ const GroupsContent = () => {
                   className="w-full bg-blue-500 hover:bg-blue-600 transition-colors"
                   onClick={() => handleViewGroup(group.id)}
                 >
-                  Open Group
+                  {t('openGroup')}
                 </Button>
               </div>
             </CardContent>

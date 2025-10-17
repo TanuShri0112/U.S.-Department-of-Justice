@@ -11,33 +11,53 @@ export function AnnouncementSection() {
   const announcements = [
     {
       id: 1,
-      title: t('welcomeTitle'),
-      source: 'CMDS Training Coordinator',
+      title: t('principlesAssessmentLearning'),
+      source: 'Educational Assessment Team',
       time: '2 hours ago',
-      content: t('welcomeSubtitle'),
+      content: t('assessmentLearningDescription'),
       type: 'course',
       priority: 'high',
-      course: 'Law Enforcement'
+      course: t('principlesAssessmentLearning')
+    },
+    {
+      id: 2,
+      title: t('trainingStrategiesFeedback'),
+      source: 'Training Development Department',
+      time: '1 day ago',
+      content: t('trainingStrategiesDescription'),
+      type: 'workshop',
+      priority: 'medium',
+      course: t('trainingStrategiesFeedback')
+    },
+    {
+      id: 3,
+      title: t('digitalToolsFormativeAssessment'),
+      source: 'Digital Learning Team',
+      time: '3 days ago',
+      content: t('digitalToolsDescription'),
+      type: 'course',
+      priority: 'high',
+      course: t('digitalToolsFormativeAssessment')
     },
     {
       id: 4,
-      title: 'CMDS Compliance Updates Workshop',
-      source: 'Legal Training Department',
+      title: t('designRubricsEvaluationCriteria'),
+      source: 'Assessment Design Team',
       time: '5 days ago',
-      content: 'Join our upcoming workshop on latest Corporación Municipal de Desarrollo Social de Antofagasta compliance requirements and regulatory updates.',
+      content: t('rubricsDesignDescription'),
       type: 'workshop',
       priority: 'medium',
-      course: 'Law Enforcement'
+      course: t('designRubricsEvaluationCriteria')
     },
     {
       id: 5,
-      title: 'Professional Development Survey',
-      source: 'Training Evaluation Team',
+      title: t('educationalAssessmentSurvey'),
+      source: 'Educational Research Team',
       time: '1 week ago',
-      content: 'Please complete the training effectiveness survey to help us improve our professional development programs.',
+      content: t('assessmentSurveyContent'),
       type: 'survey',
       priority: 'low',
-      course: 'General'
+      course: t('generalEducation')
     }
   ];
 

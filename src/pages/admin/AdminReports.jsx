@@ -15,8 +15,10 @@ import {
 } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const AdminReports = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('overview');
   const [dateRange, setDateRange] = useState('30');
   const [selectedDepartment, setSelectedDepartment] = useState('All');
@@ -42,15 +44,17 @@ const AdminReports = () => {
   ];
 
   const coursePerformanceData = [
-    { course: 'Law Enforcement', enrolled: 245, completed: 198, avgScore: 87 },
-    { course: 'Education', enrolled: 189, completed: 156, avgScore: 92 },
-    { course: 'Youth Advocacy', enrolled: 156, completed: 134, avgScore: 85 }
+    { course: t('principlesAssessmentLearning'), enrolled: 245, completed: 198, avgScore: 87 },
+    { course: t('trainingStrategiesFeedback'), enrolled: 189, completed: 156, avgScore: 92 },
+    { course: t('digitalToolsFormativeAssessment'), enrolled: 156, completed: 134, avgScore: 85 },
+    { course: t('designRubricsEvaluationCriteria'), enrolled: 134, completed: 112, avgScore: 89 }
   ];
 
   const departmentData = [
-    { name: 'Police Departments', value: 45, color: '#3B82F6' },
-    { name: 'Educational Institutions', value: 32, color: '#10B981' },
-    { name: 'Community Organizations', value: 23, color: '#F59E0B' }
+    { name: t('principlesAssessmentLearning'), value: 45, color: '#3B82F6' },
+    { name: t('trainingStrategiesFeedback'), value: 32, color: '#10B981' },
+    { name: t('digitalToolsFormativeAssessment'), value: 23, color: '#F59E0B' },
+    { name: t('designRubricsEvaluationCriteria'), value: 20, color: '#8B5CF6' }
   ];
 
   const completionTrendData = [
@@ -143,10 +147,10 @@ const AdminReports = () => {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: BarChart3 },
-    { id: 'enrollment', label: 'Enrollment', icon: Users },
-    { id: 'performance', label: 'Performance', icon: TrendingUp },
-    { id: 'completion', label: 'Completion', icon: BookOpen }
+    { id: 'overview', label: t('overview'), icon: BarChart3 },
+    { id: 'enrollment', label: t('enrollment'), icon: Users },
+    { id: 'performance', label: t('performance'), icon: TrendingUp },
+    { id: 'completion', label: t('completion'), icon: BookOpen }
   ];
 
   return (
@@ -182,9 +186,9 @@ const AdminReports = () => {
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                Administrative Reports
+                {t('administrativeReports')}
               </h1>
-              <p className="text-gray-600 mt-1 text-lg">Comprehensive analytics and reporting dashboard</p>
+              <p className="text-gray-600 mt-1 text-lg">{t('comprehensiveAnalyticsDashboard')}</p>
             </div>
           </div>
           <div className="flex items-center gap-4">

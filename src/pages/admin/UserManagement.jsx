@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Users, Search, Filter, Plus, Edit, Trash2, Mail, Shield, UserCheck, UserX, Eye, X } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const UserManagement = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('all');
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -9,10 +11,10 @@ const UserManagement = () => {
   const [users, setUsers] = useState([
     {
       id: 1,
-      name: "Dr. Sarah Johnson",
-      email: "sarah.johnson@doj.gov",
+      name: "Dr. Maria Rodriguez",
+      email: "maria.rodriguez@cmdsantofagasta.cl",
       role: "Instructor",
-      department: "Law Enforcement Training",
+      department: t('principlesAssessmentLearning'),
       status: "Active",
       lastLogin: "2024-01-15 14:30",
       joinDate: "2023-06-15",
@@ -22,10 +24,10 @@ const UserManagement = () => {
     },
     {
       id: 2,
-      name: "Prof. Michael Chen",
-      email: "michael.chen@doj.gov",
+      name: "Prof. Carlos Mendez",
+      email: "carlos.mendez@cmdsantofagasta.cl",
       role: "Instructor",
-      department: "Education Training",
+      department: t('trainingStrategiesFeedback'),
       status: "Active",
       lastLogin: "2024-01-15 12:15",
       joinDate: "2023-08-20",
@@ -35,10 +37,10 @@ const UserManagement = () => {
     },
     {
       id: 3,
-      name: "Capt. David Wilson",
-      email: "david.wilson@police.gov",
+      name: "Dr. Ana Gutierrez",
+      email: "ana.gutierrez@cmdsantofagasta.cl",
       role: "Student",
-      department: "Metro Police Department",
+      department: t('digitalToolsFormativeAssessment'),
       status: "Active",
       lastLogin: "2024-01-15 10:45",
       joinDate: "2024-01-10",
@@ -48,10 +50,10 @@ const UserManagement = () => {
     },
     {
       id: 4,
-      name: "Dr. Lisa Rodriguez",
-      email: "lisa.rodriguez@doj.gov",
+      name: "Dr. Luis Fernandez",
+      email: "luis.fernandez@cmdsantofagasta.cl",
       role: "Instructor",
-      department: "Youth Advocacy Training",
+      department: t('designRubricsEvaluationCriteria'),
       status: "Inactive",
       lastLogin: "2024-01-10 16:20",
       joinDate: "2023-09-15",
@@ -62,9 +64,9 @@ const UserManagement = () => {
     {
       id: 5,
       name: "Emily Davis",
-      email: "emily.davis@school.edu",
+      email: "emily.davis@cmdsantofagasta.cl",
       role: "Student",
-      department: "Education",
+      department: t('principlesAssessmentLearning'),
       status: "Active",
       lastLogin: "2024-01-14 09:30",
       joinDate: "2024-01-05",

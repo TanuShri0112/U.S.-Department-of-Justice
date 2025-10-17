@@ -1,46 +1,48 @@
 import React, { useState } from 'react';
 import { Bell, Send, Edit, Trash2, Plus, Users, Eye, Calendar, X } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const AnnouncementManagement = () => {
+  const { t } = useTranslation();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingAnnouncement, setEditingAnnouncement] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
   const [announcements, setAnnouncements] = useState([
     {
       id: 1,
-      title: "New Training Module Available",
-      content: "We're excited to announce the launch of our new Advanced Law Enforcement Techniques module. This comprehensive training covers the latest protocols and procedures.",
+      title: t('newTrainingModule'),
+      content: t('newTrainingModuleContent'),
       priority: "High",
-      targetAudience: "All Users",
+      targetAudience: t('allUsers'),
       status: "Published",
       publishDate: "2024-01-10",
-      author: "Admin Team",
+      author: t('adminTeam'),
       views: 245,
-      category: "Training Update"
+      category: t('trainingUpdate')
     },
     {
       id: 2,
-      title: "System Maintenance Scheduled",
-      content: "Scheduled maintenance will occur on Sunday, January 21st from 2:00 AM to 6:00 AM EST. During this time, the platform will be temporarily unavailable.",
+      title: t('systemMaintenance'),
+      content: t('systemMaintenanceContent'),
       priority: "Medium",
-      targetAudience: "All Users",
+      targetAudience: t('allUsers'),
       status: "Published",
       publishDate: "2024-01-12",
-      author: "IT Department",
+      author: t('itDepartment'),
       views: 189,
-      category: "System Update"
+      category: t('systemUpdate')
     },
     {
       id: 3,
-      title: "Monthly Progress Report Available",
-      content: "The December 2023 progress reports are now available for review. Please check your dashboard for detailed analytics and completion statistics.",
+      title: t('monthlyProgress'),
+      content: t('monthlyProgressContent'),
       priority: "Low",
-      targetAudience: "Instructors",
+      targetAudience: t('instructors'),
       status: "Draft",
       publishDate: "2024-01-15",
-      author: "Reporting Team",
+      author: t('reportingTeam'),
       views: 0,
-      category: "Report"
+      category: t('report')
     }
   ]);
 

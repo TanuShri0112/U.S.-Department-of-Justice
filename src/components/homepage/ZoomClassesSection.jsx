@@ -17,61 +17,61 @@ const ZoomClassesSection = () => {
   const [classes, setClasses] = useState([
     {
       id: 1,
-      title: t('welcomeTitle'),
+      title: t('principlesAssessmentLearning'),
       date: "Wed, Jun 12",
       time: "10:00 AM",
       duration: "1 hour",
-      description: t('welcomeSubtitle'),
+      description: t('assessmentLearningDescription'),
       zoomLink: "https://zoom.us/j/123456789",
       meetingId: "123 456 789",
       attendance: 0,
       totalStudents: 25,
       isCompleted: false,
-      instructor: "John Smith",
-      course: "Law Enforcement"
+      instructor: "Dr. Maria Rodriguez",
+      course: t('principlesAssessmentLearning')
     },
     {
       id: 2,
-      title: "Educator Professional Development",
+      title: t('trainingStrategiesFeedback'),
       date: "Sat, Jun 15",
       time: "2:00 PM",
       duration: "2 hours",
-      description: "Professional Learning in Education",
+      description: t('trainingStrategiesDescription'),
       zoomLink: "https://zoom.us/j/987654321",
       meetingId: "987 654 321",
       attendance: 0,
       totalStudents: 30,
       isCompleted: false,
-      instructor: "Sarah Johnson",
-      course: "Education"
+      instructor: "Prof. Carlos Mendez",
+      course: t('trainingStrategiesFeedback')
     },
     {
       id: 3,
-      title: "Youth Advocate Training Session",
+      title: t('digitalToolsFormativeAssessment'),
       date: "Sat, Jun 8",
       time: "11:00 AM",
       duration: "1.5 hours",
-      description: "Needs Assessment in Youth Advocacy",
+      description: t('digitalToolsDescription'),
       attendance: 18,
       totalStudents: 25,
-      recordingUrl: "https://example.com/recording/youth-advocate-training.mp4",
+      recordingUrl: "https://example.com/recording/digital-tools-assessment.mp4",
       isCompleted: true,
-      instructor: "Michael Brown",
-      course: "Youth Development"
+      instructor: "Dr. Ana Gutierrez",
+      course: t('digitalToolsFormativeAssessment')
     },
     {
       id: 4,
-      title: "DOJ Compliance Updates",
+      title: t('designRubricsEvaluationCriteria'),
       date: "Wed, Jun 5",
       time: "3:00 PM",
       duration: "1 hour",
-      description: "Latest updates in Corporación Municipal de Desarrollo Social de Antofagasta compliance requirements",
+      description: t('rubricsDesignDescription'),
       attendance: 22,
       totalStudents: 30,
-      recordingUrl: "https://example.com/recording/doj-compliance.mp4",
+      recordingUrl: "https://example.com/recording/rubrics-design.mp4",
       isCompleted: true,
-      instructor: "Jennifer Davis",
-      course: "Law Enforcement"
+      instructor: "Dr. Luis Fernandez",
+      course: t('designRubricsEvaluationCriteria')
     }
   ]);
 

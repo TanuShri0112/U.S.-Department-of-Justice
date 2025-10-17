@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, Users, MapPin, Plus, Edit, Trash2, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const CalendarManagement = () => {
+  const { t } = useTranslation();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [viewMode, setViewMode] = useState('month'); // 'month', 'week', or 'day'
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -9,36 +11,47 @@ const CalendarManagement = () => {
   const [events, setEvents] = useState([
     {
       id: 1,
-      title: "Law Enforcement Training Session",
+      title: t('principlesAssessmentLearning'),
       date: "2024-01-15",
       time: "09:00",
       duration: 120,
-      type: "Training",
+      type: t('training'),
       location: "Conference Room A",
       attendees: 25,
-      instructor: "Capt. Sarah Johnson"
+      instructor: "Dr. Maria Rodriguez"
     },
     {
       id: 2,
-      title: "Monthly Team Meeting",
+      title: t('trainingStrategiesFeedback'),
       date: "2024-01-16",
       time: "14:00",
       duration: 60,
-      type: "Meeting",
+      type: t('meeting'),
       location: "Main Conference Room",
       attendees: 12,
-      instructor: "Chief Michael Davis"
+      instructor: "Prof. Carlos Mendez"
     },
     {
       id: 3,
-      title: "Youth Advocacy Workshop",
+      title: t('digitalToolsFormativeAssessment'),
       date: "2024-01-18",
       time: "10:00",
       duration: 90,
-      type: "Workshop",
+      type: t('workshop'),
       location: "Community Center",
       attendees: 30,
-      instructor: "Dr. Lisa Rodriguez"
+      instructor: "Dr. Ana Gutierrez"
+    },
+    {
+      id: 4,
+      title: t('designRubricsEvaluationCriteria'),
+      date: "2024-01-20",
+      time: "11:00",
+      duration: 80,
+      type: t('assessment'),
+      location: "Training Center",
+      attendees: 20,
+      instructor: "Dr. Luis Fernandez"
     }
   ]);
 
@@ -47,18 +60,18 @@ const CalendarManagement = () => {
     date: '',
     time: '',
     duration: 60,
-    type: 'Training',
+    type: t('training'),
     location: '',
     attendees: 0,
     instructor: ''
   });
 
   const eventTypes = [
-    { value: 'Training', color: 'bg-blue-100 text-blue-700' },
-    { value: 'Meeting', color: 'bg-green-100 text-green-700' },
-    { value: 'Workshop', color: 'bg-purple-100 text-purple-700' },
-    { value: 'Webinar', color: 'bg-orange-100 text-orange-700' },
-    { value: 'Assessment', color: 'bg-red-100 text-red-700' }
+    { value: t('training'), color: 'bg-blue-100 text-blue-700' },
+    { value: t('meeting'), color: 'bg-green-100 text-green-700' },
+    { value: t('workshop'), color: 'bg-purple-100 text-purple-700' },
+    { value: t('webinar'), color: 'bg-orange-100 text-orange-700' },
+    { value: t('assessment'), color: 'bg-red-100 text-red-700' }
   ];
 
   const getWeekDays = (date) => {
@@ -183,9 +196,9 @@ const CalendarManagement = () => {
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Calendar Management
+                {t('calendarManagement')}
               </h1>
-              <p className="text-gray-600 mt-1 text-lg">Schedule and manage training sessions, meetings, and events</p>
+              <p className="text-gray-600 mt-1 text-lg">{t('scheduleManageEvents')}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -198,14 +211,14 @@ const CalendarManagement = () => {
               className="px-4 py-2 text-blue-600 border border-blue-200 rounded-xl hover:bg-blue-50 transition-all duration-200 flex items-center gap-2 font-medium"
             >
               <Calendar className="w-4 h-4" />
-              Today
+              {t('today')}
             </button>
             <button
               onClick={() => setIsCreateModalOpen(true)}
               className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-2 font-medium"
             >
               <Plus className="w-4 h-4" />
-              Add Event
+              {t('addEvent')}
             </button>
           </div>
         </div>
