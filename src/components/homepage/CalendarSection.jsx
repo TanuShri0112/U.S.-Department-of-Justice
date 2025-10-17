@@ -9,29 +9,19 @@ export function CalendarSection() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   
-  // Corporación Municipal de Desarrollo Social de Antofagasta Training Events
+  // Events replaced with items from training schedule (image 1)
   const events = {
     15: [
-      { id: 1, title: 'Law Enforcement Module 1: Foundations', time: '10:00 AM - 12:00 PM', type: 'module' },
-      { id: 2, title: 'DOJ & POST Training Requirements', time: '2:00 PM - 3:30 PM', type: 'lesson' }
+      { id: 1, title: 'Principles of Assessment for Learning', time: '09:00 AM', type: 'training' },
     ],
     16: [
-      { id: 3, title: 'Educator Training Module 1: Professional Learning', time: '9:00 AM - 11:00 AM', type: 'module' }
+      { id: 2, title: 'Training Strategies and Feedback', time: '02:00 PM', type: 'meeting' },
     ],
     18: [
-      { id: 4, title: 'Ethical & Civil Rights Foundations', time: '1:00 PM - 2:30 PM', type: 'lesson' },
-      { id: 5, title: 'Youth Advocate Module 1: Advocacy Foundations', time: '3:00 PM - 5:00 PM', type: 'module' }
+      { id: 3, title: 'Use of Digital Tools for Formative Assessment', time: '10:00 AM', type: 'workshop' },
     ],
     20: [
-      { id: 6, title: 'Trauma-informed Instruction for First Responders', time: '10:00 AM - 11:30 AM', type: 'lesson' },
-      { id: 7, title: 'Stakeholder Analysis & Needs Assessment', time: '2:00 PM - 4:00 PM', type: 'module' }
-    ],
-    22: [
-      { id: 8, title: 'Customized Curriculum & Scenario Design', time: '9:00 AM - 11:30 AM', type: 'module' },
-      { id: 9, title: 'Assessment & Evaluation Workshop', time: '1:00 PM - 3:00 PM', type: 'workshop' }
-    ],
-    25: [
-      { id: 10, title: 'Final Certification Assessment', time: '10:00 AM - 12:00 PM', type: 'assessment' }
+      { id: 4, title: 'Design of Rubrics and Evaluation Criteria', time: '11:00 AM', type: 'assessment' },
     ]
   };
 
@@ -81,6 +71,10 @@ export function CalendarSection() {
 
   const getEventTypeStyles = (type) => {
     switch (type) {
+      case 'training':
+        return 'bg-blue-50 text-blue-700 border-blue-200';
+      case 'meeting':
+        return 'bg-green-50 text-green-700 border-green-200';
       case 'module':
         return 'bg-blue-50 text-blue-700 border-blue-200';
       case 'lesson':

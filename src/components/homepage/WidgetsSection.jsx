@@ -66,7 +66,22 @@ export default function WidgetsSection() {
           </CardTitle>
         </CardHeader>
         <CardContent className="px-6 pb-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-4">
+            {/* Professional quick links row */}
+            <div className="grid grid-cols-3 gap-3">
+              <button onClick={handleCatalogClick} className="rounded-xl border bg-white/90 px-3 py-3 text-sm text-slate-700 hover:shadow-md hover:-translate-y-0.5 transition-all">
+                Catalog
+              </button>
+              <button onClick={handleGroupsClick} className="rounded-xl border bg-white/90 px-3 py-3 text-sm text-slate-700 hover:shadow-md hover:-translate-y-0.5 transition-all">
+                Groups
+              </button>
+              <button onClick={() => navigate('/messages')} className="rounded-xl border bg-white/90 px-3 py-3 text-sm text-slate-700 hover:shadow-md hover:-translate-y-0.5 transition-all">
+                Messages
+              </button>
+            </div>
+
+            {/* Catalog and groups cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Catalog Widget */}
             <motion.div 
               whileHover={{ y: -2 }} 
@@ -125,7 +140,7 @@ export default function WidgetsSection() {
                   </div>
                 </div>
               </div>
-        </motion.div>
+            </motion.div>
 
         {/* Groups Widget */}
             <motion.div 
@@ -188,6 +203,7 @@ export default function WidgetsSection() {
               </div>
             </motion.div>
               </div>
+            </div>
             </CardContent>
           </Card>
     </section>

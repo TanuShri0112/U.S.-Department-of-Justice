@@ -504,6 +504,16 @@ export const translations = {
             progressOverTime: "Progress Over Time",
             progress: "Progress",
             vsLast28Days: "vs last 28 days",
+
+            // Notifications
+            notificationsTitle: "Notifications",
+            notifNewCourseTitle: "New course available",
+            notifNewCourseDesc: "Advanced Risk Assessment is now open for enrollment",
+            notifAssignmentGradedTitle: "Assignment graded",
+            notifAssignmentGradedDesc: "Your Module 4 assignment received a score of 95%",
+            notifReminderTitle: "Reminder",
+            notifReminderDesc: "Live session starts in 30 minutes",
+            markAllAsRead: "Mark All as Read",
   },
   
   es: {
@@ -1009,6 +1019,16 @@ export const translations = {
             progressOverTime: "Progreso en el Tiempo",
             progress: "Progreso",
             vsLast28Days: "vs últimos 28 días",
+
+            // Notifications
+            notificationsTitle: "Notificaciones",
+            notifNewCourseTitle: "Nuevo curso disponible",
+            notifNewCourseDesc: "Evaluación de Riesgo Avanzada ya está disponible para inscripción",
+            notifAssignmentGradedTitle: "Tarea calificada",
+            notifAssignmentGradedDesc: "Tu tarea del Módulo 4 recibió una puntuación de 95%",
+            notifReminderTitle: "Recordatorio",
+            notifReminderDesc: "La sesión en vivo comienza en 30 minutos",
+            markAllAsRead: "Marcar todo como leído",
   }
 };
 
