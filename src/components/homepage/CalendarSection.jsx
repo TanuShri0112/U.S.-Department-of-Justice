@@ -3,34 +3,36 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function CalendarSection() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   
   // Events replaced with items from training schedule (image 1)
   const events = {
     15: [
-      { id: 1, title: 'Principles of Assessment for Learning', time: '09:00 AM', type: 'training' },
+      { id: 1, title: t('principlesAssessmentLearning'), time: '09:00 AM', type: 'training' },
     ],
     16: [
-      { id: 2, title: 'Training Strategies and Feedback', time: '02:00 PM', type: 'meeting' },
+      { id: 2, title: t('trainingStrategiesFeedback'), time: '02:00 PM', type: 'meeting' },
     ],
     18: [
-      { id: 3, title: 'Use of Digital Tools for Formative Assessment', time: '10:00 AM', type: 'workshop' },
+      { id: 3, title: t('digitalToolsFormativeAssessment'), time: '10:00 AM', type: 'workshop' },
     ],
     20: [
-      { id: 4, title: 'Design of Rubrics and Evaluation Criteria', time: '11:00 AM', type: 'assessment' },
+      { id: 4, title: t('designRubricsEvaluationCriteria'), time: '11:00 AM', type: 'assessment' },
     ]
   };
 
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    t('january'), t('february'), t('march'), t('april'), t('may'), t('june'),
+    t('july'), t('august'), t('september'), t('october'), t('november'), t('december')
   ];
 
-  const daysOfWeek = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+  const daysOfWeek = [t('su'), t('mo'), t('tu'), t('we'), t('th'), t('fr'), t('sa')];
 
   const getDaysInMonth = (date) => {
     const year = date.getFullYear();
@@ -166,7 +168,7 @@ export function CalendarSection() {
           {/* Events Section */}
           <div className="mt-4">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">
-              Events for {selectedDate} {months[currentDate.getMonth()]}
+              {t('eventsFor')} {selectedDate} {months[currentDate.getMonth()]}
             </h3>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {events[selectedDate] && events[selectedDate].length > 0 ? (
@@ -181,7 +183,7 @@ export function CalendarSection() {
                       <p className="text-xs text-gray-600">{event.time}</p>
                     </div>
                       <span className={`text-xs px-2 py-1 rounded-full border font-medium ${getEventTypeStyles(event.type)}`}>
-                        {event.type}
+                        {t(event.type)}
                     </span>
                   </div>
                 </div>
@@ -189,7 +191,7 @@ export function CalendarSection() {
               ) : (
                 <div className="text-center py-4 text-gray-500">
                   <CalendarIcon className="w-6 h-6 mx-auto mb-2 text-gray-400" />
-                  <p className="text-xs">No events scheduled</p>
+                  <p className="text-xs">{t('noEventsScheduled')}</p>
             </div>
           )}
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Check, Clock, ChevronRight, Plus, User } from 'lucide-react';
@@ -10,11 +10,14 @@ export function TaskListSection() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState('All');
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState([]);
+
+  // Function to get translated tasks
+  const getTranslatedTasks = () => [
     {
       id: 1,
       title: t('principlesAssessmentLearning'),
-      description: t('assessmentLearningDescription'),
+      description: t('principlesAssessmentDescription'),
       dueDate: '2023-07-10',
       time: '10:00 PM - 11:45 PM',
       completed: false,
@@ -64,7 +67,12 @@ export function TaskListSection() {
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format'
       ]
     }
-  ]);
+  ];
+
+  // Update tasks when language changes
+  useEffect(() => {
+    setTasks(getTranslatedTasks());
+  }, [t]);
 
   const toggleTask = (taskId) => {
     setTasks(tasks.map(task => 
@@ -95,12 +103,10 @@ export function TaskListSection() {
 
   const getFilteredTasks = () => {
     switch (activeFilter) {
-      case 'Open':
+      case 'open':
         return tasks.filter(task => !task.completed);
-      case 'Closed':
+      case 'closed':
         return tasks.filter(task => task.completed);
-      case 'Archived':
-        return tasks.filter(task => task.archived);
       default:
         return tasks;
     }
@@ -144,8 +150,8 @@ export function TaskListSection() {
 
         {/* Filter Tabs */}
         <div className="flex items-center gap-6">
-          {[t('all'), t('open'), t('closed'), t('archived')].map((filter, index) => {
-            const filterKeys = ['all', 'open', 'closed', 'archived'];
+          {[t('all'), t('open'), t('closed')].map((filter, index) => {
+            const filterKeys = ['all', 'open', 'closed'];
             const currentFilter = filterKeys[index];
             const count = currentFilter === 'all' ? tasks.length : 
                          currentFilter === 'open' ? openTasks.length :

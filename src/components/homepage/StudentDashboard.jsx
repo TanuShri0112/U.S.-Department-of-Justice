@@ -10,7 +10,6 @@ import ZoomClassesSection from './ZoomClassesSection';
 import TaskListSection from './TaskListSection';
 import {AnnouncementSection} from './AnnouncementSection';
 import {CalendarSection} from './CalendarSection';
-import WidgetsSection from './WidgetsSection';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -80,15 +79,15 @@ export function StudentDashboard() {
         <div className="lg:col-span-12">
           <div className="flex items-center justify-between rounded-2xl border bg-white/70 backdrop-blur px-4 sm:px-6 py-3 shadow-sm">
             <div className="flex items-center gap-3">
-              <span className="inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-1 text-xs font-medium text-white shadow-sm">Student Dashboard</span>
-              <span className="hidden sm:inline text-slate-600">Have a productive day!</span>
+              <span className="inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-1 text-xs font-medium text-white shadow-sm">{t('studentDashboard')}</span>
+              <span className="hidden sm:inline text-slate-600">{t('haveProductiveDay')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Button variant="outline" className="gap-2 hover:shadow-sm" onClick={() => navigate('/calendar')}>
-                <Calendar className="h-4 w-4" /> Calendar
+                <Calendar className="h-4 w-4" /> {t('calendar')}
               </Button>
               <Button className="gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-md" onClick={() => navigate('/tasks')}>
-                <Plus className="h-4 w-4" /> New Task
+                <Plus className="h-4 w-4" /> {t('newTask')}
               </Button>
             </div>
           </div>
@@ -156,9 +155,6 @@ export function StudentDashboard() {
             </div>
             <div className="transition-shadow hover:shadow-lg rounded-2xl">
               <AnnouncementSection />
-            </div>
-            <div className="transition-shadow hover:shadow-lg rounded-2xl">
-              <WidgetsSection />
             </div>
           </div>
         </div>

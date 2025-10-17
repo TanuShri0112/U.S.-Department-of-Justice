@@ -7,31 +7,10 @@ import { useTranslation } from '@/hooks/useTranslation';
 const getTeachingCourses = (t) => [
   {
     id: 1,
-    title: t('principlesAssessmentLearning'),
-    image: "/assets/us-1.png",
-    modules: 4,
-    students: 45
-  },
-  {
-    id: 2,
-    title: t('trainingStrategiesFeedback'),
-    image: "/assets/us-2.png",
+    title: t('municipalCorporationAntofagasta'),
+    image: "/assets/course-cmds.png",
     modules: 3,
-    students: 32
-  },
-  {
-    id: 3,
-    title: t('digitalToolsFormativeAssessment'),
-    image: "/assets/us-1.png",
-    modules: 5,
-    students: 28
-  },
-  {
-    id: 4,
-    title: t('designRubricsEvaluationCriteria'),
-    image: "/assets/us-2.png",
-    modules: 4,
-    students: 18
+    students: 120
   }
 ];
 

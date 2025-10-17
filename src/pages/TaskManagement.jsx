@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,65 +10,75 @@ import { Plus, CheckCircle, Calendar, Clock, Edit, Trash2, ArrowLeft } from 'luc
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const TaskManagement = () => {
   const navigate = useNavigate();
-  const [tasks, setTasks] = useState([
+  const { t } = useTranslation();
+  const [tasks, setTasks] = useState([]);
+
+  // Function to get translated tasks
+  const getTranslatedTasks = () => [
     {
       id: 1,
-      title: 'Review Law Enforcement Module 1 Content',
-      description: 'Review and update Law Enforcement Training Module 1: Foundations content for accuracy and compliance',
-      deadline: 'Today',
+      title: t('principlesAssessmentLearning'),
+      description: t('principlesAssessmentDescription'),
+      deadline: t('today'),
       priority: 'high',
       status: 'pending',
-      category: 'Course Development'
+      category: t('courseDevelopment')
     },
     {
       id: 2,
-      title: 'Grade Educator Training Assessments',
-      description: 'Evaluate recent Educator Professional Development assessments and provide detailed feedback to participants',
-      deadline: 'Tomorrow',
+      title: t('trainingStrategiesFeedback'),
+      description: t('trainingStrategiesDescription'),
+      deadline: t('tomorrow'),
       priority: 'medium',
       status: 'in-progress',
-      category: 'Assessment'
+      category: t('assessment')
     },
     {
       id: 3,
-      title: 'Prepare Youth Advocate Certification Exam',
-      description: 'Create comprehensive exam questions for Youth Advocate Training Module 1 final assessment',
-      deadline: 'Next week',
+      title: t('digitalToolsFormativeAssessment'),
+      description: t('digitalToolsDescription'),
+      deadline: t('nextWeek'),
       priority: 'high',
       status: 'pending',
-      category: 'Assessment'
+      category: t('assessment')
     },
     {
       id: 4,
-      title: 'Update DOJ Compliance Training Materials',
-      description: 'Update Corporación Municipal de Desarrollo Social de Antofagasta compliance training materials with latest regulatory requirements',
-      deadline: 'In 2 weeks',
+      title: t('designRubricsEvaluationCriteria'),
+      description: t('rubricsDesignDescription'),
+      deadline: t('inTwoWeeks'),
       priority: 'medium',
       status: 'pending',
-      category: 'Content Updates'
+      category: t('contentUpdates')
     },
     {
       id: 5,
-      title: 'Schedule Training Instructor Sessions',
-      description: 'Set up training schedule for law enforcement, education, and youth development instructors',
-      deadline: 'Next month',
+      title: t('conductTrainingSession'),
+      description: t('conductTrainingDescription'),
+      deadline: t('nextMonth'),
       priority: 'low',
       status: 'completed',
-      category: 'Administration'
+      category: t('administration')
     },
     {
       id: 6,
-      title: 'Review Stakeholder Analysis Module',
-      description: 'Final review of Stakeholder Analysis & Needs Assessment module content before publication',
-      deadline: 'This Friday',
+      title: t('reviewStakeholderAnalysis'),
+      description: t('reviewStakeholderDescription'),
+      deadline: t('thisFriday'),
       priority: 'high',
       status: 'pending',
-      category: 'Course Development'
+      category: t('courseDevelopment')
     },
-  ]);
+  ];
+
+  // Update tasks when language changes
+  useEffect(() => {
+    setTasks(getTranslatedTasks());
+  }, [t]);
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
@@ -169,79 +179,79 @@ const TaskManagement = () => {
           className="flex items-center gap-2"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Home
+          {t('backToHome')}
         </Button>
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-gray-900">Task Management</h1>
-          <p className="text-gray-600 mt-2">Organize and track your tasks efficiently</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('taskManagement')}</h1>
+          <p className="text-gray-600 mt-2">{t('organizeTrackTasks')}</p>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
-              Add New Task
+              {t('addNewTask')}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-lg">
             <DialogHeader>
-              <DialogTitle>Create New Task</DialogTitle>
+              <DialogTitle>{t('createNewTask')}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <Input
-                placeholder="Task title"
+                placeholder={t('taskTitle')}
                 value={newTask.title}
                 onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
               />
               <Textarea
-                placeholder="Task description"
+                placeholder={t('taskDescription')}
                 value={newTask.description}
                 onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
                 rows={3}
               />
               <Input
-                placeholder="Deadline (e.g., Today, Tomorrow, Next week)"
+                placeholder={t('deadlinePlaceholder')}
                 value={newTask.deadline}
                 onChange={(e) => setNewTask({ ...newTask, deadline: e.target.value })}
               />
               <Select value={newTask.priority} onValueChange={(value) => setNewTask({ ...newTask, priority: value })}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Priority" />
+                  <SelectValue placeholder={t('priority')} />
                 </SelectTrigger>
                 <SelectContent>
                   {priorities.map(priority => (
                     <SelectItem key={priority} value={priority}>
-                      {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                      {t(priority)}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               <Select value={newTask.status} onValueChange={(value) => setNewTask({ ...newTask, status: value })}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Status" />
+                  <SelectValue placeholder={t('status')} />
                 </SelectTrigger>
                 <SelectContent>
                   {statuses.map(status => (
                     <SelectItem key={status} value={status}>
-                      {status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                      {t(status)}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               <Select value={newTask.category} onValueChange={(value) => setNewTask({ ...newTask, category: value })}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Category" />
+                  <SelectValue placeholder={t('category')} />
                 </SelectTrigger>
                 <SelectContent>
                   {categories.map(category => (
                     <SelectItem key={category} value={category}>
-                      {category}
+                      {t(category)}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               <div className="flex gap-2">
-                <Button onClick={addTask} className="flex-1">Add Task</Button>
-                <Button variant="outline" onClick={() => setIsAddDialogOpen(false)} className="flex-1">Cancel</Button>
+                <Button onClick={addTask} className="flex-1">{t('addTask')}</Button>
+                <Button variant="outline" onClick={() => setIsAddDialogOpen(false)} className="flex-1">{t('cancel')}</Button>
               </div>
             </div>
           </DialogContent>
