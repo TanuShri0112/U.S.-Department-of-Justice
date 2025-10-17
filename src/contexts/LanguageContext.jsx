@@ -12,8 +12,8 @@ export const useLanguage = () => {
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
-    // Get language from localStorage or default to 'en'
-    return localStorage.getItem('app-language') || 'en';
+    // Get language from localStorage or default to 'es' (Spanish)
+    return localStorage.getItem('app-language') || 'es';
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +35,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   const toggleLanguage = () => {
-    const newLanguage = language === 'en' ? 'es' : 'en';
+    const newLanguage = language === 'es' ? 'en' : 'es';
     changeLanguage(newLanguage);
   };
 
