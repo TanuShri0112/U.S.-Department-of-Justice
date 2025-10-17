@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { MinusCircle, FileText, Upload, Download, Trash2, ExternalLink, Plus } from 'lucide-react';
+import { FileText, Download } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -140,19 +140,12 @@ const GroupResourcesPage = () => {
       {/* Action Bar */}
       <div className="flex flex-col sm:flex-row justify-between gap-4">
         <div className="flex gap-2">
-          <Button variant="outline" onClick={handleRemove} disabled={selectedResources.length === 0}>
-            <MinusCircle className="mr-2 h-4 w-4" /> 
-            Remove ({selectedResources.length})
-          </Button>
           <Button variant="outline" onClick={handleExport} disabled={selectedResources.length === 0}>
             <Download className="mr-2 h-4 w-4" /> 
             Export ({selectedResources.length})
           </Button>
         </div>
-        <Button onClick={() => setShowAddModal(true)} className="bg-blue-600 hover:bg-blue-700">
-          <Plus className="mr-2 h-4 w-4" /> 
-          Add Resource
-        </Button>
+        {/* Add Resource option removed */}
       </div>
 
       {/* Select All */}
@@ -197,14 +190,7 @@ const GroupResourcesPage = () => {
                     />
                     {getFileTypeIcon(resource.type, resource.isLink)}
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDeleteResource(resource)}
-                    className="text-red-600 hover:text-red-700 hover:bg-red-50 h-8 w-8 p-0"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+                  {/* Delete option removed */}
                 </div>
                 
                 <div className="space-y-2">

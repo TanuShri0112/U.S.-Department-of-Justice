@@ -8,10 +8,12 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const QuizPage = () => {
   const { courseId, moduleId } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentQuiz, setCurrentQuiz] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -145,7 +147,7 @@ const QuizPage = () => {
               <ArrowLeft className="h-4 w-4" />
               Back to Assessment
             </Button>
-            <h1 className="text-2xl font-bold text-gray-800">Quiz Results</h1>
+            <h1 className="text-2xl font-bold text-gray-800">{t('quizCompleted')}</h1>
           </div>
 
           {/* Score Summary Card */}
@@ -163,7 +165,7 @@ const QuizPage = () => {
                       {score.percentage}%
                     </h2>
                     <p className="text-gray-600">
-                      {score.correct} out of {score.total} questions correct
+                      {score.correct} {t('correctAnswers')} {score.total} {t('totalQuestions')}
                     </p>
                   </div>
                 </div>
@@ -221,7 +223,7 @@ const QuizPage = () => {
                 {currentQuiz.title}
               </h1>
               <p className="text-gray-600">
-                Question {currentQuestionIndex + 1} of {currentQuiz.questionData.length}
+                {t('question')} {currentQuestionIndex + 1} {t('of')} {currentQuiz.questionData.length}
               </p>
             </div>
           </div>
@@ -240,7 +242,7 @@ const QuizPage = () => {
         {/* Progress Bar */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Progress</span>
+            <span className="text-sm text-gray-600">{t('progress')}</span>
             <span className="text-sm text-gray-600">
               {Math.round(((currentQuestionIndex + 1) / currentQuiz.questionData.length) * 100)}%
             </span>
@@ -326,7 +328,7 @@ const QuizPage = () => {
             disabled={currentQuestionIndex === 0}
             variant="outline"
           >
-            Previous
+            {t('previousQuestion')}
           </Button>
 
           <div className="flex items-center gap-2">
@@ -353,7 +355,7 @@ const QuizPage = () => {
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >
-            {isLastQuestion ? 'Submit Quiz' : 'Next'}
+            {isLastQuestion ? t('finishQuiz') : t('nextQuestion')}
           </Button>
         </div>
       </div>

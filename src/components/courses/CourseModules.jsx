@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 import ModuleCard from './ModuleCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import EditModuleDialog from './EditModuleDialog';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const CourseModules = () => {
   console.log('Rendering CourseModules');
@@ -13,6 +14,7 @@ const CourseModules = () => {
   const { courseId } = useParams();
   const [searchParams] = useSearchParams();
   const courseType = searchParams.get('type') || 'open';
+  const { t } = useTranslation();
   
   const [modules, setModules] = useState([]);
   const [isPublishedCourse, setIsPublishedCourse] = useState(false);
@@ -28,7 +30,7 @@ const CourseModules = () => {
       'reactjs202': 'React.js Advanced',
       'ml506': 'Machine Learning',
       'data345': 'Data Analysis',
-      '1': 'Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention'
+      '1': 'Municipal Corporation for Social Development of Antofagasta'
     };
     return courseNames[courseId] || 'Course';
   };
@@ -46,8 +48,8 @@ const CourseModules = () => {
         
         if (publishedCourse.modules && publishedCourse.modules.length > 0) {
           const imageMap = {
-            // Law Enforcement Training - Use course banner
-            'Law Enforcement Training': '/assets/C-1.png',
+            // Social Development Corporation - Use course banner
+            'Social Development Corporation': '/assets/course-cmds.png',
             // Educator Training - Use course banner
             'Educator Training': '/assets/C-2.png',
             // Youth Advocacy Training - Use course banner
@@ -73,11 +75,11 @@ const CourseModules = () => {
         // Course-specific modules based on courseId
         const getCourseModules = (courseId) => {
           const courseModules = {
-            '1': [ // Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention
+            '1': [ // Municipal Corporation for Social Development of Antofagasta - Social Development Corporation
               {
                 id: 1,
-                title: "National Community Outreach & Prevention",
-                description: "Understanding the core principles and frameworks of community outreach and prevention",
+                title: "Social Development Corporation",
+                description: "Understanding the core principles and frameworks of social development",
                 units: 5,
                 assessments: 1,
                 duration: "2 hours",
@@ -112,8 +114,8 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            // National Community Outreach & Prevention - Use course banner
-            'National Community Outreach & Prevention': '/assets/us-2.png'
+            // Social Development Corporation - Use module banner
+            'Social Development Corporation': '/assets/module-cmds.png'
           };
           return { ...m, image: titleToImage[m.title] };
         });
@@ -228,15 +230,15 @@ const CourseModules = () => {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Courses
+            {t('backToCourses')}
           </Button>
           <div>
             <h1 className="text-2xl font-bold">{getCourseName(courseId)}</h1>
             <p className="text-gray-600">
               {courseType === 'sequential' 
-                ? 'Complete modules in order to unlock the next one' 
-                : 'Access modules in any order'}
-              {isPublishedCourse && ' • Published Course'}
+                ? t('completeModulesInOrder')
+                : t('accessModulesInAnyOrder')}
+              {isPublishedCourse && ` • ${t('publishedCourse')}`}
             </p>
           </div>
         </div>

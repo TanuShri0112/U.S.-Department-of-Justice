@@ -23,17 +23,17 @@ const Courses = () => {
   // Removed course access type (open/sequential)
   const navigate = useNavigate();
 
-  // Corporación Municipal de Desarrollo Social de Antofagasta Training Courses
+  // Municipal Corporation for Social Development of Antofagasta Training Courses
   const mockCourses = [
     {
       id: 1,
-      title: "Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention",
+      title: "Municipal Corporation for Social Development of Antofagasta",
       description: t('comprehensiveTrainingProgram'),
       students: 120,
       duration: "6 weeks",
       level: t('beginner'),
       status: t('active'),
-      image: "/assets/us-1.png",
+      image: "/assets/course-cmds.png",
       archived: false,
       deleted: false,
       catalog: t('lawEnforcement')

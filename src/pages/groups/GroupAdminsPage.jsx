@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, MessageSquare, UserPlus, Trash2 } from 'lucide-react';
+import { Search, MessageSquare } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent } from '@/components/ui/card';
@@ -209,10 +209,6 @@ const GroupAdminsPage = () => {
               <MessageSquare className="h-4 w-4 mr-2" />
               Message ({selectedAdmins.length})
             </Button>
-            <Button onClick={() => setIsAddAdminDialogOpen(true)}>
-              <UserPlus className="h-4 w-4 mr-2" />
-              Add Admin
-            </Button>
           </div>
         </div>
       </div>
@@ -301,14 +297,7 @@ const GroupAdminsPage = () => {
                       {admin.groups}
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleRemoveAdmin(admin)}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50 h-8 w-8 p-0"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      {/* Delete option removed */}
                     </TableCell>
                   </TableRow>
                 ))}

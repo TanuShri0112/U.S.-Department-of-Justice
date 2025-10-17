@@ -112,16 +112,16 @@ export const SidebarNav = ({ onCloseMobile }) => {
         <MainNavigation pathname={pathname} onItemClick={handleClick} />
       </div>
       
-       {/* Admin Portal Toggle at Bottom */}
+       {/* Trainer Portal Toggle at Bottom */}
        <div className="border-t border-gray-200 p-4">
-         {renderTooltip("Admin Portal", (
+         {renderTooltip("Trainer Portal", (
            <div className={cn(
              "flex items-center gap-3 bg-blue-50 rounded-lg px-3 py-2 border border-blue-200 hover:bg-blue-100 transition-colors",
              isMainCollapsed && "justify-center px-2"
            )}>
              <Shield className="h-4 w-4 text-blue-600 flex-shrink-0" />
              {!isMainCollapsed && (
-               <span className="text-sm font-medium text-blue-700 flex-1">Admin Portal</span>
+               <span className="text-sm font-medium text-blue-700 flex-1">Trainer Portal</span>
              )}
              <Switch
                checked={isAdminPortalEnabled}
