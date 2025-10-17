@@ -4,15 +4,17 @@ import { Button } from '@/components/ui/button';
 import { Check, Clock, ChevronRight, Plus, User } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function TaskListSection() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState('All');
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: 'Complete Law Enforcement Module 1',
-      description: 'Foundations of Law Enforcement Training',
+      title: t('welcomeTitle'),
+      description: t('welcomeSubtitle'),
       dueDate: '2023-07-10',
       time: '10:00 PM - 11:45 PM',
       completed: false,
@@ -112,7 +114,7 @@ export function TaskListSection() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <CardTitle className="text-xl font-bold text-gray-800 mb-1">
-              Today's Task
+              {t('todaysTask')}
             </CardTitle>
             <p className="text-sm text-gray-500">{getTodayDate()}</p>
           </div>
@@ -123,30 +125,32 @@ export function TaskListSection() {
             onClick={handleAddTask}
           >
             <Plus className="h-4 w-4 mr-2" />
-            New Task
+            {t('newTask')}
           </Button>
         </div>
 
         {/* Filter Tabs */}
         <div className="flex items-center gap-6">
-          {['All', 'Open', 'Closed', 'Archived'].map((filter) => {
-            const count = filter === 'All' ? tasks.length : 
-                         filter === 'Open' ? openTasks.length :
-                         filter === 'Closed' ? closedTasks.length : 0;
+          {[t('all'), t('open'), t('closed'), t('archived')].map((filter, index) => {
+            const filterKeys = ['all', 'open', 'closed', 'archived'];
+            const currentFilter = filterKeys[index];
+            const count = currentFilter === 'all' ? tasks.length : 
+                         currentFilter === 'open' ? openTasks.length :
+                         currentFilter === 'closed' ? closedTasks.length : 0;
             
             return (
               <button
                 key={filter}
-                onClick={() => setActiveFilter(filter)}
+                onClick={() => setActiveFilter(currentFilter)}
                 className={`flex items-center gap-2 text-sm font-medium transition-all duration-300 ${
-                  activeFilter === filter 
+                  activeFilter === currentFilter 
                     ? 'text-blue-600' 
                     : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
                 <span>{filter}</span>
                 <span className={`px-2 py-1 rounded-full text-xs ${
-                  activeFilter === filter 
+                  activeFilter === currentFilter 
                     ? 'bg-blue-100 text-blue-600' 
                     : 'bg-gray-100 text-gray-500'
                 }`}>

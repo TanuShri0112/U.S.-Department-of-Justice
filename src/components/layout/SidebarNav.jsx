@@ -59,14 +59,14 @@ export const SidebarNav = ({ onCloseMobile }) => {
     <nav 
       className={cn(
         "h-full flex flex-col bg-white border-r border-gray-200 shadow-sm transition-all duration-300",
-        isMainCollapsed ? "w-16" : "w-64"
+        isMainCollapsed ? "w-16" : "w-72"
       )}
     >
       {/* Header */}
       <div 
         className={cn(
-          "flex h-20 items-center border-b border-gray-100 bg-blue-600",
-          isMainCollapsed ? "px-3 justify-center" : "px-6 justify-between"
+          "flex min-h-20 items-center border-b border-gray-100 bg-blue-600",
+          isMainCollapsed ? "px-3 justify-center" : "px-6 justify-between py-4"
         )}
       >
         <div 
@@ -75,19 +75,21 @@ export const SidebarNav = ({ onCloseMobile }) => {
         >
           {isMainCollapsed ? (
             <img 
-              src="/assets/Image_20251016_124608_576-removebg-preview.png" 
+              src="/assets/cmds.png" 
               alt="DOJ Logo" 
               className="w-12 h-12 object-contain"
             />
           ) : (
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-3 flex-1 min-w-0">
               <img 
-                src="/assets/Image_20251016_124608_576-removebg-preview.png" 
+                src="/assets/cmds.png" 
                 alt="DOJ Logo" 
-                className="w-12 h-12 object-contain"
+                className="w-12 h-12 object-contain flex-shrink-0"
               />
-              <div className="text-white">
-                <h1 className="text-lg font-semibold leading-tight">U.S. Department of Justice</h1>
+              <div className="text-white flex-1 min-w-0">
+                <h1 className="text-sm font-semibold leading-tight break-words">
+                  Corporación Municipal de Desarrollo Social de Antofagasta
+                </h1>
               </div>
             </div>
           )}
@@ -98,7 +100,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
             variant="ghost"
             size="icon"
             onClick={toggleCollapsed}
-            className="text-white/80 hover:text-white hover:bg-white/10 h-8 w-8"
+            className="text-white/80 hover:text-white hover:bg-white/10 h-8 w-8 flex-shrink-0 ml-2"
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
@@ -110,25 +112,25 @@ export const SidebarNav = ({ onCloseMobile }) => {
         <MainNavigation pathname={pathname} onItemClick={handleClick} />
       </div>
       
-      {/* Admin Portal Toggle at Bottom */}
-      <div className="border-t border-gray-200 p-4">
-        {renderTooltip("Admin Portal", (
-          <div className={cn(
-            "flex items-center gap-3 bg-blue-50 rounded-lg px-3 py-2 border border-blue-200 hover:bg-blue-100 transition-colors",
-            isMainCollapsed && "justify-center px-2"
-          )}>
-            <Shield className="h-4 w-4 text-blue-600 flex-shrink-0" />
-            {!isMainCollapsed && (
-              <span className="text-sm font-medium text-blue-700 flex-1">Admin Portal</span>
-            )}
-            <Switch
-              checked={isAdminPortalEnabled}
-              onCheckedChange={setIsAdminPortalEnabled}
-              className="scale-75"
-            />
-          </div>
-        ))}
-      </div>
+       {/* Admin Portal Toggle at Bottom */}
+       <div className="border-t border-gray-200 p-4">
+         {renderTooltip("Admin Portal", (
+           <div className={cn(
+             "flex items-center gap-3 bg-blue-50 rounded-lg px-3 py-2 border border-blue-200 hover:bg-blue-100 transition-colors",
+             isMainCollapsed && "justify-center px-2"
+           )}>
+             <Shield className="h-4 w-4 text-blue-600 flex-shrink-0" />
+             {!isMainCollapsed && (
+               <span className="text-sm font-medium text-blue-700 flex-1">Admin Portal</span>
+             )}
+             <Switch
+               checked={isAdminPortalEnabled}
+               onCheckedChange={setIsAdminPortalEnabled}
+               className="scale-75"
+             />
+           </div>
+         ))}
+       </div>
     </nav>
   );
 };

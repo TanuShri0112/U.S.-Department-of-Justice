@@ -7,7 +7,6 @@ import {WelcomeSection} from './WelcomeSection';
 import QuickStatsSection from './QuickStatsSection';
 import TeachingCoursesSection from './TeachingCoursesSection';
 import ZoomClassesSection from './ZoomClassesSection';
-import WidgetsSection from './WidgetsSection';
 import TaskListSection from './TaskListSection';
 import {AnnouncementSection} from './AnnouncementSection';
 import {CalendarSection} from './CalendarSection';
@@ -24,7 +23,6 @@ export function StudentDashboard() {
           <QuickStatsSection />
           <TeachingCoursesSection />
           <ZoomClassesSection />
-          <WidgetsSection />
         </div>
         
         {/* Right Column - Optimized width and spacing */}

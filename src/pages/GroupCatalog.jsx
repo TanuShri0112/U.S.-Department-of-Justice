@@ -64,7 +64,7 @@ const GroupCatalog = () => {
       type: 'Compliance Training',
       members: 18,
       image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop&auto=format',
-      description: 'Department of Justice regulatory requirements and compliance practices training group.',
+      description: 'Corporación Municipal de Desarrollo Social de Antofagasta regulatory requirements and compliance practices training group.',
       privacy: 'Public',
       category: 'Compliance'
     },
@@ -133,7 +133,7 @@ const GroupCatalog = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold">Community Resources</h1>
-          <p className="text-muted-foreground">Discover and join U.S. Department of Justice community resources that match your professional development needs.</p>
+          <p className="text-muted-foreground">Discover and join Corporación Municipal de Desarrollo Social de Antofagasta community resources that match your professional development needs.</p>
         </div>
       </div>
 

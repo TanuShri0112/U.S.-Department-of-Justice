@@ -73,7 +73,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
       }
     }
 
-    document.title = `${newTitle} | U.S. Department of Justice`;
+    document.title = `${newTitle} | Corporación Municipal de Desarrollo Social de Antofagasta`;
   }, [location.pathname, title, courseId, setCourseTitle]);
 
   return (
@@ -82,7 +82,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
       <div
         className={cn(
           'z-50 transition-all duration-300 ease-in-out h-screen fixed md:sticky top-0 left-0',
-          isMainCollapsed ? 'w-16' : 'w-64',
+          isMainCollapsed ? 'w-16' : 'w-72',
           mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         )}
       >
@@ -97,7 +97,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
             key="admin-sidebar"
             className={cn(
               'z-40 h-screen fixed top-0 md:sticky md:left-0',
-              isMainCollapsed ? 'left-16' : 'left-64 md:left-0'
+              isMainCollapsed ? 'left-16' : 'left-72 md:left-0'
             )}
             initial={{ x: '-100%', opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -114,7 +114,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
             key="group-sidebar"
             className={cn(
               'z-40 h-screen fixed top-0 md:sticky md:left-0',
-              isMainCollapsed ? 'left-16' : 'left-64 md:left-0'
+              isMainCollapsed ? 'left-16' : 'left-72 md:left-0'
             )}
             initial={{ x: '-100%', opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}

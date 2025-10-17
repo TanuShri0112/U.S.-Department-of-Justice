@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "../theme/ThemeToggle";
+import { LanguageToggle } from "../ui/LanguageToggle";
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
@@ -168,6 +169,7 @@ export const Header = ({ onMenuClick }) => {
           </div>
           
           <ThemeToggle />
+          <LanguageToggle />
           
           <Button 
             variant="ghost" 

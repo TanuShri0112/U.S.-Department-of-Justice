@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Star, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function WelcomeSection() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleJoinNow = () => {
     // Navigate to courses or appropriate section
@@ -31,19 +33,18 @@ export function WelcomeSection() {
                 {/* Course Tag */}
                 <div className="inline-block bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 mb-4">
                   <span className="text-white text-xs font-semibold uppercase tracking-wide">
-                    Online Course
+                    {t('onlineCourse')}
                   </span>
                 </div>
                 
                 {/* Main Headline */}
                 <h1 className="text-white text-2xl md:text-3xl font-bold leading-tight mb-3">
-                  <span className="block">Welcome to U.S. Department</span>
-                  <span className="block">of Justice Training</span>
+                  {t('welcomeTitle')}
                 </h1>
                 
                 {/* Subtitle */}
                 <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-md">
-                  We're glad to see you here. Explore your courses, track your progress, and continue your professional development journey with us.
+                  {t('welcomeSubtitle')}
                 </p>
               </div>
               
@@ -53,7 +54,7 @@ export function WelcomeSection() {
                   onClick={handleJoinNow}
                   className="group bg-black text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-gray-800 transition-all duration-200 hover:scale-105 shadow-lg flex items-center gap-2"
                 >
-                  <span>Join Now</span>
+                  <span>{t('joinNow')}</span>
                   <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform duration-200">
                     <ArrowRight size={12} className="text-black" />
                   </div>

@@ -9,7 +9,7 @@ export function CalendarSection() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   
-  // U.S. Department of Justice Training Events
+  // Corporación Municipal de Desarrollo Social de Antofagasta Training Events
   const events = {
     15: [
       { id: 1, title: 'Law Enforcement Module 1: Foundations', time: '10:00 AM - 12:00 PM', type: 'module' },

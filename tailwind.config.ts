@@ -64,7 +64,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					muted: 'hsl(var(--sidebar-muted))',
 				},
-				// Custom colors for U.S. Department of Justice
+				// Custom colors for Corporación Municipal de Desarrollo Social de Antofagasta
 				ca: {
 					primary: '#33C3F0',   // Update to match the blue buttons in the screenshots
 					secondary: '#1EAEDB',

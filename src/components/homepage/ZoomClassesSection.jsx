@@ -10,16 +10,18 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const ZoomClassesSection = () => {
+  const { t } = useTranslation();
   const [classes, setClasses] = useState([
     {
       id: 1,
-      title: "Law Enforcement Training - Module 1",
+      title: t('welcomeTitle'),
       date: "Wed, Jun 12",
       time: "10:00 AM",
       duration: "1 hour",
-      description: "Foundations of Law Enforcement Training in the U.S.",
+      description: t('welcomeSubtitle'),
       zoomLink: "https://zoom.us/j/123456789",
       meetingId: "123 456 789",
       attendance: 0,
@@ -63,7 +65,7 @@ const ZoomClassesSection = () => {
       date: "Wed, Jun 5",
       time: "3:00 PM",
       duration: "1 hour",
-      description: "Latest updates in Department of Justice compliance requirements",
+      description: "Latest updates in Corporación Municipal de Desarrollo Social de Antofagasta compliance requirements",
       attendance: 22,
       totalStudents: 30,
       recordingUrl: "https://example.com/recording/doj-compliance.mp4",
@@ -129,7 +131,7 @@ const ZoomClassesSection = () => {
               <div className="p-2 bg-blue-500 rounded-lg shadow-md">
                 <Video className="h-5 w-5 text-white" />
               </div>
-              Zoom Classes Management
+              {t('zoomClassesManagement')}
             </CardTitle>
           </div>
         </CardHeader>
@@ -138,11 +140,11 @@ const ZoomClassesSection = () => {
             <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded-xl mb-6">
               <TabsTrigger value="upcoming" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Calendar className="h-4 w-4" />
-                Upcoming Classes
+                {t('upcomingClasses')}
               </TabsTrigger>
               <TabsTrigger value="completed" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Video className="h-4 w-4" />
-                Completed Classes
+                {t('completedClasses')}
               </TabsTrigger>
             </TabsList>
             
@@ -215,7 +217,7 @@ const ZoomClassesSection = () => {
                               className="bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg transition-all duration-300"
                             >
                               <ExternalLink className="h-4 w-4 mr-2" />
-                              Join via Zoom
+                              {t('joinClass')}
                             </Button>
                           )}
                         </div>
@@ -305,7 +307,7 @@ const ZoomClassesSection = () => {
                               className="border-blue-200 text-blue-600 hover:bg-blue-50"
                             >
                               <Eye className="h-4 w-4 mr-2" />
-                              View Recording
+                              {t('viewRecording')}
                             </Button>
                             <Button
                               size="sm"
@@ -314,7 +316,7 @@ const ZoomClassesSection = () => {
                               className="border-green-200 text-green-600 hover:bg-green-50"
                             >
                               <Download className="h-4 w-4 mr-2" />
-                              Download
+                              {t('downloadRecording')}
                             </Button>
                           </div>
                         </div>
@@ -340,7 +342,7 @@ const ZoomClassesSection = () => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Edit className="h-5 w-5" />
-              Edit Class
+              {t('editClass')}
             </DialogTitle>
           </DialogHeader>
           {editingClass && (
@@ -381,7 +383,7 @@ const ZoomClassesSection = () => {
               </div>
               <div className="flex gap-2 pt-4">
                 <Button onClick={handleEditClass} className="flex-1">
-                  Update Class
+                  {t('update')}
                 </Button>
                 <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
                   Cancel
@@ -422,7 +424,7 @@ const ZoomClassesSection = () => {
                 </div>
                 <Button onClick={() => handleDownloadRecording(selectedRecording)}>
                   <Download className="h-4 w-4 mr-2" />
-                  Download Recording
+                  {t('downloadRecording')}
                 </Button>
               </div>
             </div>

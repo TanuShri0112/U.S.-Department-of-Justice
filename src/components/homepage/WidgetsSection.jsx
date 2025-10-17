@@ -34,7 +34,7 @@ const groups = [
 const catalog = [
   {
     id: 1,
-    name: "U.S. Department of Justice- National Community Outreach & Prevention",
+    name: "Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention",
     description: "Foundations & Advanced Modules",
     img: "/assets/us-1.png",
     modules: 3,

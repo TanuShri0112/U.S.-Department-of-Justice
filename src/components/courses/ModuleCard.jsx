@@ -70,7 +70,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
     
     // Module external links mapping by course and module - ALL modules now open SCORM
     const moduleLinks = {
-      // Course 1 - U.S. Department of Justice- National Community Outreach & Prevention
+      // Course 1 - Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention
       '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
       '1-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
       '1-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
@@ -93,10 +93,10 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
       // Determine default SCORM based on course type
       let defaultScormLink;
       if (detectedCourseId === '1') {
-        // U.S. Department of Justice- National Community Outreach & Prevention SCORM
+        // Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention SCORM
         defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html';
       } else {
-        // Ultimate fallback - U.S. Department of Justice- National Community Outreach & Prevention SCORM
+        // Ultimate fallback - Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention SCORM
         defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html';
       }
       

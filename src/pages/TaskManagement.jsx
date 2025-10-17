@@ -44,7 +44,7 @@ const TaskManagement = () => {
     {
       id: 4,
       title: 'Update DOJ Compliance Training Materials',
-      description: 'Update Department of Justice compliance training materials with latest regulatory requirements',
+      description: 'Update Corporación Municipal de Desarrollo Social de Antofagasta compliance training materials with latest regulatory requirements',
       deadline: 'In 2 weeks',
       priority: 'medium',
       status: 'pending',

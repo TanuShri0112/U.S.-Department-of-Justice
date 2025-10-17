@@ -31,9 +31,9 @@ const Section3Video = () => {
     const base = (langCode || 'en-US').split('-')[0];
     const texts = {
       en: (
-        'U.S. Department of Justice Rakshak Smart - One Page Overview\n' +
+        'Corporación Municipal de Desarrollo Social de Antofagasta Rakshak Smart - One Page Overview\n' +
         'Overview\n' +
-        'U.S. Department of Justice Rakshak Smart is a life insurance savings plan designed to provide protection, ' +
+        'Corporación Municipal de Desarrollo Social de Antofagasta Rakshak Smart is a life insurance savings plan designed to provide protection, ' +
         'guaranteed income, and long-term financial security for individuals and families.\n' +
         'Key Benefits\n' +
         '✔ Life Insurance cover during the policy term\n' +

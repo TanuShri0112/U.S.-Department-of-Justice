@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 // Module information mapping
 const getModuleName = (courseId) => {
   const courseNames = {
-    '1': 'U.S. Department of Justice- National Community Outreach & Prevention',
+    '1': 'Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention',
     '1757539': 'Advanced Credit Analysis'
   };
   return courseNames[courseId] || 'Training Module';
