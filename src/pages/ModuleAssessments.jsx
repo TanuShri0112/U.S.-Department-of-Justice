@@ -4,11 +4,12 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, FileText, Clock, Target, RotateCcw } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useTranslation } from '@/hooks/useTranslation';
 
 // Module information mapping
 const getModuleName = (courseId) => {
   const courseNames = {
-    '1': 'Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention',
+    '1': 'Social Development Corporation',
     '1757539': 'Advanced Credit Analysis'
   };
   return courseNames[courseId] || 'Training Module';
@@ -19,8 +20,8 @@ const getModuleQuestions = (courseId, moduleId) => {
   if (courseId === '1' || (courseId === '1757539' && moduleId === '1')) {
     return {
       id: 'module-1-quiz',
-      title: 'National Community Outreach & Prevention Assessment',
-      description: 'Test your knowledge of community outreach and prevention principles, training methodologies, and best practices',
+      title: 'Social Development Corporation Assessment',
+      description: 'Test your knowledge of social development principles, training methodologies, and best practices',
     type: 'general',
     timeLimit: '30 minutes',
     attempts: 'unlimited',
@@ -30,86 +31,86 @@ const getModuleQuestions = (courseId, moduleId) => {
         {
           id: 1,
           type: 'multiple_choice',
-          question: 'Which principle should law enforcement training emphasize to engage adult learners?',
+          question: 'What is the main purpose of the Evaluación para el Aprendizaje E-84 dashboard?',
           options: [
-            'Memorization of facts',
-            'Passive listening', 
-            'Reflection, discussion, and practice-based scenarios',
-            'Repetition of written policies'
+            'To conduct national exams',
+            'To showcase formative assessment and teacher collaboration',
+            'To manage school finances',
+            'To record student attendance'
           ],
-          correct: 2
+          correct: 1
         },
         {
           id: 2,
           type: 'multiple_choice',
-          question: 'Which model focuses on context, input, process, and product for program evaluation?',
+          question: 'Which of the following roles has access to participation analytics and feedback notes?',
           options: [
-            'Kirkpatrick Model',
-            'CIPP Model',
-            'ADDIE Model',
-            'Bloom\'s Taxonomy'
+            'Teacher (Learner)',
+            'Trainer (Facilitator)',
+            'Student',
+            'Parent'
           ],
           correct: 1
         },
         {
           id: 3,
           type: 'multiple_choice',
-          question: 'Which principle makes professional learning more effective for educators?',
+          question: 'What is one key reason why all content must be in Spanish for this project?',
           options: [
-            'Memorization of teaching standards',
-            'Connection to classroom realities',
-            'Focusing only on theory',
-            'Avoiding reflection and collaboration'
+            'To reduce translation costs',
+            'To comply with Mercado Público Chile tender requirements',
+            'To promote English learning',
+            'To meet U.S. Department of Education standards'
           ],
           correct: 1
         },
         {
           id: 4,
           type: 'multiple_choice',
-          question: 'What is a key strategy to ensure youth advocacy programs are responsive and equitable?',
+          question: 'What digital tool is suggested for designing the prototype micro-module?',
           options: [
-            'Using only quantitative data',
-            'Conducting comprehensive needs assessments including youth voices',
-            'Designing programs without community input',
-            'Limiting digital outreach'
+            'Canva / Figma',
+            'Excel / Word',
+            'Photoshop / Illustrator',
+            'Google Sheets / Docs'
           ],
-          correct: 1
+          correct: 0
         },
         {
           id: 5,
-          type: 'true_false',
-          question: 'All law enforcement training must align with DOJ and POST standards.',
-          correct: true
+          type: 'fill_blank',
+          question: 'The Athena LMS dashboard visualizes how teachers learn about evaluation, apply it in classrooms, and track their ______ and ______ digitally.',
+          correct: 'progress; reflection'
         },
         {
           id: 6,
-          type: 'true_false',
-          question: 'Professional learning is most effective when connected to educators\' daily classroom realities.',
-          correct: true
+          type: 'fill_blank',
+          question: 'One example of a module in the course path timeline is "Uso de herramientas digitales para la ______ formativa."',
+          correct: 'evaluación'
         },
         {
           id: 7,
-          type: 'true_false',
-          question: 'Digital outreach is not recommended for youth advocacy due to safety concerns.',
-          correct: false
+          type: 'fill_blank',
+          question: 'The Informe de Impacto Pedagógico is a downloadable ______ that summarizes teacher engagement and learning outcomes.',
+          correct: 'PDF'
         },
         {
           id: 8,
-          type: 'fill_blank',
-          question: '_______ in law enforcement combines in-person workshops with digital modules for flexibility and engagement.',
-          correct: 'Blended learning'
+          type: 'true_false',
+          question: 'The Evaluation for Learning project includes a bilingual interface with labels in English only.',
+          correct: false
         },
         {
           id: 9,
-          type: 'fill_blank',
-          question: '________ ensures students with disabilities receive proper support and access to education.',
-          correct: 'IDEA'
+          type: 'true_false',
+          question: 'Gamified badges in the Athena LMS are used to increase teacher motivation during training.',
+          correct: true
         },
         {
           id: 10,
-          type: 'fill_blank',
-          question: '________ emphasizes belonging, competence, and contribution in youth development.',
-          correct: 'Positive Youth Development'
+          type: 'true_false',
+          question: 'The prototype micro-module should last approximately 15–20 minutes.',
+          correct: true
         }
       ]
     };
@@ -412,6 +413,7 @@ const getModuleQuestions = (courseId, moduleId) => {
 const ModuleAssessments = () => {
   const { courseId, moduleId } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentQuiz] = useState(() => getModuleQuestions(courseId, moduleId));
   const [isQuizStarted, setIsQuizStarted] = useState(false);
 
@@ -447,12 +449,12 @@ const ModuleAssessments = () => {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Modules
+            {t('backToModules')}
           </Button>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold">{getModuleName(courseId)} - Assessment</h1>
+            <h1 className="text-2xl font-bold">{getModuleName(courseId)} - {t('assessment')}</h1>
             <p className="text-gray-600">
-              Complete your knowledge assessment for this module
+              {t('completeKnowledgeAssessment')}
             </p>
           </div>
         </div>
@@ -461,17 +463,10 @@ const ModuleAssessments = () => {
           <CardHeader>
             <CardTitle className="text-purple-800">{getModuleName(courseId)}</CardTitle>
             <p className="text-purple-600">
-              {courseId === '1' 
-                ? 'Master the core principles of effective law enforcement training, including adult learning theory, standards compliance, and evidence-based methodologies.'
-                : courseId === '2'
-                ? 'Explore educator training principles, professional development frameworks, regulations compliance, and classroom-focused learning strategies.'
-                : courseId === '3'
-                ? 'Learn youth advocacy principles, juvenile justice approaches, community engagement strategies, and youth-centered program development.'
-                : 'Test your knowledge of training principles and methodologies.'
-              }
+              {t('masterCorePrinciples')}
             </p>
             <div className="flex items-center gap-2 text-sm text-purple-600">
-              <span>⏱️ Estimated time: 30 minutes</span>
+              <span>⏱️ {t('estimatedTime')}</span>
             </div>
           </CardHeader>
         </Card>
@@ -486,34 +481,34 @@ const ModuleAssessments = () => {
                   <FileText className="h-6 w-6 text-blue-600" />
                       </div>
                 <div>
-                  <h3 className="text-xl font-bold text-blue-800">Assessment Instructions</h3>
-                  <p className="text-blue-600">Please read the instructions carefully before starting</p>
+                  <h3 className="text-xl font-bold text-blue-800">{t('assessmentInstructions')}</h3>
+                  <p className="text-blue-600">{t('readInstructionsCarefully')}</p>
                                     </div>
                                   </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-700">
                 <div className="flex items-start gap-3">
                   <span className="text-lg">📝</span>
-                  <span>Read each question carefully before selecting your answer.</span>
+                  <span>{t('readEachQuestion')}</span>
                                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-lg">⏱️</span>
-                  <span>Time limit: {currentQuiz.timeLimit}. You cannot submit after time expires.</span>
+                  <span>{t('timeLimit30Minutes')}</span>
                         </div>
                 <div className="flex items-start gap-3">
                   <span className="text-lg">🔄</span>
-                  <span>Attempts: {currentQuiz.attempts}. Take your time to answer correctly.</span>
+                  <span>{t('attemptsUnlimited')}</span>
                                     </div>
                 <div className="flex items-start gap-3">
                   <span className="text-lg">✅</span>
-                  <span>Review your answers before submitting. Changes cannot be made after submission.</span>
+                  <span>{t('reviewAnswersBeforeSubmitting')}</span>
                                   </div>
                 <div className="flex items-start gap-3">
                   <span className="text-lg">📊</span>
-                  <span>Your score will be displayed immediately after completion.</span>
+                  <span>{t('scoreDisplayedImmediately')}</span>
                                     </div>
                 <div className="flex items-start gap-3">
                   <span className="text-lg">🎯</span>
-                  <span>This assessment contains {currentQuiz.questions} questions of various types.</span>
+                  <span>{t('assessmentContains10Questions')}</span>
                                     </div>
                                 </div>
                               </CardContent>
@@ -557,7 +552,7 @@ const ModuleAssessments = () => {
                     className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold text-lg px-12 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     onClick={handleStartQuiz}
                   >
-                    🚀 Start Assessment
+                    🚀 {t('startAssessment')}
                                   </Button>
                 </div>
                                 </div>

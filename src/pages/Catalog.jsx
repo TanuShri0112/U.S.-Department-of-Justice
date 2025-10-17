@@ -13,13 +13,13 @@ const Catalog = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredCard, setHoveredCard] = useState(null);
   
-  // Updated catalogs with Corporación Municipal de Desarrollo Social de Antofagasta training courses
+  // Updated catalogs with Municipal Corporation for Social Development of Antofagasta training courses
   const [catalogs, setCatalogs] = useState([
     {
       id: 1,
-      name: 'Corporación Municipal de Desarrollo Social de Antofagasta - National Community Outreach & Prevention',
+      name: 'Municipal Corporation for Social Development of Antofagasta',
       description: t('foundationsLawEnforcement'),
-      imageUrl: '/assets/us-1.png',
+      imageUrl: '/assets/course-cmds.png',
       courseCount: 3,
       studentCount: 120,
       duration: '12 weeks',

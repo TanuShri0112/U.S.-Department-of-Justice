@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, MessageSquare, MinusCircle, UserPlus, Trash2 } from 'lucide-react';
+import { Search, MessageSquare } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
@@ -144,10 +144,6 @@ const GroupMembersPage = () => {
               <MessageSquare className="h-4 w-4 mr-2" />
               Message ({selectedMembers.length})
             </Button>
-            <Button onClick={() => setIsAddMemberDialogOpen(true)}>
-              <UserPlus className="h-4 w-4 mr-2" />
-              Add Member
-            </Button>
           </div>
         </div>
       </div>
@@ -240,14 +236,7 @@ const GroupMembersPage = () => {
                       {member.groups}
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleRemoveMember(member)}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50 h-8 w-8 p-0"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      {/* Delete option removed */}
                     </TableCell>
                   </TableRow>
                 ))}

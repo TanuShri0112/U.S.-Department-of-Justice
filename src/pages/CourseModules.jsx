@@ -13,9 +13,9 @@ const CourseModules = () => {
   const modules = [
     { 
       id: 1, 
-      title: 'National Community Outreach & Prevention', 
-      description: 'Understanding the core principles and frameworks of community outreach and prevention',
-      image: '/assets/us-2.png',
+      title: 'Social Development Corporation', 
+      description: 'Understanding the core principles and frameworks of social development',
+      image: '/assets/module-cmds.png',
       units: 5,
       assessments: 1,
       duration: '2 hours',

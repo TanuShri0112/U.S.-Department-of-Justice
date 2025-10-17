@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Home, Book, Users, Folder, FileText,
-  MessageCircle, HelpCircle, ClipboardCheck, Gamepad2
+  MessageCircle, HelpCircle, ClipboardCheck
 } from 'lucide-react';
 import { NavItem } from './NavItem';
 import { useSidebar } from '@/contexts/SidebarContext';
@@ -47,9 +47,6 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
     if (onItemClick) onItemClick();
   };
 
-  const handleGamesClick = () => {
-    window.open('https://preview--community-quest-3d-25725-57941-94857.lovable.app/', '_blank');
-  };
 
   // const handleResourcesClick = () => {
   //   navigate('/resources');
@@ -169,18 +166,6 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
           />
         </motion.div>
         
-        {/* Games */}
-        <motion.div variants={itemVariants}>
-          <NavItem 
-            icon={Gamepad2}
-            label={t('games')}
-            to="#"
-            active={false}
-            onClick={handleGamesClick}
-            collapsed={isMainCollapsed}
-            className="hover-lift"
-          />
-        </motion.div>
 
         {/* Evaluation and Feedback */}
         <motion.div variants={itemVariants}>
