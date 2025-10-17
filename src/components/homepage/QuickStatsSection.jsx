@@ -8,7 +8,8 @@ import {
   Layers,
   FileText,
   Clock,
-  Target
+  Target,
+  ArrowUp
 } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -18,52 +19,48 @@ const getQuickStats = (t) => [
     icon: BookOpen,
     iconColor: 'bg-blue-50',
     iconTextColor: 'text-blue-600',
-    progress: '42/50',
-    total: 50,
-    completed: 42,
+    value: '42/50',
     title: t('coursesCompleted'),
-    subtitle: t('coursesCompletedSubtitle'),
     color: 'blue',
-    percentage: 84
+    percentage: 84,
+    trendPercentage: 5,
+    trendDescription: t('vsLast28Days')
   },
   {
     id: 2,
     icon: Award,
     iconColor: 'bg-pink-50',
     iconTextColor: 'text-pink-600',
-    progress: '91%',
-    total: 100,
-    completed: 91,
+    value: '91%',
     title: t('averageScore'),
-    subtitle: t('avgScore'),
     color: 'pink',
-    percentage: 91
+    percentage: 91,
+    trendPercentage: 3,
+    trendDescription: t('vsLast28Days')
   },
   {
     id: 3,
     icon: Clock,
     iconColor: 'bg-green-50',
     iconTextColor: 'text-green-600',
-    progress: '18',
-    total: 20,
-    completed: 18,
+    value: '18',
     title: t('hoursSpentLearning'),
-    subtitle: t('hours'),
     color: 'green',
-    percentage: 90
+    percentage: 90,
+    trendPercentage: 8,
+    trendDescription: t('vsLast28Days')
   },
   {
     id: 4,
     icon: Target,
     iconColor: 'bg-purple-50',
     iconTextColor: 'text-purple-600',
-    progress: '15/20',
-    total: 20,
-    completed: 15,
+    value: '15/20',
     title: t('assessmentsCompleted'),
-    subtitle: t('assessmentsCompletedSubtitle'),
     color: 'purple',
-    percentage: 75
+    percentage: 75,
+    trendPercentage: 10,
+    trendDescription: t('vsLast28Days')
   }
 ];
 
@@ -73,85 +70,45 @@ export default function QuickStatsSection() {
   
   return (
     <section className="mb-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {quickStats.map((stat) => {
           const IconComponent = stat.icon;
-          const progressPercentage = stat.percentage;
-          const circumference = 2 * Math.PI * 45; // radius = 45
-          const strokeDasharray = circumference;
-          const strokeDashoffset = circumference - (progressPercentage / 100) * circumference;
           
           return (
             <div
               key={stat.id}
-              className={`bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group cursor-pointer transform hover:-translate-y-1 ${
-                stat.color === 'blue' ? 'bg-gradient-to-br from-blue-50 to-blue-100/30' :
-                stat.color === 'pink' ? 'bg-gradient-to-br from-pink-50 to-pink-100/30' :
-                stat.color === 'green' ? 'bg-gradient-to-br from-green-50 to-green-100/30' :
-                'bg-gradient-to-br from-purple-50 to-purple-100/30'
-              }`}
+              className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 group cursor-pointer transform hover:-translate-y-1 h-40 relative flex flex-col justify-between"
             >
-              <div className="flex flex-col items-center text-center space-y-4">
-                {/* Circular Progress Indicator */}
-                <div className="relative w-24 h-24">
-                  <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
-                    {/* Background circle */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      stroke="currentColor"
-                      strokeWidth="8"
-                      fill="none"
-                      className="text-gray-200"
-                    />
-                    {/* Progress circle */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="45"
-                      stroke="currentColor"
-                      strokeWidth="8"
-                      fill="none"
-                      strokeLinecap="round"
-                      className={`transition-all duration-1000 ease-out ${
-                        stat.color === 'blue' ? 'text-blue-500' :
-                        stat.color === 'pink' ? 'text-pink-500' :
-                        stat.color === 'green' ? 'text-green-500' : 'text-purple-500'
-                      }`}
-                      strokeDasharray={strokeDasharray}
-                      strokeDashoffset={strokeDashoffset}
-                    />
-                  </svg>
-                  
-                  {/* Center content */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="text-2xl font-bold text-gray-800">{stat.progress}</div>
-                    {stat.subtitle && (
-                      <div className="text-xs text-gray-600 mt-1">{stat.subtitle}</div>
-                    )}
-                  </div>
+              {/* Title (Top-Left) */}
+              <div className="text-sm font-medium text-gray-600 uppercase tracking-wide">
+                {stat.title}
+              </div>
+              
+              {/* Icon (Top-Right) */}
+              <div className="absolute top-6 right-6">
+                <div className={`w-12 h-12 rounded-full ${stat.iconColor} flex items-center justify-center`}>
+                  <IconComponent className={`w-6 h-6 ${stat.iconTextColor}`} />
                 </div>
-                
-                {/* Title and Icon */}
-                <div className="flex items-center gap-2">
-                  <div className={`w-8 h-8 rounded-lg ${stat.iconColor} flex items-center justify-center`}>
-                    <IconComponent className={`w-4 h-4 ${stat.iconTextColor}`} />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-semibold text-gray-800 text-sm">{stat.title}</div>
-                    {stat.id === 2 && (
-                      <div className="text-xs text-gray-500">{stat.subtitle}</div>
-                    )}
-                  </div>
+              </div>
+              
+              {/* Main Value (Center) */}
+              <div className="text-center flex-1 flex items-center justify-center">
+                <div className="text-4xl font-bold text-gray-800">
+                  {stat.value}
                 </div>
-                
-                {/* Percentage for non-percentage stats */}
-                {stat.id !== 2 && (
-                  <div className="text-xs text-gray-500">
-                    {progressPercentage}% {t('complete')}
-                  </div>
-                )}
+              </div>
+              
+              {/* Trend Indicator (Bottom-Left) */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  <ArrowUp className="w-4 h-4 text-green-500" />
+                  <span className="text-sm font-semibold text-green-500">
+                    +{stat.trendPercentage}%
+                  </span>
+                </div>
+                <span className="text-xs text-gray-500">
+                  {stat.trendDescription}
+                </span>
               </div>
             </div>
           );

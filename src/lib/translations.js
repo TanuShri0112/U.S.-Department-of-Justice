@@ -502,6 +502,8 @@ export const translations = {
             assessmentsCompleted: "Assessments Completed",
             assessmentsCompletedSubtitle: "Total Assessments",
             progressOverTime: "Progress Over Time",
+            progress: "Progress",
+            vsLast28Days: "vs last 28 days",
   },
   
   es: {
@@ -1005,6 +1007,8 @@ export const translations = {
             assessmentsCompleted: "Evaluaciones Completadas",
             assessmentsCompletedSubtitle: "Total de Evaluaciones",
             progressOverTime: "Progreso en el Tiempo",
+            progress: "Progreso",
+            vsLast28Days: "vs últimos 28 días",
   }
 };
 
