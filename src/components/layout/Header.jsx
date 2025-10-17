@@ -15,11 +15,13 @@ import { ThemeToggle } from "../theme/ThemeToggle";
 import { LanguageToggle } from "../ui/LanguageToggle";
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useTranslation } from '@/hooks/useTranslation';
 
 export const Header = ({ onMenuClick }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [userAvatar, setUserAvatar] = useState('/lovable-uploads/b22d4431-7c74-430d-aa30-15d8739a7fbf.png');
   const [avatarKey, setAvatarKey] = useState(Date.now());
   
@@ -230,53 +232,53 @@ export const Header = ({ onMenuClick }) => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
-              Calendar & Events
+              {t('calendarEvents')}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <h3 className="font-medium text-blue-900">Today's Events</h3>
+              <h3 className="font-medium text-blue-900">{t('todaysEvents')}</h3>
               <div className="mt-2 space-y-2 text-sm">
                 <div className="flex justify-between items-center">
                   <div>
-                    <span className="font-medium">Team Meeting</span>
+                    <span className="font-medium">{t('teamMeeting')}</span>
                     <div className="text-blue-600 text-xs">10:00 AM</div>
                   </div>
                   <Button 
                     size="sm" 
                     variant="outline"
                     className="flex items-center gap-1 text-xs px-2 py-1 h-7"
-                    onClick={() => handleJoinMeeting('Team Meeting')}
+                    onClick={() => handleJoinMeeting(t('teamMeeting'))}
                   >
-                    Join
+                    {t('join')}
                     <ExternalLink className="h-3 w-3" />
                   </Button>
                 </div>
                 <div className="flex justify-between">
-                  <span>Course Review</span>
+                  <span>{t('courseReview')}</span>
                   <span className="text-blue-600">2:00 PM</span>
                 </div>
               </div>
             </div>
             <div className="bg-green-50 p-4 rounded-lg">
-              <h3 className="font-medium text-green-900">Upcoming This Week</h3>
+              <h3 className="font-medium text-green-900">{t('upcomingThisWeek')}</h3>
               <div className="mt-2 space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span>Project Deadline</span>
-                  <span className="text-green-600">Friday</span>
+                  <span>{t('projectDeadline')}</span>
+                  <span className="text-green-600">{t('friday')}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <div>
-                    <span className="font-medium">Monthly Team Meeting</span>
-                    <div className="text-green-600 text-xs">Next Monday</div>
+                    <span className="font-medium">{t('monthlyTeamMeeting')}</span>
+                    <div className="text-green-600 text-xs">{t('nextMonday')}</div>
                   </div>
                   <Button 
                     size="sm" 
                     variant="outline"
                     className="flex items-center gap-1 text-xs px-2 py-1 h-7"
-                    onClick={() => handleJoinMeeting('Monthly Team Meeting')}
+                    onClick={() => handleJoinMeeting(t('monthlyTeamMeeting'))}
                   >
-                    Join
+                    {t('join')}
                     <ExternalLink className="h-3 w-3" />
                   </Button>
                 </div>
@@ -291,39 +293,39 @@ export const Header = ({ onMenuClick }) => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Inbox className="h-5 w-5" />
-              Inbox Messages
+              {t('inboxMessages')}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
             <div className="border-l-4 border-blue-500 bg-blue-50 p-3 rounded">
               <div className="flex justify-between items-start">
                 <div>
-                  <p className="font-medium text-sm">Course Enrollment Confirmation</p>
-                  <p className="text-xs text-gray-600">From: Admin Team</p>
+                  <p className="font-medium text-sm">{t('courseEnrollmentConfirmation')}</p>
+                  <p className="text-xs text-gray-600">{t('fromAdminTeam')}</p>
                 </div>
                 <span className="text-xs text-blue-600">2h ago</span>
               </div>
-              <p className="text-sm mt-1">Your enrollment in Advanced Credit Analysis has been confirmed.</p>
+              <p className="text-sm mt-1">{t('enrollmentConfirmedMessage')}</p>
             </div>
             <div className="border-l-4 border-green-500 bg-green-50 p-3 rounded">
               <div className="flex justify-between items-start">
                 <div>
-                  <p className="font-medium text-sm">Assignment Submitted</p>
-                  <p className="text-xs text-gray-600">From: System</p>
+                  <p className="font-medium text-sm">{t('assignmentSubmitted')}</p>
+                  <p className="text-xs text-gray-600">{t('fromSystem')}</p>
                 </div>
                 <span className="text-xs text-green-600">1d ago</span>
               </div>
-              <p className="text-sm mt-1">Your assignment for Module 3 has been successfully submitted.</p>
+              <p className="text-sm mt-1">{t('assignmentSubmittedMessage')}</p>
             </div>
             <div className="border-l-4 border-yellow-500 bg-yellow-50 p-3 rounded">
               <div className="flex justify-between items-start">
                 <div>
-                  <p className="font-medium text-sm">Upcoming Deadline</p>
-                  <p className="text-xs text-gray-600">From: Course Instructor</p>
+                  <p className="font-medium text-sm">{t('upcomingDeadline')}</p>
+                  <p className="text-xs text-gray-600">{t('fromCourseInstructor')}</p>
                 </div>
                 <span className="text-xs text-yellow-600">2d ago</span>
               </div>
-              <p className="text-sm mt-1">Reminder: Final project due in 3 days.</p>
+              <p className="text-sm mt-1">{t('deadlineReminderMessage')}</p>
             </div>
           </div>
         </DialogContent>
@@ -379,37 +381,37 @@ export const Header = ({ onMenuClick }) => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Bell className="h-5 w-5" />
-              Notifications
+              {t('notifications')}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
             <div className="flex items-start gap-3 p-3 bg-blue-50 rounded">
               <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
               <div className="flex-1">
-                <p className="font-medium text-sm">New course available</p>
-                <p className="text-xs text-gray-600">Advanced Risk Assessment is now open for enrollment</p>
+                <p className="font-medium text-sm">{t('newCourseAvailable')}</p>
+                <p className="text-xs text-gray-600">{t('advancedRiskAssessmentOpen')}</p>
                 <span className="text-xs text-blue-600">5 minutes ago</span>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-green-50 rounded">
               <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
               <div className="flex-1">
-                <p className="font-medium text-sm">Assignment graded</p>
-                <p className="text-xs text-gray-600">Your Module 4 assignment received a score of 95%</p>
+                <p className="font-medium text-sm">{t('assignmentGraded')}</p>
+                <p className="text-xs text-gray-600">{t('module4Score95')}</p>
                 <span className="text-xs text-green-600">1 hour ago</span>
               </div>
             </div>
             <div className="flex items-start gap-3 p-3 bg-yellow-50 rounded">
               <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
               <div className="flex-1">
-                <p className="font-medium text-sm">Reminder</p>
-                <p className="text-xs text-gray-600">Live session starts in 30 minutes</p>
+                <p className="font-medium text-sm">{t('reminder')}</p>
+                <p className="text-xs text-gray-600">{t('liveSessionStarts30min')}</p>
                 <span className="text-xs text-yellow-600">30 minutes ago</span>
               </div>
             </div>
             <div className="mt-4 pt-3 border-t">
               <Button variant="outline" size="sm" className="w-full">
-                Mark All as Read
+                {t('markAllAsRead')}
               </Button>
             </div>
           </div>

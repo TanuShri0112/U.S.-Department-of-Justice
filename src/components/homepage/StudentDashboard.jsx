@@ -106,30 +106,30 @@ export function StudentDashboard() {
               onClick={() => navigate('/courses')}
             >
               <div className="flex items-center justify-between">
-                <div className="font-medium text-slate-800">Browse Courses</div>
+                <div className="font-medium text-slate-800">{t('browseCourses')}</div>
                 <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-0.5" />
               </div>
-              <div className="mt-1 text-sm text-slate-500">Find your next lesson</div>
+              <div className="mt-1 text-sm text-slate-500">{t('findNextLesson')}</div>
             </button>
             <button
               className="group rounded-xl border bg-white/70 backdrop-blur px-4 py-3 text-left shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
               onClick={() => navigate('/messages')}
             >
               <div className="flex items-center justify-between">
-                <div className="font-medium text-slate-800">Messages</div>
+                <div className="font-medium text-slate-800">{t('messages')}</div>
                 <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-0.5" />
               </div>
-              <div className="mt-1 text-sm text-slate-500">Connect with instructors</div>
+              <div className="mt-1 text-sm text-slate-500">{t('connectWithInstructors')}</div>
             </button>
             <button
               className="group rounded-xl border bg-white/70 backdrop-blur px-4 py-3 text-left shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
               onClick={() => setIsNotificationsOpen(true)}
             >
               <div className="flex items-center justify-between">
-                <div className="font-medium text-slate-800">Notifications</div>
+                <div className="font-medium text-slate-800">{t('notifications')}</div>
                 <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-0.5" />
               </div>
-              <div className="mt-1 text-sm text-slate-500">Stay up to date</div>
+              <div className="mt-1 text-sm text-slate-500">{t('stayUpToDate')}</div>
             </button>
           </div>
 

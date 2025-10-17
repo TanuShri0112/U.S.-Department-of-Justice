@@ -123,6 +123,64 @@ export const translations = {
     reviewStakeholderAnalysis: "Review Stakeholder Analysis",
     reviewStakeholderDescription: "Final review of stakeholder analysis and needs assessment module content before publication",
     
+    // Calendar Management
+    calendarManagement: "Calendar Management",
+    manageScheduleEvents: "Manage your schedule and events",
+    todaysSchedule: "Today's Schedule",
+    events: "events",
+    trainingRoom101: "Training Room 101 / Online",
+    twentyFiveEducators: "25 educators",
+    conferenceRoom205: "Conference Room 205",
+    fifteenCoordinators: "15 coordinators",
+    onlineAssessmentCenter: "Online Assessment Center",
+    fortyFiveEducators: "45 educators",
+    thursday: "Thursday",
+    office205: "Office 205",
+    openToAllEducators: "Open to all educators",
+    assessmentComplianceMeeting: "Assessment Compliance Meeting",
+    assessmentComplianceDescription: "Monthly assessment regulatory compliance and policy updates meeting",
+    conferenceRoomA: "Conference Room A",
+    twelveAssessmentOfficers: "12 assessment officers",
+    friday: "Friday",
+    
+    // Dashboard Cards
+    browseCourses: "Browse Courses",
+    findNextLesson: "Find your next lesson",
+    connectWithInstructors: "Connect with instructors",
+    stayUpToDate: "Stay up to date",
+    
+    // Modal Translations
+    calendarEvents: "Calendar & Events",
+    todaysEvents: "Today's Events",
+    teamMeeting: "Team Meeting",
+    courseReview: "Course Review",
+    upcomingThisWeek: "Upcoming This Week",
+    projectDeadline: "Project Deadline",
+    monthlyTeamMeeting: "Monthly Team Meeting",
+    nextMonday: "Next Monday",
+    join: "Join",
+    
+    // Inbox Messages
+    inboxMessages: "Inbox Messages",
+    courseEnrollmentConfirmation: "Course Enrollment Confirmation",
+    fromAdminTeam: "From: Admin Team",
+    enrollmentConfirmedMessage: "Your enrollment in Advanced Credit Analysis has been confirmed.",
+    assignmentSubmitted: "Assignment Submitted",
+    fromSystem: "From: System",
+    assignmentSubmittedMessage: "Your assignment for Module 3 has been successfully submitted.",
+    upcomingDeadline: "Upcoming Deadline",
+    fromCourseInstructor: "From: Course Instructor",
+    deadlineReminderMessage: "Reminder: Final project due in 3 days.",
+    
+    // Notifications
+    newCourseAvailable: "New course available",
+    advancedRiskAssessmentOpen: "Advanced Risk Assessment is now open for enrollment",
+    assignmentGraded: "Assignment graded",
+    module4Score95: "Your Module 4 assignment received a score of 95%",
+    reminder: "Reminder",
+    liveSessionStarts30min: "Live session starts in 30 minutes",
+    markAllAsRead: "Mark All as Read",
+    
     // Language
     language: "Language",
     english: "English",
@@ -785,6 +843,64 @@ export const translations = {
     reviewFeedbackDescription: "Analizar y responder a la retroalimentación del curso de los participantes",
     reviewStakeholderAnalysis: "Revisar Análisis de Partes Interesadas",
     reviewStakeholderDescription: "Revisión final del análisis de partes interesadas y contenido del módulo de evaluación de necesidades antes de la publicación",
+    
+    // Calendar Management
+    calendarManagement: "Gestión de Calendario",
+    manageScheduleEvents: "Gestiona tu horario y eventos",
+    todaysSchedule: "Horario de Hoy",
+    events: "eventos",
+    trainingRoom101: "Sala de Capacitación 101 / En Línea",
+    twentyFiveEducators: "25 educadores",
+    conferenceRoom205: "Sala de Conferencias 205",
+    fifteenCoordinators: "15 coordinadores",
+    onlineAssessmentCenter: "Centro de Evaluación en Línea",
+    fortyFiveEducators: "45 educadores",
+    thursday: "Jueves",
+    office205: "Oficina 205",
+    openToAllEducators: "Abierto a todos los educadores",
+    assessmentComplianceMeeting: "Reunión de Cumplimiento de Evaluación",
+    assessmentComplianceDescription: "Reunión mensual de cumplimiento regulatorio de evaluación y actualizaciones de políticas",
+    conferenceRoomA: "Sala de Conferencias A",
+    twelveAssessmentOfficers: "12 oficiales de evaluación",
+    friday: "Viernes",
+    
+    // Dashboard Cards
+    browseCourses: "Explorar Cursos",
+    findNextLesson: "Encuentra tu próxima lección",
+    connectWithInstructors: "Conecta con instructores",
+    stayUpToDate: "Mantente actualizado",
+    
+    // Modal Translations
+    calendarEvents: "Calendario y Eventos",
+    todaysEvents: "Eventos de Hoy",
+    teamMeeting: "Reunión de Equipo",
+    courseReview: "Revisión del Curso",
+    upcomingThisWeek: "Próximos Esta Semana",
+    projectDeadline: "Fecha Límite del Proyecto",
+    monthlyTeamMeeting: "Reunión Mensual del Equipo",
+    nextMonday: "Próximo Lunes",
+    join: "Unirse",
+    
+    // Inbox Messages
+    inboxMessages: "Mensajes de Bandeja",
+    courseEnrollmentConfirmation: "Confirmación de Inscripción al Curso",
+    fromAdminTeam: "De: Equipo Administrativo",
+    enrollmentConfirmedMessage: "Tu inscripción en Análisis Avanzado de Crédito ha sido confirmada.",
+    assignmentSubmitted: "Tarea Enviada",
+    fromSystem: "De: Sistema",
+    assignmentSubmittedMessage: "Tu tarea del Módulo 3 ha sido enviada exitosamente.",
+    upcomingDeadline: "Fecha Límite Próxima",
+    fromCourseInstructor: "De: Instructor del Curso",
+    deadlineReminderMessage: "Recordatorio: Proyecto final vence en 3 días.",
+    
+    // Notifications
+    newCourseAvailable: "Nuevo curso disponible",
+    advancedRiskAssessmentOpen: "Evaluación Avanzada de Riesgos está ahora abierta para inscripción",
+    assignmentGraded: "Tarea calificada",
+    module4Score95: "Tu tarea del Módulo 4 recibió una puntuación del 95%",
+    reminder: "Recordatorio",
+    liveSessionStarts30min: "La sesión en vivo comienza en 30 minutos",
+    markAllAsRead: "Marcar Todo como Leído",
     
     // Language
     language: "Idioma",

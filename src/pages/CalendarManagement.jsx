@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,67 +14,77 @@ import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const CalendarManagement = () => {
   const navigate = useNavigate();
-  const [events, setEvents] = useState([
+  const { t } = useTranslation();
+  const [events, setEvents] = useState([]);
+
+  // Function to get translated events
+  const getTranslatedEvents = () => [
     {
       id: 1,
-      title: 'Insurance Sales Training',
+      title: t('principlesAssessmentLearning'),
       time: '10:00 AM - 12:00 PM',
-      date: 'Today',
+      date: t('today'),
       type: 'lecture',
-      description: 'Advanced insurance sales methodologies and customer engagement techniques',
-      location: 'Training Room 101 / Online',
-      attendees: '25 sales agents',
-      course: 'Insurance Fundamentals',
+      description: t('principlesAssessmentDescription'),
+      location: t('trainingRoom101'),
+      attendees: t('twentyFiveEducators'),
+      course: t('principlesAssessmentLearning'),
       zoomUrl: 'https://zoom.us/j/1234567890'
     },
     {
       id: 2,
-      title: 'Life Insurance Sales Review',
+      title: t('trainingStrategiesFeedback'),
       time: '2:00 PM - 3:00 PM',
-      date: 'Today',
+      date: t('today'),
       type: 'meeting',
-      description: 'Review life insurance sales performance and strategies',
-      location: 'Conference Room 205',
-      attendees: '15 sales managers',
-      course: 'Life Insurance Sales',
+      description: t('trainingStrategiesDescription'),
+      location: t('conferenceRoom205'),
+      attendees: t('fifteenCoordinators'),
+      course: t('trainingStrategiesFeedback'),
       zoomUrl: 'https://zoom.us/j/0987654321'
     },
     {
       id: 3,
-      title: 'Insurance License Exam Prep',
+      title: t('digitalToolsFormativeAssessment'),
       time: '11:59 PM',
-      date: 'Tomorrow',
+      date: t('tomorrow'),
       type: 'deadline',
-      description: 'Final assessment submission for Insurance License preparation course',
-      location: 'Online Portal',
-      attendees: '30 trainees',
-      course: 'Insurance License Prep'
+      description: t('digitalToolsDescription'),
+      location: t('onlineAssessmentCenter'),
+      attendees: t('fortyFiveEducators'),
+      course: t('digitalToolsFormativeAssessment')
     },
     {
       id: 4,
-      title: 'Sales Technique Office Hours',
+      title: t('designRubricsEvaluationCriteria'),
       time: '2:00 PM - 4:00 PM',
-      date: 'Thursday',
+      date: t('thursday'),
       type: 'office-hours',
-      description: 'Weekly office hours for sales technique consultation and guidance',
-      location: 'Office 205',
-      attendees: 'Open to all sales agents'
+      description: t('rubricsDesignDescription'),
+      location: t('office205'),
+      attendees: t('openToAllEducators')
     },
     {
       id: 5,
-      title: 'Insurance Compliance Meeting',
+      title: t('assessmentComplianceMeeting'),
       time: '9:00 AM - 10:30 AM',
-      date: 'Friday',
+      date: t('friday'),
       type: 'meeting',
-      description: 'Monthly insurance regulatory compliance and policy updates meeting',
-      location: 'Conference Room A',
-      attendees: '12 compliance officers',
+      description: t('assessmentComplianceDescription'),
+      location: t('conferenceRoomA'),
+      attendees: t('twelveAssessmentOfficers'),
       zoomUrl: 'https://zoom.us/j/1122334455'
     },
-  ]);
+  ];
+
+  // Update events when language changes
+  useEffect(() => {
+    setEvents(getTranslatedEvents());
+  }, [t]);
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingEvent, setEditingEvent] = useState(null);
@@ -182,134 +192,12 @@ const CalendarManagement = () => {
           className="flex items-center gap-2"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Home
+          {t('backToHome')}
         </Button>
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-gray-900">Calendar Management</h1>
-          <p className="text-gray-600 mt-2">Manage your schedule and events</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('calendarManagement')}</h1>
+          <p className="text-gray-600 mt-2">{t('manageScheduleEvents')}</p>
         </div>
-        <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-          <DialogTrigger asChild>
-            <Button className="flex items-center gap-2">
-              <Plus className="h-4 w-4" />
-              Add New Event
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="w-full max-w-md max-h-[85vh] overflow-hidden">
-            <DialogHeader>
-              <DialogTitle>Create New Event</DialogTitle>
-            </DialogHeader>
-            <div className="overflow-y-auto max-h-[calc(85vh-120px)] pr-2">
-              <div className="space-y-4">
-                <Input
-                  placeholder="Event Name"
-                  value={newEvent.title}
-                  onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                />
-                <Textarea
-                  placeholder="Event Description (Optional)"
-                  value={newEvent.description}
-                  onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
-                  rows={3}
-                />
-                
-                {/* Date Picker */}
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Event Date</label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full justify-start text-left font-normal",
-                          !newEvent.date && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {newEvent.date ? format(newEvent.date, "PPP") : <span>Pick a date</span>}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={newEvent.date}
-                        onSelect={(date) => setNewEvent({ ...newEvent, date })}
-                        initialFocus
-                        className="p-2 pointer-events-auto"
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-
-                {/* Enhanced Time Duration */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      Start Time
-                    </label>
-                    <div className="relative">
-                      <Input
-                        type="time"
-                        value={newEvent.startTime}
-                        onChange={(e) => setNewEvent({ ...newEvent, startTime: e.target.value })}
-                        className="pl-8 text-sm"
-                      />
-                      <Clock className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-gray-400" />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      End Time
-                    </label>
-                    <div className="relative">
-                      <Input
-                        type="time"
-                        value={newEvent.endTime}
-                        onChange={(e) => setNewEvent({ ...newEvent, endTime: e.target.value })}
-                        className="pl-8 text-sm"
-                      />
-                      <Clock className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-gray-400" />
-                    </div>
-                  </div>
-                </div>
-
-                <Select value={newEvent.type} onValueChange={(value) => setNewEvent({ ...newEvent, type: value })}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Event Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {eventTypes.map(type => (
-                      <SelectItem key={type} value={type}>
-                        {type.charAt(0).toUpperCase() + type.slice(1)}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                
-                {(newEvent.type === 'meeting' || newEvent.type === 'lecture') && (
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-red-600">
-                      {newEvent.type === 'meeting' ? 'Meeting' : 'Lecture'} Link (Required)
-                    </label>
-                    <Input
-                      placeholder={`${newEvent.type === 'meeting' ? 'Meeting' : 'Lecture'} Link (Required)`}
-                      value={newEvent.zoomUrl}
-                      onChange={(e) => setNewEvent({ ...newEvent, zoomUrl: e.target.value })}
-                      className="border-red-200 focus:border-red-400"
-                    />
-                  </div>
-                )}
-                
-                <div className="flex gap-2 pt-2">
-                  <Button onClick={addEvent} className="flex-1">Add Event</Button>
-                  <Button variant="outline" onClick={() => setIsAddDialogOpen(false)} className="flex-1">Cancel</Button>
-                </div>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
       </div>
 
       {/* Today's Events Section */}
@@ -317,7 +205,7 @@ const CalendarManagement = () => {
         <CardHeader className="bg-blue-50">
           <CardTitle className="flex items-center gap-2 text-blue-800">
             <CalendarIcon className="h-5 w-5" />
-            Today's Schedule ({todaysEvents.length} events)
+            {t('todaysSchedule')} ({todaysEvents.length} {t('events')})
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
