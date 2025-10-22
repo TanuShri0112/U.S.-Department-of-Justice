@@ -3,41 +3,43 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function CalendarSection() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   
-  // U.S. Department of Justice Training Events
+  // UQTR Training Events
   const events = {
     15: [
-      { id: 1, title: 'Law Enforcement Module 1: Foundations', time: '10:00 AM - 12:00 PM', type: 'module' },
-      { id: 2, title: 'DOJ & POST Training Requirements', time: '2:00 PM - 3:30 PM', type: 'lesson' }
+      { id: 1, title: t('trainingCatalogueSetup'), time: '10:00 AM - 12:00 PM', type: 'module' },
+      { id: 2, title: t('selfRegistrationTraining'), time: '2:00 PM - 3:30 PM', type: 'lesson' }
     ],
     16: [
-      { id: 3, title: 'Educator Training Module 1: Professional Learning', time: '9:00 AM - 11:00 AM', type: 'module' }
+      { id: 3, title: t('progressTrackingWorkshop'), time: '9:00 AM - 11:00 AM', type: 'module' }
     ],
     18: [
-      { id: 4, title: 'Ethical & Civil Rights Foundations', time: '1:00 PM - 2:30 PM', type: 'lesson' },
-      { id: 5, title: 'Youth Advocate Module 1: Advocacy Foundations', time: '3:00 PM - 5:00 PM', type: 'module' }
+      { id: 4, title: t('scormContentIntegration'), time: '1:00 PM - 2:30 PM', type: 'lesson' },
+      { id: 5, title: t('ecommerceSupportTraining'), time: '3:00 PM - 5:00 PM', type: 'module' }
     ],
     20: [
-      { id: 6, title: 'Trauma-informed Instruction for First Responders', time: '10:00 AM - 11:30 AM', type: 'lesson' },
-      { id: 7, title: 'Stakeholder Analysis & Needs Assessment', time: '2:00 PM - 4:00 PM', type: 'module' }
+      { id: 6, title: t('integrationCapabilitiesWorkshop'), time: '10:00 AM - 11:30 AM', type: 'lesson' },
+      { id: 7, title: t('multiFormatContentTraining'), time: '2:00 PM - 4:00 PM', type: 'module' }
     ],
     22: [
-      { id: 8, title: 'Customized Curriculum & Scenario Design', time: '9:00 AM - 11:30 AM', type: 'module' },
-      { id: 9, title: 'Assessment & Evaluation Workshop', time: '1:00 PM - 3:00 PM', type: 'workshop' }
+      { id: 8, title: t('customizedCurriculum'), time: '9:00 AM - 11:30 AM', type: 'module' },
+      { id: 9, title: t('assessmentWorkshop'), time: '1:00 PM - 3:00 PM', type: 'workshop' }
     ],
     25: [
-      { id: 10, title: 'Final Certification Assessment', time: '10:00 AM - 12:00 PM', type: 'assessment' }
+      { id: 10, title: t('finalCertificationAssessment'), time: '10:00 AM - 12:00 PM', type: 'assessment' }
     ]
   };
 
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    t('january'), t('february'), t('march'), t('april'), t('may'), t('june'),
+    t('july'), t('august'), t('september'), t('october'), t('november'), t('december')
   ];
 
   const daysOfWeek = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
@@ -172,7 +174,7 @@ export function CalendarSection() {
           {/* Events Section */}
           <div className="mt-4">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">
-              Events for {selectedDate} {months[currentDate.getMonth()]}
+              {t('eventsFor')} {selectedDate} {months[currentDate.getMonth()]}
             </h3>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {events[selectedDate] && events[selectedDate].length > 0 ? (
@@ -195,7 +197,7 @@ export function CalendarSection() {
               ) : (
                 <div className="text-center py-4 text-gray-500">
                   <CalendarIcon className="w-6 h-6 mx-auto mb-2 text-gray-400" />
-                  <p className="text-xs">No events scheduled</p>
+                  <p className="text-xs">{t('noEventsScheduled')}</p>
             </div>
           )}
             </div>

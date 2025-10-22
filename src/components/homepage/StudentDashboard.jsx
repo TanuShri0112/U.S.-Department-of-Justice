@@ -4,13 +4,12 @@ import { Button } from '@/components/ui/button';
 import { BookOpen, Calendar, Clock, MessageSquare, Users, BarChart, Bell, ChevronRight, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import {WelcomeSection} from './WelcomeSection';
-import QuickStatsSection from './QuickStatsSection';
-import TeachingCoursesSection from './TeachingCoursesSection';
+import EnhancedStatsSection from './EnhancedStatsSection';
 import ZoomClassesSection from './ZoomClassesSection';
-import WidgetsSection from './WidgetsSection';
-import TaskListSection from './TaskListSection';
-import {AnnouncementSection} from './AnnouncementSection';
 import {CalendarSection} from './CalendarSection';
+import PerformanceSection from './PerformanceSection';
+import {AnnouncementSection} from './AnnouncementSection';
+import MyCoursesSection from './MyCoursesSection';
 
 export function StudentDashboard() {
   const navigate = useNavigate();
@@ -21,17 +20,16 @@ export function StudentDashboard() {
         {/* Main Content - Takes 2/3 of the space on large screens */}
         <div className="space-y-6 min-w-0 lg:col-span-8">
           <WelcomeSection />
-          <QuickStatsSection />
-          <TeachingCoursesSection />
+          <EnhancedStatsSection />
           <ZoomClassesSection />
-          <WidgetsSection />
         </div>
         
         {/* Right Column - Optimized width and spacing */}
         <div className="space-y-5 lg:col-span-4">
           <div className="lg:sticky lg:top-6 space-y-5">
             <CalendarSection />
-            <TaskListSection />
+            <PerformanceSection />
+            <MyCoursesSection />
             <AnnouncementSection />
           </div>
         </div>

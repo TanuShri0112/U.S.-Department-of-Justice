@@ -1,63 +1,93 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Star, Sparkles } from 'lucide-react';
+import { Calendar, Plus, Star, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function WelcomeSection() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
-  const handleJoinNow = () => {
-    // Navigate to courses or appropriate section
-    navigate('/courses');
+  const handleCalendarClick = () => {
+    navigate('/calendar');
+  };
+
+  const handleNewTaskClick = () => {
+    navigate('/tasks');
   };
 
   return (
-    <section className="mb-4">
-      <Card className="w-full shadow-sm">
-        <CardContent className="p-4">
-          <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-6 min-h-[200px] overflow-hidden">
-            {/* Starburst/Sparkle Graphics */}
-            <div className="absolute right-4 top-8 opacity-20">
+    <section className="mb-6">
+      {/* Top Welcome Card - Full Width */}
+      <div className="w-full bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {/* Student Dashboard Pill */}
+            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+              {t('studentDashboard')}
+            </div>
+            
+            {/* Greeting */}
+            <h1 className="text-xl font-semibold text-gray-800">
+              {t('haveProductiveDay')}
+            </h1>
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              onClick={handleCalendarClick}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg border-gray-200 hover:bg-gray-50"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>{t('calendar')}</span>
+            </Button>
+            
+            <Button
+              onClick={handleNewTaskClick}
+              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 flex items-center gap-2"
+            >
+              <Plus className="w-4 h-4" />
+              <span>{t('newTask')}</span>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Welcome Card */}
+      <Card className="w-full shadow-sm border-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl overflow-hidden">
+        <CardContent className="p-0">
+          <div className="relative p-8 min-h-[200px] overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute right-6 top-6 opacity-20">
               <Sparkles size={32} className="text-white animate-pulse" />
             </div>
-            <div className="absolute right-8 bottom-6 opacity-15">
+            <div className="absolute right-12 bottom-8 opacity-15">
               <Star size={24} className="text-white animate-pulse delay-1000" />
             </div>
             
             {/* Content */}
             <div className="relative z-10 flex flex-col justify-between h-full">
               <div className="mb-6">
-                {/* Course Tag */}
-                <div className="inline-block bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 mb-4">
-                  <span className="text-white text-xs font-semibold uppercase tracking-wide">
-                    Online Course
+                {/* Online Course Tag */}
+                <div className="inline-block bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
+                  <span className="text-white text-sm font-semibold uppercase tracking-wide">
+                    {t('onlineCourse')}
                   </span>
                 </div>
                 
                 {/* Main Headline */}
-                <h1 className="text-white text-2xl md:text-3xl font-bold leading-tight mb-3">
-                  <span className="block">Welcome to U.S. Department</span>
-                  <span className="block">of Justice Training</span>
+                <h1 className="text-white text-3xl md:text-4xl font-bold leading-tight mb-3">
+                  <span className="block">{t('welcomeToUQTR')}</span>
+                  <span className="block">{t('learningPlatform')}</span>
                 </h1>
                 
                 {/* Subtitle */}
-                <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-md">
-                  We're glad to see you here. Explore your courses, track your progress, and continue your professional development journey with us.
+                <p className="text-white/90 text-base leading-relaxed max-w-lg">
+                  {t('welcomeMessage')}
                 </p>
-              </div>
-              
-              {/* CTA Button */}
-              <div className="flex items-center">
-                <button
-                  onClick={handleJoinNow}
-                  className="group bg-black text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-gray-800 transition-all duration-200 hover:scale-105 shadow-lg flex items-center gap-2"
-                >
-                  <span>Join Now</span>
-                  <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform duration-200">
-                    <ArrowRight size={12} className="text-black" />
-                  </div>
-                </button>
               </div>
             </div>
             

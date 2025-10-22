@@ -10,66 +10,69 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ZoomClassesSection = () => {
+  const { t } = useLanguage();
+  
   const [classes, setClasses] = useState([
     {
       id: 1,
-      title: "Law Enforcement Training - Module 1",
+      title: "UQTR Training Catalogue Setup",
       date: "Wed, Jun 12",
       time: "10:00 AM",
       duration: "1 hour",
-      description: "Foundations of Law Enforcement Training in the U.S.",
+      description: "Configure course catalog for UQTR learners",
       zoomLink: "https://zoom.us/j/123456789",
       meetingId: "123 456 789",
       attendance: 0,
       totalStudents: 25,
       isCompleted: false,
-      instructor: "John Smith",
-      course: "Law Enforcement"
+      instructor: "Marie Dubois",
+      course: "Training Management"
     },
     {
       id: 2,
-      title: "Educator Professional Development",
+      title: "Self-Registration System Training",
       date: "Sat, Jun 15",
       time: "2:00 PM",
       duration: "2 hours",
-      description: "Professional Learning in Education",
+      description: "Learn to manage learner enrollment process",
       zoomLink: "https://zoom.us/j/987654321",
       meetingId: "987 654 321",
       attendance: 0,
       totalStudents: 30,
       isCompleted: false,
-      instructor: "Sarah Johnson",
-      course: "Education"
+      instructor: "Pierre Tremblay",
+      course: "System Administration"
     },
     {
       id: 3,
-      title: "Youth Advocate Training Session",
+      title: "Progress Tracking Workshop",
       date: "Sat, Jun 8",
       time: "11:00 AM",
       duration: "1.5 hours",
-      description: "Needs Assessment in Youth Advocacy",
+      description: "Advanced analytics and reporting for learning progress",
       attendance: 18,
       totalStudents: 25,
-      recordingUrl: "https://example.com/recording/youth-advocate-training.mp4",
+      recordingUrl: "https://example.com/recording/progress-tracking.mp4",
       isCompleted: true,
-      instructor: "Michael Brown",
-      course: "Youth Development"
+      instructor: "Sophie Martin",
+      course: "Analytics"
     },
     {
       id: 4,
-      title: "DOJ Compliance Updates",
+      title: "SCORM Content Integration",
       date: "Wed, Jun 5",
       time: "3:00 PM",
       duration: "1 hour",
-      description: "Latest updates in Department of Justice compliance requirements",
+      description: "Import and manage SCORM 1.2/2004 content packages",
       attendance: 22,
       totalStudents: 30,
-      recordingUrl: "https://example.com/recording/doj-compliance.mp4",
+      recordingUrl: "https://example.com/recording/scorm-integration.mp4",
       isCompleted: true,
-      instructor: "Jennifer Davis",
-      course: "Law Enforcement"
+      instructor: "Jean-François Lavoie",
+      course: "Content Management"
     }
   ]);
 
@@ -129,7 +132,7 @@ const ZoomClassesSection = () => {
               <div className="p-2 bg-blue-500 rounded-lg shadow-md">
                 <Video className="h-5 w-5 text-white" />
               </div>
-              Zoom Classes Management
+              {t('zoomClassesManagement')}
             </CardTitle>
           </div>
         </CardHeader>
@@ -138,11 +141,11 @@ const ZoomClassesSection = () => {
             <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded-xl mb-6">
               <TabsTrigger value="upcoming" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Calendar className="h-4 w-4" />
-                Upcoming Classes
+                {t('upcomingClasses')}
               </TabsTrigger>
               <TabsTrigger value="completed" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Video className="h-4 w-4" />
-                Completed Classes
+                {t('completedClasses')}
               </TabsTrigger>
             </TabsList>
             
@@ -205,7 +208,7 @@ const ZoomClassesSection = () => {
                         
                         <div className="flex items-center gap-3">
                           <div className="text-right">
-                            <p className="text-xs text-gray-500">Instructor</p>
+                            <p className="text-xs text-gray-500">{t('instructor')}</p>
                             <p className="text-sm font-medium text-gray-700">{cls.instructor}</p>
                           </div>
                           {cls.zoomLink && (
@@ -215,7 +218,7 @@ const ZoomClassesSection = () => {
                               className="bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg transition-all duration-300"
                             >
                               <ExternalLink className="h-4 w-4 mr-2" />
-                              Join via Zoom
+                              {t('joinViaZoom')}
                             </Button>
                           )}
                         </div>
@@ -225,8 +228,8 @@ const ZoomClassesSection = () => {
                 ) : (
                   <div className="text-center py-12 text-gray-500">
                     <Video className="h-16 w-16 mx-auto mb-4 text-gray-300" />
-                    <p className="text-lg font-medium mb-2">No upcoming classes scheduled</p>
-                    <p className="text-sm">Schedule your first class to get started</p>
+                    <p className="text-lg font-medium mb-2">{t('noUpcomingClasses')}</p>
+                    <p className="text-sm">{t('scheduleFirstClass')}</p>
                   </div>
                 )}
               </div>
@@ -247,7 +250,7 @@ const ZoomClassesSection = () => {
                               {cls.course}
                             </Badge>
                             <Badge variant="secondary" className="bg-green-100 text-green-700">
-                              Completed
+                              {t('completed')}
                             </Badge>
                           </div>
                           <p className="text-sm text-gray-500 mb-3">{cls.description}</p>
@@ -294,7 +297,7 @@ const ZoomClassesSection = () => {
                         
                         <div className="flex items-center gap-3">
                           <div className="text-right">
-                            <p className="text-xs text-gray-500">Instructor</p>
+                            <p className="text-xs text-gray-500">{t('instructor')}</p>
                             <p className="text-sm font-medium text-gray-700">{cls.instructor}</p>
                           </div>
                           <div className="flex gap-2">
@@ -305,7 +308,7 @@ const ZoomClassesSection = () => {
                               className="border-blue-200 text-blue-600 hover:bg-blue-50"
                             >
                               <Eye className="h-4 w-4 mr-2" />
-                              View Recording
+                              {t('viewRecording')}
                             </Button>
                             <Button
                               size="sm"
@@ -314,7 +317,7 @@ const ZoomClassesSection = () => {
                               className="border-green-200 text-green-600 hover:bg-green-50"
                             >
                               <Download className="h-4 w-4 mr-2" />
-                              Download
+                              {t('download')}
                             </Button>
                           </div>
                         </div>
@@ -324,8 +327,8 @@ const ZoomClassesSection = () => {
                 ) : (
                   <div className="text-center py-12 text-gray-500">
                     <Video className="h-16 w-16 mx-auto mb-4 text-gray-300" />
-                    <p className="text-lg font-medium mb-2">No completed classes yet</p>
-                    <p className="text-sm">Complete your first class to see it here</p>
+                    <p className="text-lg font-medium mb-2">{t('noCompletedClasses')}</p>
+                    <p className="text-sm">{t('completeFirstClass')}</p>
                   </div>
                 )}
               </div>

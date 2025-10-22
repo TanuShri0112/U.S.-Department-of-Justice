@@ -14,11 +14,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "../theme/ThemeToggle";
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const Header = ({ onMenuClick }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [userAvatar, setUserAvatar] = useState('/lovable-uploads/b22d4431-7c74-430d-aa30-15d8739a7fbf.png');
   const [avatarKey, setAvatarKey] = useState(Date.now());
   
@@ -130,7 +133,7 @@ export const Header = ({ onMenuClick }) => {
             <input
               type="search"
               className="w-full py-1.5 pl-10 pr-4 text-sm text-gray-900 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
-              placeholder="Search..."
+              placeholder={t('search')}
             />
           </div>
 
@@ -167,6 +170,8 @@ export const Header = ({ onMenuClick }) => {
             </Button> */}
           </div>
           
+          <LanguageSwitcher />
+          
           <ThemeToggle />
           
           <Button 
@@ -174,7 +179,7 @@ export const Header = ({ onMenuClick }) => {
             size="icon" 
             className="relative text-slate-600"
             onClick={handleNotificationsClick}
-            aria-label="Notifications"
+            aria-label={t('notifications')}
           >
             <Bell className="h-5 w-5" />
             <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
@@ -206,7 +211,7 @@ export const Header = ({ onMenuClick }) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => navigate('/profile')}>
                 <User className="mr-2 h-4 w-4" />
-                <span>Profile</span>
+                <span>{t('profile')}</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => {
@@ -216,7 +221,7 @@ export const Header = ({ onMenuClick }) => {
                   duration: 2000,
                 });
               }}>
-                Log out
+                {t('logout')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

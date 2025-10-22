@@ -8,10 +8,12 @@ import { cn } from '@/lib/utils';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { useAdminPortal } from '@/contexts/AdminPortalContext';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const SidebarNav = ({ onCloseMobile }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const { 
     isMainCollapsed, 
     setMainCollapsed
@@ -65,7 +67,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
       {/* Header */}
       <div 
         className={cn(
-          "flex h-20 items-center border-b border-gray-100 bg-blue-600",
+          "flex h-32 items-center border-b border-gray-100 bg-blue-600",
           isMainCollapsed ? "px-3 justify-center" : "px-6 justify-between"
         )}
       >
@@ -75,19 +77,19 @@ export const SidebarNav = ({ onCloseMobile }) => {
         >
           {isMainCollapsed ? (
             <img 
-              src="/assets/Image_20251016_124608_576-removebg-preview.png" 
-              alt="DOJ Logo" 
-              className="w-12 h-12 object-contain"
+              src="/assets/UQTR.png" 
+              alt="UQTR Logo" 
+              className="w-16 h-16 object-contain"
             />
           ) : (
             <div className="flex items-center gap-4">
               <img 
-                src="/assets/Image_20251016_124608_576-removebg-preview.png" 
-                alt="DOJ Logo" 
-                className="w-12 h-12 object-contain"
+                src="/assets/UQTR.png" 
+                alt="UQTR Logo" 
+                className="w-16 h-16 object-contain"
               />
               <div className="text-white">
-                <h1 className="text-lg font-semibold leading-tight">U.S. Department of Justice</h1>
+                <h1 className="text-lg font-semibold leading-tight">{t('universityName')}</h1>
               </div>
             </div>
           )}
@@ -112,14 +114,14 @@ export const SidebarNav = ({ onCloseMobile }) => {
       
       {/* Admin Portal Toggle at Bottom */}
       <div className="border-t border-gray-200 p-4">
-        {renderTooltip("Admin Portal", (
+        {renderTooltip(t('adminPortal'), (
           <div className={cn(
             "flex items-center gap-3 bg-blue-50 rounded-lg px-3 py-2 border border-blue-200 hover:bg-blue-100 transition-colors",
             isMainCollapsed && "justify-center px-2"
           )}>
             <Shield className="h-4 w-4 text-blue-600 flex-shrink-0" />
             {!isMainCollapsed && (
-              <span className="text-sm font-medium text-blue-700 flex-1">Admin Portal</span>
+              <span className="text-sm font-medium text-blue-700 flex-1">{t('adminPortal')}</span>
             )}
             <Switch
               checked={isAdminPortalEnabled}

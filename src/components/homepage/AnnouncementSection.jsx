@@ -4,38 +4,40 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Bell, AlertCircle, Info, CheckCircle, Calendar } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useLanguage } from '@/contexts/LanguageContext';
 export function AnnouncementSection() {
+  const { t } = useLanguage();
   
   const announcements = [
     {
       id: 1,
-      title: 'New National Community Outreach & Prevention Module Available',
-      source: 'DOJ Training Coordinator',
-      time: '2 hours ago',
-      content: 'Advanced National Community Outreach & Prevention Module 2: Stakeholder Analysis & Needs Assessment is now available for enrollment.',
+      title: t('newTrainingCatalogueModule'),
+      source: t('uqtrTrainingCoordinator'),
+      time: t('hoursAgo'),
+      content: t('newTrainingCatalogueContent'),
       type: 'course',
       priority: 'high',
-      course: 'Law Enforcement'
+      course: t('trainingManagement')
     },
     {
       id: 4,
-      title: 'DOJ Compliance Updates Workshop',
-      source: 'Legal Training Department',
-      time: '5 days ago',
-      content: 'Join our upcoming workshop on latest Department of Justice compliance requirements and regulatory updates.',
+      title: t('scormIntegrationWorkshop'),
+      source: t('uqtrContentDepartment'),
+      time: t('daysAgo'),
+      content: t('scormIntegrationContent'),
       type: 'workshop',
       priority: 'medium',
-      course: 'Law Enforcement'
+      course: t('contentManagement')
     },
     {
       id: 5,
-      title: 'Professional Development Survey',
-      source: 'Training Evaluation Team',
-      time: '1 week ago',
-      content: 'Please complete the training effectiveness survey to help us improve our professional development programs.',
+      title: t('progressTrackingSurvey'),
+      source: t('uqtrAnalyticsTeam'),
+      time: t('weekAgo'),
+      content: t('progressTrackingSurveyContent'),
       type: 'survey',
       priority: 'low',
-      course: 'General'
+      course: t('analytics')
     }
   ];
 
@@ -94,7 +96,7 @@ export function AnnouncementSection() {
             <div className="p-2 bg-blue-500 rounded-lg shadow-md">
               <Bell className="h-5 w-5 text-white" />
           </div>
-          Announcements
+          {t('announcements')}
         </CardTitle>
           <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-full hover:bg-blue-50 hover:text-blue-700 transition-all duration-300 hover:scale-110">
           <Bell className="h-4 w-4" />
@@ -127,7 +129,7 @@ export function AnnouncementSection() {
                           </h3>
                           <div className="flex items-center gap-2 ml-2">
                             {announcement.priority === 'high' && (
-                              <Badge variant="destructive" className="text-xs">High</Badge>
+                              <Badge variant="destructive" className="text-xs">{t('high')}</Badge>
                             )}
                             <span className="text-xs text-gray-500">
                               {announcement.time}
@@ -147,8 +149,8 @@ export function AnnouncementSection() {
           ) : (
             <div className="flex flex-col items-center justify-center h-32 text-gray-500">
               <Bell className="h-12 w-12 mb-3 text-gray-300" />
-              <p className="text-base font-medium mb-1">No announcements</p>
-              <p className="text-sm">Check back later for updates</p>
+              <p className="text-base font-medium mb-1">{t('noAnnouncements')}</p>
+              <p className="text-sm">{t('checkBackLater')}</p>
             </div>
           )}
         </ScrollArea>
