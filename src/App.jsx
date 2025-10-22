@@ -88,6 +88,10 @@ import CourseEdit from "./pages/CourseEdit";
 import EditModulePage from './pages/EditModulePage';
 import Chatbot from './pages/Chatbot.jsx';
 import Webinars from './pages/Webinars.jsx';
+import Events from './pages/Events.jsx';
+import CreateEvent from './pages/CreateEvent.jsx';
+import EventsCalendar from './pages/EventsCalendar.jsx';
+import RSVPs from './pages/RSVPs.jsx';
 
 const queryClient = new QueryClient();
 
@@ -162,6 +166,11 @@ const App = () => (
                   <Route path="profile" element={<Profile />} />
                   <Route path="chatbot" element={<Chatbot />} />
                   <Route path="webinars" element={<Webinars />} />
+                  {/* Events */}
+                  <Route path="events" element={<Events />} />
+                  <Route path="events/create" element={<CreateEvent />} />
+                  <Route path="events/calendar" element={<EventsCalendar />} />
+                  <Route path="events/rsvps" element={<RSVPs />} />
                   
                   {/* New Instructor Dashboard Routes */}
                   <Route path="tasks" element={<TaskManagement />} />
