@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Upload, Video, Calendar, Bell, Users, BarChart2, ClipboardCheck,
-  Shield
+  Shield, CalendarDays
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -23,6 +23,7 @@ import CalendarManagement from '../../pages/admin/CalendarManagement';
 import AnnouncementManagement from '../../pages/admin/AnnouncementManagement';
 import UserManagement from '../../pages/admin/UserManagement';
 import AdminReports from '../../pages/admin/AdminReports';
+import AdminEvents from '../../pages/admin/AdminEvents';
 import AdminFeedbackReports from '../../pages/admin/AdminFeedbackReports';
 
 const AdminPortal = ({ onToggle }) => {
@@ -65,6 +66,7 @@ const AdminPortal = ({ onToggle }) => {
     { id: 'courses', label: 'Upload Courses', icon: Upload },
     { id: 'webinars', label: 'Webinars', icon: Video },
     { id: 'schedule', label: 'Schedule', icon: Calendar },
+    { id: 'events', label: 'Events', icon: CalendarDays },
     { id: 'announcements', label: 'Announcements', icon: Bell },
     { id: 'users', label: 'Users', icon: Users },
     { id: 'reports', label: 'Reports', icon: BarChart2 },
@@ -697,7 +699,10 @@ const AdminPortal = ({ onToggle }) => {
        case 'schedule':
          return <CalendarManagement />;
  
-       case 'announcements':
+      case 'events':
+        return <AdminEvents />;
+
+      case 'announcements':
          return <AnnouncementManagement />;
 
        case 'users':

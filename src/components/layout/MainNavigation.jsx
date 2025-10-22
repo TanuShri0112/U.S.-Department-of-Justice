@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Home, Book, Users, Folder, FileText,
-  MessageCircle, HelpCircle, ClipboardCheck, Gamepad2
+  MessageCircle, HelpCircle, ClipboardCheck, Gamepad2, CalendarDays, PlusCircle, Ticket
 } from 'lucide-react';
 import { NavItem } from './NavItem';
 import { useSidebar } from '@/contexts/SidebarContext';
@@ -49,6 +49,11 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
 
   const handleGamesClick = () => {
     window.open('https://preview--community-quest-3d-25725-57941-94857.lovable.app/', '_blank');
+  };
+
+  const handleEventsClick = () => {
+    navigate('/events');
+    if (onItemClick) onItemClick();
   };
 
   // const handleResourcesClick = () => {
@@ -177,6 +182,19 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
             to="#"
             active={false}
             onClick={handleGamesClick}
+            collapsed={isMainCollapsed}
+            className="hover-lift"
+          />
+        </motion.div>
+
+        {/* Events */}
+        <motion.div variants={itemVariants}>
+          <NavItem 
+            icon={CalendarDays}
+            label="Events"
+            to="/events"
+            active={pathname.startsWith('/events')}
+            onClick={handleEventsClick}
             collapsed={isMainCollapsed}
             className="hover-lift"
           />
