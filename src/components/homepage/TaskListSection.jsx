@@ -4,20 +4,23 @@ import { Button } from '@/components/ui/button';
 import { Check, Clock, ChevronRight, Plus, User } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function TaskListSection() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('All');
-  const [tasks, setTasks] = useState([
+
+  const getTasks = (t) => [
     {
       id: 1,
-      title: 'Complete Law Enforcement Module 1',
-      description: 'Foundations of Law Enforcement Training',
+      title: t('completeUQTRTrainingCatalogue'),
+      description: t('completeUQTRTrainingCatalogueDescription'),
       dueDate: '2023-07-10',
       time: '10:00 PM - 11:45 PM',
       completed: false,
       priority: 'high',
-      course: 'Law Enforcement',
+      course: t('uqtrTrainingCatalogue'),
       assignees: [
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format',
         'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&auto=format'
@@ -25,31 +28,33 @@ export function TaskListSection() {
     },
     {
       id: 2,
-      title: 'Review Educator Training Assessment',
-      description: 'Professional Learning in Education',
+      title: t('reviewUQTRSelfRegistration'),
+      description: t('reviewUQTRSelfRegistrationDescription'),
       dueDate: '2023-07-12',
       time: '2:00 PM - 3:30 PM',
       completed: false,
       priority: 'medium',
-      course: 'Education',
+      course: t('uqtrSelfRegistration'),
       assignees: [
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format'
       ]
     },
     {
       id: 3,
-      title: 'Submit Youth Advocate Module 2',
-      description: 'Needs Assessment in Youth Advocacy',
+      title: t('submitUQTRProgressTracking'),
+      description: t('submitUQTRProgressTrackingDescription'),
       dueDate: '2023-07-15',
       time: '9:00 AM - 11:00 AM',
       completed: true,
       priority: 'high',
-      course: 'Youth Development',
+      course: t('uqtrProgressTracking'),
       assignees: [
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format'
       ]
     }
-  ]);
+  ];
+
+  const [tasks, setTasks] = useState(getTasks(t));
 
   const toggleTask = (taskId) => {
     setTasks(tasks.map(task => 
@@ -80,11 +85,11 @@ export function TaskListSection() {
 
   const getFilteredTasks = () => {
     switch (activeFilter) {
-      case 'Open':
+      case t('open'):
         return tasks.filter(task => !task.completed);
-      case 'Closed':
+      case t('closed'):
         return tasks.filter(task => task.completed);
-      case 'Archived':
+      case t('archived'):
         return tasks.filter(task => task.archived);
       default:
         return tasks;
@@ -105,6 +110,15 @@ export function TaskListSection() {
     return new Date().toLocaleDateString(undefined, options);
   };
 
+  const getFilterOptions = (t) => [
+    { key: 'All', label: t('all') },
+    { key: t('open'), label: t('open') },
+    { key: t('closed'), label: t('closed') },
+    { key: t('archived'), label: t('archived') }
+  ];
+
+  const filterOptions = getFilterOptions(t);
+
   return (
     <Card className="border-0 shadow-lg bg-white overflow-hidden">
       <CardHeader className="pb-4 pt-5 px-6">
@@ -112,7 +126,7 @@ export function TaskListSection() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <CardTitle className="text-xl font-bold text-gray-800 mb-1">
-              Today's Task
+              {t('todaysTask')}
             </CardTitle>
             <p className="text-sm text-gray-500">{getTodayDate()}</p>
           </div>
@@ -123,30 +137,30 @@ export function TaskListSection() {
             onClick={handleAddTask}
           >
             <Plus className="h-4 w-4 mr-2" />
-            New Task
+            {t('newTask')}
           </Button>
         </div>
 
         {/* Filter Tabs */}
         <div className="flex items-center gap-6">
-          {['All', 'Open', 'Closed', 'Archived'].map((filter) => {
-            const count = filter === 'All' ? tasks.length : 
-                         filter === 'Open' ? openTasks.length :
-                         filter === 'Closed' ? closedTasks.length : 0;
+          {filterOptions.map((filter) => {
+            const count = filter.key === 'All' ? tasks.length : 
+                         filter.key === t('open') ? openTasks.length :
+                         filter.key === t('closed') ? closedTasks.length : 0;
             
             return (
               <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
+                key={filter.key}
+                onClick={() => setActiveFilter(filter.key)}
                 className={`flex items-center gap-2 text-sm font-medium transition-all duration-300 ${
-                  activeFilter === filter 
+                  activeFilter === filter.key 
                     ? 'text-blue-600' 
                     : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
-                <span>{filter}</span>
+                <span>{filter.label}</span>
                 <span className={`px-2 py-1 rounded-full text-xs ${
-                  activeFilter === filter 
+                  activeFilter === filter.key 
                     ? 'bg-blue-100 text-blue-600' 
                     : 'bg-gray-100 text-gray-500'
                 }`}>
@@ -228,7 +242,7 @@ export function TaskListSection() {
           className="w-full mt-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
           onClick={handleViewAllTasks}
         >
-          View All Tasks
+          {t('viewAllTasks')}
           <ChevronRight className="w-4 h-4 ml-2" />
         </Button>
       </CardContent>

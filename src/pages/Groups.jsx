@@ -119,9 +119,11 @@ const GroupsContent = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">{t('allTypes')}</SelectItem>
-              <SelectItem value="interest">{t('interestGroups')}</SelectItem>
-              <SelectItem value="study">{t('studyGroups')}</SelectItem>
-              <SelectItem value="business">{t('businessGroups')}</SelectItem>
+              <SelectItem value="training">{t('professionalTraining')}</SelectItem>
+              <SelectItem value="community">{t('communityDevelopment')}</SelectItem>
+              <SelectItem value="legal">{t('legalEducation')}</SelectItem>
+              <SelectItem value="research">{t('researchGroup')}</SelectItem>
+              <SelectItem value="student">{t('studentOrganization')}</SelectItem>
             </SelectContent>
           </Select>
           
@@ -161,7 +163,7 @@ const GroupsContent = () => {
             <CardContent>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Members</span>
+                  <span className="text-muted-foreground">{t('members')}</span>
                   <span className="font-medium">{group.members}</span>
                 </div>
                 <Button 
@@ -169,7 +171,7 @@ const GroupsContent = () => {
                   className="w-full bg-blue-500 hover:bg-blue-600 transition-colors"
                   onClick={() => handleViewGroup(group.id)}
                 >
-                  Open Group
+                  {t('openGroup')}
                 </Button>
               </div>
             </CardContent>

@@ -5,16 +5,13 @@ import {
   TrendingUp, 
   MoreVertical,
   Users,
-  Clock,
   Target,
   CheckCircle,
   ArrowUp,
   ArrowDown,
   Wallet,
   FileText,
-  BarChart3,
-  Plus,
-  Calendar
+  BarChart3
 } from 'lucide-react';
 import { 
   ChartContainer, 
@@ -86,33 +83,6 @@ const moduleStats = [
   { label: 'Legal Training', value: '7,500' }
 ];
 
-// Today's tasks data
-const todaysTasks = [
-  {
-    id: 1,
-    title: 'Complete Law Enforcement Module 1',
-    description: 'Foundations of Law Enforcement Training',
-    time: '10:00 PM - 11:45 PM',
-    completed: false,
-    collaborators: 2
-  },
-  {
-    id: 2,
-    title: 'Review Educator Training Assessment',
-    description: 'Professional Learning in Education',
-    time: '2:00 PM - 3:30 PM',
-    completed: false,
-    collaborators: 1
-  },
-  {
-    id: 3,
-    title: 'Submit Community Outreach Report',
-    description: 'Monthly progress review and documentation',
-    time: '4:00 PM - 5:00 PM',
-    completed: true,
-    collaborators: 0
-  }
-];
 
 const chartConfig = {
   enrolled: {
@@ -174,7 +144,7 @@ export default function EnhancedStatsSection() {
                 <span className="text-sm text-gray-600">Enrolled</span>
               </div>
               <div className="flex items-center gap-2 ml-4">
-                <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                 <span className="text-sm text-gray-600">Completed</span>
               </div>
             </div>
@@ -204,7 +174,7 @@ export default function EnhancedStatsSection() {
               />
               <Bar 
                 dataKey="completed" 
-                fill="#F97316" 
+                fill="#10B981" 
                 radius={[4, 4, 0, 0]}
                 className="hover:opacity-80 transition-opacity"
               />
@@ -233,67 +203,6 @@ export default function EnhancedStatsSection() {
         ))}
       </div>
 
-      {/* Today's Task Section - Below Small Stats */}
-      <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800">Today's Task</h3>
-            <p className="text-sm text-gray-500">Wednesday, October 22</p>
-          </div>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition-colors">
-            <Plus className="w-4 h-4" />
-            New Task
-          </button>
-        </div>
-
-        {/* Task Filters */}
-        <div className="flex items-center gap-4 mb-6">
-          <button className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
-            All 3
-          </button>
-          <button className="text-gray-500 px-3 py-1 rounded-full text-sm hover:bg-gray-100">
-            Open 2
-          </button>
-          <button className="text-gray-500 px-3 py-1 rounded-full text-sm hover:bg-gray-100">
-            Closed 1
-          </button>
-          <button className="text-gray-500 px-3 py-1 rounded-full text-sm hover:bg-gray-100">
-            Archive
-          </button>
-        </div>
-
-        {/* Task List */}
-        <div className="space-y-4">
-          {todaysTasks.map((task) => (
-            <div key={task.id} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <input 
-                type="checkbox" 
-                checked={task.completed}
-                className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-              />
-              <div className="flex-1">
-                <div className="font-semibold text-gray-800 mb-1">{task.title}</div>
-                <div className="text-sm text-gray-600 mb-2">{task.description}</div>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <Clock className="w-4 h-4" />
-                  {task.time}
-                  {task.collaborators > 0 && (
-                    <div className="flex items-center gap-1 ml-4">
-                      <div className="flex -space-x-2">
-                        {Array.from({ length: task.collaborators }).map((_, i) => (
-                          <div key={i} className="w-6 h-6 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center">
-                            <span className="text-xs text-white font-medium">{i + 1}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

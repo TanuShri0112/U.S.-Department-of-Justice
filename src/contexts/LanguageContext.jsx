@@ -225,7 +225,75 @@ export const LanguageProvider = ({ children }) => {
       interestGroups: 'Interest groups',
       studyGroups: 'Study groups',
       businessGroups: 'Business groups',
+      members: 'Members',
+      openGroup: 'Open Group',
       enrolled: 'Enrolled',
+      professionalTraining: 'Professional Training',
+      communityDevelopment: 'Community Development',
+      legalEducation: 'Legal Education',
+      researchGroup: 'Research Group',
+      studentOrganization: 'Student Organization',
+      
+      // Group Detail Page
+      active: 'Active',
+      trainingSessions: 'Training Sessions',
+      certifications: 'Certifications',
+      groupInformation: 'Group Information',
+      category: 'Category',
+      createdDate: 'Created Date',
+      lastActivity: 'Last Activity',
+      status: 'Status',
+      totalMembers: 'Total Members',
+      groupType: 'Group Type',
+      recentActivity: 'Recent Activity',
+      newTrainingSession: 'New training session: "Stakeholder Analysis & Needs Assessment"',
+      newMembersJoined: '5 new officers joined the training program',
+      certificationExamScheduled: 'Module 2 certification exam scheduled for next week',
+      trainingMaterialsUpdated: 'DOJ compliance training materials updated',
+      oneHourAgo: '1 hour ago',
+      twoDaysAgo: '2 days ago',
+      fourDaysAgo: '4 days ago',
+      oneWeekAgo: '1 week ago',
+      
+      // UQTR Group Names
+      uqtrLawEnforcementTraining: 'UQTR Law Enforcement Training Group',
+      uqtrCommunityOutreach: 'UQTR Community Outreach Program',
+      uqtrLegalTrainingSpecialists: 'UQTR Legal Training Specialists',
+      
+      // UQTR Group Descriptions
+      uqtrLawEnforcementDescription: 'DOJ Law Enforcement Training Group focused on professional development, stakeholder analysis, and advanced law enforcement skills enhancement',
+      uqtrCommunityOutreachDescription: 'Community development program focused on building partnerships, fostering community engagement, and promoting social development initiatives',
+      uqtrLegalTrainingDescription: 'Legal education specialists group focused on advanced legal training, case studies, and professional development for legal professionals',
+      
+      // Group Categories
+      lawEnforcementTraining: 'Law Enforcement Training',
+      communityDevelopment: 'Community Development',
+      legalEducation: 'Legal Education',
+      
+      // Group Status
+      activeAcceptingTrainees: 'Active and accepting new trainees',
+      activeAcceptingMembers: 'Active and accepting new members',
+      activeAcceptingStudents: 'Active and accepting new students',
+      
+      // Dates
+      january152024: 'January 15, 2024',
+      february102024: 'February 10, 2024',
+      march52024: 'March 5, 2024',
+      
+      // Time References
+      oneHourAgo: '1 hour ago',
+      twoHoursAgo: '2 hours ago',
+      threeHoursAgo: '3 hours ago',
+      
+      // Member Counts
+      fortyFiveOfficers: '45 officers',
+      thirtyTwoMembers: '32 members',
+      twentyEightStudents: '28 students',
+      
+      // Group Types
+      professionalTrainingGroup: 'Professional Training Group',
+      communityDevelopmentGroup: 'Community Development Group',
+      legalEducationGroup: 'Legal Education Group',
 
       // Messages
       searchContacts: 'Search contacts...',
@@ -468,7 +536,31 @@ export const LanguageProvider = ({ children }) => {
       scheduleUQTRInstructorSessions: 'Schedule UQTR Instructor Sessions',
       scheduleUQTRInstructorSessionsDescription: 'Set up training schedule for UQTR faculty, education, and student development instructors',
       reviewUQTRStakeholderAnalysis: 'Review UQTR Stakeholder Analysis Module',
-      reviewUQTRStakeholderAnalysisDescription: 'Final review of UQTR Stakeholder Analysis & Needs Assessment module content before publication'
+      reviewUQTRStakeholderAnalysisDescription: 'Final review of UQTR Stakeholder Analysis & Needs Assessment module content before publication',
+
+      // Today's Task Section
+      todaysTask: 'Today\'s Task',
+      newTask: 'New Task',
+      viewAllTasks: 'View All Tasks',
+      all: 'All',
+      open: 'Open',
+      closed: 'Closed',
+      archived: 'Archived',
+      completeUQTRTrainingCatalogue: 'Complete UQTR Training Catalogue',
+      completeUQTRTrainingCatalogueDescription: 'Foundations of UQTR Training Catalogue System',
+      reviewUQTRSelfRegistration: 'Review UQTR Self-Registration',
+      reviewUQTRSelfRegistrationDescription: 'Professional Learning in UQTR Self-Registration',
+      submitUQTRProgressTracking: 'Submit UQTR Progress Tracking',
+      submitUQTRProgressTrackingDescription: 'Needs Assessment in UQTR Progress Tracking',
+
+      // My Courses Section
+      myCourses: 'My Courses',
+      viewAll: 'View All',
+      modules: 'modules',
+      students: 'students',
+      uqtrUniversity: 'UQTR University',
+      buildingExcellenceFosteringGrowth: 'Building Excellence, Fostering Growth',
+      progress: 'Progress'
     },
     fr: {
       // Header
@@ -671,7 +763,75 @@ export const LanguageProvider = ({ children }) => {
       interestGroups: 'Groupes d\'intérêt',
       studyGroups: 'Groupes d\'étude',
       businessGroups: 'Groupes d\'affaires',
+      members: 'Membres',
+      openGroup: 'Ouvrir le groupe',
       enrolled: 'Inscrit',
+      professionalTraining: 'Formation professionnelle',
+      communityDevelopment: 'Développement communautaire',
+      legalEducation: 'Éducation juridique',
+      researchGroup: 'Groupe de recherche',
+      studentOrganization: 'Organisation étudiante',
+      
+      // Group Detail Page
+      active: 'Actif',
+      trainingSessions: 'Sessions de formation',
+      certifications: 'Certifications',
+      groupInformation: 'Informations du groupe',
+      category: 'Catégorie',
+      createdDate: 'Date de création',
+      lastActivity: 'Dernière activité',
+      status: 'Statut',
+      totalMembers: 'Total des membres',
+      groupType: 'Type de groupe',
+      recentActivity: 'Activité récente',
+      newTrainingSession: 'Nouvelle session de formation : "Analyse des parties prenantes et évaluation des besoins"',
+      newMembersJoined: '5 nouveaux officiers ont rejoint le programme de formation',
+      certificationExamScheduled: 'Examen de certification du module 2 programmé pour la semaine prochaine',
+      trainingMaterialsUpdated: 'Matériel de formation de conformité DOJ mis à jour',
+      oneHourAgo: 'Il y a 1 heure',
+      twoDaysAgo: 'Il y a 2 jours',
+      fourDaysAgo: 'Il y a 4 jours',
+      oneWeekAgo: 'Il y a 1 semaine',
+      
+      // UQTR Group Names
+      uqtrLawEnforcementTraining: 'Groupe de formation en application de la loi UQTR',
+      uqtrCommunityOutreach: 'Programme de sensibilisation communautaire UQTR',
+      uqtrLegalTrainingSpecialists: 'Spécialistes en formation juridique UQTR',
+      
+      // UQTR Group Descriptions
+      uqtrLawEnforcementDescription: 'Groupe de formation en application de la loi DOJ axé sur le développement professionnel, l\'analyse des parties prenantes et l\'amélioration des compétences avancées en application de la loi',
+      uqtrCommunityOutreachDescription: 'Programme de développement communautaire axé sur la construction de partenariats, la promotion de l\'engagement communautaire et l\'initiative de développement social',
+      uqtrLegalTrainingDescription: 'Groupe de spécialistes en éducation juridique axé sur la formation juridique avancée, les études de cas et le développement professionnel pour les professionnels du droit',
+      
+      // Group Categories
+      lawEnforcementTraining: 'Formation en application de la loi',
+      communityDevelopment: 'Développement communautaire',
+      legalEducation: 'Éducation juridique',
+      
+      // Group Status
+      activeAcceptingTrainees: 'Actif et acceptant de nouveaux stagiaires',
+      activeAcceptingMembers: 'Actif et acceptant de nouveaux membres',
+      activeAcceptingStudents: 'Actif et acceptant de nouveaux étudiants',
+      
+      // Dates
+      january152024: '15 janvier 2024',
+      february102024: '10 février 2024',
+      march52024: '5 mars 2024',
+      
+      // Time References
+      oneHourAgo: 'Il y a 1 heure',
+      twoHoursAgo: 'Il y a 2 heures',
+      threeHoursAgo: 'Il y a 3 heures',
+      
+      // Member Counts
+      fortyFiveOfficers: '45 officiers',
+      thirtyTwoMembers: '32 membres',
+      twentyEightStudents: '28 étudiants',
+      
+      // Group Types
+      professionalTrainingGroup: 'Groupe de formation professionnelle',
+      communityDevelopmentGroup: 'Groupe de développement communautaire',
+      legalEducationGroup: 'Groupe d\'éducation juridique',
 
       // Messages
       searchContacts: 'Rechercher des contacts...',
@@ -914,7 +1074,31 @@ export const LanguageProvider = ({ children }) => {
       scheduleUQTRInstructorSessions: 'Programmer les sessions d\'instructeurs UQTR',
       scheduleUQTRInstructorSessionsDescription: 'Établir l\'horaire de formation pour les instructeurs de faculté, d\'éducation et de développement étudiant UQTR',
       reviewUQTRStakeholderAnalysis: 'Examiner le module d\'analyse des parties prenantes UQTR',
-      reviewUQTRStakeholderAnalysisDescription: 'Examen final du contenu du module d\'analyse des parties prenantes et d\'évaluation des besoins UQTR avant publication'
+      reviewUQTRStakeholderAnalysisDescription: 'Examen final du contenu du module d\'analyse des parties prenantes et d\'évaluation des besoins UQTR avant publication',
+
+      // Today's Task Section
+      todaysTask: 'Tâche d\'aujourd\'hui',
+      newTask: 'Nouvelle tâche',
+      viewAllTasks: 'Voir toutes les tâches',
+      all: 'Toutes',
+      open: 'Ouvertes',
+      closed: 'Fermées',
+      archived: 'Archivées',
+      completeUQTRTrainingCatalogue: 'Compléter le catalogue de formation UQTR',
+      completeUQTRTrainingCatalogueDescription: 'Fondements du système de catalogue de formation UQTR',
+      reviewUQTRSelfRegistration: 'Examiner l\'auto-inscription UQTR',
+      reviewUQTRSelfRegistrationDescription: 'Apprentissage professionnel dans l\'auto-inscription UQTR',
+      submitUQTRProgressTracking: 'Soumettre le suivi des progrès UQTR',
+      submitUQTRProgressTrackingDescription: 'Évaluation des besoins dans le suivi des progrès UQTR',
+
+      // My Courses Section
+      myCourses: 'Mes cours',
+      viewAll: 'Voir tout',
+      modules: 'modules',
+      students: 'étudiants',
+      uqtrUniversity: 'Université UQTR',
+      buildingExcellenceFosteringGrowth: 'Construire l\'excellence, favoriser la croissance',
+      progress: 'Progrès'
     }
   };
 
