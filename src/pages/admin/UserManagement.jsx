@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Users, Search, Filter, Plus, Edit, Trash2, Mail, Shield, UserCheck, UserX, Eye, X } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const UserManagement = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('all');
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -201,8 +203,8 @@ const UserManagement = () => {
               <Users className="w-6 h-6 text-green-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">User Management</h1>
-              <p className="text-gray-600">Manage users, roles, and permissions</p>
+              <h1 className="text-2xl font-bold text-gray-900">{t('userManagement')}</h1>
+              <p className="text-gray-600">{t('manageUsersRolesPermissions')}</p>
             </div>
           </div>
           <button
@@ -210,27 +212,27 @@ const UserManagement = () => {
             className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
           >
             <Plus className="w-4 h-4" />
-            Add User
+            {t('addUser')}
           </button>
         </div>
       </div>
 
       {/* Analytics */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">User Statistics</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('userStatistics')}</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <Users className="w-8 h-8 text-blue-600" />
             </div>
-            <p className="text-sm font-medium text-gray-900">Total Users</p>
+            <p className="text-sm font-medium text-gray-900">{t('totalUsers')}</p>
             <p className="text-2xl font-bold text-blue-600">{users.length}</p>
           </div>
           <div className="text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <UserCheck className="w-8 h-8 text-green-600" />
             </div>
-            <p className="text-sm font-medium text-gray-900">Active Users</p>
+            <p className="text-sm font-medium text-gray-900">{t('activeUsers')}</p>
             <p className="text-2xl font-bold text-green-600">
               {users.filter(u => u.status === 'Active').length}
             </p>
@@ -239,7 +241,7 @@ const UserManagement = () => {
             <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <Shield className="w-8 h-8 text-purple-600" />
             </div>
-            <p className="text-sm font-medium text-gray-900">Instructors</p>
+            <p className="text-sm font-medium text-gray-900">{t('instructors')}</p>
             <p className="text-2xl font-bold text-purple-600">
               {users.filter(u => u.role === 'Instructor').length}
             </p>
@@ -248,7 +250,7 @@ const UserManagement = () => {
             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <UserX className="w-8 h-8 text-orange-600" />
             </div>
-            <p className="text-sm font-medium text-gray-900">Inactive Users</p>
+            <p className="text-sm font-medium text-gray-900">{t('inactiveUsers')}</p>
             <p className="text-2xl font-bold text-orange-600">
               {users.filter(u => u.status === 'Inactive').length}
             </p>
@@ -263,7 +265,7 @@ const UserManagement = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
-              placeholder="Search users by name, email, or department..."
+              placeholder={t('searchUsersByNameEmail')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
@@ -297,25 +299,25 @@ const UserManagement = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  User
+                  {t('user')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Role
+                  {t('role')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Department
+                  {t('department')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  {t('status')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Last Login
+                  {t('lastLogin')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Progress
+                  {t('progress')}
                 </th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  {t('actions')}
                 </th>
               </tr>
             </thead>
@@ -353,10 +355,10 @@ const UserManagement = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      {user.coursesCompleted} courses
+                      {user.coursesCompleted} {t('courses')}
                     </div>
                     <div className="text-xs text-gray-500">
-                      {user.totalHours} hours
+                      {user.totalHours} {t('hours')}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -364,7 +366,7 @@ const UserManagement = () => {
                       <button
                         onClick={() => setSelectedUser(user)}
                         className="text-gray-400 hover:text-blue-600 transition-colors"
-                        title="View Details"
+                        title={t('viewDetails')}
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -375,7 +377,7 @@ const UserManagement = () => {
                             ? 'text-green-600 hover:text-red-600' 
                             : 'text-red-600 hover:text-green-600'
                         }`}
-                        title={user.status === 'Active' ? 'Deactivate' : 'Activate'}
+                        title={user.status === 'Active' ? t('deactivate') : t('activate')}
                       >
                         {user.status === 'Active' ? <UserX className="w-4 h-4" /> : <UserCheck className="w-4 h-4" />}
                       </button>
@@ -385,14 +387,14 @@ const UserManagement = () => {
                       setIsCreateModalOpen(true);
                     }}
                         className="text-gray-400 hover:text-blue-600 transition-colors"
-                        title="Edit User"
+                        title={t('editUser')}
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteUser(user.id)}
                         className="text-gray-400 hover:text-red-600 transition-colors"
-                        title="Delete User"
+                        title={t('deleteUser')}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -410,7 +412,7 @@ const UserManagement = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold text-gray-900">User Details</h3>
+              <h3 className="text-lg font-semibold text-gray-900">{t('userDetails')}</h3>
               <button
                 onClick={() => setSelectedUser(null)}
                 className="text-gray-400 hover:text-gray-600"
@@ -434,44 +436,44 @@ const UserManagement = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('role')}</label>
                   <span className={`px-3 py-1 text-sm rounded-full ${getRoleStyle(selectedUser.role)}`}>
                     {selectedUser.role}
                   </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('status')}</label>
                   <span className={`px-3 py-1 text-sm rounded-full ${getStatusStyle(selectedUser.status)}`}>
                     {selectedUser.status}
                   </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('department')}</label>
                   <p className="text-gray-900">{selectedUser.department}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Join Date</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('joinDate')}</label>
                   <p className="text-gray-900">{selectedUser.joinDate}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Last Login</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('lastLogin')}</label>
                   <p className="text-gray-900">{selectedUser.lastLogin}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Courses Completed</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('coursesCompleted')}</label>
                   <p className="text-gray-900">{selectedUser.coursesCompleted}</p>
                 </div>
               </div>
 
               <div className="pt-4 border-t border-gray-200">
-                <h5 className="font-medium text-gray-900 mb-3">Learning Progress</h5>
+                <h5 className="font-medium text-gray-900 mb-3">{t('learningProgress')}</h5>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-blue-50 p-3 rounded-lg">
-                    <p className="text-sm text-blue-600 font-medium">Courses Completed</p>
+                    <p className="text-sm text-blue-600 font-medium">{t('coursesCompleted')}</p>
                     <p className="text-2xl font-bold text-blue-900">{selectedUser.coursesCompleted}</p>
                   </div>
                   <div className="bg-green-50 p-3 rounded-lg">
-                    <p className="text-sm text-green-600 font-medium">Total Hours</p>
+                    <p className="text-sm text-green-600 font-medium">{t('totalHours')}</p>
                     <p className="text-2xl font-bold text-green-900">{selectedUser.totalHours}</p>
                   </div>
                 </div>
@@ -492,10 +494,10 @@ const UserManagement = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
-                    {editingUser ? 'Edit User' : 'Add New User'}
+                    {editingUser ? t('editUser') : t('addNewUser')}
                   </h3>
                   <p className="text-gray-600 mt-1">
-                    {editingUser ? 'Update user information' : 'Create a new user account'}
+                    {editingUser ? t('updateUserInformation') : t('createNewUserAccount')}
                   </p>
                 </div>
               </div>
@@ -518,58 +520,58 @@ const UserManagement = () => {
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('fullName')}</label>
                 <input 
                   type="text" 
                   value={newUser.name}
                   onChange={(e) => setNewUser({...newUser, name: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                  placeholder="Enter full name"
+                  placeholder={t('enterFullName')}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('emailAddress')}</label>
                 <input 
                   type="email" 
                   value={newUser.email}
                   onChange={(e) => setNewUser({...newUser, email: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                  placeholder="Enter email address"
+                  placeholder={t('enterEmailAddress')}
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('role')}</label>
                   <select 
                     value={newUser.role}
                     onChange={(e) => setNewUser({...newUser, role: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   >
-                    <option value="Student">Student</option>
-                    <option value="Instructor">Instructor</option>
-                    <option value="Admin">Admin</option>
+                    <option value="Student">{t('student')}</option>
+                    <option value="Instructor">{t('instructor')}</option>
+                    <option value="Admin">{t('admin')}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('status')}</label>
                   <select 
                     value={newUser.status}
                     onChange={(e) => setNewUser({...newUser, status: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   >
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
+                    <option value="Active">{t('active')}</option>
+                    <option value="Inactive">{t('inactive')}</option>
                   </select>
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('department')}</label>
                 <input 
                   type="text" 
                   value={newUser.department}
                   onChange={(e) => setNewUser({...newUser, department: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                  placeholder="Enter department"
+                  placeholder={t('enterDepartment')}
                 />
               </div>
             </div>
@@ -578,13 +580,13 @@ const UserManagement = () => {
                 onClick={handleCreateUser}
                 className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
               >
-                {editingUser ? 'Update User' : 'Create User'}
+                {editingUser ? t('updateUser') : t('createUser')}
               </button>
               <button 
                 onClick={() => setIsCreateModalOpen(false)}
                 className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors"
               >
-                Cancel
+                {t('cancel')}
               </button>
             </div>
           </div>

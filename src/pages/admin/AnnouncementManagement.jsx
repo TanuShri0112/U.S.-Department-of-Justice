@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Bell, Send, Edit, Trash2, Plus, Users, Eye, Calendar, X } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const AnnouncementManagement = () => {
+  const { t } = useLanguage();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [editingAnnouncement, setEditingAnnouncement] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
@@ -153,9 +155,9 @@ const AnnouncementManagement = () => {
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-                Announcement Management
+                {t('announcementManagement')}
               </h1>
-              <p className="text-gray-600 mt-1 text-lg">Create, manage, and track platform announcements</p>
+              <p className="text-gray-600 mt-1 text-lg">{t('createManageTrackAnnouncements')}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -171,7 +173,7 @@ const AnnouncementManagement = () => {
               className="bg-gradient-to-r from-orange-600 to-pink-600 text-white px-6 py-3 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-2 font-medium"
             >
               <Plus className="w-5 h-5" />
-              Create Announcement
+              {t('createAnnouncement')}
             </button>
           </div>
         </div>
@@ -181,17 +183,17 @@ const AnnouncementManagement = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 transform transition-all duration-200 hover:shadow-md">
         <div className="flex items-center gap-3 mb-6">
           <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-            Analytics Overview
+            {t('analyticsOverview')}
           </h3>
           <div className="h-6 w-px bg-gray-200"></div>
-          <p className="text-gray-600">Real-time announcement metrics</p>
+          <p className="text-gray-600">{t('realTimeAnnouncementMetrics')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="bg-gradient-to-br from-orange-50 to-pink-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
             <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
               <Bell className="w-10 h-10 text-orange-600" />
             </div>
-            <p className="text-base font-semibold text-gray-900 text-center">Total Announcements</p>
+            <p className="text-base font-semibold text-gray-900 text-center">{t('totalAnnouncements')}</p>
             <p className="text-3xl font-bold text-center mt-2 bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
               {announcements.length}
             </p>
@@ -200,19 +202,19 @@ const AnnouncementManagement = () => {
             <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
               <Send className="w-10 h-10 text-green-600" />
             </div>
-            <p className="text-base font-semibold text-gray-900 text-center">Published</p>
+            <p className="text-base font-semibold text-gray-900 text-center">{t('published')}</p>
             <div className="flex items-center justify-center gap-2 mt-2">
               <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
                 {announcements.filter(a => a.status === 'Published').length}
               </p>
-              <span className="text-sm text-green-600">Active</span>
+              <span className="text-sm text-green-600">{t('active')}</span>
             </div>
           </div>
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl transform transition-all duration-200 hover:scale-105">
             <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
               <Eye className="w-10 h-10 text-blue-600" />
             </div>
-            <p className="text-base font-semibold text-gray-900 text-center">Total Views</p>
+            <p className="text-base font-semibold text-gray-900 text-center">{t('totalViews')}</p>
             <p className="text-3xl font-bold text-center mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
               {announcements.reduce((sum, a) => sum + a.views, 0)}
             </p>
@@ -221,12 +223,12 @@ const AnnouncementManagement = () => {
             <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
               <Users className="w-10 h-10 text-purple-600" />
             </div>
-            <p className="text-base font-semibold text-gray-900 text-center">Avg Views</p>
+            <p className="text-base font-semibold text-gray-900 text-center">{t('avgViews')}</p>
             <div className="flex items-center justify-center gap-2 mt-2">
               <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 {Math.round(announcements.reduce((sum, a) => sum + a.views, 0) / announcements.length) || 0}
               </p>
-              <span className="text-sm text-purple-600">per post</span>
+              <span className="text-sm text-purple-600">{t('perPost')}</span>
             </div>
           </div>
         </div>
@@ -237,9 +239,9 @@ const AnnouncementManagement = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
             <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-              Announcements
+              {t('announcements')}
             </h3>
-            <p className="text-gray-600 mt-1">Manage and monitor your announcements</p>
+            <p className="text-gray-600 mt-1">{t('manageMonitorAnnouncements')}</p>
           </div>
           <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-xl">
             <button 
@@ -250,7 +252,7 @@ const AnnouncementManagement = () => {
                   : 'text-gray-600 hover:text-orange-600'
               }`}
             >
-              All
+              {t('all')}
             </button>
             <button 
               onClick={() => setActiveFilter('published')}
@@ -260,7 +262,7 @@ const AnnouncementManagement = () => {
                   : 'text-gray-600 hover:text-orange-600'
               }`}
             >
-              Published
+              {t('published')}
             </button>
             <button 
               onClick={() => setActiveFilter('drafts')}
@@ -270,7 +272,7 @@ const AnnouncementManagement = () => {
                   : 'text-gray-600 hover:text-orange-600'
               }`}
             >
-              Drafts
+              {t('drafts')}
             </button>
           </div>
         </div>
@@ -295,10 +297,10 @@ const AnnouncementManagement = () => {
                       {announcement.title}
                     </h4>
                     <span className={`px-3 py-1 text-xs font-medium rounded-full ${getPriorityStyle(announcement.priority)}`}>
-                      {announcement.priority}
+                      {t(announcement.priority)}
                     </span>
                     <span className={`px-3 py-1 text-xs font-medium rounded-full ${getStatusStyle(announcement.status)}`}>
-                      {announcement.status}
+                      {t(announcement.status)}
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
@@ -321,7 +323,7 @@ const AnnouncementManagement = () => {
                       <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
                         <Eye className="w-4 h-4 text-gray-400" />
                       </div>
-                      {announcement.views} views
+                      {announcement.views} {t('views')}
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
@@ -332,7 +334,7 @@ const AnnouncementManagement = () => {
                   </div>
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <div className="text-sm text-gray-600">
-                      By <span className="font-medium">{announcement.author}</span>
+                      {t('by')} <span className="font-medium">{announcement.author}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <button
@@ -343,7 +345,7 @@ const AnnouncementManagement = () => {
                             : 'bg-green-100 text-green-700 hover:bg-green-200'
                         }`}
                       >
-                        {announcement.status === 'Published' ? 'Unpublish' : 'Publish'}
+                        {announcement.status === 'Published' ? t('unpublish') : t('publish')}
                       </button>
                       <button
                         onClick={() => {
@@ -351,14 +353,14 @@ const AnnouncementManagement = () => {
                           setIsCreateModalOpen(true);
                         }}
                         className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
-                        title="Edit Announcement"
+                        title={t('editAnnouncement')}
                       >
                         <Edit className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleDeleteAnnouncement(announcement.id)}
                         className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
-                        title="Delete Announcement"
+                        title={t('deleteAnnouncement')}
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>
@@ -383,8 +385,8 @@ const AnnouncementManagement = () => {
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 ${priority.color}`}>
                   <span className="text-xl font-bold">{count}</span>
                 </div>
-                <p className="text-sm font-medium text-gray-900">{priority.value} Priority</p>
-                <p className="text-xs text-gray-500">{percentage}% of total</p>
+                <p className="text-sm font-medium text-gray-900">{t(priority.value)} {t('priority')}</p>
+                <p className="text-xs text-gray-500">{percentage}% {t('ofTotal')}</p>
               </div>
             );
           })}
@@ -402,10 +404,10 @@ const AnnouncementManagement = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-                    {editingAnnouncement ? 'Edit Announcement' : 'Create New Announcement'}
+                    {editingAnnouncement ? t('editAnnouncement') : t('createNewAnnouncement')}
                   </h3>
                   <p className="text-gray-600 mt-1">
-                    {editingAnnouncement ? 'Update the announcement details' : 'Create and publish a new announcement'}
+                    {editingAnnouncement ? t('updateAnnouncementDetails') : t('createPublishNewAnnouncement')}
                   </p>
                 </div>
               </div>
@@ -429,30 +431,30 @@ const AnnouncementManagement = () => {
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('title')}</label>
                 <input 
                   type="text" 
                   value={newAnnouncement.title}
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, title: e.target.value})}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
-                  placeholder="Enter a descriptive title for your announcement"
+                  placeholder={t('enterDescriptiveTitle')}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('content')}</label>
                 <textarea 
                   rows={6}
                   value={newAnnouncement.content}
                   onChange={(e) => setNewAnnouncement({...newAnnouncement, content: e.target.value})}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
-                  placeholder="Write your announcement content here..."
+                  placeholder={t('writeAnnouncementContent')}
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('priority')}</label>
                   <select 
                     value={newAnnouncement.priority}
                     onChange={(e) => setNewAnnouncement({...newAnnouncement, priority: e.target.value})}
@@ -460,14 +462,14 @@ const AnnouncementManagement = () => {
                   >
                     {priorities.map(priority => (
                       <option key={priority.value} value={priority.value}>
-                        {priority.icon} {priority.value}
+                        {priority.icon} {t(priority.value)}
                       </option>
                     ))}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Target Audience</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('targetAudience')}</label>
                   <select 
                     value={newAnnouncement.targetAudience}
                     onChange={(e) => setNewAnnouncement({...newAnnouncement, targetAudience: e.target.value})}
@@ -480,7 +482,7 @@ const AnnouncementManagement = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('category')}</label>
                   <select 
                     value={newAnnouncement.category}
                     onChange={(e) => setNewAnnouncement({...newAnnouncement, category: e.target.value})}
@@ -508,13 +510,13 @@ const AnnouncementManagement = () => {
                   }}
                   className="px-6 py-3 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
                 >
-                  Cancel
+                  {t('cancel')}
                 </button>
                 <button 
                   onClick={handleCreateAnnouncement}
                   className="px-6 py-3 bg-gradient-to-r from-orange-600 to-pink-600 text-white rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 font-medium"
                 >
-                  {editingAnnouncement ? 'Update Announcement' : 'Publish Announcement'}
+                  {editingAnnouncement ? t('updateAnnouncement') : t('publishAnnouncement')}
                 </button>
               </div>
             </div>
