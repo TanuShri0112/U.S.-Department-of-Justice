@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { MessageSquare, Star, TrendingUp, Users, Download, Filter, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, AreaChart, Area } from 'recharts';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const AdminFeedbackReports = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('overview');
   const [dateRange, setDateRange] = useState('30');
   const [metrics, setMetrics] = useState({
@@ -103,10 +105,10 @@ const AdminFeedbackReports = () => {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: TrendingUp },
-    { id: 'satisfaction', label: 'Satisfaction', icon: Star },
-    { id: 'categories', label: 'Categories', icon: MessageSquare },
-    { id: 'courses', label: 'Courses', icon: Users }
+    { id: 'overview', label: t('overview'), icon: TrendingUp },
+    { id: 'satisfaction', label: t('satisfaction'), icon: Star },
+    { id: 'categories', label: t('categories'), icon: MessageSquare },
+    { id: 'courses', label: t('courses'), icon: Users }
   ];
 
   return (
@@ -141,8 +143,8 @@ const AdminFeedbackReports = () => {
               <MessageSquare className="w-6 h-6 text-pink-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Feedback Reports</h1>
-              <p className="text-gray-600">Analyze learner feedback and satisfaction metrics</p>
+              <h1 className="text-2xl font-bold text-gray-900">{t('feedbackReports')}</h1>
+              <p className="text-gray-600">{t('analyzeLearnerFeedback')}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -153,7 +155,7 @@ const AdminFeedbackReports = () => {
                 setDateRange(newRange);
                 
                 // Simulate data refresh with loading state
-                const loadingToast = toast.loading('Updating feedback data...');
+                const loadingToast = toast.loading(t('loadingFeedbackData'));
                 
                 setTimeout(() => {
                   // Update metrics based on date range
@@ -182,19 +184,19 @@ const AdminFeedbackReports = () => {
                     sentimentChange: Math.round(5 * growthMultiplier[newRange])
                   });
 
-                  toast.success(`Data updated for last ${newRange} days`, { id: loadingToast });
+                  toast.success(t('dataUpdatedFor', { days: newRange }), { id: loadingToast });
                 }, 1000);
               }}
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 hover:border-pink-400 transition-colors cursor-pointer"
             >
-              <option value="7">Last 7 days</option>
-              <option value="30">Last 30 days</option>
-              <option value="90">Last 90 days</option>
-              <option value="365">Last year</option>
+              <option value="7">{t('last7Days')}</option>
+              <option value="30">{t('last30Days')}</option>
+              <option value="90">{t('last90Days')}</option>
+              <option value="365">{t('lastYear')}</option>
             </select>
             <button 
               onClick={() => {
-                const loadingToast = toast.loading('Preparing export...');
+                const loadingToast = toast.loading(t('preparingExport'));
                 
                 setTimeout(() => {
                   try {
@@ -227,9 +229,9 @@ const AdminFeedbackReports = () => {
                     document.body.removeChild(link);
                     URL.revokeObjectURL(url);
 
-                    toast.success('Report exported successfully!', { id: loadingToast });
+                    toast.success(t('reportExportedSuccessfully'), { id: loadingToast });
                   } catch (error) {
-                    toast.error('Failed to export report', { id: loadingToast });
+                    toast.error(t('failedToExportReport'), { id: loadingToast });
                     console.error('Export error:', error);
                   }
                 }, 1500);
@@ -237,7 +239,7 @@ const AdminFeedbackReports = () => {
               className="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-200 flex items-center gap-2 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
             >
               <Download className="w-4 h-4" />
-              Export
+              {t('export')}
             </button>
           </div>
         </div>
@@ -251,7 +253,7 @@ const AdminFeedbackReports = () => {
               <button
                 key={tab.id}
                 onClick={() => {
-                  const loadingToast = toast.loading(`Loading ${tab.label.toLowerCase()} data...`);
+                  const loadingToast = toast.loading(t('loadingData'));
                   
                   setTimeout(() => {
                     setActiveTab(tab.id);
@@ -262,10 +264,10 @@ const AdminFeedbackReports = () => {
                     setTimeout(() => {
                       // Show success message with tab-specific information
                       const messages = {
-                        overview: 'Overview metrics updated with latest data',
-                        satisfaction: 'Satisfaction metrics and trends refreshed',
-                        categories: 'Category analysis updated successfully',
-                        courses: 'Course feedback data loaded'
+                        overview: t('overviewMetricsUpdated'),
+                        satisfaction: t('satisfactionMetricsRefreshed'),
+                        categories: t('categoryAnalysisUpdated'),
+                        courses: t('courseFeedbackDataLoaded')
                       };
                       
                       toast.success(messages[tab.id], { 
@@ -297,9 +299,9 @@ const AdminFeedbackReports = () => {
                 <div className="bg-pink-50 p-6 rounded-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-pink-600">Avg Satisfaction</p>
+                      <p className="text-sm font-medium text-pink-600">{t('avgSatisfaction')}</p>
                       <p className="text-3xl font-bold text-pink-900">{metrics.avgSatisfaction}/5</p>
-                      <p className="text-sm text-pink-600">+{metrics.satisfactionChange} from last month</p>
+                      <p className="text-sm text-pink-600">+{metrics.satisfactionChange} {t('fromLastMonth')}</p>
                     </div>
                     <Star className="w-8 h-8 text-pink-600" />
                   </div>
@@ -307,9 +309,9 @@ const AdminFeedbackReports = () => {
                 <div className="bg-green-50 p-6 rounded-lg transform transition-all duration-200 hover:scale-105">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-green-600">Total Responses</p>
+                      <p className="text-sm font-medium text-green-600">{t('totalResponses')}</p>
                       <p className="text-3xl font-bold text-green-900">{metrics.totalResponses.toLocaleString()}</p>
-                      <p className="text-sm text-green-600">+{metrics.responseGrowth}% from last month</p>
+                      <p className="text-sm text-green-600">+{metrics.responseGrowth}% {t('fromLastMonth')}</p>
                     </div>
                     <MessageSquare className="w-8 h-8 text-green-600" />
                   </div>
@@ -317,9 +319,9 @@ const AdminFeedbackReports = () => {
                 <div className="bg-blue-50 p-6 rounded-lg transform transition-all duration-200 hover:scale-105">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-blue-600">Response Rate</p>
+                      <p className="text-sm font-medium text-blue-600">{t('responseRate')}</p>
                       <p className="text-3xl font-bold text-blue-900">{metrics.responseRate}%</p>
-                      <p className="text-sm text-blue-600">+{metrics.rateChange}% from last month</p>
+                      <p className="text-sm text-blue-600">+{metrics.rateChange}% {t('fromLastMonth')}</p>
                     </div>
                     <TrendingUp className="w-8 h-8 text-blue-600" />
                   </div>
@@ -327,9 +329,9 @@ const AdminFeedbackReports = () => {
                 <div className="bg-purple-50 p-6 rounded-lg transform transition-all duration-200 hover:scale-105">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-purple-600">Positive Sentiment</p>
+                      <p className="text-sm font-medium text-purple-600">{t('positiveSentiment')}</p>
                       <p className="text-3xl font-bold text-purple-900">{metrics.positiveSentiment}%</p>
-                      <p className="text-sm text-purple-600">+{metrics.sentimentChange}% from last month</p>
+                      <p className="text-sm text-purple-600">+{metrics.sentimentChange}% {t('fromLastMonth')}</p>
                     </div>
                     <ThumbsUp className="w-8 h-8 text-purple-600" />
                   </div>
@@ -339,7 +341,7 @@ const AdminFeedbackReports = () => {
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-white p-6 rounded-lg border border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Satisfaction Trend</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('satisfactionTrend')}</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <AreaChart data={satisfactionData}>
                       <CartesianGrid strokeDasharray="3 3" />

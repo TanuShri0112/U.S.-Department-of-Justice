@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, Users, MapPin, Plus, Edit, Trash2, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const CalendarManagement = () => {
+  const { t } = useLanguage();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [viewMode, setViewMode] = useState('month'); // 'month', 'week', or 'day'
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -183,9 +185,9 @@ const CalendarManagement = () => {
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Calendar Management
+                {t('calendarManagement')}
               </h1>
-              <p className="text-gray-600 mt-1 text-lg">Schedule and manage training sessions, meetings, and events</p>
+              <p className="text-gray-600 mt-1 text-lg">{t('scheduleManageTrainingSessions')}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -198,14 +200,14 @@ const CalendarManagement = () => {
               className="px-4 py-2 text-blue-600 border border-blue-200 rounded-xl hover:bg-blue-50 transition-all duration-200 flex items-center gap-2 font-medium"
             >
               <Calendar className="w-4 h-4" />
-              Today
+              {t('today')}
             </button>
             <button
               onClick={() => setIsCreateModalOpen(true)}
               className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-2 font-medium"
             >
               <Plus className="w-4 h-4" />
-              Add Event
+              {t('addEvent')}
             </button>
           </div>
         </div>
@@ -216,7 +218,7 @@ const CalendarManagement = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
+              {t('october')} {currentDate.getFullYear()}
             </h3>
             <div className="flex items-center bg-gray-100 rounded-lg p-1">
               <button
@@ -245,7 +247,7 @@ const CalendarManagement = () => {
                   : 'text-gray-600 hover:text-blue-600'
               }`}
             >
-              Day
+              {t('day')}
             </button>
             <button
               onClick={() => setViewMode('week')}
@@ -255,7 +257,7 @@ const CalendarManagement = () => {
                   : 'text-gray-600 hover:text-blue-600'
               }`}
             >
-              Week
+              {t('week')}
             </button>
             <button
               onClick={() => setViewMode('month')}
@@ -265,7 +267,7 @@ const CalendarManagement = () => {
                   : 'text-gray-600 hover:text-blue-600'
               }`}
             >
-              Month
+              {t('month')}
             </button>
           </div>
         </div>
@@ -273,7 +275,7 @@ const CalendarManagement = () => {
           {/* Calendar Grid */}
           <div className={`grid ${viewMode === 'day' ? 'grid-cols-1' : 'grid-cols-7'} gap-2`}>
             {/* Day Headers */}
-            {viewMode !== 'day' && ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+            {viewMode !== 'day' && [t('sun'), t('mon'), t('tue'), t('wed'), t('thu'), t('fri'), t('sat')].map(day => (
               <div key={day} className="p-3 text-center text-sm font-medium text-gray-600 border-b border-gray-100">
                 {day}
               </div>
@@ -325,7 +327,7 @@ const CalendarManagement = () => {
                         })}
                         {dayEvents.length > 2 && (
                           <div className="text-xs text-blue-600 font-medium hover:text-blue-700 cursor-pointer transition-colors">
-                            +{dayEvents.length - 2} more events
+                            +{dayEvents.length - 2} {t('moreEvents')}
                           </div>
                         )}
                       </div>
@@ -382,7 +384,7 @@ const CalendarManagement = () => {
                           <div className="flex items-center gap-3 text-xs text-gray-600">
                             <div className="flex items-center gap-1">
                               <Clock className="w-3 h-3" />
-                              {event.duration}m
+                              {event.duration}{t('minutes')}
                             </div>
                             <div className="flex items-center gap-1">
                               <Users className="w-3 h-3" />
@@ -422,7 +424,7 @@ const CalendarManagement = () => {
                     </div>
                     {isToday && (
                       <div className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
-                        Today
+                        {t('today')}
                       </div>
                     )}
                   </div>
@@ -455,13 +457,13 @@ const CalendarManagement = () => {
                               <div className="w-8 h-8 bg-white/50 rounded-lg flex items-center justify-center">
                                 <Clock className="w-4 h-4 text-gray-600" />
                               </div>
-                              <span>{event.duration} minutes</span>
+                              <span>{event.duration} {t('minutes')}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <div className="w-8 h-8 bg-white/50 rounded-lg flex items-center justify-center">
                                 <Users className="w-4 h-4 text-gray-600" />
                               </div>
-                              <span>{event.attendees} attendees</span>
+                              <span>{event.attendees} {t('attendees')}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <div className="w-8 h-8 bg-white/50 rounded-lg flex items-center justify-center">
@@ -472,7 +474,7 @@ const CalendarManagement = () => {
                           </div>
                           <div className="mt-3 pt-3 border-t border-gray-200/50">
                             <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <span className="font-medium">Instructor:</span>
+                              <span className="font-medium">{t('instructor')}:</span>
                               {event.instructor}
                             </div>
                           </div>
@@ -488,7 +490,7 @@ const CalendarManagement = () => {
 
       {/* Upcoming Events */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming Events</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('upcomingEvents')}</h3>
         <div className="space-y-4">
           {events.map((event) => {
             const eventType = eventTypes.find(t => t.value === event.type);
@@ -501,9 +503,9 @@ const CalendarManagement = () => {
                   <div>
                     <h4 className="font-medium text-gray-900">{event.title}</h4>
                     <p className="text-sm text-gray-600">
-                      {event.date} at {event.time} • {event.location} • {event.attendees} attendees
+                      {event.date} at {event.time} • {event.location} • {event.attendees} {t('attendees')}
                     </p>
-                    <p className="text-xs text-gray-500">Instructor: {event.instructor}</p>
+                    <p className="text-xs text-gray-500">{t('instructor')}: {event.instructor}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -513,14 +515,14 @@ const CalendarManagement = () => {
                   <button
                     onClick={() => {/* Edit functionality */}}
                     className="p-1 text-gray-400 hover:text-blue-600 transition-colors"
-                    title="Edit Event"
+                    title={t('editEvent')}
                   >
                     <Edit className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleDeleteEvent(event.id)}
                     className="p-1 text-gray-400 hover:text-red-600 transition-colors"
-                    title="Delete Event"
+                    title={t('deleteEvent')}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -533,7 +535,7 @@ const CalendarManagement = () => {
 
       {/* Event Statistics */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Event Statistics</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('eventStatistics')}</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {eventTypes.map((type) => {
             const count = events.filter(e => e.type === type.value).length;
@@ -543,7 +545,7 @@ const CalendarManagement = () => {
                   <span className="text-xl font-bold">{count}</span>
                 </div>
                 <p className="text-sm font-medium text-gray-900">{type.value}s</p>
-                <p className="text-xs text-gray-500">This month</p>
+                <p className="text-xs text-gray-500">{t('thisMonth')}</p>
               </div>
             );
           })}
@@ -561,10 +563,10 @@ const CalendarManagement = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                    {selectedEvent ? 'Edit Event' : 'Create New Event'}
+                    {selectedEvent ? t('editEvent') : t('createNewEvent')}
                   </h3>
                   <p className="text-gray-600 mt-1">
-                    {selectedEvent ? 'Update the event details' : 'Schedule a new event'}
+                    {selectedEvent ? t('updateEventDetails') : t('scheduleNewEvent')}
                   </p>
                 </div>
               </div>
@@ -590,17 +592,17 @@ const CalendarManagement = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Event Title</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('eventTitle')}</label>
                 <input 
                   type="text" 
                   value={newEvent.title}
                   onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter event title"
+                  placeholder={t('enterEventTitle')}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Event Type</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('eventType')}</label>
                 <select 
                   value={newEvent.type}
                   onChange={(e) => setNewEvent({...newEvent, type: e.target.value})}
@@ -612,7 +614,7 @@ const CalendarManagement = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('date')}</label>
                 <input 
                   type="date" 
                   value={newEvent.date}
@@ -621,7 +623,7 @@ const CalendarManagement = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('time')}</label>
                 <input 
                   type="time" 
                   value={newEvent.time}
@@ -630,7 +632,7 @@ const CalendarManagement = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Duration (minutes)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('durationMinutes')}</label>
                 <input 
                   type="number" 
                   value={newEvent.duration}
@@ -639,17 +641,17 @@ const CalendarManagement = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('location')}</label>
                 <input 
                   type="text" 
                   value={newEvent.location}
                   onChange={(e) => setNewEvent({...newEvent, location: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter location"
+                  placeholder={t('enterLocation')}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Expected Attendees</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('expectedAttendees')}</label>
                 <input 
                   type="number" 
                   value={newEvent.attendees}
@@ -658,13 +660,13 @@ const CalendarManagement = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Instructor/Host</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('instructorHost')}</label>
                 <input 
                   type="text" 
                   value={newEvent.instructor}
                   onChange={(e) => setNewEvent({...newEvent, instructor: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter instructor name"
+                  placeholder={t('enterInstructorName')}
                 />
               </div>
             </div>
@@ -673,13 +675,13 @@ const CalendarManagement = () => {
                 onClick={handleCreateEvent}
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 font-medium"
               >
-                {selectedEvent ? 'Update Event' : 'Create Event'}
+                {selectedEvent ? t('updateEvent') : t('createEvent')}
               </button>
               <button 
                 onClick={() => setIsCreateModalOpen(false)}
                 className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors"
               >
-                Cancel
+                {t('cancel')}
               </button>
             </div>
           </div>

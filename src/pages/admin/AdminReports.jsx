@@ -15,8 +15,10 @@ import {
 } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const AdminReports = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('overview');
   const [dateRange, setDateRange] = useState('30');
   const [selectedDepartment, setSelectedDepartment] = useState('All');
@@ -97,15 +99,15 @@ const AdminReports = () => {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
-      toast.success('PDF report downloaded successfully!', { id: loadingToast });
+      toast.success(t('pdfReportDownloadedSuccessfully'), { id: loadingToast });
     } catch (error) {
-      toast.error('Failed to generate PDF report', { id: loadingToast });
+      toast.error(t('failedToGeneratePDFReport'), { id: loadingToast });
       console.error('Export error:', error);
     }
   };
 
   const handleExportExcel = () => {
-    const loadingToast = toast.loading('Generating Excel report...');
+    const loadingToast = toast.loading(t('generatingExcelReport'));
     
     try {
       // Prepare CSV data
@@ -135,18 +137,18 @@ const AdminReports = () => {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
-      toast.success('Excel report downloaded successfully!', { id: loadingToast });
+      toast.success(t('excelReportDownloadedSuccessfully'), { id: loadingToast });
     } catch (error) {
-      toast.error('Failed to generate Excel report', { id: loadingToast });
+      toast.error(t('failedToGenerateExcelReport'), { id: loadingToast });
       console.error('Export error:', error);
     }
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: BarChart3 },
-    { id: 'enrollment', label: 'Enrollment', icon: Users },
-    { id: 'performance', label: 'Performance', icon: TrendingUp },
-    { id: 'completion', label: 'Completion', icon: BookOpen }
+    { id: 'overview', label: t('overview'), icon: BarChart3 },
+    { id: 'enrollment', label: t('enrollment'), icon: Users },
+    { id: 'performance', label: t('performance'), icon: TrendingUp },
+    { id: 'completion', label: t('completion'), icon: BookOpen }
   ];
 
   return (
@@ -182,9 +184,9 @@ const AdminReports = () => {
             </div>
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                Administrative Reports
+                {t('administrativeReports')}
               </h1>
-              <p className="text-gray-600 mt-1 text-lg">Comprehensive analytics and reporting dashboard</p>
+              <p className="text-gray-600 mt-1 text-lg">{t('comprehensiveAnalyticsReporting')}</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -196,7 +198,7 @@ const AdminReports = () => {
                   setDateRange(newRange);
                   
                   // Simulate data refresh with loading state
-                  const loadingToast = toast.loading('Updating data...');
+                  const loadingToast = toast.loading(t('loadingData'));
                   
                   // Simulate API call delay
                   setTimeout(() => {
@@ -242,15 +244,15 @@ const AdminReports = () => {
                       completed: Math.round(item.completed * multiplier * (1 + Math.random() * 0.1))
                     }));
                     
-                    toast.success(`Data updated for last ${newRange} days!`, { id: loadingToast });
+                    toast.success(t('dataUpdatedFor', { days: newRange }), { id: loadingToast });
                   }, 1000);
                 }}
                 className="px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 pr-10 appearance-none bg-white transition-all duration-200 hover:border-indigo-300"
               >
-                <option value="7">Last 7 days</option>
-                <option value="30">Last 30 days</option>
-                <option value="90">Last 90 days</option>
-                <option value="365">Last year</option>
+                <option value="7">{t('last7Days')}</option>
+                <option value="30">{t('last30Days')}</option>
+                <option value="90">{t('last90Days')}</option>
+                <option value="365">{t('lastYear')}</option>
               </select>
               <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
             </div>
@@ -260,14 +262,14 @@ const AdminReports = () => {
                 className="bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-2 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
-                Export PDF
+                {t('exportPDF')}
               </button>
               <button
                 onClick={handleExportExcel}
                 className="bg-gradient-to-r from-green-600 to-teal-600 text-white px-4 py-2 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
-                Export Excel
+                {t('exportExcel')}
               </button>
             </div>
           </div>
@@ -294,10 +296,10 @@ const AdminReports = () => {
                     setTimeout(() => {
                       // Show success message with tab-specific information
                       const messages = {
-                        overview: 'Overview metrics updated with latest data',
-                        enrollment: 'Enrollment statistics refreshed successfully',
-                        performance: 'Performance metrics calculated and updated',
-                        completion: 'Completion rates and trends updated'
+                        overview: t('overviewMetricsUpdated'),
+                        enrollment: t('enrollmentStatisticsRefreshed'),
+                        performance: t('performanceMetricsCalculated'),
+                        completion: t('completionRatesTrendsUpdated')
                       };
                       
                       toast.success(messages[tab.id], { 
@@ -333,13 +335,13 @@ const AdminReports = () => {
                     <Users className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-blue-600">Total Users</p>
+                    <p className="text-sm font-medium text-blue-600">{t('totalUsers')}</p>
                     <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mt-1">
                       {metrics.totalUsers.toLocaleString()}
                     </p>
                     <div className="flex items-center gap-1 mt-2">
                       <TrendingUp className="w-4 h-4 text-green-500" />
-                      <p className="text-sm text-green-600">+{metrics.userGrowth}% from last month</p>
+                      <p className="text-sm text-green-600">+{metrics.userGrowth}% {t('fromLastMonth')}</p>
                     </div>
                   </div>
                 </div>
@@ -349,13 +351,13 @@ const AdminReports = () => {
                     <BookOpen className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-green-600">Course Completions</p>
+                    <p className="text-sm font-medium text-green-600">{t('courseCompletions')}</p>
                     <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent mt-1">
                       {metrics.courseCompletions.toLocaleString()}
                     </p>
                     <div className="flex items-center gap-1 mt-2">
                       <TrendingUp className="w-4 h-4 text-green-500" />
-                      <p className="text-sm text-green-600">+{metrics.completionGrowth}% from last month</p>
+                      <p className="text-sm text-green-600">+{metrics.completionGrowth}% {t('fromLastMonth')}</p>
                     </div>
                   </div>
                 </div>
@@ -365,13 +367,13 @@ const AdminReports = () => {
                     <BookOpen className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-purple-600">Active Courses</p>
+                    <p className="text-sm font-medium text-purple-600">{t('activeCourses')}</p>
                     <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mt-1">
                       {metrics.activeCourses}
                     </p>
                     <div className="flex items-center gap-1 mt-2">
                       <Plus className="w-4 h-4 text-purple-500" />
-                      <p className="text-sm text-purple-600">{metrics.newCourses} new this month</p>
+                      <p className="text-sm text-purple-600">{metrics.newCourses} {t('newThisMonth')}</p>
                     </div>
                   </div>
                 </div>
@@ -381,13 +383,13 @@ const AdminReports = () => {
                     <Clock className="w-6 h-6 text-orange-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-orange-600">Avg. Completion Time</p>
+                    <p className="text-sm font-medium text-orange-600">{t('avgCompletionTime')}</p>
                     <p className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mt-1">
                       {metrics.avgCompletionTime}h
                     </p>
                     <div className="flex items-center gap-1 mt-2">
                       <TrendingDown className="w-4 h-4 text-green-500" />
-                      <p className="text-sm text-green-600">-{metrics.timeImprovement}h improvement</p>
+                      <p className="text-sm text-green-600">-{metrics.timeImprovement}h {t('improvement')}</p>
                     </div>
                   </div>
                 </div>
@@ -399,18 +401,18 @@ const AdminReports = () => {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                        Enrollment Trends
+                        {t('enrollmentTrends')}
                       </h3>
-                      <p className="text-gray-600 mt-1">Monthly enrollment and completion rates</p>
+                      <p className="text-gray-600 mt-1">{t('monthlyEnrollmentCompletionRates')}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1">
                         <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                        <span className="text-sm text-gray-600">Enrollments</span>
+                        <span className="text-sm text-gray-600">{t('enrollments')}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span className="text-sm text-gray-600">Completions</span>
+                        <span className="text-sm text-gray-600">{t('completions')}</span>
                       </div>
                     </div>
                   </div>
@@ -460,9 +462,9 @@ const AdminReports = () => {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h3 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                        Department Distribution
+                        {t('departmentDistribution')}
                       </h3>
-                      <p className="text-gray-600 mt-1">User distribution across departments</p>
+                      <p className="text-gray-600 mt-1">{t('userDistributionAcrossDepartments')}</p>
                     </div>
                   </div>
                   <ResponsiveContainer width="100%" height={300}>
