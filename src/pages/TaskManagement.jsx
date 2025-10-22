@@ -10,65 +10,70 @@ import { Plus, CheckCircle, Calendar, Clock, Edit, Trash2, ArrowLeft } from 'luc
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const TaskManagement = () => {
   const navigate = useNavigate();
-  const [tasks, setTasks] = useState([
+  const { t } = useLanguage();
+
+  const getTasks = (t) => [
     {
       id: 1,
-      title: 'Review Law Enforcement Module 1 Content',
-      description: 'Review and update Law Enforcement Training Module 1: Foundations content for accuracy and compliance',
-      deadline: 'Today',
+      title: t('reviewUQTRTrainingCatalogue'),
+      description: t('reviewUQTRTrainingCatalogueDescription'),
+      deadline: t('today'),
       priority: 'high',
       status: 'pending',
-      category: 'Course Development'
+      category: t('courseDevelopment')
     },
     {
       id: 2,
-      title: 'Grade Educator Training Assessments',
-      description: 'Evaluate recent Educator Professional Development assessments and provide detailed feedback to participants',
-      deadline: 'Tomorrow',
+      title: t('gradeUQTRSelfRegistration'),
+      description: t('gradeUQTRSelfRegistrationDescription'),
+      deadline: t('tomorrow'),
       priority: 'medium',
       status: 'in-progress',
-      category: 'Assessment'
+      category: t('assessment')
     },
     {
       id: 3,
-      title: 'Prepare Youth Advocate Certification Exam',
-      description: 'Create comprehensive exam questions for Youth Advocate Training Module 1 final assessment',
-      deadline: 'Next week',
+      title: t('prepareUQTRProgressTracking'),
+      description: t('prepareUQTRProgressTrackingDescription'),
+      deadline: t('nextWeek'),
       priority: 'high',
       status: 'pending',
-      category: 'Assessment'
+      category: t('assessment')
     },
     {
       id: 4,
-      title: 'Update DOJ Compliance Training Materials',
-      description: 'Update Department of Justice compliance training materials with latest regulatory requirements',
-      deadline: 'In 2 weeks',
+      title: t('updateUQTRComplianceMaterials'),
+      description: t('updateUQTRComplianceMaterialsDescription'),
+      deadline: t('inTwoWeeks'),
       priority: 'medium',
       status: 'pending',
-      category: 'Content Updates'
+      category: t('contentUpdates')
     },
     {
       id: 5,
-      title: 'Schedule Training Instructor Sessions',
-      description: 'Set up training schedule for law enforcement, education, and youth development instructors',
-      deadline: 'Next month',
+      title: t('scheduleUQTRInstructorSessions'),
+      description: t('scheduleUQTRInstructorSessionsDescription'),
+      deadline: t('nextMonth'),
       priority: 'low',
       status: 'completed',
-      category: 'Administration'
+      category: t('administration')
     },
     {
       id: 6,
-      title: 'Review Stakeholder Analysis Module',
-      description: 'Final review of Stakeholder Analysis & Needs Assessment module content before publication',
-      deadline: 'This Friday',
+      title: t('reviewUQTRStakeholderAnalysis'),
+      description: t('reviewUQTRStakeholderAnalysisDescription'),
+      deadline: t('thisFriday'),
       priority: 'high',
       status: 'pending',
-      category: 'Course Development'
+      category: t('courseDevelopment')
     },
-  ]);
+  ];
+
+  const [tasks, setTasks] = useState(getTasks(t));
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
@@ -78,12 +83,12 @@ const TaskManagement = () => {
     deadline: '',
     priority: 'medium',
     status: 'pending',
-    category: 'Course Development'
+    category: t('courseDevelopment')
   });
 
   const addTask = () => {
     if (!newTask.title.trim() || !newTask.deadline.trim()) {
-      toast.error('Please fill in all required fields');
+      toast.error(t('pleaseFillRequiredFields'));
       return;
     }
 
@@ -98,14 +103,14 @@ const TaskManagement = () => {
     };
 
     setTasks([...tasks, task]);
-    setNewTask({ title: '', description: '', deadline: '', priority: 'medium', status: 'pending', category: 'Course Development' });
+    setNewTask({ title: '', description: '', deadline: '', priority: 'medium', status: 'pending', category: t('courseDevelopment') });
     setIsAddDialogOpen(false);
-    toast.success('Task added successfully');
+    toast.success(t('taskAddedSuccessfully'));
   };
 
   const updateTask = () => {
     if (!editingTask?.title.trim() || !editingTask?.deadline.trim()) {
-      toast.error('Please fill in all required fields');
+      toast.error(t('pleaseFillRequiredFields'));
       return;
     }
 
@@ -113,12 +118,12 @@ const TaskManagement = () => {
       task.id === editingTask.id ? editingTask : task
     ));
     setEditingTask(null);
-    toast.success('Task updated successfully');
+    toast.success(t('taskUpdatedSuccessfully'));
   };
 
   const deleteTask = (id) => {
     setTasks(tasks.filter(task => task.id !== id));
-    toast.success('Task deleted successfully');
+    toast.success(t('taskDeletedSuccessfully'));
   };
 
   const toggleTaskStatus = (id) => {
@@ -130,7 +135,7 @@ const TaskManagement = () => {
     
     const task = tasks.find(t => t.id === id);
     if (task) {
-      toast.success(task.status === 'completed' ? 'Task marked as pending' : 'Task completed');
+      toast.success(task.status === 'completed' ? t('taskMarkedAsPending') : t('taskCompleted'));
     }
   };
 
@@ -152,9 +157,13 @@ const TaskManagement = () => {
     }
   };
 
-  const priorities = ['high', 'medium', 'low'];
-  const statuses = ['pending', 'in-progress', 'completed'];
-  const categories = ['Course Development', 'Assessment', 'Content Updates', 'Administration', 'Compliance', 'Training Delivery'];
+  const getPriorities = (t) => ['high', 'medium', 'low'];
+  const getStatuses = (t) => ['pending', 'in-progress', 'completed'];
+  const getCategories = (t) => [t('courseDevelopment'), t('assessment'), t('contentUpdates'), t('administration'), t('compliance'), t('trainingDelivery')];
+
+  const priorities = getPriorities(t);
+  const statuses = getStatuses(t);
+  const categories = getCategories(t);
 
   const handleBackToHome = () => {
     navigate('/');
@@ -169,67 +178,67 @@ const TaskManagement = () => {
           className="flex items-center gap-2"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Home
+          {t('backToHome')}
         </Button>
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-gray-900">Task Management</h1>
-          <p className="text-gray-600 mt-2">Organize and track your tasks efficiently</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('taskManagement')}</h1>
+          <p className="text-gray-600 mt-2">{t('organizeTrackTasksEfficiently')}</p>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
-              Add New Task
+              {t('addNewTask')}
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-lg">
             <DialogHeader>
-              <DialogTitle>Create New Task</DialogTitle>
+              <DialogTitle>{t('createNewTask')}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4">
               <Input
-                placeholder="Task title"
+                placeholder={t('taskTitle')}
                 value={newTask.title}
                 onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
               />
               <Textarea
-                placeholder="Task description"
+                placeholder={t('taskDescription')}
                 value={newTask.description}
                 onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
                 rows={3}
               />
               <Input
-                placeholder="Deadline (e.g., Today, Tomorrow, Next week)"
+                placeholder={t('deadlinePlaceholder')}
                 value={newTask.deadline}
                 onChange={(e) => setNewTask({ ...newTask, deadline: e.target.value })}
               />
               <Select value={newTask.priority} onValueChange={(value) => setNewTask({ ...newTask, priority: value })}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Priority" />
+                  <SelectValue placeholder={t('priority')} />
                 </SelectTrigger>
                 <SelectContent>
                   {priorities.map(priority => (
                     <SelectItem key={priority} value={priority}>
-                      {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                      {t(priority + 'Priority')}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               <Select value={newTask.status} onValueChange={(value) => setNewTask({ ...newTask, status: value })}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Status" />
+                  <SelectValue placeholder={t('status')} />
                 </SelectTrigger>
                 <SelectContent>
                   {statuses.map(status => (
                     <SelectItem key={status} value={status}>
-                      {status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                      {t(status.replace('-', ''))}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               <Select value={newTask.category} onValueChange={(value) => setNewTask({ ...newTask, category: value })}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Category" />
+                  <SelectValue placeholder={t('category')} />
                 </SelectTrigger>
                 <SelectContent>
                   {categories.map(category => (
@@ -240,8 +249,8 @@ const TaskManagement = () => {
                 </SelectContent>
               </Select>
               <div className="flex gap-2">
-                <Button onClick={addTask} className="flex-1">Add Task</Button>
-                <Button variant="outline" onClick={() => setIsAddDialogOpen(false)} className="flex-1">Cancel</Button>
+                <Button onClick={addTask} className="flex-1">{t('addTask')}</Button>
+                <Button variant="outline" onClick={() => setIsAddDialogOpen(false)} className="flex-1">{t('cancel')}</Button>
               </div>
             </div>
           </DialogContent>
@@ -252,7 +261,7 @@ const TaskManagement = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calendar className="h-5 w-5" />
-            All Tasks ({tasks.length})
+            {t('allTasks')} ({tasks.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -285,10 +294,10 @@ const TaskManagement = () => {
                     <p className="text-gray-700 mb-3 ml-8">{task.description}</p>
                     <div className="flex items-center gap-2 ml-8">
                       <Badge className={`text-xs ${getPriorityColor(task.priority)}`}>
-                        {task.priority} priority
+                        {t(task.priority + 'Priority')}
                       </Badge>
                       <Badge className={`text-xs ${getStatusColor(task.status)}`}>
-                        {task.status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                        {t(task.status.replace('-', ''))}
                       </Badge>
                       <Badge variant="outline" className="text-xs">
                         {task.category}
@@ -328,23 +337,23 @@ const TaskManagement = () => {
       <Dialog open={!!editingTask} onOpenChange={() => setEditingTask(null)}>
         <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle>Edit Task</DialogTitle>
+            <DialogTitle>{t('editTask')}</DialogTitle>
           </DialogHeader>
           {editingTask && (
             <div className="space-y-4">
               <Input
-                placeholder="Task title"
+                placeholder={t('taskTitle')}
                 value={editingTask.title}
                 onChange={(e) => setEditingTask({ ...editingTask, title: e.target.value })}
               />
               <Textarea
-                placeholder="Task description"
+                placeholder={t('taskDescription')}
                 value={editingTask.description}
                 onChange={(e) => setEditingTask({ ...editingTask, description: e.target.value })}
                 rows={3}
               />
               <Input
-                placeholder="Deadline"
+                placeholder={t('deadline')}
                 value={editingTask.deadline}
                 onChange={(e) => setEditingTask({ ...editingTask, deadline: e.target.value })}
               />
@@ -355,7 +364,7 @@ const TaskManagement = () => {
                 <SelectContent>
                   {priorities.map(priority => (
                     <SelectItem key={priority} value={priority}>
-                      {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                      {t(priority + 'Priority')}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -367,7 +376,7 @@ const TaskManagement = () => {
                 <SelectContent>
                   {statuses.map(status => (
                     <SelectItem key={status} value={status}>
-                      {status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                      {t(status.replace('-', ''))}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -385,8 +394,8 @@ const TaskManagement = () => {
                 </SelectContent>
               </Select>
               <div className="flex gap-2">
-                <Button onClick={updateTask} className="flex-1">Update Task</Button>
-                <Button variant="outline" onClick={() => setEditingTask(null)} className="flex-1">Cancel</Button>
+                <Button onClick={updateTask} className="flex-1">{t('updateTask')}</Button>
+                <Button variant="outline" onClick={() => setEditingTask(null)} className="flex-1">{t('cancel')}</Button>
               </div>
             </div>
           )}

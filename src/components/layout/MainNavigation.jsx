@@ -191,7 +191,7 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
         <motion.div variants={itemVariants}>
           <NavItem 
             icon={CalendarDays}
-            label="Events"
+            label={t('events')}
             to="/events"
             active={pathname.startsWith('/events')}
             onClick={handleEventsClick}

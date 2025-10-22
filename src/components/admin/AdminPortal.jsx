@@ -16,6 +16,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useAdminPortal } from '@/contexts/AdminPortalContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Import admin page components
 import WebinarManagement from '../../pages/admin/WebinarManagement';
@@ -28,6 +29,7 @@ import AdminFeedbackReports from '../../pages/admin/AdminFeedbackReports';
 
 const AdminPortal = ({ onToggle }) => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState('overview');
   const [courseForm, setCourseForm] = useState({
     title: '',
@@ -62,15 +64,15 @@ const AdminPortal = ({ onToggle }) => {
   const { isAdminPortalEnabled, setIsAdminPortalEnabled } = useAdminPortal();
 
   const adminSections = [
-    { id: 'overview', label: 'Overview', icon: BarChart2 },
-    { id: 'courses', label: 'Upload Courses', icon: Upload },
-    { id: 'webinars', label: 'Webinars', icon: Video },
-    { id: 'schedule', label: 'Schedule', icon: Calendar },
-    { id: 'events', label: 'Events', icon: CalendarDays },
-    { id: 'announcements', label: 'Announcements', icon: Bell },
-    { id: 'users', label: 'Users', icon: Users },
-    { id: 'reports', label: 'Reports', icon: BarChart2 },
-    { id: 'feedback', label: 'Feedback Reports', icon: ClipboardCheck },
+    { id: 'overview', label: t('overview'), icon: BarChart2 },
+    { id: 'courses', label: t('uploadCourses'), icon: Upload },
+    { id: 'webinars', label: t('webinars'), icon: Video },
+    { id: 'schedule', label: t('schedule'), icon: Calendar },
+    { id: 'events', label: t('events'), icon: CalendarDays },
+    { id: 'announcements', label: t('announcements'), icon: Bell },
+    { id: 'users', label: t('users'), icon: Users },
+    { id: 'reports', label: t('reports'), icon: BarChart2 },
+    { id: 'feedback', label: t('feedbackReports'), icon: ClipboardCheck },
   ];
 
   const handleFileUpload = (files) => {
@@ -178,8 +180,8 @@ const AdminPortal = ({ onToggle }) => {
                    <BarChart2 className="w-6 h-6 text-blue-600" />
                  </div>
                  <div>
-                   <h1 className="text-2xl font-bold text-gray-900">Overview Summary</h1>
-                   <p className="text-gray-600">Dashboard analytics and key metrics</p>
+                   <h1 className="text-2xl font-bold text-gray-900">{t('overviewSummary')}</h1>
+                   <p className="text-gray-600">{t('dashboardAnalytics')}</p>
                  </div>
                </div>
                
@@ -187,9 +189,9 @@ const AdminPortal = ({ onToggle }) => {
                  <div className="bg-blue-50 rounded-lg p-4">
                    <div className="flex items-center justify-between">
                      <div>
-                       <p className="text-sm font-medium text-blue-600">Total Users</p>
+                       <p className="text-sm font-medium text-blue-600">{t('totalUsers')}</p>
                       <p className="text-2xl font-bold text-blue-900">{metrics.totalUsers.toLocaleString()}</p>
-                      <p className="text-xs text-blue-600 mt-1">+{Math.floor(metrics.totalUsers * 0.012)}% this month</p>
+                      <p className="text-xs text-blue-600 mt-1">+{Math.floor(metrics.totalUsers * 0.012)}% {t('thisMonth')}</p>
                     </div>
                     <Users className="w-8 h-8 text-blue-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
                   </div>
@@ -233,56 +235,56 @@ const AdminPortal = ({ onToggle }) => {
              {/* Secondary Stats */}
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Platform Activity</h3>
+                 <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('platformActivity')}</h3>
                  <div className="space-y-4">
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Course Completions</span>
+                     <span className="text-sm text-gray-600">{t('courseCompletions')}</span>
                      <span className="text-sm font-medium text-gray-900">847</span>
                      </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Active Sessions</span>
+                     <span className="text-sm text-gray-600">{t('activeSessions')}</span>
                      <span className="text-sm font-medium text-gray-900">156</span>
                    </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">New Registrations</span>
+                     <span className="text-sm text-gray-600">{t('newRegistrations')}</span>
                      <span className="text-sm font-medium text-gray-900">89</span>
                  </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Support Tickets</span>
+                     <span className="text-sm text-gray-600">{t('supportTickets')}</span>
                      <span className="text-sm font-medium text-gray-900">23</span>
                    </div>
                    </div>
                  </div>
                  
                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
+                 <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('recentActivity')}</h3>
                  <div className="space-y-4">
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">New course "Advanced Training" uploaded</p>
-                       <p className="text-xs text-gray-500">2 hours ago</p>
+                       <p className="text-sm text-gray-900">{t('newCourseUploaded')}</p>
+                       <p className="text-xs text-gray-500">{t('hoursAgo')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">Webinar "Safety Protocols" scheduled</p>
-                       <p className="text-xs text-gray-500">4 hours ago</p>
+                       <p className="text-sm text-gray-900">{t('webinarScheduled')}</p>
+                       <p className="text-xs text-gray-500">{t('hoursAgo')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">Monthly report generated</p>
-                       <p className="text-xs text-gray-500">6 hours ago</p>
+                       <p className="text-sm text-gray-900">{t('monthlyReportGenerated')}</p>
+                       <p className="text-xs text-gray-500">{t('hoursAgo')}</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">15 new users registered</p>
-                       <p className="text-xs text-gray-500">8 hours ago</p>
+                       <p className="text-sm text-gray-900">{t('newUsersRegistered')}</p>
+                       <p className="text-xs text-gray-500">{t('hoursAgo')}</p>
                      </div>
                    </div>
                  </div>

@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 /**
  * @typedef {object} Group
@@ -28,6 +29,7 @@ import { Badge } from '@/components/ui/badge';
  */
 
 const GroupsContent = () => {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddGroupOpen, setIsAddGroupOpen] = useState(false);
   const [isEditGroupOpen, setIsEditGroupOpen] = useState(false);
@@ -82,8 +84,8 @@ const GroupsContent = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader 
-        title="My Community Resources" 
-        description="Manage and participate in your enrolled community resources"
+        title={t('myCommunityResources')} 
+        description={t('communityResourcesDescription')}
       />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -94,7 +96,7 @@ const GroupsContent = () => {
             className="flex items-center gap-2"
           >
             <Compass className="h-4 w-4" />
-            Discover Groups
+            {t('discoverGroups')}
           </Button>
         </div>
       </div>
@@ -104,7 +106,7 @@ const GroupsContent = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input 
             className="pl-9" 
-            placeholder="Search my groups..." 
+            placeholder={t('searchMyGroups')} 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -113,13 +115,13 @@ const GroupsContent = () => {
         <div className="flex items-center gap-2">
           <Select>
             <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder="All types" />
+              <SelectValue placeholder={t('allTypes')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All types</SelectItem>
-              <SelectItem value="interest">Interest groups</SelectItem>
-              <SelectItem value="study">Study groups</SelectItem>
-              <SelectItem value="business">Business groups</SelectItem>
+              <SelectItem value="all">{t('allTypes')}</SelectItem>
+              <SelectItem value="interest">{t('interestGroups')}</SelectItem>
+              <SelectItem value="study">{t('studyGroups')}</SelectItem>
+              <SelectItem value="business">{t('businessGroups')}</SelectItem>
             </SelectContent>
           </Select>
           
@@ -137,7 +139,7 @@ const GroupsContent = () => {
               />
               <div className="absolute top-2 right-2 flex items-center gap-2">
                 <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200">
-                  Enrolled
+                  {t('enrolled')}
                 </Badge>
                 <div className="bg-white/90 rounded-md">
                   <GroupOptionsMenu 
