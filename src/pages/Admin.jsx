@@ -5,7 +5,8 @@ import {
   BookOpen, FileText, Download, HelpCircle, Upload,
   Star, MessageSquare, Lock, Globe, Tag, LayoutDashboard,
   Gamepad2, ClipboardList, Shield, Video,
-  Mail, Layers, GraduationCap, AtSign, List, Sparkles
+  Mail, Layers, GraduationCap, AtSign, List, Sparkles,
+  DollarSign, CreditCard, TrendingUp, Receipt
 } from 'lucide-react';
 import { PageHeader } from '@/components/shared/PageHeader';
 
@@ -57,6 +58,10 @@ const Admin = () => {
     { title: "Games", icon: <Gamepad2 className="h-5 w-5 text-primary" />, description: "Configure gamification features", path: "/admin/games" },
     { title: "Plans", icon: <ClipboardList className="h-5 w-5 text-primary" />, description: "Manage subscription plans and features", path: "/admin/plans" },
     { title: "Policies", icon: <Shield className="h-5 w-5 text-primary" />, description: "Configure system policies and rules", path: "/admin/policies" },
+    { title: "Pricing", icon: <DollarSign className="h-5 w-5 text-primary" />, description: "Manage course and catalog pricing", path: "/admin/pricing" },
+    { title: "Payments", icon: <CreditCard className="h-5 w-5 text-primary" />, description: "Configure payment processing and billing", path: "/admin/payments" },
+    { title: "Revenue", icon: <TrendingUp className="h-5 w-5 text-primary" />, description: "View revenue analytics and reports", path: "/admin/revenue" },
+    { title: "Transactions", icon: <Receipt className="h-5 w-5 text-primary" />, description: "View and manage all transactions", path: "/admin/transactions" },
     { title: "Turnitin", icon: <FileText className="h-5 w-5 text-primary" />, description: "Configure Turnitin integration", path: "/admin/turnitin" },
     { title: "ZoomUS API", icon: <Video className="h-5 w-5 text-primary" />, description: "Configure Zoom integration settings", path: "/admin/zoomus" },
     // Removed "App center"

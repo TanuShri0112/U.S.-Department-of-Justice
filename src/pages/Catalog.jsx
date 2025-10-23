@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Search, BookOpen, Users, Clock, ChevronRight, Sparkles } from 'lucide-react';
+import { Search, BookOpen, Users, Clock, ChevronRight, Sparkles, DollarSign, Tag } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -24,7 +24,44 @@ const Catalog = () => {
       studentCount: 245,
       duration: t('weeks'),
       difficulty: t('intermediate'),
-      tags: [t('trainingManagement'), t('contentManagement'), t('analytics')]
+      tags: [t('trainingManagement'), t('contentManagement'), t('analytics')],
+      price: 199.99,
+      currency: "USD",
+      isPaid: true,
+      originalPrice: 249.99,
+      discount: 20
+    },
+    {
+      id: 2,
+      name: "Law Enforcement Training Bundle",
+      description: "Comprehensive law enforcement training programs covering all essential skills and techniques",
+      imageUrl: '/assets/us-1.png',
+      courseCount: 12,
+      studentCount: 456,
+      duration: "8 weeks",
+      difficulty: "Advanced",
+      tags: ["Law Enforcement", "Training", "Certification"],
+      price: 0,
+      currency: "USD",
+      isPaid: false,
+      originalPrice: 0,
+      discount: 0
+    },
+    {
+      id: 3,
+      name: "Community Outreach Specialization",
+      description: "Specialized training for community engagement and outreach programs",
+      imageUrl: '/assets/us-2.png',
+      courseCount: 6,
+      studentCount: 189,
+      duration: "6 weeks",
+      difficulty: "Beginner",
+      tags: ["Community", "Outreach", "Engagement"],
+      price: 149.99,
+      currency: "USD",
+      isPaid: true,
+      originalPrice: 199.99,
+      discount: 25
     }
   ]);
 
@@ -145,7 +182,7 @@ const Catalog = () => {
                    </div>
 
                    {/* Tags */}
-                   <div className="flex flex-wrap gap-1 mb-4 h-8 flex-shrink-0">
+                   <div className="flex flex-wrap gap-1 mb-3 h-8 flex-shrink-0">
                      {catalog.tags.slice(0, 3).map((tag, idx) => (
                        <span 
                          key={idx}
@@ -154,6 +191,39 @@ const Catalog = () => {
                          {tag}
                        </span>
                      ))}
+                   </div>
+
+                   {/* Pricing Section */}
+                   <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+                     <div className="flex items-center justify-between">
+                       <div className="flex items-center gap-2">
+                         <DollarSign className="h-4 w-4 text-blue-600" />
+                         <span className="text-lg font-bold text-gray-900">
+                           {catalog.isPaid ? `$${catalog.price}` : 'FREE'}
+                         </span>
+                         {catalog.currency && catalog.isPaid && (
+                           <span className="text-sm text-gray-500">{catalog.currency}</span>
+                         )}
+                       </div>
+                       {catalog.discount && catalog.discount > 0 && catalog.isPaid && (
+                         <div className="flex items-center gap-1">
+                           <Tag className="h-3 w-3 text-red-500" />
+                           <span className="text-xs text-red-600 font-medium">
+                             {catalog.discount}% OFF
+                           </span>
+                         </div>
+                       )}
+                     </div>
+                     {catalog.originalPrice && catalog.originalPrice > catalog.price && catalog.isPaid && (
+                       <div className="flex items-center gap-2 mt-1">
+                         <span className="text-sm text-gray-400 line-through">
+                           ${catalog.originalPrice}
+                         </span>
+                         <span className="text-xs text-green-600 font-medium">
+                           Save ${(catalog.originalPrice - catalog.price).toFixed(2)}
+                         </span>
+                       </div>
+                     )}
                    </div>
 
                    {/* Spacer to push button to bottom */}

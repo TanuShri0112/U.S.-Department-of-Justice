@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Users, Clock, Filter, Search, Plus, Compass, FileText } from 'lucide-react';
+import { BookOpen, Users, Clock, Filter, Search, Plus, Compass, FileText, DollarSign, Tag } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -34,7 +34,48 @@ const Courses = () => {
       image: "/assets/us-1.png",
       archived: false,
       deleted: false,
-      catalog: "Law Enforcement"
+      catalog: "Law Enforcement",
+      price: 299.99,
+      currency: "USD",
+      isPaid: true,
+      originalPrice: 399.99,
+      discount: 25
+    },
+    {
+      id: 2,
+      title: "Advanced Law Enforcement Techniques",
+      description: "Advanced training for experienced law enforcement officers covering tactical operations and crisis management",
+      students: 85,
+      duration: "8 weeks",
+      level: "Advanced",
+      status: "Active",
+      image: "/assets/us-2.png",
+      archived: false,
+      deleted: false,
+      catalog: "Law Enforcement",
+      price: 0,
+      currency: "USD",
+      isPaid: false,
+      originalPrice: 0,
+      discount: 0
+    },
+    {
+      id: 3,
+      title: "Community Policing Fundamentals",
+      description: "Essential training for community policing strategies and community engagement techniques",
+      students: 156,
+      duration: "4 weeks",
+      level: "Intermediate",
+      status: "Active",
+      image: "/assets/us-1.png",
+      archived: false,
+      deleted: false,
+      catalog: "Community Outreach",
+      price: 199.99,
+      currency: "USD",
+      isPaid: true,
+      originalPrice: 249.99,
+      discount: 20
     }
   ];
 
@@ -240,6 +281,40 @@ const Courses = () => {
                     {course.catalog}
                   </Badge>
                 </div>
+                
+                {/* Pricing Section */}
+                <div className="mb-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <DollarSign className="h-4 w-4 text-green-600" />
+                      <span className="text-lg font-bold text-gray-900">
+                        {course.isPaid ? `$${course.price}` : 'FREE'}
+                      </span>
+                      {course.currency && course.isPaid && (
+                        <span className="text-sm text-gray-500">{course.currency}</span>
+                      )}
+                    </div>
+                    {course.discount && course.discount > 0 && course.isPaid && (
+                      <div className="flex items-center gap-1">
+                        <Tag className="h-3 w-3 text-red-500" />
+                        <span className="text-xs text-red-600 font-medium">
+                          {course.discount}% OFF
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  {course.originalPrice && course.originalPrice > course.price && course.isPaid && (
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-sm text-gray-400 line-through">
+                        ${course.originalPrice}
+                      </span>
+                      <span className="text-xs text-green-600 font-medium">
+                        Save ${(course.originalPrice - course.price).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4" />

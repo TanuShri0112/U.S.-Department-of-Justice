@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Home, Book, Users, Folder, FileText,
-  MessageCircle, HelpCircle, ClipboardCheck, CalendarDays, PlusCircle, Ticket
+  MessageCircle, HelpCircle, ClipboardCheck, CalendarDays, PlusCircle, Ticket, Receipt
 } from 'lucide-react';
 import { NavItem } from './NavItem';
 import { useSidebar } from '@/contexts/SidebarContext';
@@ -193,6 +193,19 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
             to="/evaluation"
             active={pathname.startsWith('/evaluation')}
             onClick={() => handleNavItemClick('/evaluation')}
+            collapsed={isMainCollapsed}
+            className="hover-lift"
+          />
+        </motion.div>
+
+        {/* Transactions */}
+        <motion.div variants={itemVariants}>
+          <NavItem 
+            icon={Receipt}
+            label="Transactions"
+            to="/transactions"
+            active={pathname.startsWith('/transactions')}
+            onClick={() => handleNavItemClick('/transactions')}
             collapsed={isMainCollapsed}
             className="hover-lift"
           />

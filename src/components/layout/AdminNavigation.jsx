@@ -5,7 +5,7 @@ import {
   Users, Activity, Workflow, Calendar, BookOpen, Download,
   HelpCircle, Upload, Star, MessageSquare, Lock, Globe, Tag,
   LayoutDashboard, ClipboardList, Shield, Video, 
-  Cpu, Info, Mail, Layers, AtSign, GraduationCap, Trophy, FileText, Sparkles
+  Cpu, Info, Mail, Layers, AtSign, GraduationCap, Trophy, FileText, Sparkles, DollarSign, CreditCard, TrendingUp, Receipt
 } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
@@ -94,6 +94,10 @@ export const AdminNavigation = ({
     { icon: <ClipboardList size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Plans", path: "/admin/plans" },
     { icon: <Shield size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Policies", path: "/admin/policies" },
     { icon: <Globe size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Portal", path: "/admin/portal" },
+    { icon: <DollarSign size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Pricing", path: "/admin/pricing" },
+    { icon: <CreditCard size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Payments", path: "/admin/payments" },
+    { icon: <TrendingUp size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Revenue", path: "/admin/revenue" },
+    { icon: <Receipt size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Transactions", path: "/admin/transactions" },
     { icon: <Tag size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Tagging", path: "/admin/tagging" },
     { icon: <FileText size={collapsed ? 22 : 18} className="text-gray-700" />, label: "Turnitin", path: "/admin/turnitin" },
     { icon: <Video size={collapsed ? 22 : 18} className="text-gray-700" />, label: "ZoomUS API", path: "/admin/zoomus" },

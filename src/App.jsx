@@ -94,6 +94,10 @@ import CreateEvent from './pages/CreateEvent.jsx';
 import EventsCalendar from './pages/EventsCalendar.jsx';
 import RSVPs from './pages/RSVPs.jsx';
 
+// Import Transactions pages
+import Transactions from './pages/Transactions.jsx';
+import AdminTransactions from './pages/admin/AdminTransactions.jsx';
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -168,6 +172,7 @@ const App = () => (
                   <Route path="profile" element={<Profile />} />
                   <Route path="chatbot" element={<Chatbot />} />
                   <Route path="webinars" element={<Webinars />} />
+                  <Route path="transactions" element={<Transactions />} />
                   {/* Events */}
                   <Route path="events" element={<Events />} />
                   <Route path="events/create" element={<CreateEvent />} />

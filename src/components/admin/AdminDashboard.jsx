@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Users, BookOpen, FileText, BarChart as BarChartIcon, Settings, Bell, HelpCircle } from 'lucide-react';
+import { Users, BookOpen, FileText, BarChart as BarChartIcon, Settings, Bell, HelpCircle, DollarSign, TrendingUp, CreditCard } from 'lucide-react';
 
 const AdminDashboard = () => {
   const stats = [
@@ -10,23 +10,26 @@ const AdminDashboard = () => {
     { label: 'Active Courses', value: '45', icon: BookOpen, change: '+5', changeType: 'increase' },
     { label: 'Total Enrollments', value: '3,456', icon: FileText, change: '+234', changeType: 'increase' },
     { label: 'Completion Rate', value: '78%', icon: BarChartIcon, change: '+5%', changeType: 'increase' },
+    { label: 'Total Revenue', value: '$45,678', icon: DollarSign, change: '+18%', changeType: 'increase' },
+    { label: 'Monthly Revenue', value: '$12,345', icon: TrendingUp, change: '+8%', changeType: 'increase' },
+    { label: 'Payment Success Rate', value: '96%', icon: CreditCard, change: '+2%', changeType: 'increase' },
   ];
 
   const recentActivities = [
-    { id: 1, user: 'John Doe', action: 'created a new course', time: '2 minutes ago' },
+    { id: 1, user: 'John Doe', action: 'purchased "DOJ Training" course', time: '2 minutes ago', amount: '$299.99' },
     { id: 2, user: 'Jane Smith', action: 'completed "Introduction to React"', time: '1 hour ago' },
     { id: 3, user: 'Mike Johnson', action: 'uploaded a new resource', time: '3 hours ago' },
-    { id: 4, user: 'Sarah Williams', action: 'sent a message', time: '5 hours ago' },
+    { id: 4, user: 'Sarah Williams', action: 'purchased "UQTR Catalog"', time: '5 hours ago', amount: '$199.99' },
     { id: 5, user: 'David Brown', action: 'commented on a discussion', time: '1 day ago' },
   ];
 
   const chartData = [
-    { name: 'Jan', users: 4000, courses: 2400 },
-    { name: 'Feb', users: 3000, courses: 1398 },
-    { name: 'Mar', users: 2000, courses: 9800 },
-    { name: 'Apr', users: 2780, courses: 3908 },
-    { name: 'May', users: 1890, courses: 4800 },
-    { name: 'Jun', users: 2390, courses: 3800 },
+    { name: 'Jan', users: 4000, courses: 2400, revenue: 8500 },
+    { name: 'Feb', users: 3000, courses: 1398, revenue: 9200 },
+    { name: 'Mar', users: 2000, courses: 9800, revenue: 10800 },
+    { name: 'Apr', users: 2780, courses: 3908, revenue: 12300 },
+    { name: 'May', users: 1890, courses: 4800, revenue: 14500 },
+    { name: 'Jun', users: 2390, courses: 3800, revenue: 16700 },
   ];
 
   return (
@@ -86,6 +89,7 @@ const AdminDashboard = () => {
                   <Tooltip />
                   <Bar dataKey="users" fill="#8884d8" name="Users" />
                   <Bar dataKey="courses" fill="#82ca9d" name="Courses" />
+                  <Bar dataKey="revenue" fill="#ffc658" name="Revenue ($)" />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -100,11 +104,16 @@ const AdminDashboard = () => {
               {recentActivities.map((activity) => (
                 <div key={activity.id} className="flex items-start">
                   <div className="h-2 w-2 rounded-full bg-primary mt-2 mr-2" />
-                  <div>
+                  <div className="flex-1">
                     <p className="text-sm font-medium leading-none">
                       {activity.user} <span className="text-muted-foreground">{activity.action}</span>
                     </p>
-                    <p className="text-sm text-muted-foreground">{activity.time}</p>
+                    <div className="flex items-center justify-between mt-1">
+                      <p className="text-sm text-muted-foreground">{activity.time}</p>
+                      {activity.amount && (
+                        <span className="text-sm font-semibold text-green-600">{activity.amount}</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}

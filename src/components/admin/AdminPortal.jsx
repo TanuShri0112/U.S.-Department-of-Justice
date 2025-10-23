@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Upload, Video, Calendar, Bell, Users, BarChart2, ClipboardCheck,
-  Shield, CalendarDays
+  Shield, CalendarDays, Receipt
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -26,6 +26,7 @@ import UserManagement from '../../pages/admin/UserManagement';
 import AdminReports from '../../pages/admin/AdminReports';
 import AdminEvents from '../../pages/admin/AdminEvents';
 import AdminFeedbackReports from '../../pages/admin/AdminFeedbackReports';
+import AdminTransactions from '../../pages/admin/AdminTransactions';
 
 const AdminPortal = ({ onToggle }) => {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ const AdminPortal = ({ onToggle }) => {
     { id: 'users', label: t('users'), icon: Users },
     { id: 'reports', label: t('reports'), icon: BarChart2 },
     { id: 'feedback', label: t('feedbackReports'), icon: ClipboardCheck },
+    { id: 'transactions', label: 'Transactions', icon: Receipt },
   ];
 
   const handleFileUpload = (files) => {
@@ -715,6 +717,9 @@ const AdminPortal = ({ onToggle }) => {
  
        case 'feedback':
          return <AdminFeedbackReports />;
+ 
+       case 'transactions':
+         return <AdminTransactions />;
  
        default:
          return (
