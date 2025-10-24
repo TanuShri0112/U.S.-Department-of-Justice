@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Users, Clock, Filter, Search, Plus, Compass, FileText, DollarSign, Tag } from 'lucide-react';
+import { BookOpen, Users, Clock, Filter, Search, Plus, Compass, FileText, DollarSign, Tag, ShoppingCart } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { CourseOptionsMenu } from '@/components/courses/CourseOptionsMenu';
+import PurchaseCourseModal from '@/components/courses/PurchaseCourseModal';
 import { 
   Select,
   SelectContent,
@@ -18,6 +19,8 @@ import { toast } from '@/hooks/use-toast';
 
 const Courses = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(null);
   // Removed course access type (open/sequential)
   const navigate = useNavigate();
 
@@ -92,6 +95,19 @@ const Courses = () => {
 
   const handleCourseClick = (courseId) => {
     navigate(`/courses/view/${courseId}`);
+  };
+
+  const handlePurchaseClick = (course) => {
+    setSelectedCourse(course);
+    setIsPurchaseModalOpen(true);
+  };
+
+  const handlePurchaseComplete = (course) => {
+    toast({
+      title: "Enrollment Successful!",
+      description: `You have been enrolled in "${course.title}"`,
+    });
+    // Here you would typically update the course status or user's enrolled courses
   };
 
   const handleCatalogClick = () => {
@@ -315,6 +331,21 @@ const Courses = () => {
                   )}
                 </div>
 
+                {/* Purchase Button */}
+                <div className="mb-3">
+                  <Button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePurchaseClick(course);
+                    }}
+                    className="w-full"
+                    variant={course.isPaid ? "default" : "outline"}
+                  >
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    {course.isPaid ? `Purchase - $${course.price}` : 'Enroll for Free'}
+                  </Button>
+                </div>
+
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4" />
@@ -330,6 +361,13 @@ const Courses = () => {
           ))}
         </div>
 
+      {/* Purchase Modal */}
+      <PurchaseCourseModal
+        isOpen={isPurchaseModalOpen}
+        onClose={() => setIsPurchaseModalOpen(false)}
+        course={selectedCourse}
+        onPurchaseComplete={handlePurchaseComplete}
+      />
     </div>
   );
 };
