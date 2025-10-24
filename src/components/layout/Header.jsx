@@ -71,7 +71,7 @@ export const Header = ({ onMenuClick }) => {
   const handleAthenaLMSClick = () => {
     navigate('/');
     toast({
-      title: "Welcome to ECPAT International",
+      title: "Welcome to Athena LMS",
       description: "You're now on the homepage",
       duration: 2000,
     });
@@ -103,84 +103,45 @@ export const Header = ({ onMenuClick }) => {
 
   return (
     <>
-      <header className="px-4 h-16 flex items-center justify-between bg-primary shadow-sm z-40 border-b border-primary-600">
+      <header className="px-4 h-16 flex items-center justify-between bg-white shadow-sm z-40 border-b border-gray-200">
         <div className="flex items-center">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden mr-2 text-white hover:bg-primary-600"
-            onClick={onMenuClick}
-          >
-            <Search className="h-5 w-5" />
-          </Button>
-          
           <div 
             className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
             onClick={handleAthenaLMSClick}
           >
-            <img 
-              src="/assets/ECPAT-logo-white.svg" 
-              alt="ECPAT International" 
-              className="h-8 w-auto brightness-0 invert" 
-            />
-            <h1 className="text-lg font-semibold text-white hidden md:block">
-              ECPAT International
+            <h1 className="text-xl font-semibold text-gray-900">
+              Athena LMS
             </h1>
           </div>
         </div>
         
-        <div className="flex items-center gap-2">
-          <div className="hidden md:flex max-w-sm relative">
+        <div className="flex items-center gap-4">
+          <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <Search className="w-4 h-4 text-white/70" />
+              <Search className="w-4 h-4 text-gray-400" />
             </div>
             <input
               type="search"
-              className="w-full py-1.5 pl-10 pr-4 text-sm text-white bg-primary-600/50 rounded-lg border border-primary-400/30 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 placeholder-white/70"
+              className="w-[300px] py-2 pl-10 pr-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Search..."
             />
           </div>
 
-          <div className="flex items-center gap-2 mr-2">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={handleCalendarClick}
-              className="hover:bg-primary-600 transition-all text-white"
-              aria-label="Calendar"
-            >
-              <Calendar className="h-5 w-5" />
-            </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={handleInboxClick}
-              className="hover:bg-slate-100 transition-all relative text-slate-600"
-              aria-label="Inbox"
-            >
-              <Inbox className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-            </Button>
-            
-            {/* <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={handleRecycleBinClick}
-              className="hover:bg-primary-600 transition-all text-white"
-              aria-label="Recycle Bin"
-            >
-              <Recycle className="h-5 w-5" />
-            </Button> */}
-          </div>
-          
-          <ThemeToggle />
-          
           <Button 
             variant="ghost" 
-            size="icon" 
-            className="relative text-white hover:bg-primary-600"
+            size="icon"
+            onClick={handleCalendarClick}
+            className="text-gray-600 hover:bg-gray-100"
+            aria-label="Calendar"
+          >
+            <Calendar className="h-5 w-5" />
+          </Button>
+
+          <Button 
+            variant="ghost" 
+            size="icon"
             onClick={handleNotificationsClick}
+            className="relative text-gray-600 hover:bg-gray-100"
             aria-label="Notifications"
           >
             <Bell className="h-5 w-5" />
@@ -291,94 +252,6 @@ export const Header = ({ onMenuClick }) => {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={inboxDialogOpen} onOpenChange={setInboxDialogOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Inbox className="h-5 w-5" />
-              Inbox Messages
-            </DialogTitle>
-          </DialogHeader>
-          <div className="space-y-3">
-            <div className="border-l-4 border-blue-500 bg-blue-50 p-3 rounded">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="font-medium text-sm">Course Enrollment Confirmation</p>
-                  <p className="text-xs text-gray-600">From: Admin Team</p>
-                </div>
-                <span className="text-xs text-blue-600">2h ago</span>
-              </div>
-              <p className="text-sm mt-1">Your enrollment in Advanced Credit Analysis has been confirmed.</p>
-            </div>
-            <div className="border-l-4 border-green-500 bg-green-50 p-3 rounded">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="font-medium text-sm">Assignment Submitted</p>
-                  <p className="text-xs text-gray-600">From: System</p>
-                </div>
-                <span className="text-xs text-green-600">1d ago</span>
-              </div>
-              <p className="text-sm mt-1">Your assignment for Module 3 has been successfully submitted.</p>
-            </div>
-            <div className="border-l-4 border-yellow-500 bg-yellow-50 p-3 rounded">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="font-medium text-sm">Upcoming Deadline</p>
-                  <p className="text-xs text-gray-600">From: Course Instructor</p>
-                </div>
-                <span className="text-xs text-yellow-600">2d ago</span>
-              </div>
-              <p className="text-sm mt-1">Reminder: Final project due in 3 days.</p>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={recycleBinDialogOpen} onOpenChange={setRecycleBinDialogOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Recycle className="h-5 w-5" />
-              Recycle Bin
-            </DialogTitle>
-          </DialogHeader>
-          <div className="space-y-3">
-            <div className="bg-gray-50 p-3 rounded border">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="font-medium text-sm">Draft Assignment - Financial Analysis</p>
-                  <p className="text-xs text-gray-600">Deleted 3 days ago</p>
-                </div>
-                <Button size="sm" variant="outline" className="text-xs">Restore</Button>
-              </div>
-            </div>
-            <div className="bg-gray-50 p-3 rounded border">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="font-medium text-sm">Course Notes - Module 2</p>
-                  <p className="text-xs text-gray-600">Deleted 1 week ago</p>
-                </div>
-                <Button size="sm" variant="outline" className="text-xs">Restore</Button>
-              </div>
-            </div>
-            <div className="bg-gray-50 p-3 rounded border">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="font-medium text-sm">Old Project Files</p>
-                  <p className="text-xs text-gray-600">Deleted 2 weeks ago</p>
-                </div>
-                <Button size="sm" variant="outline" className="text-xs">Restore</Button>
-              </div>
-            </div>
-            <div className="mt-4 pt-3 border-t">
-              <Button variant="destructive" size="sm" className="w-full">
-                Empty Recycle Bin
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-
       <Dialog open={notificationDialogOpen} onOpenChange={setNotificationDialogOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -423,5 +296,3 @@ export const Header = ({ onMenuClick }) => {
     </>
   );
 };
-
-
