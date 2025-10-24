@@ -67,8 +67,8 @@ export const SidebarNav = ({ onCloseMobile }) => {
       {/* Header */}
       <div 
         className={cn(
-          "flex h-32 items-center border-b border-gray-100 bg-blue-600",
-          isMainCollapsed ? "px-3 justify-center" : "px-6 justify-between"
+          "flex h-16 items-center border-b border-gray-100 bg-blue-600",
+          isMainCollapsed ? "px-3 justify-center" : "px-4 justify-between"
         )}
       >
         <div 
@@ -79,17 +79,17 @@ export const SidebarNav = ({ onCloseMobile }) => {
             <img 
               src="/assets/UQTR.png" 
               alt="UQTR Logo" 
-              className="w-16 h-16 object-contain"
+              className="w-8 h-8 object-contain"
             />
           ) : (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <img 
                 src="/assets/UQTR.png" 
                 alt="UQTR Logo" 
-                className="w-16 h-16 object-contain"
+                className="w-8 h-8 object-contain"
               />
               <div className="text-white">
-                <h1 className="text-lg font-semibold leading-tight">{t('universityName')}</h1>
+                <h1 className="text-base font-medium">{t('universityName')}</h1>
               </div>
             </div>
           )}

@@ -1,61 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
-import { Calendar, Plus, Star, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Star, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export function WelcomeSection() {
-  const navigate = useNavigate();
   const { t } = useLanguage();
-
-  const handleCalendarClick = () => {
-    navigate('/calendar');
-  };
-
-  const handleNewTaskClick = () => {
-    navigate('/tasks');
-  };
 
   return (
     <section className="mb-6">
-      {/* Top Welcome Card - Full Width */}
-      <div className="w-full bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            {/* Student Dashboard Pill */}
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-              {t('studentDashboard')}
-            </div>
-            
-            {/* Greeting */}
-            <h1 className="text-xl font-semibold text-gray-800">
-              {t('haveProductiveDay')}
-            </h1>
-          </div>
-          
-          {/* Action Buttons */}
-          <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
-              onClick={handleCalendarClick}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg border-gray-200 hover:bg-gray-50"
-            >
-              <Calendar className="w-4 h-4" />
-              <span>{t('calendar')}</span>
-            </Button>
-            
-            <Button
-              onClick={handleNewTaskClick}
-              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 flex items-center gap-2"
-            >
-              <Plus className="w-4 h-4" />
-              <span>{t('newTask')}</span>
-            </Button>
-          </div>
-        </div>
-      </div>
-
       {/* Main Welcome Card */}
       <Card className="w-full shadow-sm border-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl overflow-hidden">
         <CardContent className="p-0">
