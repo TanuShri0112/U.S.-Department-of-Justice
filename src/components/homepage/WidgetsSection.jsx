@@ -34,9 +34,9 @@ const groups = [
 const catalog = [
   {
     id: 1,
-    name: "ECPAT International- National Community Outreach & Prevention",
+    name: "Ethical Decision-Making for Travel Professionals.",
     description: "Foundations & Advanced Modules",
-    img: "/assets/us-1.png",
+    img: "/assets/clogo.png",
     modules: 3,
     students: 120,
     icon: Shield

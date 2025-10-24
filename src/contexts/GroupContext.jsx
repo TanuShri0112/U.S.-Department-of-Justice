@@ -31,31 +31,31 @@ export function GroupProvider({ children }) {
   const [groups, setGroups] = useState([
     { 
       id: 1, 
-      name: 'Responsible Travel Professionals', 
+       name: 'Ethical Decision-Making for Travel Professionals',
       members: 45, 
       type: 'Training group', 
-      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&auto=format'
+      image: 'https://s3-eu-west-1.amazonaws.com/tpd/logos/6496072a98059dba3f02fdfa/0x0.png'
     },
     { 
       id: 2, 
       name: 'Tourism Industry Trainers', 
       members: 12, 
       type: 'Professional development', 
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&auto=format'
+      image: 'https://tiesinstitute.com/wp-content/uploads/2022/05/tourism.webp'
     },
     { 
       id: 3, 
-      name: 'Child Protection Champions', 
+      name: 'Safety Protection Tourism', 
       members: 28, 
       type: 'Advocacy group', 
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format'
+      image: 'https://admin.executiveprotectionbd.com/service_img/Travel.jpg'
     },
     { 
       id: 4, 
       name: 'Ethical Tourism Compliance Officers', 
       members: 18, 
       type: 'Compliance training', 
-      image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop&auto=format'
+      image: 'https://www.eqs.com/assets/2021/11/compliance-officer-1024x576.png'
     },
   ]);
 

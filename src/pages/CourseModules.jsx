@@ -15,7 +15,7 @@ const CourseModules = () => {
       id: 1, 
       title: 'National Community Outreach & Prevention', 
       description: 'Understanding the core principles and frameworks of community outreach and prevention',
-      image: '/assets/us-2.png',
+      image: '/assets/clogo.png',
       units: 5,
       assessments: 1,
       duration: '2 hours',

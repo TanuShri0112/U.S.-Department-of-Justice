@@ -25,13 +25,13 @@ const Courses = () => {
   const mockCourses = [
     {
       id: 1,
-      title: "ECPAT International- National Community Outreach & Prevention",
+      title: "Ethical Decision-Making for Travel Professionals.",
       description: "Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals",
       students: 120,
       duration: "6 weeks",
       level: "Beginner",
       status: "Active",
-      image: "/assets/us-1.png",
+      image: "/assets/clogo.png",
       archived: false,
       deleted: false,
       catalog: "Law Enforcement"

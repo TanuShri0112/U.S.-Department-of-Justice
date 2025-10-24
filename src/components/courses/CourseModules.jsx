@@ -28,7 +28,7 @@ const CourseModules = () => {
       'reactjs202': 'React.js Advanced',
       'ml506': 'Machine Learning',
       'data345': 'Data Analysis',
-      '1': 'ECPAT International- National Community Outreach & Prevention'
+      '1': 'Ethical Decision-Making for Travel Professionals.'
     };
     return courseNames[courseId] || 'Course';
   };
@@ -73,7 +73,7 @@ const CourseModules = () => {
         // Course-specific modules based on courseId
         const getCourseModules = (courseId) => {
           const courseModules = {
-            '1': [ // ECPAT International- National Community Outreach & Prevention
+            '1': [ // Ethical Decision-Making for Travel Professionals.
               {
                 id: 1,
                 title: "National Community Outreach & Prevention",
@@ -113,7 +113,7 @@ const CourseModules = () => {
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
             // National Community Outreach & Prevention - Use course banner
-            'National Community Outreach & Prevention': '/assets/us-2.png'
+            'National Community Outreach & Prevention': '/assets/clogo.png'
           };
           return { ...m, image: titleToImage[m.title] };
         });

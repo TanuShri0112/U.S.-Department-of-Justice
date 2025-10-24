@@ -6,8 +6,8 @@ import { Book, Users } from "lucide-react";
 const teachingCourses = [
   {
     id: 1,
-    title: "ECPAT International- National Community Outreach & Prevention",
-    image: "/assets/us-1.png",
+    title: "Ethical Decision-Making for Travel Professionals.",
+    image: "/assets/clogo.png",
     modules: 3,
     students: 120
   }

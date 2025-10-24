@@ -70,7 +70,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
     
     // Module external links mapping by course and module - ALL modules now open SCORM
     const moduleLinks = {
-      // Course 1 - ECPAT International- National Community Outreach & Prevention
+      // Course 1 - Ethical Decision-Making for Travel Professionals.
       '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
       '1-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
       '1-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
@@ -93,10 +93,10 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
       // Determine default SCORM based on course type
       let defaultScormLink;
       if (detectedCourseId === '1') {
-        // ECPAT International- National Community Outreach & Prevention SCORM
+        // Ethical Decision-Making for Travel Professionals. SCORM
         defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html';
       } else {
-        // Ultimate fallback - ECPAT International- National Community Outreach & Prevention SCORM
+        // Ultimate fallback - Ethical Decision-Making for Travel Professionals. SCORM
         defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html';
       }
       
@@ -173,7 +173,8 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
               {isLocked && <Lock className="h-3 w-3 ml-auto" />}
             </Button>
 
-            <Button 
+            {/* Assessment button removed as per requirement */}
+            {/* <Button 
               onClick={handleAssessmentsClick}
               variant="outline" 
               className="w-full justify-start hover:bg-green-50 transition-colors duration-200"
@@ -182,7 +183,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
               <FileText className="h-4 w-4 mr-2" />
               View Assessments
               {isLocked && <Lock className="h-3 w-3 ml-auto" />}
-            </Button>
+            </Button> */}
 
             {!module.completed && !isLocked && courseType === 'sequential' && (
               <Button 

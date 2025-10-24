@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 // Module information mapping
 const getModuleName = (courseId) => {
   const courseNames = {
-    '1': 'ECPAT International- National Community Outreach & Prevention',
+    '1': 'Ethical Decision-Making for Travel Professionals.',
     '1757539': 'Advanced Credit Analysis'
   };
   return courseNames[courseId] || 'Training Module';

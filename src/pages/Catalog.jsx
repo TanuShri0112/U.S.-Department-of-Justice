@@ -15,9 +15,9 @@ const Catalog = () => {
   const [catalogs, setCatalogs] = useState([
     {
       id: 1,
-      name: 'ECPAT International- National Community Outreach & Prevention',
+      name: 'Ethical Decision-Making for Travel Professionals.',
       description: 'Foundations of law enforcement training, stakeholder analysis, and needs assessment',
-      imageUrl: '/assets/us-1.png',
+      imageUrl: '/assets/clogo.png',
       courseCount: 3,
       studentCount: 120,
       duration: '12 weeks',
