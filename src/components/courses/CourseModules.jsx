@@ -76,7 +76,7 @@ const CourseModules = () => {
             '1': [ // Ethical Decision-Making for Travel Professionals.
               {
                 id: 1,
-                title: "National Community Outreach & Prevention",
+                title: "Ethical Decision-Making for Travel Professionals",
                 description: "Understanding the core principles and frameworks of community outreach and prevention",
                 units: 5,
                 assessments: 1,
@@ -112,8 +112,8 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            // National Community Outreach & Prevention - Use course banner
-            'National Community Outreach & Prevention': '/assets/clogo.png'
+            // Ethical Decision-Making for Travel Professionals - Use course banner
+            'Ethical Decision-Making for Travel Professionals': '/assets/clogo.png'
           };
           return { ...m, image: titleToImage[m.title] };
         });

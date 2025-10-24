@@ -41,7 +41,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
         const moduleId = module.id;
         
         // Use module title to determine course (most reliable)
-        if (module.title && module.title.includes('National Community Outreach')) {
+        if (module.title && module.title.includes('Ethical Decision-Making')) {
           detectedCourseId = '1';
         } else if (module.title && module.title.includes('Law Enforcement')) {
           detectedCourseId = '1';
@@ -55,7 +55,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
         }
       } else {
         // Final fallback - use module title to determine course
-        if (module.title && module.title.includes('National Community Outreach')) {
+        if (module.title && module.title.includes('Ethical Decision-Making')) {
           detectedCourseId = '1';
         } else if (module.title && module.title.includes('Law Enforcement')) {
           detectedCourseId = '1';
@@ -71,9 +71,9 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
     // Module external links mapping by course and module - ALL modules now open SCORM
     const moduleLinks = {
       // Course 1 - Ethical Decision-Making for Travel Professionals.
-      '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
-      '1-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
-      '1-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html',
+      '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
+      '1-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
+      '1-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
     };
     
     // Create the key for this course-module combination
@@ -94,10 +94,10 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
       let defaultScormLink;
       if (detectedCourseId === '1') {
         // Ethical Decision-Making for Travel Professionals. SCORM
-        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html';
+        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html';
       } else {
         // Ultimate fallback - Ethical Decision-Making for Travel Professionals. SCORM
-        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/u-s-department-of-justice-national-community-outreach-prevention-scorm12-9_Vqvu3s/scormcontent/index.html';
+        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html';
       }
       
       console.log('Using default SCORM:', defaultScormLink);

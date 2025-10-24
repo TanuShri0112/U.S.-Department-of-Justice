@@ -13,7 +13,7 @@ const CourseModules = () => {
   const modules = [
     { 
       id: 1, 
-      title: 'National Community Outreach & Prevention', 
+      title: 'Ethical Decision-Making for Travel Professionals', 
       description: 'Understanding the core principles and frameworks of community outreach and prevention',
       image: '/assets/clogo.png',
       units: 5,
