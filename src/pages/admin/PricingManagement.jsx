@@ -43,7 +43,7 @@ const PricingManagement = () => {
   const [catalogs, setCatalogs] = useState([
     {
       id: 1,
-      name: "UQTR Training Catalogue",
+      name: "Training Catalogue",
       price: 199.99,
       originalPrice: 249.99,
       currency: "USD",

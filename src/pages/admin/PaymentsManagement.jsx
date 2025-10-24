@@ -62,7 +62,7 @@ const PaymentsManagement = () => {
     },
     {
       id: 2,
-      course: "UQTR Training Catalogue",
+      course: "Training Catalogue",
       student: "Jane Smith",
       amount: 199.99,
       currency: "USD",

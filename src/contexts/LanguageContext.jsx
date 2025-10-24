@@ -577,11 +577,11 @@ export const LanguageProvider = ({ children }) => {
       exploreCatalog: 'Explore Catalog',
       noResultsFound: 'No Results Found',
       noResultsDescription: 'We couldn\'t find any catalogs matching your search. Try adjusting your search terms.',
-      uqtrTrainingCatalogue: 'UQTR Training Catalogue',
+      uqtrTrainingCatalogue: 'Training Catalogue',
       uqtrTrainingDescription: 'Comprehensive training management and course catalog system',
-      uqtrSelfRegistration: 'UQTR Self-Registration',
+      uqtrSelfRegistration: 'Self-Registration',
       uqtrSelfRegistrationDescription: 'Automated learner enrollment and registration system',
-      uqtrProgressTracking: 'UQTR Progress Tracking',
+      uqtrProgressTracking: 'Progress Tracking',
       uqtrProgressTrackingDescription: 'Advanced analytics and progress monitoring tools',
       weeks: '12 weeks',
       intermediate: 'Intermediate',
@@ -631,9 +631,9 @@ export const LanguageProvider = ({ children }) => {
       oneWeekAgo: '1 week ago',
       
       // UQTR Group Names
-      uqtrLawEnforcementTraining: 'UQTR Law Enforcement Training Group',
-      uqtrCommunityOutreach: 'UQTR Community Outreach Program',
-      uqtrLegalTrainingSpecialists: 'UQTR Legal Training Specialists',
+      uqtrLawEnforcementTraining: 'Law Enforcement Training Group',
+      uqtrCommunityOutreach: 'Community Outreach Program',
+      uqtrLegalTrainingSpecialists: 'Legal Training Specialists',
       
       // UQTR Group Descriptions
       uqtrLawEnforcementDescription: 'DOJ Law Enforcement Training Group focused on professional development, stakeholder analysis, and advanced law enforcement skills enhancement',
@@ -1544,19 +1544,19 @@ export const LanguageProvider = ({ children }) => {
       oneWeekAgo: 'Il y a 1 semaine',
       
       // UQTR Group Names
-      uqtrLawEnforcementTraining: 'Groupe de formation en application de la loi UQTR',
-      uqtrCommunityOutreach: 'Programme de sensibilisation communautaire UQTR',
-      uqtrLegalTrainingSpecialists: 'Spécialistes en formation juridique UQTR',
+      uqtrLawEnforcementTraining: 'Law Enforcement Training Group',
+      uqtrCommunityOutreach: 'Community Outreach Program',
+      uqtrLegalTrainingSpecialists: 'Legal Training Specialists',
       
       // UQTR Group Descriptions
-      uqtrLawEnforcementDescription: 'Groupe de formation en application de la loi DOJ axé sur le développement professionnel, l\'analyse des parties prenantes et l\'amélioration des compétences avancées en application de la loi',
-      uqtrCommunityOutreachDescription: 'Programme de développement communautaire axé sur la construction de partenariats, la promotion de l\'engagement communautaire et l\'initiative de développement social',
-      uqtrLegalTrainingDescription: 'Groupe de spécialistes en éducation juridique axé sur la formation juridique avancée, les études de cas et le développement professionnel pour les professionnels du droit',
+      uqtrLawEnforcementDescription: 'DOJ Law Enforcement Training Group focused on professional development, stakeholder analysis, and advanced law enforcement skills enhancement',
+      uqtrCommunityOutreachDescription: 'Community development program focused on building partnerships, fostering community engagement, and promoting social development initiatives',
+      uqtrLegalTrainingDescription: 'Legal education specialists group focused on advanced legal training, case studies, and professional development for legal professionals',
       
       // Group Categories
-      lawEnforcementTraining: 'Formation en application de la loi',
-      communityDevelopment: 'Développement communautaire',
-      legalEducation: 'Éducation juridique',
+      lawEnforcementTraining: 'Law Enforcement Training',
+      communityDevelopment: 'Community Development',
+      legalEducation: 'Legal Education',
       
       // Group Status
       activeAcceptingTrainees: 'Actif et acceptant de nouveaux stagiaires',

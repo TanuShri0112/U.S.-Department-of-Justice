@@ -19,7 +19,7 @@ const AdminDashboard = () => {
     { id: 1, user: 'John Doe', action: 'purchased "DOJ Training" course', time: '2 minutes ago', amount: '$299.99' },
     { id: 2, user: 'Jane Smith', action: 'completed "Introduction to React"', time: '1 hour ago' },
     { id: 3, user: 'Mike Johnson', action: 'uploaded a new resource', time: '3 hours ago' },
-    { id: 4, user: 'Sarah Williams', action: 'purchased "UQTR Catalog"', time: '5 hours ago', amount: '$199.99' },
+    { id: 4, user: 'Sarah Williams', action: 'purchased "Training Catalogue"', time: '5 hours ago', amount: '$199.99' },
     { id: 5, user: 'David Brown', action: 'commented on a discussion', time: '1 day ago' },
   ];
 

@@ -31,42 +31,42 @@ export function GroupProvider({ children }) {
   const [groups, setGroups] = useState([
     { 
       id: 1, 
-      name: 'UQTR Law Enforcement Training Group', 
+      name: 'Law Enforcement Training Group', 
       members: 45, 
       type: 'Professional Training Group', 
       image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&auto=format'
     },
     { 
       id: 2, 
-      name: 'UQTR Community Outreach Program', 
+      name: 'Community Outreach Program', 
       members: 32, 
       type: 'Community Development', 
       image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format'
     },
     { 
       id: 3, 
-      name: 'UQTR Legal Training Specialists', 
+      name: 'Legal Training Specialists', 
       members: 28, 
       type: 'Legal Education', 
       image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop&auto=format'
     },
     { 
       id: 4, 
-      name: 'UQTR Policy Development Team', 
+      name: 'Policy Development Team', 
       members: 18, 
       type: 'Policy Research', 
       image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&auto=format'
     },
     { 
       id: 5, 
-      name: 'UQTR Research & Analytics', 
+      name: 'Research & Analytics', 
       members: 24, 
       type: 'Research Group', 
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&auto=format'
     },
     { 
       id: 6, 
-      name: 'UQTR Student Leadership Council', 
+      name: 'Student Leadership Council', 
       members: 15, 
       type: 'Student Organization', 
       image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=300&fit=crop&auto=format'

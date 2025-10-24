@@ -48,7 +48,7 @@ const RevenueAnalytics = () => {
 
   const courseRevenueData = [
     { name: 'DOJ Training', revenue: 12500, students: 120, percentage: 27.3 },
-    { name: 'UQTR Catalog', revenue: 8900, students: 89, percentage: 19.4 },
+    { name: 'Training Catalogue', revenue: 8900, students: 89, percentage: 19.4 },
     { name: 'Law Enforcement', revenue: 6700, students: 67, percentage: 14.6 },
     { name: 'Community Outreach', revenue: 5400, students: 54, percentage: 11.8 },
     { name: 'Other Courses', revenue: 12178, students: 122, percentage: 26.6 }
@@ -62,7 +62,7 @@ const RevenueAnalytics = () => {
 
   const recentTransactions = [
     { id: 1, course: 'DOJ Training', student: 'John Doe', amount: 299.99, date: '2024-01-15', status: 'completed' },
-    { id: 2, course: 'UQTR Catalog', student: 'Jane Smith', amount: 199.99, date: '2024-01-14', status: 'completed' },
+    { id: 2, course: 'Training Catalogue', student: 'Jane Smith', amount: 199.99, date: '2024-01-14', status: 'completed' },
     { id: 3, course: 'Law Enforcement', student: 'Mike Johnson', amount: 149.99, date: '2024-01-13', status: 'pending' },
     { id: 4, course: 'Community Outreach', student: 'Sarah Wilson', amount: 399.99, date: '2024-01-12', status: 'completed' },
     { id: 5, course: 'DOJ Training', student: 'David Brown', amount: 299.99, date: '2024-01-11', status: 'completed' }

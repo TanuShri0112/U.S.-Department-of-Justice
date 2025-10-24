@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Select,
   SelectContent,
@@ -22,7 +23,6 @@ import {
   DollarSign,
   Calendar,
   CreditCard,
-  User,
   BookOpen,
   ArrowUpDown,
   Star,
@@ -32,15 +32,17 @@ import {
   AlertCircle,
   TrendingUp,
   Award,
-  Gift
+  Gift,
+  ChevronRight,
+  MoreVertical
 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 const Transactions = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [dateFilter, setDateFilter] = useState('all');
   const [sortBy, setSortBy] = useState('date');
+  const [expandedTransaction, setExpandedTransaction] = useState(null);
 
   // Mock user-specific transaction data
   const userTransactions = [
@@ -65,7 +67,7 @@ const Transactions = () => {
     },
     {
       id: 'TXN-002',
-      course: 'UQTR Training Catalogue',
+      course: 'Training Catalogue',
       courseId: 'COURSE-002',
       amount: 199.99,
       currency: 'USD',
@@ -145,21 +147,22 @@ const Transactions = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'completed': return 'bg-green-100 text-green-800';
-      case 'pending': return 'bg-yellow-100 text-yellow-800';
-      case 'failed': return 'bg-red-100 text-red-800';
-      case 'refunded': return 'bg-blue-100 text-blue-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'completed': return { bg: 'bg-emerald-100', text: 'text-emerald-800', icon: 'text-emerald-600' };
+      case 'pending': return { bg: 'bg-amber-100', text: 'text-amber-800', icon: 'text-amber-600' };
+      case 'failed': return { bg: 'bg-red-100', text: 'text-red-800', icon: 'text-red-600' };
+      case 'refunded': return { bg: 'bg-blue-100', text: 'text-blue-800', icon: 'text-blue-600' };
+      default: return { bg: 'bg-gray-100', text: 'text-gray-800', icon: 'text-gray-600' };
     }
   };
 
   const getStatusIcon = (status) => {
+    const colors = getStatusColor(status);
     switch (status) {
-      case 'completed': return <CheckCircle className="h-4 w-4 text-green-600" />;
-      case 'pending': return <Clock className="h-4 w-4 text-yellow-600" />;
-      case 'failed': return <XCircle className="h-4 w-4 text-red-600" />;
-      case 'refunded': return <ArrowUpDown className="h-4 w-4 text-blue-600" />;
-      default: return <Clock className="h-4 w-4 text-gray-600" />;
+      case 'completed': return <CheckCircle className={`h-5 w-5 ${colors.icon}`} />;
+      case 'pending': return <Clock className={`h-5 w-5 ${colors.icon}`} />;
+      case 'failed': return <XCircle className={`h-5 w-5 ${colors.icon}`} />;
+      case 'refunded': return <ArrowUpDown className={`h-5 w-5 ${colors.icon}`} />;
+      default: return <Clock className={`h-5 w-5 ${colors.icon}`} />;
     }
   };
 
@@ -244,87 +247,96 @@ const Transactions = () => {
   const certificatesEarned = userTransactions.filter(t => t.certificateEarned).length;
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <div className="flex items-center justify-between">
+    <div className="space-y-8 animate-fade-in bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen p-2 md:p-6">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">My Transactions</h1>
-          <p className="text-muted-foreground mt-2">
-            Track your course purchases, progress, and learning journey
+          <h1 className="text-4xl font-bold text-slate-900 mb-2">My Transactions</h1>
+          <p className="text-slate-600 text-lg">
+            Track your course purchases, investments, and learning achievements
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm">
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Refresh
+        <div className="flex items-center gap-3">
+          <Button variant="outline" size="sm" className="gap-2">
+            <RefreshCw className="h-4 w-4" />
+            <span className="hidden sm:inline">Refresh</span>
           </Button>
-          <Button variant="outline" size="sm">
-            <Download className="h-4 w-4 mr-2" />
-            Export History
+          <Button variant="outline" size="sm" className="gap-2">
+            <Download className="h-4 w-4" />
+            <span className="hidden sm:inline">Export</span>
           </Button>
         </div>
       </div>
 
-      {/* User Summary Cards */}
+      {/* Summary Statistics */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+        <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+            <CardTitle className="text-sm font-semibold text-slate-600">Total Spent</CardTitle>
+            <div className="p-2 bg-emerald-100 rounded-lg">
+              <DollarSign className="h-5 w-5 text-emerald-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalSpent.toFixed(2)}</div>
-            <p className="text-xs text-green-500">Investment in learning</p>
+            <div className="text-3xl font-bold text-slate-900">${totalSpent.toFixed(2)}</div>
+            <p className="text-xs text-emerald-600 font-medium mt-2">📚 Investment in learning</p>
           </CardContent>
         </Card>
         
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Courses Completed</CardTitle>
-            <Award className="h-4 w-4 text-muted-foreground" />
+        <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+            <CardTitle className="text-sm font-semibold text-slate-600">Completed</CardTitle>
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <Award className="h-5 w-5 text-blue-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{completedCourses}</div>
-            <p className="text-xs text-blue-500">Out of {userTransactions.length} purchased</p>
+            <div className="text-3xl font-bold text-slate-900">{completedCourses}</div>
+            <p className="text-xs text-blue-600 font-medium mt-2">✓ Out of {userTransactions.length} purchased</p>
           </CardContent>
         </Card>
         
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Certificates</CardTitle>
-            <FileText className="h-4 w-4 text-muted-foreground" />
+        <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+            <CardTitle className="text-sm font-semibold text-slate-600">Certificates</CardTitle>
+            <div className="p-2 bg-purple-100 rounded-lg">
+              <FileText className="h-5 w-5 text-purple-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{certificatesEarned}</div>
-            <p className="text-xs text-purple-500">Achievements unlocked</p>
+            <div className="text-3xl font-bold text-slate-900">{certificatesEarned}</div>
+            <p className="text-xs text-purple-600 font-medium mt-2">🏆 Achievements unlocked</p>
           </CardContent>
         </Card>
         
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Refunds</CardTitle>
-            <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
+        <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+            <CardTitle className="text-sm font-semibold text-slate-600">Refunds</CardTitle>
+            <div className="p-2 bg-indigo-100 rounded-lg">
+              <ArrowUpDown className="h-5 w-5 text-indigo-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalRefunded.toFixed(2)}</div>
-            <p className="text-xs text-blue-500">Total refunded</p>
+            <div className="text-3xl font-bold text-slate-900">${totalRefunded.toFixed(2)}</div>
+            <p className="text-xs text-indigo-600 font-medium mt-2">↩️ Total refunded</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Filters and Search */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Filter className="h-5 w-5" />
-            Filter & Search
+      {/* Filters Section */}
+      <Card className="border-0 shadow-md bg-white">
+        <CardHeader className="pb-4 border-b border-slate-200">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <Filter className="h-5 w-5 text-blue-600" />
+            <span>Search & Filter</span>
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <Input 
-                className="pl-9" 
+                className="pl-10 border-slate-300 focus:border-blue-500 focus:ring-blue-500" 
                 placeholder="Search courses or transaction IDs..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -332,39 +344,26 @@ const Transactions = () => {
             </div>
             
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="All status" />
+              <SelectTrigger className="w-[200px] border-slate-300">
+                <SelectValue placeholder="Filter by status" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All status</SelectItem>
-                <SelectItem value="completed">Completed</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="failed">Failed</SelectItem>
-                <SelectItem value="refunded">Refunded</SelectItem>
-              </SelectContent>
-            </Select>
-            
-            <Select value={dateFilter} onValueChange={setDateFilter}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="All dates" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All dates</SelectItem>
-                <SelectItem value="today">Today</SelectItem>
-                <SelectItem value="week">This week</SelectItem>
-                <SelectItem value="month">This month</SelectItem>
-                <SelectItem value="year">This year</SelectItem>
+                <SelectItem value="completed">✓ Completed</SelectItem>
+                <SelectItem value="pending">⏳ Pending</SelectItem>
+                <SelectItem value="failed">✗ Failed</SelectItem>
+                <SelectItem value="refunded">↩️ Refunded</SelectItem>
               </SelectContent>
             </Select>
 
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-[200px] border-slate-300">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="date">Date (Newest)</SelectItem>
-                <SelectItem value="amount">Amount (Highest)</SelectItem>
-                <SelectItem value="course">Course Name</SelectItem>
+                <SelectItem value="date">📅 Newest First</SelectItem>
+                <SelectItem value="amount">💰 Highest Amount</SelectItem>
+                <SelectItem value="course">📖 Course Name</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -372,206 +371,334 @@ const Transactions = () => {
       </Card>
 
       {/* Transactions List */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Receipt className="h-5 w-5" />
-            Transaction History
+      <Card className="border-0 shadow-md bg-white overflow-hidden">
+        <CardHeader className="pb-4 border-b border-slate-200">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <Receipt className="h-5 w-5 text-blue-600" />
+            <span>Transaction History</span>
+            <Badge variant="secondary" className="ml-auto">{filteredTransactions.length} transactions</Badge>
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {filteredTransactions.map((transaction) => (
-              <div key={transaction.id} className="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      {getStatusIcon(transaction.status)}
-                      <h3 className="font-semibold">{transaction.course}</h3>
-                      <Badge className={getStatusColor(transaction.status)}>
-                        {transaction.status}
-                      </Badge>
-                      {transaction.certificateEarned && (
-                        <Badge variant="outline" className="text-yellow-600 border-yellow-300">
-                          <Award className="h-3 w-3 mr-1" />
-                          Certificate
-                        </Badge>
+        <CardContent className="pt-0">
+          {filteredTransactions.length > 0 ? (
+            <div className="divide-y divide-slate-200">
+              {filteredTransactions.map((transaction) => {
+                const colors = getStatusColor(transaction.status);
+                const isExpanded = expandedTransaction === transaction.id;
+                
+                return (
+                  <div 
+                    key={transaction.id} 
+                    className="hover:bg-slate-50 transition-colors"
+                  >
+                    {/* Main Transaction Item */}
+                    <div 
+                      className="p-4 cursor-pointer"
+                      onClick={() => setExpandedTransaction(isExpanded ? null : transaction.id)}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start gap-4 flex-1 min-w-0">
+                          {/* Status Icon */}
+                          <div className={`p-3 rounded-lg ${colors.bg} flex-shrink-0`}>
+                            {getStatusIcon(transaction.status)}
+                          </div>
+
+                          {/* Course Info */}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap mb-2">
+                              <h3 className="font-semibold text-slate-900 text-sm md:text-base line-clamp-2">{transaction.course}</h3>
+                              <Badge className={`${colors.bg} ${colors.text} border-0 flex-shrink-0`}>
+                                {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
+                              </Badge>
+                              {transaction.certificateEarned && (
+                                <Badge variant="outline" className="text-yellow-600 border-yellow-300 flex-shrink-0">
+                                  <Award className="h-3 w-3 mr-1" />
+                                  Certificate
+                                </Badge>
+                              )}
+                            </div>
+
+                            {/* Quick Info */}
+                            <div className="flex flex-wrap gap-4 text-xs md:text-sm text-slate-600">
+                              <div className="flex items-center gap-1">
+                                <DollarSign className="h-4 w-4 text-slate-400" />
+                                <span className="font-semibold">
+                                  {transaction.amount > 0 ? `$${transaction.amount.toFixed(2)}` : 'FREE'}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <CreditCard className="h-4 w-4 text-slate-400" />
+                                <span>{transaction.method}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Calendar className="h-4 w-4 text-slate-400" />
+                                <span>{new Date(transaction.date).toLocaleDateString()}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Expand Icon */}
+                        <ChevronRight 
+                          className={`h-5 w-5 text-slate-400 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-90' : ''}`} 
+                        />
+                      </div>
+
+                      {/* Course Progress Bar (visible on main view) */}
+                      {transaction.status === 'completed' && (
+                        <div className="mt-3 ml-16 pr-6">
+                          <div className="flex items-center justify-between text-xs mb-1.5">
+                            <span className="text-slate-600">Progress</span>
+                            <span className="font-semibold text-slate-900">{transaction.courseProgress}%</span>
+                          </div>
+                          <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                            <div 
+                              className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-300"
+                              style={{ width: `${transaction.courseProgress}%` }}
+                            />
+                          </div>
+                        </div>
                       )}
                     </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600 mb-3">
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="h-4 w-4" />
-                        <span className="font-semibold">
-                          {transaction.amount > 0 ? `$${transaction.amount}` : 'FREE'} {transaction.currency}
-                        </span>
-                        {transaction.refunded && (
-                          <span className="text-xs text-blue-500">
-                            (Refunded: ${transaction.refundAmount})
-                          </span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CreditCard className="h-4 w-4" />
-                        <span>{transaction.method}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        <span>{transaction.date} at {transaction.time}</span>
-                      </div>
-                    </div>
 
-                    {/* Course Progress */}
-                    {transaction.status === 'completed' && (
-                      <div className="mb-3">
-                        <div className="flex items-center justify-between text-sm mb-1">
-                          <span className="text-gray-600">Course Progress</span>
-                          <span className="font-medium">{transaction.courseProgress}%</span>
-                        </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                            style={{ width: `${transaction.courseProgress}%` }}
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Rating and Review */}
-                    {transaction.status === 'completed' && transaction.courseProgress === 100 && (
-                      <div className="mb-3">
-                        {transaction.rating ? (
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm text-gray-600">Your rating:</span>
-                            <div className="flex items-center gap-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star 
-                                  key={i} 
-                                  className={`h-4 w-4 ${i < transaction.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
-                                />
-                              ))}
+                    {/* Expanded Details */}
+                    {isExpanded && (
+                      <div className="border-t border-slate-200 bg-slate-50 p-6 space-y-6">
+                        {/* Transaction Details Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-2">Transaction Details</p>
+                            <div className="space-y-2 text-sm">
+                              <div className="flex justify-between">
+                                <span className="text-slate-600">Transaction ID:</span>
+                                <span className="font-mono font-semibold text-slate-900">{transaction.transactionId}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-slate-600">Invoice ID:</span>
+                                <span className="font-mono font-semibold text-slate-900">{transaction.id}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-slate-600">Date & Time:</span>
+                                <span className="font-semibold text-slate-900">{transaction.date} at {transaction.time}</span>
+                              </div>
                             </div>
-                            {transaction.review && (
-                              <span className="text-sm text-gray-500 italic">"{transaction.review}"</span>
+                          </div>
+
+                          <div>
+                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-2">Payment Info</p>
+                            <div className="space-y-2 text-sm">
+                              <div className="flex justify-between">
+                                <span className="text-slate-600">Amount:</span>
+                                <span className="font-semibold text-slate-900">${transaction.amount.toFixed(2)} {transaction.currency}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-slate-600">Method:</span>
+                                <span className="font-semibold text-slate-900">{transaction.method}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-slate-600">Status:</span>
+                                <Badge className={`${colors.bg} ${colors.text} border-0`}>
+                                  {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
+                                </Badge>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Course Progress Section */}
+                        {transaction.status === 'completed' && (
+                          <div className="pt-4 border-t border-slate-300">
+                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-3">Learning Progress</p>
+                            <div className="flex items-center gap-4">
+                              <div className="flex-1">
+                                <div className="w-full bg-slate-300 rounded-full h-3 overflow-hidden">
+                                  <div 
+                                    className="bg-gradient-to-r from-emerald-500 to-emerald-600 h-3 rounded-full transition-all duration-300"
+                                    style={{ width: `${transaction.courseProgress}%` }}
+                                  />
+                                </div>
+                              </div>
+                              <span className="text-lg font-bold text-slate-900 w-12 text-right">{transaction.courseProgress}%</span>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Rating and Review */}
+                        {transaction.status === 'completed' && transaction.courseProgress === 100 && (
+                          <div className="pt-4 border-t border-slate-300">
+                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-3">Course Feedback</p>
+                            {transaction.rating ? (
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm font-medium text-slate-700">Your Rating:</span>
+                                  <div className="flex items-center gap-0.5">
+                                    {[...Array(5)].map((_, i) => (
+                                      <Star 
+                                        key={i} 
+                                        className={`h-4 w-4 ${i < transaction.rating ? 'text-amber-400 fill-current' : 'text-slate-300'}`} 
+                                      />
+                                    ))}
+                                  </div>
+                                  <span className="text-sm font-bold text-slate-900">({transaction.rating}/5)</span>
+                                </div>
+                                {transaction.review && (
+                                  <p className="text-sm text-slate-700 italic border-l-2 border-amber-400 pl-3">"{transaction.review}"</p>
+                                )}
+                              </div>
+                            ) : (
+                              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                                <span className="text-sm font-medium text-slate-700">Rate this course:</span>
+                                <div className="flex items-center gap-1">
+                                  {[...Array(5)].map((_, i) => (
+                                    <Star 
+                                      key={i} 
+                                      className="h-4 w-4 text-slate-300 hover:text-amber-400 cursor-pointer transition-colors"
+                                      onClick={() => handleRateCourse(transaction.courseId, i + 1)}
+                                    />
+                                  ))}
+                                </div>
+                                <Button 
+                                  variant="outline" 
+                                  size="sm" 
+                                  onClick={() => handleWriteReview(transaction.courseId)}
+                                  className="ml-auto sm:ml-0"
+                                >
+                                  <MessageCircle className="h-3 w-3 mr-2" />
+                                  Write Review
+                                </Button>
+                              </div>
                             )}
                           </div>
-                        ) : (
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm text-gray-600">Rate this course:</span>
-                            <div className="flex items-center gap-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star 
-                                  key={i} 
-                                  className="h-4 w-4 text-gray-300 hover:text-yellow-400 cursor-pointer"
-                                  onClick={() => handleRateCourse(transaction.courseId, i + 1)}
-                                />
-                              ))}
+                        )}
+
+                        {/* Refund Information */}
+                        {transaction.refundEligible && (
+                          <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                            <div className="flex items-center gap-2 text-sm">
+                              <AlertCircle className="h-4 w-4 text-amber-600 flex-shrink-0" />
+                              <span className="text-amber-900">
+                                <strong>Refund eligible</strong> until {transaction.refundDeadline}
+                              </span>
                             </div>
-                            <Button variant="outline" size="sm" onClick={() => handleWriteReview(transaction.courseId)}>
-                              <MessageCircle className="h-3 w-3 mr-1" />
-                              Review
-                            </Button>
                           </div>
                         )}
+
+                        {/* Refunded Status */}
+                        {transaction.status === 'refunded' && (
+                          <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div className="flex items-center gap-2">
+                              <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                              <div className="flex-1">
+                                <p className="text-sm font-semibold text-blue-900">Refund Processed</p>
+                                <p className="text-xs text-blue-700">
+                                  ${transaction.refundAmount} refunded on {transaction.refundDate}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-300">
+                          {transaction.invoiceUrl && (
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => handleViewInvoice(transaction.id)}
+                              className="gap-2"
+                            >
+                              <Eye className="h-4 w-4" />
+                              View Invoice
+                            </Button>
+                          )}
+                          
+                          {transaction.status === 'completed' && transaction.courseProgress < 100 && (
+                            <Button 
+                              variant="default" 
+                              size="sm"
+                              onClick={() => handleContinueCourse(transaction.courseId)}
+                              className="gap-2"
+                            >
+                              <BookOpen className="h-4 w-4" />
+                              Continue Course
+                            </Button>
+                          )}
+                          
+                          {transaction.certificateEarned && (
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => handleDownloadCertificate(transaction.courseId)}
+                              className="gap-2"
+                            >
+                              <Award className="h-4 w-4" />
+                              Download Certificate
+                            </Button>
+                          )}
+                          
+                          {transaction.refundEligible && (
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => handleRequestRefund(transaction.id)}
+                              className="gap-2 text-amber-600 hover:text-amber-700 hover:bg-amber-50"
+                            >
+                              <RefreshCw className="h-4 w-4" />
+                              Request Refund
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     )}
-
-                    <div className="text-xs text-gray-500">
-                      Transaction ID: {transaction.transactionId} | Invoice: {transaction.id}
-                      {transaction.refundEligible && (
-                        <span className="text-green-600 ml-2">| Refund eligible until {transaction.refundDeadline}</span>
-                      )}
-                    </div>
                   </div>
-                  
-                  <div className="flex flex-col gap-2">
-                    {transaction.invoiceUrl && (
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => handleViewInvoice(transaction.id)}
-                      >
-                        <Eye className="h-4 w-4 mr-2" />
-                        Invoice
-                      </Button>
-                    )}
-                    
-                    {transaction.status === 'completed' && transaction.courseProgress < 100 && (
-                      <Button 
-                        variant="default" 
-                        size="sm"
-                        onClick={() => handleContinueCourse(transaction.courseId)}
-                      >
-                        <BookOpen className="h-4 w-4 mr-2" />
-                        Continue
-                      </Button>
-                    )}
-                    
-                    {transaction.certificateEarned && (
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => handleDownloadCertificate(transaction.courseId)}
-                      >
-                        <Award className="h-4 w-4 mr-2" />
-                        Certificate
-                      </Button>
-                    )}
-                    
-                    {transaction.refundEligible && (
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => handleRequestRefund(transaction.id)}
-                      >
-                        <RefreshCw className="h-4 w-4 mr-2" />
-                        Request Refund
-                      </Button>
-                    )}
-                    
-                    <Button variant="outline" size="sm">
-                      <Receipt className="h-4 w-4 mr-2" />
-                      Details
-                    </Button>
-                  </div>
-                </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Receipt className="h-8 w-8 text-slate-400" />
               </div>
-            ))}
-          </div>
-          
-          {filteredTransactions.length === 0 && (
-            <div className="text-center py-12">
-              <Receipt className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">No transactions found</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">No transactions found</h3>
+              <p className="text-slate-600 mb-6">
                 Try adjusting your search criteria or filters
               </p>
+              <Button variant="outline">Browse Courses</Button>
             </div>
           )}
         </CardContent>
       </Card>
 
       {/* Quick Actions */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Gift className="h-5 w-5" />
-            Quick Actions
+      <Card className="border-0 shadow-md bg-white">
+        <CardHeader className="pb-4 border-b border-slate-200">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <Gift className="h-5 w-5 text-blue-600" />
+            <span>Quick Actions</span>
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button variant="outline" className="h-20 flex flex-col items-center gap-2">
-              <BookOpen className="h-6 w-6" />
-              <span>Browse Courses</span>
+            <Button 
+              variant="outline" 
+              className="h-24 flex flex-col items-center gap-3 hover:bg-blue-50 hover:border-blue-300 transition-colors"
+            >
+              <BookOpen className="h-6 w-6 text-blue-600" />
+              <span className="font-medium">Browse Courses</span>
             </Button>
-            <Button variant="outline" className="h-20 flex flex-col items-center gap-2">
-              <Award className="h-6 w-6" />
-              <span>View Certificates</span>
+            <Button 
+              variant="outline" 
+              className="h-24 flex flex-col items-center gap-3 hover:bg-purple-50 hover:border-purple-300 transition-colors"
+            >
+              <Award className="h-6 w-6 text-purple-600" />
+              <span className="font-medium">View Certificates</span>
             </Button>
-            <Button variant="outline" className="h-20 flex flex-col items-center gap-2">
-              <TrendingUp className="h-6 w-6" />
-              <span>Learning Progress</span>
+            <Button 
+              variant="outline" 
+              className="h-24 flex flex-col items-center gap-3 hover:bg-emerald-50 hover:border-emerald-300 transition-colors"
+            >
+              <TrendingUp className="h-6 w-6 text-emerald-600" />
+              <span className="font-medium">Learning Progress</span>
             </Button>
           </div>
         </CardContent>

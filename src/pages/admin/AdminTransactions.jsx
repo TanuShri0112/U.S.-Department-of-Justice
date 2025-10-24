@@ -65,7 +65,7 @@ const AdminTransactions = () => {
     },
     {
       id: 'TXN-002',
-      course: 'UQTR Training Catalogue',
+      course: 'Training Catalogue',
       student: 'Jane Smith',
       studentEmail: 'jane.smith@email.com',
       studentId: 'STU-002',
