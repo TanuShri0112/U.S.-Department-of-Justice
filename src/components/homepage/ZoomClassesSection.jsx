@@ -15,61 +15,61 @@ const ZoomClassesSection = () => {
   const [classes, setClasses] = useState([
     {
       id: 1,
-      title: "Law Enforcement Training - Module 1",
+      title: "Basics in Tourism - Module 1",
       date: "Wed, Jun 12",
       time: "10:00 AM",
       duration: "1 hour",
-      description: "Foundations of Law Enforcement Training in the U.S.",
+      description: "Introduction to Child Protection Standards in Travel & Tourism",
       zoomLink: "https://zoom.us/j/123456789",
       meetingId: "123 456 789",
       attendance: 0,
       totalStudents: 25,
       isCompleted: false,
-      instructor: "John Smith",
-      course: "Law Enforcement"
+      instructor: "Sarah Thompson",
+      course: "Child Protection"
     },
     {
       id: 2,
-      title: "Educator Professional Development",
+      title: "Responsible Tourism Practices",
       date: "Sat, Jun 15",
       time: "2:00 PM",
       duration: "2 hours",
-      description: "Professional Learning in Education",
+      description: "Best Practices for Sustainable and Ethical Tourism",
       zoomLink: "https://zoom.us/j/987654321",
       meetingId: "987 654 321",
       attendance: 0,
       totalStudents: 30,
       isCompleted: false,
-      instructor: "Sarah Johnson",
-      course: "Education"
+      instructor: "Michael Chen",
+      course: "Tourism Ethics"
     },
     {
       id: 3,
-      title: "Youth Advocate Training Session",
+      title: "Tourism Industry Safety Standards",
       date: "Sat, Jun 8",
       time: "11:00 AM",
       duration: "1.5 hours",
-      description: "Needs Assessment in Youth Advocacy",
+      description: "Implementation of Safety Protocols in Tourism Sector",
       attendance: 18,
       totalStudents: 25,
-      recordingUrl: "https://example.com/recording/youth-advocate-training.mp4",
+      recordingUrl: "https://example.com/recording/tourism-safety.mp4",
       isCompleted: true,
-      instructor: "Michael Brown",
-      course: "Youth Development"
+      instructor: "Emma Rodriguez",
+      course: "Safety Standards"
     },
     {
       id: 4,
-      title: "DOJ Compliance Updates",
+      title: "Child Protection Compliance Workshop",
       date: "Wed, Jun 5",
       time: "3:00 PM",
       duration: "1 hour",
-      description: "Latest updates in Department of Justice compliance requirements",
+      description: "Latest updates in child protection compliance for tourism industry",
       attendance: 22,
       totalStudents: 30,
-      recordingUrl: "https://example.com/recording/doj-compliance.mp4",
+      recordingUrl: "https://example.com/recording/compliance-workshop.mp4",
       isCompleted: true,
-      instructor: "Jennifer Davis",
-      course: "Law Enforcement"
+      instructor: "David Anderson",
+      course: "Compliance"
     }
   ]);
 
@@ -80,7 +80,6 @@ const ZoomClassesSection = () => {
 
   const upcomingClasses = classes.filter(cls => !cls.isCompleted);
   const completedClasses = classes.filter(cls => cls.isCompleted);
-
 
   const handleEditClass = () => {
     if (!editingClass) return;
@@ -126,10 +125,10 @@ const ZoomClassesSection = () => {
         <CardHeader className="pb-4 pt-5 px-6">
           <div className="flex items-center justify-between mb-4">
             <CardTitle className="text-xl flex items-center gap-3 text-slate-800 font-bold">
-              <div className="p-2 bg-blue-500 rounded-lg shadow-md">
+              <div className="p-2 bg-teal-500 rounded-lg shadow-md">
                 <Video className="h-5 w-5 text-white" />
               </div>
-              Zoom Classes Management
+              Training Sessions
             </CardTitle>
           </div>
         </CardHeader>
@@ -138,11 +137,11 @@ const ZoomClassesSection = () => {
             <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded-xl mb-6">
               <TabsTrigger value="upcoming" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Calendar className="h-4 w-4" />
-                Upcoming Classes
+                Upcoming Sessions
               </TabsTrigger>
               <TabsTrigger value="completed" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Video className="h-4 w-4" />
-                Completed Classes
+                Completed Sessions
               </TabsTrigger>
             </TabsList>
             
@@ -154,10 +153,10 @@ const ZoomClassesSection = () => {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <h3 className="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                            <h3 className="font-bold text-lg text-gray-800 group-hover:text-teal-600 transition-colors duration-300">
                               {cls.title}
                             </h3>
-                            <Badge variant="outline" className="text-blue-600 border-blue-200">
+                            <Badge variant="outline" className="text-teal-600 border-teal-200">
                               {cls.course}
                             </Badge>
                           </div>
@@ -198,7 +197,7 @@ const ZoomClassesSection = () => {
                             <span className="text-sm text-gray-600">0/{cls.totalStudents}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
                             <span className="text-sm text-gray-600">{cls.duration}</span>
                           </div>
                         </div>
@@ -212,10 +211,10 @@ const ZoomClassesSection = () => {
                             <Button
                               size="sm"
                               onClick={() => handleJoinZoom(cls.zoomLink, cls.title)}
-                              className="bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg transition-all duration-300"
+                              className="bg-teal-600 hover:bg-teal-700 shadow-md hover:shadow-lg transition-all duration-300"
                             >
                               <ExternalLink className="h-4 w-4 mr-2" />
-                              Join via Zoom
+                              Join Session
                             </Button>
                           )}
                         </div>
@@ -225,8 +224,8 @@ const ZoomClassesSection = () => {
                 ) : (
                   <div className="text-center py-12 text-gray-500">
                     <Video className="h-16 w-16 mx-auto mb-4 text-gray-300" />
-                    <p className="text-lg font-medium mb-2">No upcoming classes scheduled</p>
-                    <p className="text-sm">Schedule your first class to get started</p>
+                    <p className="text-lg font-medium mb-2">No upcoming sessions scheduled</p>
+                    <p className="text-sm">Schedule your first training session to get started</p>
                   </div>
                 )}
               </div>
@@ -240,13 +239,13 @@ const ZoomClassesSection = () => {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <h3 className="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                            <h3 className="font-bold text-lg text-gray-800 group-hover:text-teal-600 transition-colors duration-300">
                               {cls.title}
                             </h3>
-                            <Badge variant="outline" className="text-green-600 border-green-200">
+                            <Badge variant="outline" className="text-teal-600 border-teal-200">
                               {cls.course}
                             </Badge>
-                            <Badge variant="secondary" className="bg-green-100 text-green-700">
+                            <Badge variant="secondary" className="bg-teal-100 text-teal-700">
                               Completed
                             </Badge>
                           </div>
@@ -287,7 +286,7 @@ const ZoomClassesSection = () => {
                             <span className="text-sm text-gray-600">{cls.attendance}/{cls.totalStudents}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
                             <span className="text-sm text-gray-600">{cls.duration}</span>
                           </div>
                         </div>
@@ -302,7 +301,7 @@ const ZoomClassesSection = () => {
                               size="sm"
                               variant="outline"
                               onClick={() => handleViewRecording(cls)}
-                              className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                              className="border-teal-200 text-teal-600 hover:bg-teal-50"
                             >
                               <Eye className="h-4 w-4 mr-2" />
                               View Recording
@@ -311,7 +310,7 @@ const ZoomClassesSection = () => {
                               size="sm"
                               variant="outline"
                               onClick={() => handleDownloadRecording(cls)}
-                              className="border-green-200 text-green-600 hover:bg-green-50"
+                              className="border-teal-200 text-teal-600 hover:bg-teal-50"
                             >
                               <Download className="h-4 w-4 mr-2" />
                               Download
@@ -324,8 +323,8 @@ const ZoomClassesSection = () => {
                 ) : (
                   <div className="text-center py-12 text-gray-500">
                     <Video className="h-16 w-16 mx-auto mb-4 text-gray-300" />
-                    <p className="text-lg font-medium mb-2">No completed classes yet</p>
-                    <p className="text-sm">Complete your first class to see it here</p>
+                    <p className="text-lg font-medium mb-2">No completed sessions yet</p>
+                    <p className="text-sm">Complete your first session to see it here</p>
                   </div>
                 )}
               </div>
@@ -340,13 +339,13 @@ const ZoomClassesSection = () => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Edit className="h-5 w-5" />
-              Edit Class
+              Edit Session
             </DialogTitle>
           </DialogHeader>
           {editingClass && (
             <div className="space-y-4">
               <div>
-                <Label htmlFor="edit-title">Class Title</Label>
+                <Label htmlFor="edit-title">Session Title</Label>
                 <Input
                   id="edit-title"
                   value={editingClass.title}
@@ -381,7 +380,7 @@ const ZoomClassesSection = () => {
               </div>
               <div className="flex gap-2 pt-4">
                 <Button onClick={handleEditClass} className="flex-1">
-                  Update Class
+                  Update Session
                 </Button>
                 <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
                   Cancel
@@ -408,10 +407,10 @@ const ZoomClassesSection = () => {
                   <Video className="h-16 w-16 mx-auto mb-4 text-gray-400" />
                   <p className="text-gray-600 mb-2">Recording Player</p>
                   <p className="text-sm text-gray-500">
-                    Class held on {selectedRecording.date} at {selectedRecording.time}
+                    Session held on {selectedRecording.date} at {selectedRecording.time}
                   </p>
                   <p className="text-sm text-gray-500">
-                    Attendance: {selectedRecording.attendance}/{selectedRecording.totalStudents} students
+                    Attendance: {selectedRecording.attendance}/{selectedRecording.totalStudents} participants
                   </p>
                 </div>
               </div>

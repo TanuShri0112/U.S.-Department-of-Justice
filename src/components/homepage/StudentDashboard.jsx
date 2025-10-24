@@ -22,9 +22,11 @@ export function StudentDashboard() {
         <div className="space-y-6 min-w-0 lg:col-span-8">
           <WelcomeSection />
           <QuickStatsSection />
-          <TeachingCoursesSection />
+          {/* Training Overview section removed as per ECPAT requirements */}
+          {/* <TeachingCoursesSection /> */}
           <ZoomClassesSection />
-          <WidgetsSection />
+          {/* Training Overview widgets removed as per ECPAT requirements */}
+          {/* <WidgetsSection /> */}
         </div>
         
         {/* Right Column - Optimized width and spacing */}

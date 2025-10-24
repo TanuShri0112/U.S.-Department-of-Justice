@@ -31,28 +31,28 @@ export function GroupProvider({ children }) {
   const [groups, setGroups] = useState([
     { 
       id: 1, 
-      name: 'Law Enforcement Officers', 
+      name: 'Responsible Travel Professionals', 
       members: 45, 
       type: 'Training group', 
       image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&auto=format'
     },
     { 
       id: 2, 
-      name: 'Training Coordinators', 
+      name: 'Tourism Industry Trainers', 
       members: 12, 
       type: 'Professional development', 
       image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&auto=format'
     },
     { 
       id: 3, 
-      name: 'Youth Advocates', 
+      name: 'Child Protection Champions', 
       members: 28, 
       type: 'Advocacy group', 
       image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format'
     },
     { 
       id: 4, 
-      name: 'DOJ Compliance Specialists', 
+      name: 'Ethical Tourism Compliance Officers', 
       members: 18, 
       type: 'Compliance training', 
       image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop&auto=format'

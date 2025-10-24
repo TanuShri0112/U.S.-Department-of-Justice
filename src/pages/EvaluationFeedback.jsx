@@ -29,26 +29,44 @@ const EvaluationFeedback = () => {
     navigate('/self-assessment');
   };
 
-  // Mock data for demonstration
+  // Mock data for tourism industry
   const mockData = {
     surveys: {
       completionRate: 87,
       averageSatisfaction: 4.2,
       totalResponses: 1247,
       recentResponses: [
-        { id: 1, course: 'Law Enforcement Training', rating: 4.5, date: '2024-01-15', feedback: 'Excellent course content and practical examples.' },
-        { id: 2, course: 'Educator Training', rating: 4.0, date: '2024-01-14', feedback: 'Very helpful for understanding student needs.' },
-        { id: 3, course: 'Community Outreach', rating: 4.8, date: '2024-01-13', feedback: 'Outstanding program with real-world applications.' }
+        { 
+          id: 1, 
+          course: 'Responsible Tourism Practices', 
+          rating: 4.5, 
+          date: '2024-01-15', 
+          feedback: 'Excellent insights on sustainable tourism practices and child protection measures.' 
+        },
+        { 
+          id: 2, 
+          course: 'Tourism Industry Ethics', 
+          rating: 4.0, 
+          date: '2024-01-14', 
+          feedback: 'Very comprehensive coverage of ethical guidelines in travel industry.' 
+        },
+        { 
+          id: 3, 
+          course: 'Child Protection in Tourism', 
+          rating: 4.8, 
+          date: '2024-01-13', 
+          feedback: 'Outstanding program with practical safeguarding protocols for tourism sector.' 
+        }
       ]
     },
     selfAssessments: {
       totalAssessments: 892,
       averageScore: 78,
       improvementAreas: [
-        { topic: 'Communication Skills', percentage: 65 },
-        { topic: 'Technical Knowledge', percentage: 82 },
-        { topic: 'Leadership Skills', percentage: 71 },
-        { topic: 'Problem Solving', percentage: 88 }
+        { topic: 'Child Protection Awareness', percentage: 88 },
+        { topic: 'Tourism Ethics & Compliance', percentage: 82 },
+        { topic: 'Stakeholder Engagement', percentage: 71 },
+        { topic: 'Risk Assessment & Mitigation', percentage: 85 }
       ]
     }
   };
@@ -58,8 +76,8 @@ const EvaluationFeedback = () => {
       <div className="p-6 max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Evaluation & Feedback</h1>
-          <p className="text-gray-600">Monitor your learning progress and training effectiveness.</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Training Evaluation & Feedback</h1>
+          <p className="text-gray-600">Monitor your progress in tourism industry best practices and child protection measures.</p>
         </div>
 
         {/* Quick Actions */}
@@ -72,8 +90,8 @@ const EvaluationFeedback = () => {
                     <MessageSquare className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Post-Training Surveys</h3>
-                    <p className="text-sm text-gray-500">Share your training experience</p>
+                    <h3 className="font-semibold text-gray-900">Training Feedback</h3>
+                    <p className="text-sm text-gray-500">Share your insights on tourism safety training</p>
                   </div>
                 </div>
                 <Button onClick={handleTakeSurvey} className="bg-blue-600 hover:bg-blue-700">
@@ -92,8 +110,8 @@ const EvaluationFeedback = () => {
                     <Target className="h-6 w-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Self-Assessment</h3>
-                    <p className="text-sm text-gray-500">Evaluate your skills and progress</p>
+                    <h3 className="font-semibold text-gray-900">Competency Assessment</h3>
+                    <p className="text-sm text-gray-500">Evaluate your tourism safety knowledge</p>
                   </div>
                 </div>
                 <Button onClick={handleStartAssessment} className="bg-green-600 hover:bg-green-700">
@@ -111,7 +129,7 @@ const EvaluationFeedback = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Survey Completion</p>
+                  <p className="text-sm font-medium text-gray-600">Training Completion</p>
                   <p className="text-2xl font-bold text-gray-900">{mockData.surveys.completionRate}%</p>
                 </div>
                 <BarChart3 className="h-8 w-8 text-blue-600" />
@@ -123,7 +141,7 @@ const EvaluationFeedback = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Average Rating</p>
+                  <p className="text-sm font-medium text-gray-600">Satisfaction Rating</p>
                   <p className="text-2xl font-bold text-gray-900 flex items-center gap-1">
                     <Star className="h-5 w-5 text-yellow-500 fill-current" />
                     {mockData.surveys.averageSatisfaction}
@@ -138,7 +156,7 @@ const EvaluationFeedback = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Responses</p>
+                  <p className="text-sm font-medium text-gray-600">Participants</p>
                   <p className="text-2xl font-bold text-gray-900">{mockData.surveys.totalResponses.toLocaleString()}</p>
                 </div>
                 <Users className="h-8 w-8 text-purple-600" />
@@ -150,7 +168,7 @@ const EvaluationFeedback = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Overall Score</p>
+                  <p className="text-sm font-medium text-gray-600">Competency Score</p>
                   <p className="text-2xl font-bold text-gray-900">{mockData.selfAssessments.averageScore}%</p>
                 </div>
                 <Target className="h-8 w-8 text-green-600" />
@@ -166,7 +184,7 @@ const EvaluationFeedback = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5 text-green-600" />
-                Skill Assessment
+                Competency Areas
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -187,7 +205,7 @@ const EvaluationFeedback = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-blue-600" />
-                Recent Feedback
+                Recent Training Feedback
               </CardTitle>
             </CardHeader>
             <CardContent>

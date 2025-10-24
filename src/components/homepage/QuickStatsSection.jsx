@@ -4,44 +4,45 @@ import {
   Award, 
   TrendingUp, 
   MoreVertical,
-  X,
-  Layers,
-  FileText
+  Shield,
+  Users,
+  FileCheck,
+  Clock
 } from 'lucide-react';
 
 const quickStats = [
   {
     id: 1,
-    icon: X,
-    iconColor: 'bg-purple-100',
-    iconTextColor: 'text-purple-600',
+    icon: Shield,
+    iconColor: 'bg-teal-100',
+    iconTextColor: 'text-teal-600',
     progress: '5/12',
     total: 12,
     completed: 5,
-    title: 'Courses Completed',
-    color: 'purple'
+    title: 'Tourism Modules Completed',
+    color: 'teal'
   },
   {
     id: 2,
-    icon: Layers,
-    iconColor: 'bg-pink-100',
-    iconTextColor: 'text-pink-600',
+    icon: Users,
+    iconColor: 'bg-blue-100',
+    iconTextColor: 'text-blue-600',
     progress: '8/15',
     total: 15,
     completed: 8,
-    title: 'Certifications',
-    color: 'pink'
+    title: 'Industry Best Practices',
+    color: 'blue'
   },
   {
     id: 3,
-    icon: FileText,
-    iconColor: 'bg-blue-100',
-    iconTextColor: 'text-blue-600',
+    icon: Clock,
+    iconColor: 'bg-emerald-100',
+    iconTextColor: 'text-emerald-600',
     progress: '12/20',
     total: 20,
     completed: 12,
     title: 'Training Hours',
-    color: 'blue'
+    color: 'emerald'
   }
 ];
 
@@ -65,14 +66,17 @@ export default function QuickStatsSection() {
                 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm text-gray-500 mb-1">{stat.progress} watched</div>
+                  <div className="text-sm text-gray-500 mb-1">{stat.progress} completed</div>
                   <div className="font-semibold text-gray-800 text-sm">{stat.title}</div>
                 </div>
                 
-                {/* Options menu */}
-                <button className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-1 hover:bg-gray-100 rounded-full">
-                  <MoreVertical className="w-4 h-4 text-gray-400" />
-                </button>
+                {/* Progress indicator */}
+                <div className={`h-1.5 w-16 bg-${stat.color}-100 rounded-full overflow-hidden`}>
+                  <div 
+                    className={`h-full bg-${stat.color}-500 rounded-full`}
+                    style={{ width: `${(stat.completed / stat.total) * 100}%` }}
+                  ></div>
+                </div>
               </div>
             </div>
           );
