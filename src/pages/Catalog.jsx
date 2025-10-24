@@ -11,11 +11,11 @@ const Catalog = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredCard, setHoveredCard] = useState(null);
   
-  // Updated catalogs with U.S. Department of Justice training courses
+  // Updated catalogs with ECPAT International training courses
   const [catalogs, setCatalogs] = useState([
     {
       id: 1,
-      name: 'U.S. Department of Justice- National Community Outreach & Prevention',
+      name: 'ECPAT International- National Community Outreach & Prevention',
       description: 'Foundations of law enforcement training, stakeholder analysis, and needs assessment',
       imageUrl: '/assets/us-1.png',
       courseCount: 3,
@@ -67,7 +67,7 @@ const Catalog = () => {
               <Sparkles className="inline-block ml-2 h-6 w-6 sm:h-8 sm:w-8 text-yellow-400" />
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Explore our comprehensive collection of U.S. Department of Justice training programs
+              Explore our comprehensive collection of ECPAT International training programs
             </p>
           </motion.div>
         </div>

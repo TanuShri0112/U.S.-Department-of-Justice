@@ -9,23 +9,9 @@ import { UserFilterProvider } from "./contexts/UserFilterContext";
 import { CourseSidebarProvider } from "./contexts/CourseSidebarContext";
 import { InstructorPortalProvider } from "./contexts/InstructorPortalContext";
 import { AdminPortalProvider } from "./contexts/AdminPortalContext";
-// Import all assessment components
-import MultipleChoiceQuiz from "./components/assessments/MultipleChoiceQuiz";
-import TrueFalseQuiz from "./components/assessments/TrueFalseQuiz";
-import FillInBlanks from "./components/assessments/FillInBlanks";
-import MatchingPairs from "./components/assessments/MatchingPairs";
-import DropdownSelection from "./components/assessments/DropdownSelection";
-import NumericCalculation from "./components/assessments/NumericCalculation";
-import ShortAnswerQuestions from "./components/assessments/ShortAnswerQuestions";
-import EssayQuestions from "./components/assessments/EssayQuestions";
-import CaseStudyAnalysis from "./components/assessments/CaseStudyAnalysis";
-import DragDropExercise from "./components/assessments/DragDropExercise";
-import HotspotImageQuiz from "./components/assessments/HotspotImageQuiz";
-import ScenarioSimulation from "./components/assessments/ScenarioSimulation";
-import FileUploadAssignment from "./components/assessments/FileUploadAssignment";
-import ProjectSubmission from "./components/assessments/ProjectSubmission";
-import ProcturedExamination from "./components/assessments/ProcturedExamination";
-import AssessmentCategories from "./components/courses/AssessmentCategories";
+// ECPAT update start - Assessment components removed
+// Assessment functionality disabled as per ECPAT requirements
+// ECPAT update end
 
 // Import pages
 import Dashboard from "./pages/Dashboard.jsx";
@@ -168,22 +154,9 @@ const App = () => (
                   <Route path="announcements" element={<AnnouncementManagement />} />
                   <Route path="calendar" element={<CalendarManagement />} />
                   
-                  {/* Assessment Routes */}
-                  <Route path="assessment/multiple-choice" element={<MultipleChoiceQuiz />} />
-                  <Route path="assessment/true-false" element={<TrueFalseQuiz />} />
-                  <Route path="assessment/fill-blanks" element={<FillInBlanks />} />
-                  <Route path="assessment/matching" element={<MatchingPairs />} />
-                  <Route path="assessment/dropdown" element={<DropdownSelection />} />
-                  <Route path="assessment/numeric" element={<NumericCalculation />} />
-                  <Route path="assessment/shortanswer" element={<ShortAnswerQuestions />} />
-                  <Route path="assessment/essay" element={<EssayQuestions />} />
-                  <Route path="assessment/casestudy" element={<CaseStudyAnalysis />} />
-                  <Route path="assessment/drag-drop" element={<DragDropExercise />} />
-                  <Route path="assessment/hotspot" element={<HotspotImageQuiz />} />
-                  <Route path="assessment/scenario" element={<ScenarioSimulation />} />
-                  <Route path="assessment/file-upload" element={<FileUploadAssignment />} />
-                  <Route path="assessment/project-submission" element={<ProjectSubmission />} />
-                  <Route path="assessment/proctored" element={<ProcturedExamination />} />
+                  {/* ECPAT update start - Assessment routes removed */}
+                  {/* Assessment functionality disabled as per ECPAT requirements */}
+                  {/* ECPAT update end */}
                 </Route>
               </Routes>
                 </AdminPortalProvider>

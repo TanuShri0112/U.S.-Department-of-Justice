@@ -21,11 +21,11 @@ const Courses = () => {
   // Removed course access type (open/sequential)
   const navigate = useNavigate();
 
-  // U.S. Department of Justice Training Courses
+  // ECPAT International Training Courses
   const mockCourses = [
     {
       id: 1,
-      title: "U.S. Department of Justice- National Community Outreach & Prevention",
+      title: "ECPAT International- National Community Outreach & Prevention",
       description: "Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals",
       students: 120,
       duration: "6 weeks",

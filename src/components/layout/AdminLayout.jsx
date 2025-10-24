@@ -73,7 +73,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
       }
     }
 
-    document.title = `${newTitle} | U.S. Department of Justice`;
+    document.title = `${newTitle} | ECPAT International`;
   }, [location.pathname, title, courseId, setCourseTitle]);
 
   return (

@@ -28,7 +28,7 @@ const CourseModules = () => {
       'reactjs202': 'React.js Advanced',
       'ml506': 'Machine Learning',
       'data345': 'Data Analysis',
-      '1': 'U.S. Department of Justice- National Community Outreach & Prevention'
+      '1': 'ECPAT International- National Community Outreach & Prevention'
     };
     return courseNames[courseId] || 'Course';
   };
@@ -73,7 +73,7 @@ const CourseModules = () => {
         // Course-specific modules based on courseId
         const getCourseModules = (courseId) => {
           const courseModules = {
-            '1': [ // U.S. Department of Justice- National Community Outreach & Prevention
+            '1': [ // ECPAT International- National Community Outreach & Prevention
               {
                 id: 1,
                 title: "National Community Outreach & Prevention",

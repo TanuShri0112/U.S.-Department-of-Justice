@@ -6,7 +6,7 @@ import { Book, Users } from "lucide-react";
 const teachingCourses = [
   {
     id: 1,
-    title: "U.S. Department of Justice- National Community Outreach & Prevention",
+    title: "ECPAT International- National Community Outreach & Prevention",
     image: "/assets/us-1.png",
     modules: 3,
     students: 120

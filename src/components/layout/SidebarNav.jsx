@@ -87,7 +87,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
                 className="w-12 h-12 object-contain"
               />
               <div className="text-white">
-                <h1 className="text-lg font-semibold leading-tight">U.S. Department of Justice</h1>
+                <h1 className="text-lg font-semibold leading-tight">ECPAT International</h1>
               </div>
             </div>
           )}

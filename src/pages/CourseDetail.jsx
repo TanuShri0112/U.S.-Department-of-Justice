@@ -3,7 +3,8 @@ import { useParams, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useCourseSidebar } from '@/contexts/CourseSidebarContext';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import CourseModules from '@/components/courses/CourseModules';
-import CourseAssessments from '@/components/courses/CourseAssessments';
+// ECPAT update start - Assessment imports removed
+// ECPAT update end
 import CourseNews from '@/components/courses/CourseNews';
 import CourseInstructors from '@/components/courses/CourseInstructors';
 import CourseForums from '@/components/courses/CourseForums';
@@ -12,8 +13,8 @@ import CourseLearners from '@/components/courses/CourseLearners';
 import CourseScores from '@/components/courses/CourseScores';
 import CourseCalendar from '@/components/courses/CourseCalendar';
 import CourseAdmin from '@/components/courses/CourseAdmin';
-import QuizInstructorPage from '@/pages/QuizInstructorPage';
-import SurveyInstructorPage from '@/pages/SurveyInstructorPage';
+// ECPAT update start - Assessment page imports removed
+// ECPAT update end
 import { Button } from '@/components/ui/button';
 import { useDialog } from '@/hooks/useDialog';
 import { useSidebar } from '@/contexts/SidebarContext';
@@ -82,9 +83,8 @@ const CourseDetail = () => {
     return <CourseModules />;
   }
 
-  if (location.pathname.endsWith('/assessments')) {
-    return <CourseAssessments />;
-  }
+  // ECPAT update start - Assessment route removed
+  // ECPAT update end
   
   if (location.pathname.endsWith('/news')) {
     return <CourseNews />;
@@ -118,15 +118,9 @@ const CourseDetail = () => {
     return <CourseAdmin />;
   }
 
-  // Handle quiz instructor routes
-  if (location.pathname.includes('/quizzes/')) {
-    return <QuizInstructorPage />;
-  }
-
-  // Handle survey instructor routes - Updated to match new routing pattern
-  if (location.pathname.includes('/surveys/')) {
-    return <SurveyInstructorPage />;
-  }
+  // ECPAT update start - Quiz and survey routes removed
+  // Assessment functionality disabled as per ECPAT requirements
+  // ECPAT update end
 
   // Course options for the dialog
   const courseOptions = [

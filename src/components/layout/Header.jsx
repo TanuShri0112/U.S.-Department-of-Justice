@@ -71,7 +71,7 @@ export const Header = ({ onMenuClick }) => {
   const handleAthenaLMSClick = () => {
     navigate('/');
     toast({
-      title: "Welcome to Athena LMS",
+      title: "Welcome to ECPAT International",
       description: "You're now on the homepage",
       duration: 2000,
     });
@@ -103,33 +103,40 @@ export const Header = ({ onMenuClick }) => {
 
   return (
     <>
-      <header className="px-4 h-16 flex items-center justify-between bg-white shadow-sm z-40 border-b border-gray-100">
+      <header className="px-4 h-16 flex items-center justify-between bg-primary shadow-sm z-40 border-b border-primary-600">
         <div className="flex items-center">
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden mr-2"
+            className="md:hidden mr-2 text-white hover:bg-primary-600"
             onClick={onMenuClick}
           >
             <Search className="h-5 w-5" />
           </Button>
           
-          <h1 
-            className="text-lg font-semibold cursor-pointer hover:text-slate-600 transition-colors text-slate-800"
+          <div 
+            className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
             onClick={handleAthenaLMSClick}
           >
-            Athena LMS
-          </h1>
+            <img 
+              src="/assets/ECPAT-logo-white.svg" 
+              alt="ECPAT International" 
+              className="h-8 w-auto brightness-0 invert" 
+            />
+            <h1 className="text-lg font-semibold text-white hidden md:block">
+              ECPAT International
+            </h1>
+          </div>
         </div>
         
         <div className="flex items-center gap-2">
           <div className="hidden md:flex max-w-sm relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <Search className="w-4 h-4 text-gray-500" />
+              <Search className="w-4 h-4 text-white/70" />
             </div>
             <input
               type="search"
-              className="w-full py-1.5 pl-10 pr-4 text-sm text-gray-900 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
+              className="w-full py-1.5 pl-10 pr-4 text-sm text-white bg-primary-600/50 rounded-lg border border-primary-400/30 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/30 placeholder-white/70"
               placeholder="Search..."
             />
           </div>
@@ -139,7 +146,7 @@ export const Header = ({ onMenuClick }) => {
               variant="ghost" 
               size="icon" 
               onClick={handleCalendarClick}
-              className="hover:bg-slate-100 transition-all text-slate-600"
+              className="hover:bg-primary-600 transition-all text-white"
               aria-label="Calendar"
             >
               <Calendar className="h-5 w-5" />
@@ -160,7 +167,7 @@ export const Header = ({ onMenuClick }) => {
               variant="ghost" 
               size="icon" 
               onClick={handleRecycleBinClick}
-              className="hover:bg-slate-100 transition-all text-slate-600"
+              className="hover:bg-primary-600 transition-all text-white"
               aria-label="Recycle Bin"
             >
               <Recycle className="h-5 w-5" />
@@ -172,7 +179,7 @@ export const Header = ({ onMenuClick }) => {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="relative text-slate-600"
+            className="relative text-white hover:bg-primary-600"
             onClick={handleNotificationsClick}
             aria-label="Notifications"
           >
