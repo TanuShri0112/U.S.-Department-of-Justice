@@ -32,7 +32,7 @@ export const LanguageProvider = ({ children }) => {
       notifications: 'Notifications',
       profile: 'Profile',
       logout: 'Log out',
-      universityName: 'University of Quebec in Trois-Rivières (UQTR)',
+      universityName: 'UQTR',
       
       // Dashboard
       welcome: 'Welcome back',
@@ -945,7 +945,7 @@ export const LanguageProvider = ({ children }) => {
       notifications: 'Notifications',
       profile: 'Profil',
       logout: 'Se déconnecter',
-      universityName: 'University of Quebec in Trois-Rivières (UQTR)',
+      universityName: 'UQTR',
       
       // Dashboard
       welcome: 'Bon retour',

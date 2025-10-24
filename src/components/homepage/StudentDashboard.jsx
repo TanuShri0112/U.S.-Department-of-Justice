@@ -10,7 +10,6 @@ import {CalendarSection} from './CalendarSection';
 import PerformanceSection from './PerformanceSection';
 import {AnnouncementSection} from './AnnouncementSection';
 import {TaskListSection} from './TaskListSection';
-import MyCoursesSection from './MyCoursesSection';
 
 export function StudentDashboard() {
   const navigate = useNavigate();
@@ -22,7 +21,6 @@ export function StudentDashboard() {
         <div className="space-y-6 min-w-0 lg:col-span-8">
           <WelcomeSection />
           <EnhancedStatsSection />
-          <MyCoursesSection />
           <ZoomClassesSection />
         </div>
         

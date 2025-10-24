@@ -109,7 +109,7 @@ export const MainNavigation = ({ pathname, onItemClick }) => {
         <motion.div variants={itemVariants}>
           <NavItem 
             icon={Book} 
-            label={t('courses')} 
+            label={t('myCourses')} 
             to="/courses" 
             active={pathname.startsWith('/courses')} 
             onClick={handleCourseClick}

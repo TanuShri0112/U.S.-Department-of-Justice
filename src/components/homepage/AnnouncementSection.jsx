@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Bell, AlertCircle, Info, CheckCircle, Calendar } from 'lucide-react';
+import { Bell, AlertCircle, Info, CheckCircle, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useLanguage } from '@/contexts/LanguageContext';
+
 export function AnnouncementSection() {
   const { t } = useLanguage();
+  const [isExpanded, setIsExpanded] = useState(false);
   
   const announcements = [
     {
@@ -40,7 +42,6 @@ export function AnnouncementSection() {
       course: t('analytics')
     }
   ];
-
 
   const getAnnouncementTypeStyles = (type) => {
     switch (type) {
@@ -87,35 +88,90 @@ export function AnnouncementSection() {
     }
   };
 
+  // Get the latest announcement for collapsed view
+  const latestAnnouncement = announcements[0];
+
+  if (!isExpanded) {
+    return (
+      <Card 
+        className="shadow-sm border border-gray-100 bg-white overflow-hidden cursor-pointer hover:shadow-md transition-all duration-300"
+        onClick={() => setIsExpanded(true)}
+      >
+        <div className="flex items-center p-4 gap-3">
+          <div className="bg-blue-100 rounded-full p-2 flex-shrink-0">
+            <Bell className="h-5 w-5 text-blue-600" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm font-medium text-gray-900">
+                {t('announcements')}
+              </h3>
+              {latestAnnouncement && (
+                <>
+                  <span className="text-gray-400">·</span>
+                  <span className="text-sm text-gray-500 truncate">
+                    {latestAnnouncement.title}
+                  </span>
+                  {latestAnnouncement.priority === 'high' && (
+                    <Badge 
+                      variant="destructive" 
+                      className="text-[10px] px-1.5 py-0.5 font-medium bg-red-50 text-red-600 border border-red-100"
+                    >
+                      {t('high')}
+                    </Badge>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+          <ChevronDown className="h-4 w-4 text-gray-400 flex-shrink-0" />
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <Card className="shadow-lg border-0 bg-white overflow-hidden">
-      <CardHeader className="pb-4 pt-5 px-6">
+      <CardHeader 
+        className="pb-4 pt-5 px-6 cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100"
+        onClick={() => setIsExpanded(false)}
+      >
         <div className="flex items-center justify-between">
-          <CardTitle className="text-xl flex items-center gap-3 text-slate-800 font-bold">
-            <div className="p-2 bg-blue-500 rounded-lg shadow-md">
-              <Bell className="h-5 w-5 text-white" />
+          <div className="flex items-center gap-3">
+            <div className="bg-blue-100 rounded-full p-2">
+              <Bell className="h-5 w-5 text-blue-600" />
+            </div>
+            <CardTitle className="text-base font-medium text-gray-900">
+              {t('announcements')}
+            </CardTitle>
           </div>
-          {t('announcements')}
-        </CardTitle>
-          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-full hover:bg-blue-50 hover:text-blue-700 transition-all duration-300 hover:scale-110">
-          <Bell className="h-4 w-4" />
-          <span className="sr-only">Notification settings</span>
-        </Button>
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="h-8 w-8 p-0 rounded-full hover:bg-blue-50 hover:text-blue-600"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Bell className="h-4 w-4" />
+              <span className="sr-only">Notification settings</span>
+            </Button>
+            <ChevronUp className="h-4 w-4 text-gray-400" />
+          </div>
         </div>
       </CardHeader>
-      <CardContent className="px-6 pb-6">
+
+      <CardContent className="p-4">
         <ScrollArea className="h-[280px] pr-3">
           {announcements.length > 0 ? (
-            <div className="space-y-4">
-              {announcements.slice(0, 4).map((announcement) => {
+            <div className="space-y-3">
+              {announcements.map((announcement) => {
                 const typeStyles = getAnnouncementTypeStyles(announcement.type);
                 const IconComponent = typeStyles.icon;
                 
                 return (
-                <div
-                  key={announcement.id}
-                    className="group bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  <div
+                    key={announcement.id}
+                    className="group bg-white rounded-lg border border-gray-100 p-3 hover:shadow-sm transition-all duration-300"
                   >
                     <div className="flex items-start gap-3">
                       <div className={`w-8 h-8 rounded-full ${typeStyles.bgColor} flex items-center justify-center flex-shrink-0`}>
@@ -123,23 +179,30 @@ export function AnnouncementSection() {
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="font-semibold text-sm text-gray-800 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                        <div className="flex items-start justify-between mb-1">
+                          <h3 className="font-medium text-sm text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                             {announcement.title}
                           </h3>
                           <div className="flex items-center gap-2 ml-2">
                             {announcement.priority === 'high' && (
-                              <Badge variant="destructive" className="text-xs">{t('high')}</Badge>
+                              <Badge 
+                                variant="destructive" 
+                                className="text-[10px] px-1.5 py-0.5 font-medium bg-red-50 text-red-600 border border-red-100"
+                              >
+                                {t('high')}
+                              </Badge>
                             )}
-                            <span className="text-xs text-gray-500">
-                              {announcement.time}
-                            </span>
                           </div>
                         </div>
                         
-                        <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                        <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed mb-2">
                           {announcement.content}
                         </p>
+
+                        <div className="flex items-center justify-between text-xs text-gray-500">
+                          <span>{announcement.source}</span>
+                          <span>{announcement.time}</span>
+                        </div>
                       </div>
                     </div>
                   </div>

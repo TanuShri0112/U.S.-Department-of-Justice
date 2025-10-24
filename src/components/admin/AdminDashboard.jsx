@@ -6,13 +6,13 @@ import { Users, BookOpen, FileText, BarChart as BarChartIcon, Settings, Bell, He
 
 const AdminDashboard = () => {
   const stats = [
-    { label: 'Total Users', value: '1,234', icon: Users, change: '+12%', changeType: 'increase' },
-    { label: 'Active Courses', value: '45', icon: BookOpen, change: '+5', changeType: 'increase' },
-    { label: 'Total Enrollments', value: '3,456', icon: FileText, change: '+234', changeType: 'increase' },
-    { label: 'Completion Rate', value: '78%', icon: BarChartIcon, change: '+5%', changeType: 'increase' },
+    { label: 'Total Training Hours', value: '25,370', icon: FileText, change: '+12%', changeType: 'increase' },
+    { label: "Today's Completions", value: '5,370', icon: BookOpen, change: '-8%', changeType: 'decrease' },
+    { label: 'Active Learners', value: '2,370', icon: Users, change: '-3%', changeType: 'decrease' },
+    { label: "Today's Assignments", value: '863', icon: FileText, change: '+15%', changeType: 'increase' },
+    { label: 'Performance', value: '72%', icon: TrendingUp, change: '+23%', changeType: 'increase' },
     { label: 'Total Revenue', value: '$45,678', icon: DollarSign, change: '+18%', changeType: 'increase' },
     { label: 'Monthly Revenue', value: '$12,345', icon: TrendingUp, change: '+8%', changeType: 'increase' },
-    { label: 'Payment Success Rate', value: '96%', icon: CreditCard, change: '+2%', changeType: 'increase' },
   ];
 
   const recentActivities = [
@@ -77,19 +77,41 @@ const AdminDashboard = () => {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Overview</CardTitle>
+            <CardTitle>Course Enrollment</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">Enrolled</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">Completed</span>
+              </div>
+            </div>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData}>
+                <BarChart data={[
+                  { month: 'Jan', enrolled: 120, completed: 85 },
+                  { month: 'Feb', enrolled: 95, completed: 70 },
+                  { month: 'Mar', enrolled: 140, completed: 110 },
+                  { month: 'Apr', enrolled: 110, completed: 95 },
+                  { month: 'May', enrolled: 160, completed: 125 },
+                  { month: 'Jun', enrolled: 180, completed: 145 },
+                  { month: 'Jul', enrolled: 200, completed: 165 },
+                  { month: 'Aug', enrolled: 175, completed: 150 },
+                  { month: 'Sep', enrolled: 190, completed: 160 },
+                  { month: 'Oct', enrolled: 220, completed: 180 },
+                  { month: 'Nov', enrolled: 210, completed: 175 },
+                  { month: 'Dec', enrolled: 240, completed: 200 }
+                ]}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
+                  <XAxis dataKey="month" />
                   <YAxis />
                   <Tooltip />
-                  <Bar dataKey="users" fill="#8884d8" name="Users" />
-                  <Bar dataKey="courses" fill="#82ca9d" name="Courses" />
-                  <Bar dataKey="revenue" fill="#ffc658" name="Revenue ($)" />
+                  <Bar dataKey="enrolled" fill="#3B82F6" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="completed" fill="#10B981" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
