@@ -1,69 +1,54 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Clock, ChevronRight, Plus, User } from 'lucide-react';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export function TaskListSection() {
   const navigate = useNavigate();
-  const [activeFilter, setActiveFilter] = useState('All');
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: 'Complete Law Enforcement Module 1',
-      description: 'Foundations of Law Enforcement Training',
-      dueDate: '2023-07-10',
-      time: '10:00 PM - 11:45 PM',
+      title: 'Complete Workplace Safety Fundamentals',
+      description: 'Essential safety principles according to Arbeitsschutzgesetz',
+      dueDate: '2025-10-30',
+      time: '9:00 AM - 11:00 AM',
       completed: false,
       priority: 'high',
-      course: 'Law Enforcement',
+      course: 'Safety Training',
       assignees: [
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format',
-        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&auto=format'
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format'
       ]
     },
     {
       id: 2,
-      title: 'Review Educator Training Assessment',
-      description: 'Professional Learning in Education',
-      dueDate: '2023-07-12',
+      title: 'Review PPE Guidelines',
+      description: 'Personal Protective Equipment training and certification',
+      dueDate: '2025-11-01',
       time: '2:00 PM - 3:30 PM',
       completed: false,
-      priority: 'medium',
-      course: 'Education',
+      priority: 'high',
+      course: 'Safety Training',
       assignees: [
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format'
       ]
     },
     {
       id: 3,
-      title: 'Submit Youth Advocate Module 2',
-      description: 'Needs Assessment in Youth Advocacy',
-      dueDate: '2023-07-15',
-      time: '9:00 AM - 11:00 AM',
-      completed: true,
+      title: 'Emergency Response Training',
+      description: 'Complete emergency procedures and protocols module',
+      dueDate: '2025-11-05',
+      time: '10:00 AM - 12:00 PM',
+      completed: false,
       priority: 'high',
-      course: 'Youth Development',
+      course: 'Safety Training',
       assignees: [
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format'
       ]
     }
   ]);
 
-  const toggleTask = (taskId) => {
-    setTasks(tasks.map(task => 
-      task.id === taskId ? { ...task, completed: !task.completed } : task
-    ));
-  };
 
-  const handleAddTask = () => {
-    navigate('/tasks');
-  };
-
-  const handleViewAllTasks = () => {
-    navigate('/tasks');
-  };
 
   const getPriorityColor = (priority) => {
     switch (priority) {
@@ -78,22 +63,6 @@ export function TaskListSection() {
     }
   };
 
-  const getFilteredTasks = () => {
-    switch (activeFilter) {
-      case 'Open':
-        return tasks.filter(task => !task.completed);
-      case 'Closed':
-        return tasks.filter(task => task.completed);
-      case 'Archived':
-        return tasks.filter(task => task.archived);
-      default:
-        return tasks;
-    }
-  };
-
-  const filteredTasks = getFilteredTasks();
-  const openTasks = tasks.filter(task => !task.completed);
-  const closedTasks = tasks.filter(task => task.completed);
 
   const formatDueDate = (dateString) => {
     const options = { weekday: 'short', month: 'short', day: 'numeric' };
@@ -116,73 +85,32 @@ export function TaskListSection() {
             </CardTitle>
             <p className="text-sm text-gray-500">{getTodayDate()}</p>
           </div>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            className="bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100 transition-all duration-300"
-            onClick={handleAddTask}
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            New Task
-          </Button>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center gap-6">
-          {['All', 'Open', 'Closed', 'Archived'].map((filter) => {
-            const count = filter === 'All' ? tasks.length : 
-                         filter === 'Open' ? openTasks.length :
-                         filter === 'Closed' ? closedTasks.length : 0;
-            
-            return (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`flex items-center gap-2 text-sm font-medium transition-all duration-300 ${
-                  activeFilter === filter 
-                    ? 'text-blue-600' 
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                <span>{filter}</span>
-                <span className={`px-2 py-1 rounded-full text-xs ${
-                  activeFilter === filter 
-                    ? 'bg-blue-100 text-blue-600' 
-                    : 'bg-gray-100 text-gray-500'
-                }`}>
-                  {count}
-                </span>
-              </button>
-            );
-          })}
+        {/* Task Count */}
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium text-blue-600">All Tasks</span>
+          <span className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-600">
+            {tasks.length}
+          </span>
         </div>
       </CardHeader>
 
       <CardContent className="px-6 pb-6">
         {/* Task Cards */}
         <div className="space-y-3">
-          {filteredTasks.slice(0, 5).map((task) => (
+          {tasks.slice(0, 5).map((task) => (
             <div
               key={task.id}
-              className="group bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all duration-300 cursor-pointer"
-              onClick={() => toggleTask(task.id)}
+              className="bg-white rounded-xl border border-gray-100 p-4"
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3 flex-1">
-                  <Checkbox 
-                    checked={task.completed}
-                    onCheckedChange={() => toggleTask(task.id)}
-                    className="mt-1"
-                  />
                   <div className="flex-1 min-w-0">
-                    <h3 className={`font-semibold text-gray-800 mb-1 ${
-                      task.completed ? 'line-through text-gray-400' : ''
-                    }`}>
+                    <h3 className="font-semibold text-gray-800 mb-1">
                       {task.title}
                     </h3>
-                    <p className={`text-sm text-gray-500 mb-3 ${
-                      task.completed ? 'line-through' : ''
-                    }`}>
+                    <p className="text-sm text-gray-500 mb-3">
                       {task.description}
                     </p>
                     
@@ -207,30 +135,11 @@ export function TaskListSection() {
                     </div>
                   </div>
                 </div>
-                
-                {/* Completion Indicator */}
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                  task.completed 
-                    ? 'bg-blue-500 border-blue-500' 
-                    : 'border-gray-300 hover:border-blue-300'
-                }`}>
-                  {task.completed && <Check className="w-3 h-3 text-white" />}
-                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* View All Button */}
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="w-full mt-4 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
-          onClick={handleViewAllTasks}
-        >
-          View All Tasks
-          <ChevronRight className="w-4 h-4 ml-2" />
-        </Button>
       </CardContent>
     </Card>
   );

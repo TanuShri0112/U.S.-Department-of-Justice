@@ -31,7 +31,7 @@ export function WelcomeSection() {
                 {/* Course Tag */}
                 <div className="inline-block bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 mb-4">
                   <span className="text-white text-xs font-semibold uppercase tracking-wide">
-                    Travel & Tourism Training
+                    Occupational Safety Training
                   </span>
                 </div>
                 
@@ -43,7 +43,7 @@ export function WelcomeSection() {
                 
                 {/* Subtitle */}
                 <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-md">
-                  Join us in creating a safer tourism industry. Learn essential practices, guidelines, and protocols for protecting children in travel and tourism contexts.
+                  Access your legally compliant occupational safety training. Learn essential workplace safety practices, guidelines, and protocols in accordance with German occupational health and safety laws.
                 </p>
               </div>
               

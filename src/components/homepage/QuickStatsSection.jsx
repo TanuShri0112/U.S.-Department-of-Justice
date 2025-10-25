@@ -16,21 +16,21 @@ const quickStats = [
     icon: Shield,
     iconColor: 'bg-teal-100',
     iconTextColor: 'text-teal-600',
-    progress: '5/12',
-    total: 12,
-    completed: 5,
-    title: 'Tourism Modules Completed',
+    progress: '0/4',
+    total: 4,
+    completed: 0,
+    title: 'Required Safety Modules',
     color: 'teal'
   },
   {
     id: 2,
-    icon: Users,
+    icon: FileCheck,
     iconColor: 'bg-blue-100',
     iconTextColor: 'text-blue-600',
-    progress: '8/15',
-    total: 15,
-    completed: 8,
-    title: 'Industry Best Practices',
+    progress: '0/6',
+    total: 6,
+    completed: 0,
+    title: 'Compliance Certifications',
     color: 'blue'
   },
   {
@@ -38,10 +38,10 @@ const quickStats = [
     icon: Clock,
     iconColor: 'bg-emerald-100',
     iconTextColor: 'text-emerald-600',
-    progress: '12/20',
-    total: 20,
-    completed: 12,
-    title: 'Training Hours',
+    progress: '0/8',
+    total: 8,
+    completed: 0,
+    title: 'Training Hours Required',
     color: 'emerald'
   }
 ];

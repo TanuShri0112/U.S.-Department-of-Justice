@@ -5,11 +5,8 @@ import { BookOpen, Calendar, Clock, MessageSquare, Users, BarChart, Bell, Chevro
 import { useNavigate } from 'react-router-dom';
 import {WelcomeSection} from './WelcomeSection';
 import QuickStatsSection from './QuickStatsSection';
-import TeachingCoursesSection from './TeachingCoursesSection';
-import ZoomClassesSection from './ZoomClassesSection';
-import WidgetsSection from './WidgetsSection';
+import {SafetyTrainingSection} from './SafetyTrainingSection';
 import TaskListSection from './TaskListSection';
-import {AnnouncementSection} from './AnnouncementSection';
 import {CalendarSection} from './CalendarSection';
 
 export function StudentDashboard() {
@@ -22,11 +19,7 @@ export function StudentDashboard() {
         <div className="space-y-6 min-w-0 lg:col-span-8">
           <WelcomeSection />
           <QuickStatsSection />
-          {/* Training Overview section removed as per ECPAT requirements */}
-          {/* <TeachingCoursesSection /> */}
-          <ZoomClassesSection />
-          {/* Training Overview widgets removed as per ECPAT requirements */}
-          {/* <WidgetsSection /> */}
+          <SafetyTrainingSection />
         </div>
         
         {/* Right Column - Optimized width and spacing */}
@@ -34,7 +27,6 @@ export function StudentDashboard() {
           <div className="lg:sticky lg:top-6 space-y-5">
             <CalendarSection />
             <TaskListSection />
-            <AnnouncementSection />
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, CheckCircle, Calendar, Clock, Edit, Trash2, ArrowLeft } from 'lucide-react';
+import { CheckCircle, Calendar, Clock, Edit, Trash2, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
@@ -70,38 +70,8 @@ const TaskManagement = () => {
     },
   ]);
 
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
-  const [newTask, setNewTask] = useState({
-    title: '',
-    description: '',
-    deadline: '',
-    priority: 'medium',
-    status: 'pending',
-    category: 'Course Development'
-  });
 
-  const addTask = () => {
-    if (!newTask.title.trim() || !newTask.deadline.trim()) {
-      toast.error('Please fill in all required fields');
-      return;
-    }
-
-    const task = {
-      id: Math.max(...tasks.map(t => t.id)) + 1,
-      title: newTask.title,
-      description: newTask.description,
-      deadline: newTask.deadline,
-      priority: newTask.priority,
-      status: newTask.status,
-      category: newTask.category
-    };
-
-    setTasks([...tasks, task]);
-    setNewTask({ title: '', description: '', deadline: '', priority: 'medium', status: 'pending', category: 'Course Development' });
-    setIsAddDialogOpen(false);
-    toast.success('Task added successfully');
-  };
 
   const updateTask = () => {
     if (!editingTask?.title.trim() || !editingTask?.deadline.trim()) {
@@ -175,77 +145,6 @@ const TaskManagement = () => {
           <h1 className="text-3xl font-bold text-gray-900">Task Management</h1>
           <p className="text-gray-600 mt-2">Organize and track your tasks efficiently</p>
         </div>
-        <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-          <DialogTrigger asChild>
-            <Button className="flex items-center gap-2">
-              <Plus className="h-4 w-4" />
-              Add New Task
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-lg">
-            <DialogHeader>
-              <DialogTitle>Create New Task</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4">
-              <Input
-                placeholder="Task title"
-                value={newTask.title}
-                onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-              />
-              <Textarea
-                placeholder="Task description"
-                value={newTask.description}
-                onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-                rows={3}
-              />
-              <Input
-                placeholder="Deadline (e.g., Today, Tomorrow, Next week)"
-                value={newTask.deadline}
-                onChange={(e) => setNewTask({ ...newTask, deadline: e.target.value })}
-              />
-              <Select value={newTask.priority} onValueChange={(value) => setNewTask({ ...newTask, priority: value })}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Priority" />
-                </SelectTrigger>
-                <SelectContent>
-                  {priorities.map(priority => (
-                    <SelectItem key={priority} value={priority}>
-                      {priority.charAt(0).toUpperCase() + priority.slice(1)}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select value={newTask.status} onValueChange={(value) => setNewTask({ ...newTask, status: value })}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  {statuses.map(status => (
-                    <SelectItem key={status} value={status}>
-                      {status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select value={newTask.category} onValueChange={(value) => setNewTask({ ...newTask, category: value })}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(category => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <div className="flex gap-2">
-                <Button onClick={addTask} className="flex-1">Add Task</Button>
-                <Button variant="outline" onClick={() => setIsAddDialogOpen(false)} className="flex-1">Cancel</Button>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
       </div>
 
       <Card>
