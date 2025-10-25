@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Upload, Video, Calendar, Bell, Users, BarChart2, ClipboardCheck,
-  Shield
+  Shield, Award
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -30,7 +30,7 @@ const AdminPortal = ({ onToggle }) => {
   const [activeSection, setActiveSection] = useState('overview');
   const [courseForm, setCourseForm] = useState({
     title: '',
-    category: 'Law Enforcement Training',
+    category: 'Workplace Safety',
     duration: '',
     difficulty: 'Beginner',
     description: '',
@@ -43,16 +43,16 @@ const AdminPortal = ({ onToggle }) => {
   
   const [metrics, setMetrics] = useState({
     totalUsers: 1234,
-    activeCourses: 24,
-    scheduledWebinars: 8,
-    pendingReports: 12,
-    courseCompletions: 847,
+    courseCompletionRate: 78,
+    upcomingDeadlines: 15,
+    certificatesIssued: 847,
+    safetyIncidents: 3,
     activeSessions: 156,
     newRegistrations: 89,
-    supportTickets: 23,
+    requiredTraining: 23,
     systemUptime: 94,
     avgLoadTime: 4.2,
-    userSatisfaction: 87
+    complianceRate: 87
   });
   
   const [showUploadModal, setShowUploadModal] = useState(false);
@@ -105,16 +105,10 @@ const AdminPortal = ({ onToggle }) => {
     setTimeout(() => {
       toast.success('Course created successfully!', { id: loadingToast });
       
-      // Update metrics
-      setMetrics(prev => ({
-        ...prev,
-        activeCourses: prev.activeCourses + 1
-      }));
-
       // Reset form
       setCourseForm({
         title: '',
-        category: 'Law Enforcement Training',
+        category: 'Workplace Safety',
         duration: '',
         difficulty: 'Beginner',
         description: '',
@@ -141,26 +135,17 @@ const AdminPortal = ({ onToggle }) => {
   };
 
   const handleSectionClick = (sectionId) => {
-    // Removed loading toast to prevent system status notifications
-    // const loadingToast = toast.loading(`Loading ${sectionId} section...`);
-    
-    // Simulate loading state
     setTimeout(() => {
     setActiveSection(sectionId);
       
-      // Update metrics if returning to overview
       if (sectionId === 'overview') {
         setMetrics(prev => ({
           ...prev,
           totalUsers: prev.totalUsers + Math.floor(Math.random() * 10),
-          activeCourses: prev.activeCourses + Math.floor(Math.random() * 2),
-          scheduledWebinars: prev.scheduledWebinars + Math.floor(Math.random() * 2),
-          pendingReports: Math.max(0, prev.pendingReports + Math.floor(Math.random() * 3 - 1))
+          courseCompletionRate: Math.min(100, prev.courseCompletionRate + Math.floor(Math.random() * 3)),
+          upcomingDeadlines: Math.max(0, prev.upcomingDeadlines + Math.floor(Math.random() * 3 - 1))
         }));
       }
-
-      // Removed toast messages to prevent system status notifications
-      // toast.success(messages[sectionId], { id: loadingToast });
     }, 800);
   };
 
@@ -176,18 +161,18 @@ const AdminPortal = ({ onToggle }) => {
                    <BarChart2 className="w-6 h-6 text-blue-600" />
                  </div>
                  <div>
-                   <h1 className="text-2xl font-bold text-gray-900">Overview Summary</h1>
-                   <p className="text-gray-600">Dashboard analytics and key metrics</p>
+                   <h1 className="text-2xl font-bold text-gray-900">Occupational Safety Overview</h1>
+                   <p className="text-gray-600">Dashboard analytics and key metrics for BLB NRW</p>
                  </div>
                </div>
                
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                 <div className="bg-blue-50 rounded-lg p-4">
+                 <div className="bg-blue-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                    <div className="flex items-center justify-between">
                      <div>
-                       <p className="text-sm font-medium text-blue-600">Total Users</p>
+                       <p className="text-sm font-medium text-blue-600">Total Users Enrolled</p>
                       <p className="text-2xl font-bold text-blue-900">{metrics.totalUsers.toLocaleString()}</p>
-                      <p className="text-xs text-blue-600 mt-1">+{Math.floor(metrics.totalUsers * 0.012)}% this month</p>
+                      <p className="text-xs text-blue-600 mt-1">BLB NRW employees</p>
                     </div>
                     <Users className="w-8 h-8 text-blue-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
                   </div>
@@ -196,33 +181,33 @@ const AdminPortal = ({ onToggle }) => {
                 <div className="bg-green-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-green-600">Active Courses</p>
-                      <p className="text-2xl font-bold text-green-900">{metrics.activeCourses}</p>
-                      <p className="text-xs text-green-600 mt-1">{Math.ceil(metrics.activeCourses * 0.12)} new this week</p>
+                      <p className="text-sm font-medium text-green-600">Course Completion Rate</p>
+                      <p className="text-2xl font-bold text-green-900">{metrics.courseCompletionRate}%</p>
+                      <p className="text-xs text-green-600 mt-1">+5% from last month</p>
                     </div>
-                    <Upload className="w-8 h-8 text-green-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                  </div>
-                </div>
-                
-                <div className="bg-purple-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-purple-600">Scheduled Webinars</p>
-                      <p className="text-2xl font-bold text-purple-900">{metrics.scheduledWebinars}</p>
-                      <p className="text-xs text-purple-600 mt-1">{Math.ceil(metrics.scheduledWebinars * 0.25)} this week</p>
-                    </div>
-                    <Video className="w-8 h-8 text-purple-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                    <BarChart2 className="w-8 h-8 text-green-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
                   </div>
                 </div>
                 
                 <div className="bg-orange-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-orange-600">Pending Reports</p>
-                      <p className="text-2xl font-bold text-orange-900">{metrics.pendingReports}</p>
-                      <p className="text-xs text-orange-600 mt-1">Due this week</p>
+                      <p className="text-sm font-medium text-orange-600">Upcoming Deadlines</p>
+                      <p className="text-2xl font-bold text-orange-900">{metrics.upcomingDeadlines}</p>
+                      <p className="text-xs text-orange-600 mt-1">Compliance training due</p>
+                    </div>
+                    <Calendar className="w-8 h-8 text-orange-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                  </div>
+                </div>
+                
+                <div className="bg-purple-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-purple-600">Certificates Issued</p>
+                      <p className="text-2xl font-bold text-purple-900">{metrics.certificatesIssued}</p>
+                      <p className="text-xs text-purple-600 mt-1">This year</p>
                      </div>
-                     <BarChart2 className="w-8 h-8 text-orange-500" />
+                     <Award className="w-8 h-8 text-purple-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
                    </div>
                  </div>
                    </div>
@@ -231,23 +216,23 @@ const AdminPortal = ({ onToggle }) => {
              {/* Secondary Stats */}
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Platform Activity</h3>
+                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Safety Training Activity</h3>
                  <div className="space-y-4">
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Course Completions</span>
-                     <span className="text-sm font-medium text-gray-900">847</span>
+                     <span className="text-sm text-gray-600">Active Training Sessions</span>
+                     <span className="text-sm font-medium text-gray-900">{metrics.activeSessions}</span>
                      </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Active Sessions</span>
-                     <span className="text-sm font-medium text-gray-900">156</span>
+                     <span className="text-sm text-gray-600">New Enrollments</span>
+                     <span className="text-sm font-medium text-gray-900">{metrics.newRegistrations}</span>
                    </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">New Registrations</span>
-                     <span className="text-sm font-medium text-gray-900">89</span>
+                     <span className="text-sm text-gray-600">Required Training Modules</span>
+                     <span className="text-sm font-medium text-gray-900">{metrics.requiredTraining}</span>
                  </div>
                    <div className="flex items-center justify-between">
-                     <span className="text-sm text-gray-600">Support Tickets</span>
-                     <span className="text-sm font-medium text-gray-900">23</span>
+                     <span className="text-sm text-gray-600">Safety Incidents Reported</span>
+                     <span className="text-sm font-medium text-red-600">{metrics.safetyIncidents}</span>
                    </div>
                    </div>
                  </div>
@@ -258,28 +243,28 @@ const AdminPortal = ({ onToggle }) => {
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">New course "Advanced Training" uploaded</p>
+                       <p className="text-sm text-gray-900">Workplace Safety module updated</p>
                        <p className="text-xs text-gray-500">2 hours ago</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">Webinar "Safety Protocols" scheduled</p>
+                       <p className="text-sm text-gray-900">Emergency Procedures training scheduled</p>
                        <p className="text-xs text-gray-500">4 hours ago</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">Monthly report generated</p>
+                       <p className="text-sm text-gray-900">Compliance report generated</p>
                        <p className="text-xs text-gray-500">6 hours ago</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-3">
                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                      <div className="flex-1">
-                       <p className="text-sm text-gray-900">15 new users registered</p>
+                       <p className="text-sm text-gray-900">{metrics.newRegistrations} new users enrolled</p>
                        <p className="text-xs text-gray-500">8 hours ago</p>
                      </div>
                    </div>
@@ -289,28 +274,28 @@ const AdminPortal = ({ onToggle }) => {
 
              {/* Performance Metrics */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-               <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics</h3>
+               <h3 className="text-lg font-semibold text-gray-900 mb-4">Compliance & Performance Metrics</h3>
                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                  <div className="text-center">
                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-blue-600">94%</span>
+                     <span className="text-xl font-bold text-blue-600">{metrics.systemUptime}%</span>
                    </div>
                    <p className="text-sm font-medium text-gray-900">System Uptime</p>
                    <p className="text-xs text-gray-500">Last 30 days</p>
                  </div>
                  <div className="text-center">
                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-green-600">4.2s</span>
+                     <span className="text-xl font-bold text-green-600">{metrics.avgLoadTime}s</span>
                    </div>
                    <p className="text-sm font-medium text-gray-900">Avg Load Time</p>
                    <p className="text-xs text-gray-500">Page response</p>
                  </div>
                  <div className="text-center">
                    <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-purple-600">87%</span>
+                     <span className="text-xl font-bold text-purple-600">{metrics.complianceRate}%</span>
                    </div>
-                   <p className="text-sm font-medium text-gray-900">User Satisfaction</p>
-                   <p className="text-xs text-gray-500">Recent surveys</p>
+                   <p className="text-sm font-medium text-gray-900">Compliance Rate</p>
+                   <p className="text-xs text-gray-500">Arbeitsschutzgesetz</p>
                  </div>
                </div>
              </div>
@@ -320,56 +305,28 @@ const AdminPortal = ({ onToggle }) => {
                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <button 
-                  onClick={() => {
-                    setActiveSection('courses');
-                    // Removed toast messages to prevent system status notifications
-                    // const loadingToast = toast.loading('Preparing course upload...');
-                    // setTimeout(() => {
-                    //   toast.success('Ready to upload new course', { id: loadingToast });
-                    // }, 1000);
-                  }}
+                  onClick={() => setActiveSection('courses')}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
                 >
                   <Upload className="w-6 h-6 text-blue-600" />
-                  <span className="text-sm font-medium text-gray-700">Upload Course</span>
+                  <span className="text-sm font-medium text-gray-700">Upload Training</span>
                  </button>
                 <button 
-                  onClick={() => {
-                    setActiveSection('webinars');
-                    // Removed toast messages to prevent system status notifications
-                    // const loadingToast = toast.loading('Opening webinar scheduler...');
-                    // setTimeout(() => {
-                    //   toast.success('Ready to schedule webinar', { id: loadingToast });
-                    // }, 1000);
-                  }}
+                  onClick={() => setActiveSection('webinars')}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
                 >
                   <Video className="w-6 h-6 text-purple-600" />
-                  <span className="text-sm font-medium text-gray-700">Schedule Webinar</span>
+                  <span className="text-sm font-medium text-gray-700">Schedule Session</span>
                  </button>
                 <button 
-                  onClick={() => {
-                    setActiveSection('announcements');
-                    // Removed toast messages to prevent system status notifications
-                    // const loadingToast = toast.loading('Opening announcement creator...');
-                    // setTimeout(() => {
-                    //   toast.success('Ready to create announcement', { id: loadingToast });
-                    // }, 1000);
-                  }}
+                  onClick={() => setActiveSection('announcements')}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
                 >
                   <Bell className="w-6 h-6 text-orange-600" />
-                  <span className="text-sm font-medium text-gray-700">Send Announcement</span>
+                  <span className="text-sm font-medium text-gray-700">Send Notice</span>
                  </button>
                 <button 
-                  onClick={() => {
-                    setActiveSection('reports');
-                    // Removed toast messages to prevent system status notifications
-                    // const loadingToast = toast.loading('Preparing report generator...');
-                    // setTimeout(() => {
-                    //   toast.success('Ready to generate reports', { id: loadingToast });
-                    // }, 1000);
-                  }}
+                  onClick={() => setActiveSection('reports')}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 hover:bg-gray-50 hover:scale-105 hover:shadow-lg transition-all duration-200 active:scale-95"
                 >
                   <BarChart2 className="w-6 h-6 text-green-600" />
@@ -390,15 +347,15 @@ const AdminPortal = ({ onToggle }) => {
                    <Upload className="w-6 h-6 text-blue-600" />
                  </div>
                  <div>
-                   <h1 className="text-2xl font-bold text-gray-900">Course Management</h1>
-                   <p className="text-gray-600">Upload, manage, and organize training courses</p>
+                   <h1 className="text-2xl font-bold text-gray-900">Safety Training Management</h1>
+                   <p className="text-gray-600">Upload and manage occupational safety training courses</p>
                  </div>
                </div>
              </div>
 
              {/* Upload Section */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-               <h3 className="text-lg font-semibold text-gray-900 mb-4">Upload New Course</h3>
+               <h3 className="text-lg font-semibold text-gray-900 mb-4">Upload New Training Module</h3>
               <div 
                 className={cn(
                   "border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200",
@@ -468,16 +425,16 @@ const AdminPortal = ({ onToggle }) => {
 
              {/* Course Creation Form */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-               <h3 className="text-lg font-semibold text-gray-900 mb-4">Create New Course</h3>
+               <h3 className="text-lg font-semibold text-gray-900 mb-4">Create New Training Module</h3>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">Course Title</label>
+                   <label className="block text-sm font-medium text-gray-700 mb-2">Module Title</label>
                    <input 
                      type="text" 
                     value={courseForm.title}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, title: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                     placeholder="Enter course title"
+                     placeholder="Enter training module title"
                    />
                  </div>
                  <div>
@@ -487,10 +444,11 @@ const AdminPortal = ({ onToggle }) => {
                     onChange={(e) => setCourseForm(prev => ({ ...prev, category: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                   >
-                     <option>Law Enforcement Training</option>
-                     <option>Educator Training</option>
-                     <option>Youth Advocacy Training</option>
-                     <option>General Training</option>
+                     <option>Workplace Safety</option>
+                     <option>Emergency Procedures</option>
+                     <option>PPE Training</option>
+                     <option>First Aid</option>
+                     <option>Compliance Training</option>
                    </select>
                  </div>
                  <div>
@@ -523,7 +481,7 @@ const AdminPortal = ({ onToggle }) => {
                     value={courseForm.description}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, description: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="Enter course description"
+                    placeholder="Enter training module description"
                   />
                 </div>
                 <div className="md:col-span-2">
@@ -533,7 +491,7 @@ const AdminPortal = ({ onToggle }) => {
                     value={courseForm.learningObjectives}
                     onChange={(e) => setCourseForm(prev => ({ ...prev, learningObjectives: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="List the key learning objectives for this course"
+                    placeholder="List the key learning objectives for this training module"
                   />
                  </div>
                </div>
@@ -543,7 +501,7 @@ const AdminPortal = ({ onToggle }) => {
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg transform transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
                 >
                   <Upload className="w-4 h-4" />
-                   Create Course
+                   Create Module
                  </button>
                 <button 
                   onClick={handleSaveAsDraft}
@@ -560,7 +518,7 @@ const AdminPortal = ({ onToggle }) => {
              {/* Existing Courses */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                <div className="flex items-center justify-between mb-4">
-                 <h3 className="text-lg font-semibold text-gray-900">Existing Courses</h3>
+                 <h3 className="text-lg font-semibold text-gray-900">Existing Training Modules</h3>
                  <div className="flex gap-2">
                   <button 
                     onClick={() => handleFilterChange('all')}
@@ -602,11 +560,11 @@ const AdminPortal = ({ onToggle }) => {
                  <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                    <div className="flex items-center gap-3">
                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                       <Upload className="w-5 h-5 text-blue-600" />
+                       <Shield className="w-5 h-5 text-blue-600" />
                      </div>
                      <div>
-                       <h4 className="font-medium text-gray-900">Law Enforcement Fundamentals</h4>
-                       <p className="text-sm text-gray-600">12 hours • 156 students</p>
+                       <h4 className="font-medium text-gray-900">Workplace Safety Fundamentals</h4>
+                       <p className="text-sm text-gray-600">2 hours • 156 employees</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-2">
@@ -622,11 +580,11 @@ const AdminPortal = ({ onToggle }) => {
                  <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                    <div className="flex items-center gap-3">
                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                       <Upload className="w-5 h-5 text-green-600" />
+                       <Shield className="w-5 h-5 text-green-600" />
                      </div>
                      <div>
-                       <h4 className="font-medium text-gray-900">Educator Training Program</h4>
-                       <p className="text-sm text-gray-600">8 hours • 89 students</p>
+                       <h4 className="font-medium text-gray-900">Emergency Procedures Training</h4>
+                       <p className="text-sm text-gray-600">2 hours • 89 employees</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-2">
@@ -642,11 +600,11 @@ const AdminPortal = ({ onToggle }) => {
                  <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                    <div className="flex items-center gap-3">
                      <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                       <Upload className="w-5 h-5 text-orange-600" />
+                       <Shield className="w-5 h-5 text-orange-600" />
                      </div>
                      <div>
-                       <h4 className="font-medium text-gray-900">Youth Advocacy Workshop</h4>
-                       <p className="text-sm text-gray-600">6 hours • Draft</p>
+                       <h4 className="font-medium text-gray-900">PPE Equipment Training</h4>
+                       <p className="text-sm text-gray-600">1.5 hours • Draft</p>
                      </div>
                    </div>
                    <div className="flex items-center gap-2">
@@ -657,34 +615,6 @@ const AdminPortal = ({ onToggle }) => {
                        </svg>
                      </button>
                    </div>
-                 </div>
-               </div>
-             </div>
-
-             {/* Course Analytics */}
-             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-               <h3 className="text-lg font-semibold text-gray-900 mb-4">Course Performance</h3>
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                 <div className="text-center">
-                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-blue-600">24</span>
-                   </div>
-                   <p className="text-sm font-medium text-gray-900">Total Courses</p>
-                   <p className="text-xs text-gray-500">3 new this month</p>
-                 </div>
-                 <div className="text-center">
-                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-green-600">847</span>
-                   </div>
-                   <p className="text-sm font-medium text-gray-900">Total Completions</p>
-                   <p className="text-xs text-gray-500">+15% this month</p>
-                 </div>
-                 <div className="text-center">
-                   <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-purple-600">4.2</span>
-                   </div>
-                   <p className="text-sm font-medium text-gray-900">Avg Rating</p>
-                   <p className="text-xs text-gray-500">Based on 234 reviews</p>
                  </div>
                </div>
              </div>
