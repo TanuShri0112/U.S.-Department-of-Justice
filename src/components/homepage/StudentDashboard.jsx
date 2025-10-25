@@ -5,7 +5,8 @@ import { BookOpen, Calendar, Clock, MessageSquare, Users, BarChart, Bell, Chevro
 import { useNavigate } from 'react-router-dom';
 import {WelcomeSection} from './WelcomeSection';
 import QuickStatsSection from './QuickStatsSection';
-import {SafetyTrainingSection} from './SafetyTrainingSection';
+import TrainingSessions from '@/components/ui/TrainingSessions';
+import OngoingCourses from '@/components/ui/OngoingCourses';
 import TaskListSection from './TaskListSection';
 import {CalendarSection} from './CalendarSection';
 
@@ -19,7 +20,8 @@ export function StudentDashboard() {
         <div className="space-y-6 min-w-0 lg:col-span-8">
           <WelcomeSection />
           <QuickStatsSection />
-          <SafetyTrainingSection />
+          <TrainingSessions />
+          <OngoingCourses />
         </div>
         
         {/* Right Column - Optimized width and spacing */}
