@@ -71,7 +71,7 @@ export const Header = ({ onMenuClick }) => {
   const handleAthenaLMSClick = () => {
     navigate('/');
     toast({
-      title: "Welcome to Athena LMS",
+      title: "Welcome to Bau- und Liegenschaftsbetrieb NRW Zentral",
       description: "You're now on the homepage",
       duration: 2000,
     });
@@ -110,7 +110,7 @@ export const Header = ({ onMenuClick }) => {
             onClick={handleAthenaLMSClick}
           >
             <h1 className="text-xl font-semibold text-gray-900">
-              Athena LMS
+              BLB NRW Zentral
             </h1>
           </div>
         </div>

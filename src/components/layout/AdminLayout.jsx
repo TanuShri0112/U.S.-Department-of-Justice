@@ -73,7 +73,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
       }
     }
 
-    document.title = `${newTitle} | ECPAT International`;
+    document.title = `${newTitle} | Bau- und Liegenschaftsbetrieb NRW Zentral`;
   }, [location.pathname, title, courseId, setCourseTitle]);
 
   return (

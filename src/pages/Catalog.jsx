@@ -67,7 +67,7 @@ const Catalog = () => {
               <Sparkles className="inline-block ml-2 h-6 w-6 sm:h-8 sm:w-8 text-yellow-400" />
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Explore our comprehensive collection of ECPAT International training programs
+              Explore our comprehensive collection of Bau- und Liegenschaftsbetrieb NRW Zentral training programs
             </p>
           </motion.div>
         </div>

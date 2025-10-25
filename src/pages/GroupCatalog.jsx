@@ -133,7 +133,7 @@ const GroupCatalog = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold">Community Resources</h1>
-          <p className="text-muted-foreground">Discover and join ECPAT International community resources that match your professional development needs.</p>
+          <p className="text-muted-foreground">Discover and join Bau- und Liegenschaftsbetrieb NRW Zentral community resources that match your professional development needs.</p>
         </div>
       </div>
 

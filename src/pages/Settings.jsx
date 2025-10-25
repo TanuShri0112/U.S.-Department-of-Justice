@@ -25,7 +25,7 @@ const Settings = () => {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="siteName">Platform Name</Label>
-              <Input id="siteName" defaultValue="ECPAT International" />
+              <Input id="siteName" defaultValue="Bau- und Liegenschaftsbetrieb NRW Zentral" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="siteUrl">Platform URL</Label>
@@ -50,7 +50,7 @@ const Settings = () => {
             </div>
             <div className="space-y-2">
               <Label htmlFor="emailFooter">Email Footer Text</Label>
-              <Input id="emailFooter" defaultValue="© 2025 ECPAT International. All rights reserved." />
+              <Input id="emailFooter" defaultValue="© 2025 Bau- und Liegenschaftsbetrieb NRW Zentral. All rights reserved." />
             </div>
             <Button>Update Email Settings</Button>
           </CardContent>

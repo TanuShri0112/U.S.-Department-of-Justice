@@ -38,7 +38,7 @@ export function WelcomeSection() {
                 {/* Main Headline */}
                 <h1 className="text-white text-2xl md:text-3xl font-bold leading-tight mb-3">
                   <span className="block">Welcome to</span>
-                  <span className="block">ECPAT International</span>
+                  <span className="block">Bau- und Liegenschaftsbetrieb NRW Zentral</span>
                 </h1>
                 
                 {/* Subtitle */}

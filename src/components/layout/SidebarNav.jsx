@@ -75,19 +75,19 @@ export const SidebarNav = ({ onCloseMobile }) => {
         >
           {isMainCollapsed ? (
             <img 
-              src="/assets/Image_20251016_124608_576-removebg-preview.png" 
-              alt="DOJ Logo" 
+              src="/assets/bau.png" 
+              alt="BLB NRW Logo" 
               className="w-12 h-12 object-contain"
             />
           ) : (
             <div className="flex items-center gap-4">
               <img 
-                src="/assets/Image_20251016_124608_576-removebg-preview.png" 
-                alt="DOJ Logo" 
+                src="/assets/bau.png" 
+                alt="BLB NRW Logo" 
                 className="w-12 h-12 object-contain"
               />
               <div className="text-white">
-                <h1 className="text-lg font-semibold leading-tight">ECPAT International</h1>
+                <h1 className="text-sm font-semibold leading-tight">Bau- und Liegenschaftsbetrieb NRW Zentral</h1>
               </div>
             </div>
           )}
