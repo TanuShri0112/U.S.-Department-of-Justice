@@ -9,8 +9,9 @@ import AdminContextualSidebar from './AdminContextualSidebar';
 import { useCourseSidebar } from '@/contexts/CourseSidebarContext';
 import { UserFilterMenu } from '@/components/users/UserFilterMenu';
 import { useUserFilter } from '@/contexts/UserFilterContext';
-import { useAdminPortal } from '@/contexts/AdminPortalContext';
+import { usePortal } from '@/contexts/PortalContext';
 import { AdminPortal } from '../admin/AdminPortal';
+import InstructorPortal from '../admin/InstructorPortal';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Dictionary of course titles keyed by ID
@@ -42,7 +43,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
 
   const { isFilterMenuOpen } = useUserFilter();
   
-  const { isAdminPortalEnabled, closeAdminPortal } = useAdminPortal();
+  const { portalMode, isAdminPortal, isInstructorPortal, closePortal } = usePortal();
 
   const closeMobileMenu = () => {
     setMobileOpen(false);
@@ -157,10 +158,16 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
         </main>
       </div>
       
-      {/* Admin Portal Overlay */}
-      {isAdminPortalEnabled && (
+      {/* Portal Overlays */}
+      {isAdminPortal && (
         <div className="fixed inset-0 z-50 bg-white">
-          <AdminPortal onToggle={closeAdminPortal} />
+          <AdminPortal onToggle={closePortal} />
+        </div>
+      )}
+      
+      {isInstructorPortal && (
+        <div className="fixed inset-0 z-50 bg-white">
+          <InstructorPortal onToggle={closePortal} />
         </div>
       )}
     </div>

@@ -7,8 +7,7 @@ import { AdminLayout } from "./components/layout/AdminLayout";
 import { SidebarProvider } from "./contexts/SidebarContext";
 import { UserFilterProvider } from "./contexts/UserFilterContext";
 import { CourseSidebarProvider } from "./contexts/CourseSidebarContext";
-import { InstructorPortalProvider } from "./contexts/InstructorPortalContext";
-import { AdminPortalProvider } from "./contexts/AdminPortalContext";
+import { PortalProvider } from "./contexts/PortalContext";
 // ECPAT update start - Assessment components removed
 // Assessment functionality disabled as per ECPAT requirements
 // ECPAT update end
@@ -86,9 +85,8 @@ const App = () => (
         <SidebarProvider>
           <UserFilterProvider>
             <CourseSidebarProvider>
-              <InstructorPortalProvider>
-                <AdminPortalProvider>
-              <Routes>
+              <PortalProvider>
+                <Routes>
                 <Route path="/" element={<AdminLayout />}>
                   {/* Main pages */}
                   <Route index element={<Dashboard />} />
@@ -159,8 +157,7 @@ const App = () => (
                   {/* ECPAT update end */}
                 </Route>
               </Routes>
-                </AdminPortalProvider>
-              </InstructorPortalProvider>
+              </PortalProvider>
             </CourseSidebarProvider>
           </UserFilterProvider>
         </SidebarProvider>

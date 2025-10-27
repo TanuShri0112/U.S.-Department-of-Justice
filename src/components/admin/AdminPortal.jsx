@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Upload, Video, Calendar, Bell, Users, BarChart2, ClipboardCheck,
-  Shield
+  Bell, Users, BarChart2, ClipboardCheck,
+  Shield, GraduationCap, User, Settings, Database, AlertTriangle,
+  Upload, Video, Calendar
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -15,7 +16,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useAdminPortal } from '@/contexts/AdminPortalContext';
+import { usePortal } from '@/contexts/PortalContext';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 // Import admin page components
 import WebinarManagement from '../../pages/admin/WebinarManagement';
@@ -58,17 +60,17 @@ const AdminPortal = ({ onToggle }) => {
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [showActionFeedback, setShowActionFeedback] = useState(false);
   const [actionMessage, setActionMessage] = useState('');
-  const { isAdminPortalEnabled, setIsAdminPortalEnabled } = useAdminPortal();
+  const { portalMode, switchPortal, isAdminPortal } = usePortal();
 
   const adminSections = [
-    { id: 'overview', label: 'Overview', icon: BarChart2 },
-    { id: 'courses', label: 'Upload Courses', icon: Upload },
-    { id: 'webinars', label: 'Webinars', icon: Video },
-    { id: 'schedule', label: 'Schedule', icon: Calendar },
-    { id: 'announcements', label: 'Announcements', icon: Bell },
-    { id: 'users', label: 'Users', icon: Users },
-    { id: 'reports', label: 'Reports', icon: BarChart2 },
+    { id: 'overview', label: 'System Overview', icon: BarChart2 },
+    { id: 'users', label: 'User Management', icon: Users },
+    { id: 'announcements', label: 'System Announcements', icon: Bell },
+    { id: 'reports', label: 'System Reports', icon: BarChart2 },
     { id: 'feedback', label: 'Feedback Reports', icon: ClipboardCheck },
+    { id: 'settings', label: 'System Settings', icon: Settings },
+    { id: 'database', label: 'Database', icon: Database },
+    { id: 'logs', label: 'System Logs', icon: AlertTriangle },
   ];
 
   const handleFileUpload = (files) => {
@@ -141,15 +143,16 @@ const AdminPortal = ({ onToggle }) => {
   };
 
   const handleSectionClick = (sectionId) => {
-    // Removed loading toast to prevent system status notifications
-    // const loadingToast = toast.loading(`Loading ${sectionId} section...`);
-    
-    // Simulate loading state
-    setTimeout(() => {
     setActiveSection(sectionId);
-      
-      // Update metrics if returning to overview
-      if (sectionId === 'overview') {
+    
+    // Navigate to specific pages for certain sections
+    switch(sectionId) {
+      case 'users':
+        toast.success('Loading user management...');
+        setTimeout(() => navigate('/users'), 500);
+        break;
+      case 'overview':
+        // Update metrics if returning to overview
         setMetrics(prev => ({
           ...prev,
           totalUsers: prev.totalUsers + Math.floor(Math.random() * 10),
@@ -157,11 +160,11 @@ const AdminPortal = ({ onToggle }) => {
           scheduledWebinars: prev.scheduledWebinars + Math.floor(Math.random() * 2),
           pendingReports: Math.max(0, prev.pendingReports + Math.floor(Math.random() * 3 - 1))
         }));
-      }
-
-      // Removed toast messages to prevent system status notifications
-      // toast.success(messages[sectionId], { id: loadingToast });
-    }, 800);
+        break;
+      default:
+        // Keep other sections (settings, database, logs, etc.) in portal view
+        break;
+    }
   };
 
   const renderContent = () => {
@@ -706,23 +709,222 @@ const AdminPortal = ({ onToggle }) => {
        case 'reports':
          return <AdminReports />;
  
-       case 'feedback':
-         return <AdminFeedbackReports />;
- 
-       default:
-         return (
-           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-             <div className="text-center py-12">
-               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                 <Shield className="w-8 h-8 text-gray-400" />
-               </div>
-               <h3 className="text-lg font-semibold text-gray-900 mb-2">Admin Section</h3>
-               <p className="text-gray-600">Select a section from the sidebar to get started</p>
-             </div>
-           </div>
-         );
-     }
-   };
+      case 'feedback':
+        return <AdminFeedbackReports />;
+
+      case 'settings':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                  <Settings className="w-6 h-6 text-purple-600" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">System Settings</h1>
+                  <p className="text-gray-600">Configure platform settings</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">General Settings</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Platform Name</label>
+                      <input 
+                        type="text" 
+                        defaultValue="Bau- und Liegenschaftsbetrieb NRW Zentral" 
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Support Email</label>
+                      <input 
+                        type="email" 
+                        defaultValue="support@blbnrw.de" 
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <Button className="w-full">Save Settings</Button>
+                  </div>
+                </div>
+
+                <div className="border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Security Settings</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">Two-Factor Authentication</p>
+                        <p className="text-xs text-gray-500">Require 2FA for all users</p>
+                      </div>
+                      <Switch />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">Session Timeout</p>
+                        <p className="text-xs text-gray-500">Auto logout after inactivity</p>
+                      </div>
+                      <Switch />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'database':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <Database className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">Database Management</h1>
+                  <p className="text-gray-600">Monitor and manage database</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <p className="text-sm font-medium text-blue-600">Total Records</p>
+                  <p className="text-2xl font-bold text-blue-900">1,234,567</p>
+                </div>
+                <div className="bg-green-50 rounded-lg p-4">
+                  <p className="text-sm font-medium text-green-600">Database Size</p>
+                  <p className="text-2xl font-bold text-green-900">2.4 GB</p>
+                </div>
+                <div className="bg-purple-50 rounded-lg p-4">
+                  <p className="text-sm font-medium text-purple-600">Last Backup</p>
+                  <p className="text-2xl font-bold text-purple-900">2h ago</p>
+                </div>
+                <div className="bg-orange-50 rounded-lg p-4">
+                  <p className="text-sm font-medium text-orange-600">Connections</p>
+                  <p className="text-2xl font-bold text-orange-900">45</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Backup & Restore</h3>
+                  <Button className="w-full mb-2" variant="outline">Create Backup Now</Button>
+                  <Button className="w-full" variant="outline">Restore from Backup</Button>
+                </div>
+
+                <div className="border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Operations</h3>
+                  <Button className="w-full mb-2" variant="outline">Optimize Tables</Button>
+                  <Button className="w-full" variant="outline">View Query Logs</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'logs':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <AlertTriangle className="w-6 h-6 text-orange-600" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">System Logs</h1>
+                  <p className="text-gray-600">Monitor system events and errors</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="bg-red-50 rounded-lg p-4">
+                  <p className="text-sm font-medium text-red-600">Errors</p>
+                  <p className="text-2xl font-bold text-red-900">12</p>
+                  <p className="text-xs text-red-600 mt-1">Last 24 hours</p>
+                </div>
+                <div className="bg-yellow-50 rounded-lg p-4">
+                  <p className="text-sm font-medium text-yellow-600">Warnings</p>
+                  <p className="text-2xl font-bold text-yellow-900">47</p>
+                  <p className="text-xs text-yellow-600 mt-1">Last 24 hours</p>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <p className="text-sm font-medium text-blue-600">Info</p>
+                  <p className="text-2xl font-bold text-blue-900">1,234</p>
+                  <p className="text-xs text-blue-600 mt-1">Last 24 hours</p>
+                </div>
+                <div className="bg-green-50 rounded-lg p-4">
+                  <p className="text-sm font-medium text-green-600">Success</p>
+                  <p className="text-2xl font-bold text-green-900">5,678</p>
+                  <p className="text-xs text-green-600 mt-1">Last 24 hours</p>
+                </div>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg">
+                <div className="p-4 bg-gray-50 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">Recent Log Entries</h3>
+                </div>
+                <div className="divide-y divide-gray-200">
+                  <div className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="px-2 py-0.5 bg-red-100 text-red-700 text-xs font-medium rounded">ERROR</span>
+                          <span className="text-xs text-gray-500">2024-01-15 14:32:15</span>
+                        </div>
+                        <p className="text-sm font-medium text-gray-900">Database connection timeout</p>
+                        <p className="text-xs text-gray-600 mt-1">Connection timed out after 30 seconds</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs font-medium rounded">WARNING</span>
+                          <span className="text-xs text-gray-500">2024-01-15 14:28:42</span>
+                        </div>
+                        <p className="text-sm font-medium text-gray-900">High memory usage detected</p>
+                        <p className="text-xs text-gray-600 mt-1">Memory usage at 87%</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="px-2 py-0.5 bg-green-100 text-green-700 text-xs font-medium rounded">SUCCESS</span>
+                          <span className="text-xs text-gray-500">2024-01-15 14:20:05</span>
+                        </div>
+                        <p className="text-sm font-medium text-gray-900">Backup completed successfully</p>
+                        <p className="text-xs text-gray-600 mt-1">Saved to: /backups/backup_20240115.sql</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="text-center py-12">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Admin Section</h3>
+              <p className="text-gray-600">Select a section from the sidebar to get started</p>
+            </div>
+          </div>
+        );
+    }
+  };
 
   return (
     <div className="h-screen bg-gray-50 flex flex-col">
@@ -791,16 +993,37 @@ const AdminPortal = ({ onToggle }) => {
             </nav>
           </div>
           
-          {/* Admin Portal Toggle at Bottom */}
+          {/* Portal Switcher at Bottom */}
           <div className="border-t border-gray-200 p-4">
-            <div className="flex items-center gap-3 bg-blue-50 rounded-lg px-3 py-2 border border-blue-200 hover:bg-blue-100 transition-colors">
-              <Shield className="h-4 w-4 text-blue-600 flex-shrink-0" />
-              <span className="text-sm font-medium text-blue-700 flex-1">Admin Portal</span>
-              <Switch
-                checked={isAdminPortalEnabled}
-                onCheckedChange={setIsAdminPortalEnabled}
-                className="scale-75"
-              />
+            <div className="space-y-2">
+              <label className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Portal Mode
+              </label>
+              <Select value={portalMode} onValueChange={switchPortal}>
+                <SelectTrigger className="w-full bg-white border-gray-300">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-white border border-gray-200 shadow-lg">
+                  <SelectItem value="student" className="cursor-pointer hover:bg-slate-100 focus:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <User className="h-4 w-4 text-slate-600" />
+                      <span>Student Mode</span>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="instructor" className="cursor-pointer hover:bg-green-50 focus:bg-green-50">
+                    <div className="flex items-center gap-2">
+                      <GraduationCap className="h-4 w-4 text-green-600" />
+                      <span>Instructor Portal</span>
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="admin" className="cursor-pointer hover:bg-blue-50 focus:bg-blue-50">
+                    <div className="flex items-center gap-2">
+                      <Shield className="h-4 w-4 text-blue-600" />
+                      <span>Admin Portal</span>
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
