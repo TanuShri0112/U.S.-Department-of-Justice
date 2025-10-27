@@ -5,6 +5,12 @@ import {
   Calendar, FileText, GraduationCap, Shield, User, Upload, Video, Bell,
   ChevronDown, ChevronUp, CheckCircle, XCircle, Clock, Plus
 } from 'lucide-react';
+import {
+  GradingSection,
+  DiscussionsSection,
+  ScheduleSection,
+  AnnouncementsSection
+} from '@/components/instructor/sections';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
@@ -823,49 +829,7 @@ const InstructorPortal = ({ onToggle }) => {
         );
       
       case 'schedule':
-        return (
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>My Schedule</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Live Session: Module 3</h4>
-                        <p className="text-sm text-gray-600 mt-1">Today, 2:00 PM - 3:30 PM</p>
-                        <p className="text-xs text-gray-500 mt-1">Course: Advanced Credit Analysis</p>
-                      </div>
-                      <Button size="sm">Join Now</Button>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-green-50 border-l-4 border-green-500 rounded">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Office Hours</h4>
-                        <p className="text-sm text-gray-600 mt-1">Tomorrow, 10:00 AM - 12:00 PM</p>
-                        <p className="text-xs text-gray-500 mt-1">Open for all students</p>
-                      </div>
-                      <Button size="sm" variant="outline">Manage</Button>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-purple-50 border-l-4 border-purple-500 rounded">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Assignment Deadline</h4>
-                        <p className="text-sm text-gray-600 mt-1">Friday, 11:59 PM</p>
-                        <p className="text-xs text-gray-500 mt-1">Module 4 Assessment</p>
-                      </div>
-                      <Button size="sm" variant="outline">View</Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
+        return <ScheduleSection />;
       
       case 'assignments':
         return (
@@ -953,54 +917,14 @@ const InstructorPortal = ({ onToggle }) => {
         );
       
       case 'announcements':
-        return (
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <CardTitle>Course Announcements</CardTitle>
-                  <Button>
-                    <Bell className="h-4 w-4 mr-2" />
-                    New Announcement
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="p-4 border rounded-lg">
-                    <div className="flex gap-3">
-                      <Bell className="h-5 w-5 text-blue-600 mt-1" />
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900">Module 5 Now Available</h4>
-                        <p className="text-sm text-gray-600 mt-1">The new module on Risk Mitigation Strategies is now live. Please review the materials before next week's session.</p>
-                        <p className="text-xs text-gray-500 mt-2">Posted 2 hours ago • Advanced Credit Analysis</p>
-                        <div className="flex gap-2 mt-3">
-                          <Button size="sm" variant="outline">Edit</Button>
-                          <Button size="sm" variant="outline">Delete</Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-4 border rounded-lg">
-                    <div className="flex gap-3">
-                      <Bell className="h-5 w-5 text-blue-600 mt-1" />
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900">Guest Speaker Session</h4>
-                        <p className="text-sm text-gray-600 mt-1">Join us for a special session with industry expert Dr. Smith on Friday at 3 PM.</p>
-                        <p className="text-xs text-gray-500 mt-2">Posted yesterday • All Courses</p>
-                        <div className="flex gap-2 mt-3">
-                          <Button size="sm" variant="outline">Edit</Button>
-                          <Button size="sm" variant="outline">Delete</Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
+        return <AnnouncementsSection />;
       
+      case 'grades':
+        return <GradingSection />;
+
+      case 'discussions':
+        return <DiscussionsSection />;
+
       default:
         return (
           <div className="text-center py-12">
