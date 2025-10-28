@@ -6,7 +6,7 @@ import { Book, Users } from "lucide-react";
 const teachingCourses = [
   {
     id: 1,
-    title: "Ethical Decision-Making for Travel Professionals.",
+    title: "Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025",
     image: "/assets/clogo.png",
     modules: 3,
     students: 120

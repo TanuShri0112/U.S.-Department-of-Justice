@@ -70,10 +70,10 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
     
     // Module external links mapping by course and module - ALL modules now open SCORM
     const moduleLinks = {
-      // Course 1 - Ethical Decision-Making for Travel Professionals.
-      '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
-      '1-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
-      '1-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
+      // Course 1 - Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025
+      '1-1': 'https://rise.articulate.com/share/FaZZDekfW-fLsHPGyoNSr6K4sqOCNXpl',
+      '1-2': 'https://rise.articulate.com/share/FaZZDekfW-fLsHPGyoNSr6K4sqOCNXpl',
+      '1-3': 'https://rise.articulate.com/share/FaZZDekfW-fLsHPGyoNSr6K4sqOCNXpl',
     };
     
     // Create the key for this course-module combination
@@ -93,11 +93,11 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
       // Determine default SCORM based on course type
       let defaultScormLink;
       if (detectedCourseId === '1') {
-        // Ethical Decision-Making for Travel Professionals. SCORM
-        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html';
+        // Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025 - Articulate Rise
+        defaultScormLink = 'https://rise.articulate.com/share/FaZZDekfW-fLsHPGyoNSr6K4sqOCNXpl';
       } else {
-        // Ultimate fallback - Ethical Decision-Making for Travel Professionals. SCORM
-        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html';
+        // Ultimate fallback - Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025 - Articulate Rise
+        defaultScormLink = 'https://rise.articulate.com/share/FaZZDekfW-fLsHPGyoNSr6K4sqOCNXpl';
       }
       
       console.log('Using default SCORM:', defaultScormLink);

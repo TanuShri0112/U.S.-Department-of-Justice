@@ -28,7 +28,7 @@ const CourseModules = () => {
       'reactjs202': 'React.js Advanced',
       'ml506': 'Machine Learning',
       'data345': 'Data Analysis',
-      '1': 'Ethical Decision-Making for Travel Professionals.'
+      '1': 'Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025'
     };
     return courseNames[courseId] || 'Course';
   };
@@ -73,11 +73,11 @@ const CourseModules = () => {
         // Course-specific modules based on courseId
         const getCourseModules = (courseId) => {
           const courseModules = {
-            '1': [ // Ethical Decision-Making for Travel Professionals.
+            '1': [ // Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025
               {
                 id: 1,
-                title: "Ethical Decision-Making for Travel Professionals",
-                description: "Understanding the core principles and frameworks of community outreach and prevention",
+                title: "Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025",
+                description: "Understanding the core principles and frameworks of economic youth welfare",
                 units: 5,
                 assessments: 1,
                 duration: "2 hours",
@@ -112,8 +112,8 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            // Ethical Decision-Making for Travel Professionals - Use course banner
-            'Ethical Decision-Making for Travel Professionals': '/assets/clogo.png'
+            // Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025 - Use course banner
+            'Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025': '/assets/clogo.png'
           };
           return { ...m, image: titleToImage[m.title] };
         });
