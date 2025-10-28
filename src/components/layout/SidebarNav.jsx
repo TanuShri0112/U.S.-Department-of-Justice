@@ -2,10 +2,9 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useSidebar } from '@/contexts/SidebarContext';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSidebar } from '@/contexts/SidebarContext';
 import { MainNavLinks } from './MainNavLinks';
 import { ViewModeToggle } from '@/components/ui/ViewModeToggle';
 
@@ -16,20 +15,11 @@ export const SidebarNav = ({ onCloseMobile }) => {
   
   const {
     isMainCollapsed,
-    setMainCollapsed,
-    setAdminSectionActive,
-    setAdminSidebarOpen,
-    setGroupSectionActive,
-    setGroupSidebarOpen,
   } = useSidebar();
 
   const handleLogoClick = () => {
     navigate('/');
     onCloseMobile?.();
-  };
-
-  const handleCollapseClick = () => {
-    setMainCollapsed(!isMainCollapsed);
   };
 
   const renderTooltip = (content, children) => {
@@ -93,17 +83,6 @@ export const SidebarNav = ({ onCloseMobile }) => {
             </div>
           )}
         </div>
-
-        {!isMainCollapsed && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:bg-gray-100"
-            onClick={handleCollapseClick}
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-        )}
       </div>
 
       {/* Navigation Links */}
@@ -116,18 +95,6 @@ export const SidebarNav = ({ onCloseMobile }) => {
         <div className="p-3">
           <ViewModeToggle isCollapsed={isMainCollapsed} />
         </div>
-        {isMainCollapsed && (
-          <div className="p-3 border-t border-gray-100">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="w-full h-10 hover:bg-gray-100"
-              onClick={handleCollapseClick}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-        )}
       </div>
     </nav>
   );
