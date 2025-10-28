@@ -3,28 +3,29 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { Users, Folder, BookOpen, Shield, GraduationCap, MoreVertical } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const groups = [
   {
     id: 1,
-    name: "Law Enforcement Officers",
-    desc: "DOJ Law Enforcement Training Group",
+    name: "Group 1",
+    desc: "Training Group",
     img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=40&q=80",
     members: 45,
     icon: Shield
   },
   {
     id: 2,
-    name: "Training Coordinators",
-    desc: "Professional Development Coordination",
+    name: "Group 2",
+    desc: "Professional Development",
     img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&q=80",
     members: 12,
     icon: GraduationCap
   },
   {
     id: 3,
-    name: "Youth Advocates",
-    desc: "Youth Development Training Program",
+    name: "Group 3",
+    desc: "Training Program",
     img: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&q=80",
     members: 28,
     icon: Users
@@ -34,8 +35,8 @@ const groups = [
 const catalog = [
   {
     id: 1,
-    name: "Ethical Decision-Making for Travel Professionals.",
-    description: "Foundations & Advanced Modules",
+    name: "Class 1",
+    description: "Basic Training Module",
     img: "/assets/clogo.png",
     modules: 3,
     students: 120,
@@ -45,6 +46,7 @@ const catalog = [
 
 export default function WidgetsSection() {
   const navigate = useNavigate();
+  const { currentLanguage } = useLanguage();
 
   const handleCatalogClick = () => {
     navigate("/catalog");
@@ -55,19 +57,11 @@ export default function WidgetsSection() {
   };
 
   return (
-    <section className="mb-6">
-      <Card className="overflow-hidden border-0 shadow-lg bg-white">
-        <CardHeader className="pb-4 pt-5 px-6">
-          <CardTitle className="text-xl flex items-center gap-3 text-slate-800 font-bold">
-            <div className="p-2 bg-blue-500 rounded-lg shadow-md">
-              <Folder className="h-5 w-5 text-white" />
-            </div>
-            Training Overview
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="px-6 pb-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Catalog Widget */}
+    <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <Card className="shadow-sm">
+        <CardContent className="p-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
+            {/* Catalog Widget */}
             <motion.div 
               whileHover={{ y: -2 }} 
               transition={{ type: "spring", stiffness: 300 }}
@@ -75,8 +69,8 @@ export default function WidgetsSection() {
             >
               <div
                 className="cursor-pointer transition-all duration-300 hover:shadow-lg border border-gray-100 rounded-xl overflow-hidden h-full bg-white"
-            onClick={handleCatalogClick}
-          >
+                onClick={handleCatalogClick}
+              >
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
@@ -84,15 +78,19 @@ export default function WidgetsSection() {
                         <BookOpen className="h-5 w-5 text-blue-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-800">Training Courses</h3>
-                        <p className="text-sm text-gray-500">{catalog.length} courses available</p>
+                        <h3 className="font-semibold text-gray-800">
+                          {currentLanguage === 'en' ? 'Training Catalog' : 'Schulungskatalog'}
+                        </h3>
+                        <p className="text-sm text-gray-500">
+                          {currentLanguage === 'en' ? 'Browse all courses' : 'Alle Kurse durchsuchen'}
+                        </p>
                       </div>
                     </div>
                     <MoreVertical className="h-4 w-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
                   </div>
                   
                   <div className="space-y-3">
-                    {catalog.slice(0, 3).map((course) => {
+                    {catalog.map((course) => {
                       const IconComponent = course.icon;
                       return (
                         <div
@@ -116,7 +114,8 @@ export default function WidgetsSection() {
                             <p className="text-xs text-gray-500 truncate">{course.description}</p>
                             <div className="flex items-center gap-3 mt-1">
                               <span className="text-xs text-gray-400">{course.modules} modules</span>
-                              <span className="text-xs text-gray-400">{course.students} students</span>
+                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                              <span className="text-xs text-blue-600">{course.students} students</span>
                             </div>
                           </div>
                         </div>
@@ -125,9 +124,9 @@ export default function WidgetsSection() {
                   </div>
                 </div>
               </div>
-        </motion.div>
+            </motion.div>
 
-        {/* Groups Widget */}
+            {/* Groups Widget */}
             <motion.div 
               whileHover={{ y: -2 }} 
               transition={{ type: "spring", stiffness: 300 }}
@@ -135,17 +134,21 @@ export default function WidgetsSection() {
             >
               <div
                 className="cursor-pointer transition-all duration-300 hover:shadow-lg border border-gray-100 rounded-xl overflow-hidden h-full bg-white"
-            onClick={handleGroupsClick}
-          >
+                onClick={handleGroupsClick}
+              >
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-green-100 rounded-lg">
                         <Users className="h-5 w-5 text-green-600" />
                       </div>
-                    <div>
-                        <h3 className="font-semibold text-gray-800">Training Groups</h3>
-                        <p className="text-sm text-gray-500">{groups.length} active groups</p>
+                      <div>
+                        <h3 className="font-semibold text-gray-800">
+                          {currentLanguage === 'en' ? 'Training Groups' : 'Schulungsgruppen'}
+                        </h3>
+                        <p className="text-sm text-gray-500">
+                          {groups.length} {currentLanguage === 'en' ? 'active groups' : 'aktive Gruppen'}
+                        </p>
                       </div>
                     </div>
                     <MoreVertical className="h-4 w-4 text-gray-400 group-hover:text-green-500 transition-colors" />
@@ -175,9 +178,13 @@ export default function WidgetsSection() {
                             </h4>
                             <p className="text-xs text-gray-500 truncate">{group.desc}</p>
                             <div className="flex items-center gap-3 mt-1">
-                              <span className="text-xs text-gray-400">{group.members} members</span>
+                              <span className="text-xs text-gray-400">
+                                {group.members} {currentLanguage === 'en' ? 'members' : 'Mitglieder'}
+                              </span>
                               <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                              <span className="text-xs text-green-600">Active</span>
+                              <span className="text-xs text-green-600">
+                                {currentLanguage === 'en' ? 'Active' : 'Aktiv'}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -187,9 +194,9 @@ export default function WidgetsSection() {
                 </div>
               </div>
             </motion.div>
-              </div>
-            </CardContent>
-          </Card>
+          </div>
+        </CardContent>
+      </Card>
     </section>
   );
 }

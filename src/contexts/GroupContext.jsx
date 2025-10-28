@@ -31,30 +31,30 @@ export function GroupProvider({ children }) {
   const [groups, setGroups] = useState([
     { 
       id: 1, 
-       name: 'Ethical Decision-Making for Travel Professionals',
+      name: 'Group 1',
       members: 45, 
       type: 'Training group', 
       image: 'https://s3-eu-west-1.amazonaws.com/tpd/logos/6496072a98059dba3f02fdfa/0x0.png'
     },
     { 
       id: 2, 
-      name: 'Tourism Industry Trainers', 
+      name: 'Group 2', 
       members: 12, 
       type: 'Professional development', 
       image: 'https://tiesinstitute.com/wp-content/uploads/2022/05/tourism.webp'
     },
     { 
       id: 3, 
-      name: 'Safety Protection Tourism', 
+      name: 'Group 3', 
       members: 28, 
       type: 'Advocacy group', 
       image: 'https://admin.executiveprotectionbd.com/service_img/Travel.jpg'
     },
     { 
       id: 4, 
-      name: 'Ethical Tourism Compliance Officers', 
+      name: 'Group 4', 
       members: 18, 
-      type: 'Compliance training', 
+      type: 'Training group', 
       image: 'https://www.eqs.com/assets/2021/11/compliance-officer-1024x576.png'
     },
   ]);

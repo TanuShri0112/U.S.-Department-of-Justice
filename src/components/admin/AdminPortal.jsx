@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Bell, Users, BarChart2, ClipboardCheck,
   Shield, GraduationCap, User, Settings, Database, AlertTriangle,
-  Upload, Video, Calendar
+  Upload, Video, Calendar, Award
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';

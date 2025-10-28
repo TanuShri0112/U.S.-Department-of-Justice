@@ -1,38 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MainNavigation } from './MainNavigation';
-import { ChevronLeft, Shield, GraduationCap, User } from 'lucide-react';
-import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSidebar } from '@/contexts/SidebarContext';
-import { usePortal } from '@/contexts/PortalContext';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { MainNavLinks } from './MainNavLinks';
+import { ViewModeToggle } from '@/components/ui/ViewModeToggle';
 
 export const SidebarNav = ({ onCloseMobile }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { 
-    isMainCollapsed, 
-    setMainCollapsed
+  const { currentLanguage } = useLanguage();
+  
+  const {
+    isMainCollapsed,
+    setMainCollapsed,
+    setAdminSectionActive,
+    setAdminSidebarOpen,
+    setGroupSectionActive,
+    setGroupSidebarOpen,
   } = useSidebar();
-  
-  const { portalMode, switchPortal } = usePortal();
-  
-  const handleClick = () => {
-    if (onCloseMobile) {
-      onCloseMobile();
-    }
-  };
 
   const handleLogoClick = () => {
     navigate('/');
-    if (isMainCollapsed) {
-      setMainCollapsed(false);
-    }
+    onCloseMobile?.();
   };
 
-  const toggleCollapsed = () => {
+  const handleCollapseClick = () => {
     setMainCollapsed(!isMainCollapsed);
   };
 
@@ -52,9 +48,6 @@ export const SidebarNav = ({ onCloseMobile }) => {
     return children;
   };
   
-  // Check if we're in unit creator mode
-  const isUnitCreator = pathname.includes('/units/creator');
-  
   return (
     <nav 
       className={cn(
@@ -65,30 +58,39 @@ export const SidebarNav = ({ onCloseMobile }) => {
       {/* Header */}
       <div 
         className={cn(
-          "flex h-20 items-center border-b border-gray-100 bg-blue-600",
-          isMainCollapsed ? "px-3 justify-center" : "px-6 justify-between"
+          "flex flex-col border-b border-gray-100 bg-white",
+          isMainCollapsed ? "p-2" : "p-4"
         )}
       >
         <div 
-          className="cursor-pointer flex items-center gap-3"
+          className="cursor-pointer flex items-center"
           onClick={handleLogoClick}
         >
           {isMainCollapsed ? (
-            <img 
-              src="/assets/bau.png" 
-              alt="BLB NRW Logo" 
-              className="w-12 h-12 object-contain"
-            />
-          ) : (
-            <div className="flex items-center gap-4">
+            <div className="w-full flex justify-center">
               <img 
-                src="/assets/bau.png" 
-                alt="BLB NRW Logo" 
-                className="w-12 h-12 object-contain"
+                src="/assets/image.png" 
+                alt="sachsen.de" 
+                className="h-8 w-auto"
               />
-              <div className="text-white">
-                <h1 className="text-sm font-semibold leading-tight">Bau- und Liegenschaftsbetrieb NRW Zentral</h1>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <img 
+                  src="/assets/image.png" 
+                  alt="sachsen.de" 
+                  className="h-8"
+                />
+                <span className="text-[#0B0C0C] text-sm font-medium">sachsen.de</span>
               </div>
+              <h1 className="text-sm font-medium text-[#0B0C0C] leading-tight">
+                {currentLanguage === 'en' ? (
+                  "Saxon State Ministry for Social Affairs"
+                ) : (
+                  "Sächsisches Staatsministerium für Soziales"
+                )}
+              </h1>
             </div>
           )}
         </div>
@@ -97,93 +99,34 @@ export const SidebarNav = ({ onCloseMobile }) => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={toggleCollapsed}
-            className="text-white/80 hover:text-white hover:bg-white/10 h-8 w-8"
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:bg-gray-100"
+            onClick={handleCollapseClick}
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
         )}
       </div>
-      
-      {/* Navigation content */}
-      <div className="flex-1 overflow-y-auto py-4">
-        <MainNavigation pathname={pathname} onItemClick={handleClick} />
+
+      {/* Navigation Links */}
+      <div className="flex-1 overflow-y-auto">
+        <MainNavLinks isCollapsed={isMainCollapsed} onCloseMobile={onCloseMobile} />
       </div>
-      
-      {/* Portal Switcher at Bottom */}
-      <div className="border-t border-gray-200 p-4">
-        {isMainCollapsed ? (
-          renderTooltip("Switch Portal", (
-            <div className="flex justify-center">
-              <div 
-                className="flex flex-col gap-2 w-full"
-              >
-                <button
-                  onClick={() => switchPortal('student')}
-                  className={cn(
-                    "p-2 rounded-lg transition-all duration-200",
-                    portalMode === 'student' 
-                      ? "bg-slate-100 text-slate-700" 
-                      : "hover:bg-gray-100 text-gray-600"
-                  )}
-                >
-                  <User className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => switchPortal('instructor')}
-                  className={cn(
-                    "p-2 rounded-lg transition-all duration-200",
-                    portalMode === 'instructor' 
-                      ? "bg-green-100 text-green-700" 
-                      : "hover:bg-gray-100 text-gray-600"
-                  )}
-                >
-                  <GraduationCap className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => switchPortal('admin')}
-                  className={cn(
-                    "p-2 rounded-lg transition-all duration-200",
-                    portalMode === 'admin' 
-                      ? "bg-blue-100 text-blue-700" 
-                      : "hover:bg-gray-100 text-gray-600"
-                  )}
-                >
-                  <Shield className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Portal Mode
-            </label>
-            <Select value={portalMode} onValueChange={switchPortal}>
-              <SelectTrigger className="w-full bg-white border-gray-300">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="bg-white border border-gray-200 shadow-lg">
-                <SelectItem value="student" className="cursor-pointer hover:bg-slate-100 focus:bg-slate-100">
-                  <div className="flex items-center gap-2">
-                    <User className="h-4 w-4 text-slate-600" />
-                    <span>Student Mode</span>
-                  </div>
-                </SelectItem>
-                <SelectItem value="instructor" className="cursor-pointer hover:bg-green-50 focus:bg-green-50">
-                  <div className="flex items-center gap-2">
-                    <GraduationCap className="h-4 w-4 text-green-600" />
-                    <span>Instructor Portal</span>
-                  </div>
-                </SelectItem>
-                <SelectItem value="admin" className="cursor-pointer hover:bg-blue-50 focus:bg-blue-50">
-                  <div className="flex items-center gap-2">
-                    <Shield className="h-4 w-4 text-blue-600" />
-                    <span>Admin Portal</span>
-                  </div>
-                </SelectItem>
-              </SelectContent>
-            </Select>
+
+      {/* Bottom Section */}
+      <div className="mt-auto border-t border-gray-100">
+        <div className="p-3">
+          <ViewModeToggle isCollapsed={isMainCollapsed} />
+        </div>
+        {isMainCollapsed && (
+          <div className="p-3 border-t border-gray-100">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="w-full h-10 hover:bg-gray-100"
+              onClick={handleCollapseClick}
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
           </div>
         )}
       </div>
