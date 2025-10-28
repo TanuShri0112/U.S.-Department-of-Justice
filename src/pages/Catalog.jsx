@@ -5,35 +5,37 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Search, BookOpen, Users, Clock, ChevronRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Catalog = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredCard, setHoveredCard] = useState(null);
+  const { currentLanguage } = useLanguage();
   
-  // Updated catalogs with ECPAT International training courses
   const [catalogs, setCatalogs] = useState([
     {
       id: 1,
-      name: 'Ethical Decision-Making for Travel Professionals.',
-      description: 'Foundations of law enforcement training, stakeholder analysis, and needs assessment',
+      name: currentLanguage === 'en'
+        ? "Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025"
+        : "Aktuell in der Wirtschaftlichen Jugendhilfe – Rechtliche und Finanzielle Entwicklungen 2025",
+      description: currentLanguage === 'en'
+        ? "Comprehensive training program covering current developments in economic youth welfare, legal frameworks, and financial aspects"
+        : "Umfassendes Schulungsprogramm zu aktuellen Entwicklungen in der wirtschaftlichen Jugendhilfe, rechtlichen Rahmenbedingungen und finanziellen Aspekten",
       imageUrl: '/assets/clogo.png',
       courseCount: 3,
       studentCount: 120,
       duration: '12 weeks',
       difficulty: 'Intermediate',
-      tags: ['Law Enforcement', 'Training', 'DOJ']
+      tags: ['Youth Welfare', 'Legal', 'Financial']
     }
   ]);
 
-  // Filter catalogs based on search query
   const filteredCatalogs = catalogs.filter(catalog =>
     catalog.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     catalog.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
     catalog.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
   );
-
-
 
   const handleCatalogClick = (catalog) => {
     navigate('/courses');
@@ -54,142 +56,95 @@ const Catalog = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white overflow-y-auto">
-      <div className="container mx-auto p-4 sm:p-6 animate-fade-in max-w-7xl">
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Training Catalog
-              <Sparkles className="inline-block ml-2 h-6 w-6 sm:h-8 sm:w-8 text-yellow-400" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="space-y-8">
+          {/* Header */}
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">
+              {currentLanguage === 'en' ? "Course Catalog" : "Kurskatalog"}
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Explore our comprehensive collection of Bau- und Liegenschaftsbetrieb NRW Zentral training programs
+            <p className="mt-2 text-gray-600">
+              {currentLanguage === 'en' 
+                ? "Browse our collection of professional training courses" 
+                : "Durchsuchen Sie unsere Sammlung von professionellen Schulungskursen"}
             </p>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Search and Add Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-          <div className="relative w-full md:w-96">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-            <Input
-              type="text"
-              placeholder="Search by name, description, or tags..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12 pr-4 py-3 w-full text-lg border-2 rounded-xl focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-            />
+          {/* Search and Filters */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                type="search"
+                placeholder={currentLanguage === 'en' ? "Search courses..." : "Kurse suchen..."}
+                className="pl-9 w-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Catalog Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredCatalogs.map((catalog) => (
+              <motion.div
+                key={catalog.id}
+                whileHover={{ y: -4 }}
+                onHoverStart={() => setHoveredCard(catalog.id)}
+                onHoverEnd={() => setHoveredCard(null)}
+              >
+                <Card 
+                  className="cursor-pointer h-full flex flex-col transition-shadow hover:shadow-lg"
+                  onClick={() => handleCatalogClick(catalog)}
+                >
+                  <div className="relative h-48">
+                    <img
+                      src={catalog.imageUrl}
+                      alt={catalog.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-semibold text-lg line-clamp-2">
+                        {catalog.name}
+                      </h3>
+                    </div>
+                  </div>
+                  <CardContent className="flex-1 p-4">
+                    <p className="text-gray-600 text-sm line-clamp-2 mb-4">
+                      {catalog.description}
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-1.5">
+                          <BookOpen className="h-4 w-4 text-gray-500" />
+                          <span className="text-gray-600">
+                            {catalog.courseCount} {currentLanguage === 'en' ? "courses" : "Kurse"}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Users className="h-4 w-4 text-gray-500" />
+                          <span className="text-gray-600">
+                            {catalog.studentCount} {currentLanguage === 'en' ? "students" : "Teilnehmer"}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-1.5">
+                          <Clock className="h-4 w-4 text-gray-500" />
+                          <span className="text-gray-600">{catalog.duration}</span>
+                        </div>
+                        <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(catalog.difficulty)}`}>
+                          {catalog.difficulty}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
-
-        {/* Catalogs Grid */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          {filteredCatalogs.map((catalog, index) => (
-            <motion.div
-              key={catalog.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="h-full"
-            >
-               <Card 
-                 className="h-full flex flex-col overflow-hidden bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer"
-                 onClick={() => handleCatalogClick(catalog)}
-               >
-                 {/* Image Section */}
-                 <div className="relative h-48 flex-shrink-0">
-                   <img 
-                     src={catalog.imageUrl} 
-                     alt={catalog.name}
-                     className="w-full h-full object-cover" 
-                   />
-                 </div>
-
-                 {/* Content Section */}
-                 <CardContent className="p-5 flex flex-col flex-grow">
-                   {/* Title */}
-                   <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-1 h-6 flex-shrink-0">
-                     {catalog.name}
-                   </h3>
-                   
-                   {/* Description */}
-                   <p className="text-gray-600 mb-4 line-clamp-2 text-sm h-10 flex-shrink-0">
-                     {catalog.description}
-                   </p>
-
-                   {/* Stats Row */}
-                   <div className="flex items-center justify-between mb-3 h-6 flex-shrink-0">
-                     <div className="flex items-center gap-1 text-blue-600">
-                       <BookOpen className="h-4 w-4" />
-                       <span className="text-xs font-medium">{catalog.courseCount} Courses</span>
-                     </div>
-                     <div className="flex items-center gap-1 text-green-600">
-                       <Users className="h-4 w-4" />
-                       <span className="text-xs font-medium">{catalog.studentCount} Students</span>
-                     </div>
-                     <div className="flex items-center gap-1 text-purple-600">
-                       <Clock className="h-4 w-4" />
-                       <span className="text-xs font-medium">{catalog.duration}</span>
-                     </div>
-                   </div>
-
-                   {/* Tags */}
-                   <div className="flex flex-wrap gap-1 mb-4 h-8 flex-shrink-0">
-                     {catalog.tags.slice(0, 3).map((tag, idx) => (
-                       <span 
-                         key={idx}
-                         className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium"
-                       >
-                         {tag}
-                       </span>
-                     ))}
-                   </div>
-
-                   {/* Spacer to push button to bottom */}
-                   <div className="flex-grow"></div>
-
-                   {/* Action Button */}
-                   <Button
-                     className="w-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-2 text-sm py-2.5 mt-auto"
-                     onClick={(e) => {
-                       e.stopPropagation();
-                       handleCatalogClick(catalog);
-                     }}
-                   >
-                     Explore Catalog
-                     <ChevronRight className="h-4 w-4" />
-                   </Button>
-                 </CardContent>
-               </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {filteredCatalogs.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-12"
-          >
-            <div className="bg-gray-50 rounded-2xl p-8 max-w-md mx-auto">
-              <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">No Results Found</h3>
-              <p className="text-gray-600">
-                We couldn't find any catalogs matching your search. Try adjusting your search terms.
-              </p>
-            </div>
-          </motion.div>
-        )}
-
       </div>
     </div>
   );

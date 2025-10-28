@@ -34,28 +34,28 @@ export function GroupProvider({ children }) {
       name: 'Group 1',
       members: 45, 
       type: 'Training group', 
-      image: 'https://s3-eu-west-1.amazonaws.com/tpd/logos/6496072a98059dba3f02fdfa/0x0.png'
+      image: 'https://cdn.sanity.io/images/kts928pd/production/3087f904950d07c3216f5164cb1196052b547c63-731x731.png'
     },
     { 
       id: 2, 
       name: 'Group 2', 
       members: 12, 
       type: 'Professional development', 
-      image: 'https://tiesinstitute.com/wp-content/uploads/2022/05/tourism.webp'
+      image: 'https://cdn.sanity.io/images/kts928pd/production/3087f904950d07c3216f5164cb1196052b547c63-731x731.png'
     },
     { 
       id: 3, 
       name: 'Group 3', 
       members: 28, 
       type: 'Advocacy group', 
-      image: 'https://admin.executiveprotectionbd.com/service_img/Travel.jpg'
+      image: 'https://cdn.sanity.io/images/kts928pd/production/3087f904950d07c3216f5164cb1196052b547c63-731x731.png'
     },
     { 
       id: 4, 
       name: 'Group 4', 
       members: 18, 
       type: 'Training group', 
-      image: 'https://www.eqs.com/assets/2021/11/compliance-officer-1024x576.png'
+      image: 'https://cdn.sanity.io/images/kts928pd/production/3087f904950d07c3216f5164cb1196052b547c63-731x731.png'
     },
   ]);
 

@@ -15,18 +15,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Courses = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  // Removed course access type (open/sequential)
   const navigate = useNavigate();
+  const { currentLanguage } = useLanguage();
 
-  // ECPAT International Training Courses
   const mockCourses = [
     {
       id: 1,
-      title: "Ethical Decision-Making for Travel Professionals.",
-      description: "Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals",
+      title: currentLanguage === 'en' 
+        ? "Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025"
+        : "Aktuell in der Wirtschaftlichen Jugendhilfe – Rechtliche und Finanzielle Entwicklungen 2025",
+      description: currentLanguage === 'en'
+        ? "Comprehensive training program covering current developments in economic youth welfare, legal frameworks, and financial aspects"
+        : "Umfassendes Schulungsprogramm zu aktuellen Entwicklungen in der wirtschaftlichen Jugendhilfe, rechtlichen Rahmenbedingungen und finanziellen Aspekten",
       students: 120,
       duration: "6 weeks",
       level: "Beginner",
@@ -34,13 +38,11 @@ const Courses = () => {
       image: "/assets/clogo.png",
       archived: false,
       deleted: false,
-      catalog: "Law Enforcement"
+      catalog: "Youth Welfare"
     }
   ];
 
   const [courses, setCourses] = useState(mockCourses);
-
-  // Only show the predefined banking courses
 
   const filteredCourses = courses.filter(course => {
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -55,206 +57,105 @@ const Courses = () => {
 
   const handleCatalogClick = () => {
     navigate('/catalog');
-    toast({
-      title: "Catalog",
-      description: "Redirecting to course catalog",
-    });
   };
 
-  const handleCreateCourse = () => {
-    navigate('/courses/create');
-  };
-
-  const handleCourseEdit = (courseId, courseName) => {
-    navigate(`/courses/edit/${courseId}`);
-    toast({
-      title: "Edit Course",
-      description: `Opening edit page for ${courseName}`,
-    });
-  };
-
-  const handleCourseArchive = (courseId, courseName) => {
-    setCourses(prevCourses => 
-      prevCourses.map(course => 
-        course.id === courseId ? { ...course, archived: true } : course
-      )
-    );
-    toast({
-      title: "Course Archived",
-      description: `${courseName} has been moved to archived courses.`,
-    });
-  };
-
-  const handleCourseDelete = (courseId, courseName) => {
-    setCourses(prevCourses => 
-      prevCourses.map(course => 
-        course.id === courseId ? { ...course, deleted: true, archived: false } : course
-      )
-    );
-    toast({
-      title: "Course Deleted",
-      description: `${courseName} has been moved to deleted courses.`,
-    });
-  };
-
-  const handleCourseRestore = (courseId, courseName) => {
-    setCourses(prevCourses => 
-      prevCourses.map(course => 
-        course.id === courseId ? { ...course, deleted: false, archived: false } : course
-      )
-    );
-    toast({
-      title: "Course Restored",
-      description: `${courseName} has been restored to active courses.`,
-    });
-  };
-
-  const getLevelColor = (level) => {
-    switch (level) {
-      case 'Beginner': return 'bg-green-100 text-green-800';
-      case 'Intermediate': return 'bg-yellow-100 text-yellow-800';
-      case 'Advanced': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Active': return 'bg-green-100 text-green-800';
-      case 'Published': return 'bg-blue-100 text-blue-800';
-      case 'Draft': return 'bg-gray-100 text-gray-800';
-      case 'Archived': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
+  const handleDiscoverClick = () => {
+    navigate('/catalog');
   };
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Courses</h1>
-          <p className="text-muted-foreground mt-2">
-            Manage your course catalog and create new learning experiences
-          </p>
-        </div>
-      </div>
-
+      <PageHeader 
+        title={currentLanguage === 'en' ? "My Courses" : "Meine Kurse"}
+        description={currentLanguage === 'en' 
+          ? "Access and manage your enrolled courses" 
+          : "Greifen Sie auf Ihre eingeschriebenen Kurse zu und verwalten Sie diese"}
+      />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input 
-              className="pl-9" 
-              placeholder="Search courses..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          
-          <Select>
-            <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder="All levels" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All levels</SelectItem>
-              <SelectItem value="beginner">Beginner</SelectItem>
-              <SelectItem value="intermediate">Intermediate</SelectItem>
-              <SelectItem value="advanced">Advanced</SelectItem>
-            </SelectContent>
-          </Select>
-          
-          <Select>
-            <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder="All status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All status</SelectItem>
-              <SelectItem value="active">Active</SelectItem>
-              <SelectItem value="draft">Draft</SelectItem>
-              <SelectItem value="archived">Archived</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
         <div className="flex items-center gap-2">
-          {/* Catalog Button */}
           <Button 
             variant="outline" 
-            onClick={handleCatalogClick}
+            onClick={handleDiscoverClick}
             className="flex items-center gap-2"
           >
             <Compass className="h-4 w-4" />
-            Catalog
+            {currentLanguage === 'en' ? "Discover Courses" : "Kurse entdecken"}
           </Button>
-
-          {/* Removed Sequential/Open Toggle */}
-
+        </div>
+      </div>
+      
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="relative flex-1 max-w-sm">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input 
+            className="pl-9" 
+            placeholder={currentLanguage === 'en' ? "Search courses..." : "Kurse suchen..."}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <Select>
+            <SelectTrigger className="w-[160px]">
+              <SelectValue placeholder={currentLanguage === 'en' ? "All levels" : "Alle Stufen"} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">{currentLanguage === 'en' ? "All levels" : "Alle Stufen"}</SelectItem>
+              <SelectItem value="beginner">{currentLanguage === 'en' ? "Beginner" : "Anfänger"}</SelectItem>
+              <SelectItem value="intermediate">{currentLanguage === 'en' ? "Intermediate" : "Fortgeschritten"}</SelectItem>
+              <SelectItem value="advanced">{currentLanguage === 'en' ? "Advanced" : "Experte"}</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         {filteredCourses.map((course) => (
-          <Card key={course.id} className="hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer" >
-            <div className="h-48 overflow-hidden relative">
-                <img 
-                 onClick={() => handleCourseClick(course.id)}
-                  src={course.image} 
-                  alt={course.title} 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-                <div className="absolute top-2 right-2 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                  <Badge className={getStatusColor(course.status)}>
-                    {course.status}
-                  </Badge>
-                  <div className="bg-white/90 rounded-md">
-                    <CourseOptionsMenu 
-                      courseId={course.id} 
-                      courseName={course.title}
-                      onEdit={handleCourseEdit}
-                      onArchive={handleCourseArchive}
-                      onDelete={handleCourseDelete}
-                      onRestore={handleCourseRestore}
-                      isDeleted={course.deleted}
-                    />
-                  </div>
-                </div>
-                {/* Removed Course Access Type Indicator */}
+          <Card key={course.id} className="hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+            <div className="h-40 overflow-hidden relative">
+              <img 
+                src={course.image} 
+                alt={course.title} 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute top-2 right-2">
+                <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200">
+                  {course.status}
+                </Badge>
               </div>
-              <CardHeader className="pb-2"  onClick={() => handleCourseClick(course.id)}>
-                <CardTitle className="text-lg font-semibold line-clamp-1">
-                  {course.title}
-                </CardTitle>
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {course.description}
-                </p>
-              </CardHeader>
-              <CardContent onClick={() => handleCourseClick(course.id)}>
-                <div className="flex items-center justify-between mb-3">
-                  <Badge variant="outline" className={getLevelColor(course.level)}>
-                    {course.level}
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    {course.catalog}
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Users className="h-4 w-4" />
-                    <span>{course.students} students</span>
+            </div>
+            <CardHeader className="space-y-0 pb-2">
+              <CardTitle className="text-lg font-semibold line-clamp-2">
+                {course.title}
+              </CardTitle>
+              <p className="text-sm text-muted-foreground line-clamp-2">{course.description}</p>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-1.5">
+                    <Users className="h-4 w-4 text-gray-500" />
+                    <span className="text-muted-foreground">{course.students} students</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{course.duration}</span>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="h-4 w-4 text-gray-500" />
+                    <span className="text-muted-foreground">{course.duration}</span>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
+                <Button 
+                  variant="default" 
+                  className="w-full bg-blue-500 hover:bg-blue-600 transition-colors"
+                  onClick={() => handleCourseClick(course.id)}
+                >
+                  {currentLanguage === 'en' ? "Continue Learning" : "Weiter lernen"}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };

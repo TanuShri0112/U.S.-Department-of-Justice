@@ -70,7 +70,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
             <div className="w-full flex justify-center">
               <img 
                 src="/assets/image.png" 
-                alt="sachsen.de" 
+                alt="Ministry Logo" 
                 className="h-8 w-auto"
               />
             </div>
@@ -79,10 +79,9 @@ export const SidebarNav = ({ onCloseMobile }) => {
               <div className="flex items-center gap-2">
                 <img 
                   src="/assets/image.png" 
-                  alt="sachsen.de" 
+                  alt="Ministry Logo" 
                   className="h-8"
                 />
-                <span className="text-[#0B0C0C] text-sm font-medium">sachsen.de</span>
               </div>
               <h1 className="text-sm font-medium text-[#0B0C0C] leading-tight">
                 {currentLanguage === 'en' ? (
