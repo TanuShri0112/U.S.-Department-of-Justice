@@ -13,9 +13,9 @@ const CourseModules = () => {
   const modules = [
     { 
       id: 1, 
-      title: 'Ethical Decision-Making for Travel Professionals', 
+      title: 'Course 2', 
       description: 'Understanding the core principles and frameworks of community outreach and prevention',
-      image: '/assets/clogo.png',
+      image: 'https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg',
       units: 5,
       assessments: 1,
       duration: '2 hours',

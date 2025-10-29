@@ -19,17 +19,17 @@ export function ViewModeToggle({ isCollapsed }) {
     student: {
       icon: School,
       label: { en: 'Student View', de: 'Studentenansicht' },
-      color: 'text-green-600'
+      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
     },
     instructor: {
       icon: Users,
       label: { en: 'Instructor View', de: 'Dozentenansicht' },
-      color: 'text-blue-600'
+      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
     },
     admin: {
       icon: Shield,
       label: { en: 'Admin View', de: 'Administratoransicht' },
-      color: 'text-purple-600'
+      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
     },
   };
 
@@ -44,7 +44,7 @@ export function ViewModeToggle({ isCollapsed }) {
               variant="ghost" 
               size="icon"
               className={cn(
-                "w-10 h-10 rounded-lg",
+                "w-10 h-10 rounded-lg hover:bg-[hsl(var(--sidebar-hover))]",
                 modes[portalMode]?.color
               )}
             >
@@ -86,12 +86,12 @@ export function ViewModeToggle({ isCollapsed }) {
           <Button 
             variant="ghost" 
             className={cn(
-              "w-full justify-start gap-2 h-10 rounded-lg",
+              "w-full justify-start gap-2 h-10 rounded-lg hover:bg-[hsl(var(--sidebar-hover))]",
               modes[portalMode]?.color
             )}
           >
             <CurrentIcon className="h-5 w-5" />
-            <span>{modes[portalMode]?.label[currentLanguage]}</span>
+            <span className="text-[hsl(var(--sidebar-foreground))]">{modes[portalMode]?.label[currentLanguage]}</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-48">

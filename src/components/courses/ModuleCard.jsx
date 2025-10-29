@@ -41,7 +41,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
         const moduleId = module.id;
         
         // Use module title to determine course (most reliable)
-        if (module.title && module.title.includes('Ethical Decision-Making')) {
+        if (module.title && module.title.includes('Course 2')) {
           detectedCourseId = '1';
         } else if (module.title && module.title.includes('Law Enforcement')) {
           detectedCourseId = '1';
@@ -55,7 +55,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
         }
       } else {
         // Final fallback - use module title to determine course
-        if (module.title && module.title.includes('Ethical Decision-Making')) {
+        if (module.title && module.title.includes('Course 2')) {
           detectedCourseId = '1';
         } else if (module.title && module.title.includes('Law Enforcement')) {
           detectedCourseId = '1';
@@ -68,41 +68,8 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
     console.log('Module ID:', module.id);
     console.log('Module title:', module.title);
     
-    // Module external links mapping by course and module - ALL modules now open SCORM
-    const moduleLinks = {
-      // Course 1 - Ethical Decision-Making for Travel Professionals.
-      '1-1': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
-      '1-2': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
-      '1-3': 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html',
-    };
-    
-    // Create the key for this course-module combination
-    const linkKey = `${detectedCourseId}-${module.id}`;
-    const externalLink = moduleLinks[linkKey];
-    
-    console.log('Link key:', linkKey);
-    console.log('External link:', externalLink);
-    
-    if (externalLink) {
-      // Open SCORM link in new tab
-      window.open(externalLink, '_blank', 'noopener,noreferrer');
-    } else {
-      // Fallback to default SCORM based on course type if no specific link is found
-      console.log('No specific SCORM link found, using default SCORM for course type');
-      
-      // Determine default SCORM based on course type
-      let defaultScormLink;
-      if (detectedCourseId === '1') {
-        // Ethical Decision-Making for Travel Professionals. SCORM
-        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html';
-      } else {
-        // Ultimate fallback - Ethical Decision-Making for Travel Professionals. SCORM
-        defaultScormLink = 'https://lesson-banners.s3.us-east-1.amazonaws.com/Scorms/ethical-decision-making-for-travel-professionals-scorm12-QXjEGupO/scormcontent/index.html';
-      }
-      
-      console.log('Using default SCORM:', defaultScormLink);
-      window.open(defaultScormLink, '_blank', 'noopener,noreferrer');
-    }
+    // Navigate to the module units page instead of opening external links
+    navigate(`/courses/${detectedCourseId}/modules/${module.id}/units`);
   };
 
   const handleAssessmentsClick = () => {

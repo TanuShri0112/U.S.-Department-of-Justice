@@ -26,8 +26,8 @@ const Courses = () => {
     {
       id: 1,
       title: currentLanguage === 'en' 
-        ? "Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025"
-        : "Aktuell in der Wirtschaftlichen Jugendhilfe – Rechtliche und Finanzielle Entwicklungen 2025",
+        ? "Course 1"
+        : "Kurs 1",
       description: currentLanguage === 'en'
         ? "Comprehensive training program covering current developments in economic youth welfare, legal frameworks, and financial aspects"
         : "Umfassendes Schulungsprogramm zu aktuellen Entwicklungen in der wirtschaftlichen Jugendhilfe, rechtlichen Rahmenbedingungen und finanziellen Aspekten",
@@ -35,7 +35,7 @@ const Courses = () => {
       duration: "6 weeks",
       level: "Beginner",
       status: "Active",
-      image: "/assets/clogo.png",
+      image: "https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg",
       archived: false,
       deleted: false,
       catalog: "Youth Welfare"

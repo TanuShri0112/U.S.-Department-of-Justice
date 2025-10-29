@@ -36,13 +36,13 @@ export const Header = ({ onMenuClick }) => {
 
   return (
     <>
-      <header className="px-4 h-16 flex items-center justify-between bg-white shadow-sm z-40 border-b border-gray-200">
+      <header className="px-4 h-16 flex items-center justify-between bg-white shadow-md z-40 border-b border-gray-200">
         <div className="flex items-center gap-8">
           <div 
             className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
             onClick={handleLogoClick}
           >
-            <h1 className="text-lg font-medium text-[#0B0C0C]">
+            <h1 className="text-lg font-semibold text-[hsl(var(--secondary))]">
               {currentLanguage === 'en' ? 'Learning Platform' : 'Lernplattform'}
             </h1>
           </div>
@@ -57,7 +57,7 @@ export const Header = ({ onMenuClick }) => {
             </div>
             <input
               type="search"
-              className="w-[300px] py-2 pl-10 pr-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-[300px] py-2 pl-10 pr-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))]"
               placeholder={currentLanguage === 'en' ? "Search..." : "Suchen..."}
             />
           </div>

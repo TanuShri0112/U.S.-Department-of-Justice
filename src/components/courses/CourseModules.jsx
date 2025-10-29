@@ -28,7 +28,7 @@ const CourseModules = () => {
       'reactjs202': 'React.js Advanced',
       'ml506': 'Machine Learning',
       'data345': 'Data Analysis',
-      '1': 'Ethical Decision-Making for Travel Professionals.'
+      '1': 'Course 2'
     };
     return courseNames[courseId] || 'Course';
   };
@@ -73,10 +73,10 @@ const CourseModules = () => {
         // Course-specific modules based on courseId
         const getCourseModules = (courseId) => {
           const courseModules = {
-            '1': [ // Ethical Decision-Making for Travel Professionals.
+            '1': [ // Course 2
               {
                 id: 1,
-                title: "Ethical Decision-Making for Travel Professionals",
+                title: "Course 2",
                 description: "Understanding the core principles and frameworks of community outreach and prevention",
                 units: 5,
                 assessments: 1,
@@ -112,8 +112,8 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            // Ethical Decision-Making for Travel Professionals - Use course banner
-            'Ethical Decision-Making for Travel Professionals': '/assets/clogo.png'
+            // Course 2 - Use course banner
+            'Course 2': 'https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg'
           };
           return { ...m, image: titleToImage[m.title] };
         });

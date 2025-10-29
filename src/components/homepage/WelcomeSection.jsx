@@ -17,14 +17,14 @@ export function WelcomeSection() {
     en: {
       tag: "Occupational Safety Training",
       welcome: "Welcome to",
-      ministry: "Saxon State Ministry for Social Affairs",
+      ministry: "New College Swindon",
       subtitle: "Access your legally compliant occupational safety training. Learn essential workplace safety practices, guidelines, and protocols in accordance with German occupational health and safety laws.",
       button: "Start Training"
     },
     de: {
       tag: "Arbeitssicherheitsschulung",
       welcome: "Willkommen beim",
-      ministry: "Sächsisches Staatsministerium für Soziales",
+      ministry: "New College Swindon",
       subtitle: "Greifen Sie auf Ihre gesetzlich vorgeschriebene Arbeitssicherheitsschulung zu. Lernen Sie wichtige Praktiken, Richtlinien und Protokolle zur Arbeitssicherheit gemäß den deutschen Arbeitsschutzgesetzen.",
       button: "Schulung beginnen"
     }
@@ -36,7 +36,7 @@ export function WelcomeSection() {
     <section className="mb-4">
       <Card className="w-full shadow-sm">
         <CardContent className="p-4">
-          <div className="relative bg-gradient-to-r from-blue-700 to-blue-800 rounded-3xl p-6 min-h-[200px] overflow-hidden">
+          <div className="relative bg-gradient-to-br from-[hsl(var(--secondary))] via-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-3xl p-6 min-h-[200px] overflow-hidden">
             {/* Starburst/Sparkle Graphics */}
             <div className="absolute right-4 top-8 opacity-20">
               <Sparkles size={32} className="text-white animate-pulse" />
@@ -71,10 +71,10 @@ export function WelcomeSection() {
               <div className="flex items-center">
                 <button
                   onClick={handleJoinNow}
-                  className="group bg-white text-blue-700 px-6 py-3 rounded-full font-semibold text-sm hover:bg-blue-50 transition-all duration-200 hover:scale-105 shadow-lg flex items-center gap-2"
+                  className="group bg-white text-[hsl(var(--secondary))] px-6 py-3 rounded-full font-semibold text-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105 shadow-lg flex items-center gap-2"
                 >
                   <span>{t.button}</span>
-                  <div className="w-5 h-5 bg-blue-700 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform duration-200">
+                  <div className="w-5 h-5 bg-[hsl(var(--primary))] rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform duration-200">
                     <ArrowRight size={12} className="text-white" />
                   </div>
                 </button>

@@ -6,8 +6,8 @@ import { Book, Users } from "lucide-react";
 const teachingCourses = [
   {
     id: 1,
-    title: "Ethical Decision-Making for Travel Professionals.",
-    image: "/assets/clogo.png",
+    title: "Course 2",
+    image: "https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg",
     modules: 3,
     students: 120
   }

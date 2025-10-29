@@ -41,14 +41,14 @@ export const SidebarNav = ({ onCloseMobile }) => {
   return (
     <nav 
       className={cn(
-        "h-full flex flex-col bg-white border-r border-gray-200 shadow-sm transition-all duration-300",
+        "h-full flex flex-col bg-[hsl(var(--sidebar))] border-r border-[hsl(var(--sidebar-border))] shadow-lg transition-all duration-300",
         isMainCollapsed ? "w-16" : "w-64"
       )}
     >
       {/* Header */}
       <div 
         className={cn(
-          "flex flex-col border-b border-gray-100 bg-white",
+          "flex flex-col border-b border-[hsl(var(--sidebar-border))] bg-[hsl(var(--sidebar))]",
           isMainCollapsed ? "p-2" : "p-4"
         )}
       >
@@ -59,26 +59,22 @@ export const SidebarNav = ({ onCloseMobile }) => {
           {isMainCollapsed ? (
             <div className="w-full flex justify-center">
               <img 
-                src="/assets/image.png" 
-                alt="Ministry Logo" 
-                className="h-8 w-auto"
+                src="/assets/logo.png" 
+                alt="New College Swindon Logo" 
+                className="h-10 w-auto"
               />
             </div>
           ) : (
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-3">
                 <img 
-                  src="/assets/image.png" 
-                  alt="Ministry Logo" 
-                  className="h-8"
+                  src="/assets/logo.png" 
+                  alt="New College Swindon Logo" 
+                  className="h-12 w-auto"
                 />
               </div>
-              <h1 className="text-sm font-medium text-[#0B0C0C] leading-tight">
-                {currentLanguage === 'en' ? (
-                  "Saxon State Ministry for Social Affairs"
-                ) : (
-                  "Sächsisches Staatsministerium für Soziales"
-                )}
+              <h1 className="text-sm font-semibold text-[hsl(var(--sidebar-foreground))] leading-tight">
+                New College Swindon
               </h1>
             </div>
           )}
@@ -91,7 +87,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
       </div>
 
       {/* Bottom Section */}
-      <div className="mt-auto border-t border-gray-100">
+      <div className="mt-auto border-t border-[hsl(var(--sidebar-border))]">
         <div className="p-3">
           <ViewModeToggle isCollapsed={isMainCollapsed} />
         </div>

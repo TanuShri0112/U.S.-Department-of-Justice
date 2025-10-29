@@ -17,8 +17,8 @@ const Catalog = () => {
     {
       id: 1,
       name: currentLanguage === 'en'
-        ? "Up to Date in Economic Youth Welfare – Legal and Financial Developments 2025"
-        : "Aktuell in der Wirtschaftlichen Jugendhilfe – Rechtliche und Finanzielle Entwicklungen 2025",
+        ? "Course 1"
+        : "Kurs 1",
       description: currentLanguage === 'en'
         ? "Comprehensive training program covering current developments in economic youth welfare, legal frameworks, and financial aspects"
         : "Umfassendes Schulungsprogramm zu aktuellen Entwicklungen in der wirtschaftlichen Jugendhilfe, rechtlichen Rahmenbedingungen und finanziellen Aspekten",

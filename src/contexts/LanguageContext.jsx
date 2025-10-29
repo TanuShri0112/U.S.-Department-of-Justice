@@ -4,16 +4,16 @@ const LanguageContext = createContext();
 
 const metadata = {
   en: {
-    title: "Saxon State Ministry for Social Affairs - LMS",
-    description: "Learning Management System of the Saxon State Ministry for Social Affairs, Health, and Societal Cohesion",
-    ogTitle: "Saxon State Ministry LMS",
-    ogDescription: "Official Learning Platform of the Saxon State Ministry for Social Affairs"
+    title: "New College Swindon - LMS",
+    description: "Learning Management System of New College Swindon",
+    ogTitle: "New College Swindon LMS",
+    ogDescription: "Official Learning Platform of New College Swindon"
   },
   de: {
-    title: "Sächsisches Staatsministerium für Soziales - LMS",
-    description: "Lernmanagementsystem des Sächsischen Staatsministeriums für Soziales, Gesundheit und Gesellschaftlichen Zusammenhalt",
-    ogTitle: "Sächsisches Staatsministerium LMS",
-    ogDescription: "Offizielle Lernplattform des Sächsischen Staatsministeriums für Soziales"
+    title: "New College Swindon - LMS",
+    description: "Lernmanagementsystem von New College Swindon",
+    ogTitle: "New College Swindon LMS",
+    ogDescription: "Offizielle Lernplattform von New College Swindon"
   }
 };
 

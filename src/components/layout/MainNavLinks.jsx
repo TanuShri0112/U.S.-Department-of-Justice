@@ -82,11 +82,11 @@ export function MainNavLinks({ isCollapsed, onCloseMobile }) {
           onClick={onCloseMobile}
           className={({ isActive }) =>
             cn(
-              'flex items-center gap-3 px-3 py-2 text-sm transition-colors',
+              'flex items-center gap-3 px-3 py-2 text-sm transition-colors rounded-lg mx-2',
               isCollapsed ? 'justify-center px-2' : 'px-4',
               isActive
-                ? 'bg-blue-50 text-blue-700 font-medium'
-                : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                ? 'bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-accent-foreground))] font-semibold'
+                : 'text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-hover))] hover:text-[hsl(var(--sidebar-accent-foreground))]'
             )
           }
         >
