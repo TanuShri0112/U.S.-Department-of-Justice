@@ -17,17 +17,17 @@ const Catalog = () => {
     {
       id: 1,
       name: currentLanguage === 'en'
-        ? "Course 1"
-        : "Kurs 1",
+        ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground"
+        : "Снижение рисков на основе сообщества (CBRR): Повышение устойчивости с нуля",
       description: currentLanguage === 'en'
-        ? "Comprehensive training program covering current developments in economic youth welfare, legal frameworks, and financial aspects"
-        : "Umfassendes Schulungsprogramm zu aktuellen Entwicklungen in der wirtschaftlichen Jugendhilfe, rechtlichen Rahmenbedingungen und finanziellen Aspekten",
+        ? "Comprehensive training program covering community-based approaches to risk reduction, resilience building, and disaster preparedness"
+        : "Комплексная программа обучения, охватывающая подходы на основе сообщества к снижению рисков, повышению устойчивости и готовности к чрезвычайным ситуациям",
       imageUrl: '/assets/clogo.png',
       courseCount: 3,
       studentCount: 120,
       duration: '12 weeks',
       difficulty: 'Intermediate',
-      tags: ['Youth Welfare', 'Legal', 'Financial']
+      tags: ['Risk Reduction', 'Community', 'Resilience']
     }
   ]);
 

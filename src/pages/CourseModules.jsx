@@ -13,7 +13,7 @@ const CourseModules = () => {
   const modules = [
     { 
       id: 1, 
-      title: 'Course 2', 
+      title: 'Community-Based Risk Reduction (CBRR): Building Resilience from the Ground', 
       description: 'Understanding the core principles and frameworks of community outreach and prevention',
       image: 'https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg',
       units: 5,

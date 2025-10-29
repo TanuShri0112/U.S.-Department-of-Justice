@@ -28,7 +28,7 @@ const CourseModules = () => {
       'reactjs202': 'React.js Advanced',
       'ml506': 'Machine Learning',
       'data345': 'Data Analysis',
-      '1': 'Course 2'
+      '1': 'Community-Based Risk Reduction (CBRR): Building Resilience from the Ground'
     };
     return courseNames[courseId] || 'Course';
   };
@@ -73,10 +73,10 @@ const CourseModules = () => {
         // Course-specific modules based on courseId
         const getCourseModules = (courseId) => {
           const courseModules = {
-            '1': [ // Course 2
+            '1': [ // Community-Based Risk Reduction (CBRR)
               {
                 id: 1,
-                title: "Course 2",
+                title: "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground",
                 description: "Understanding the core principles and frameworks of community outreach and prevention",
                 units: 5,
                 assessments: 1,
@@ -112,8 +112,8 @@ const CourseModules = () => {
         
         const defaultModules = getCourseModules(courseId).map((m) => {
           const titleToImage = {
-            // Course 2 - Use course banner
-            'Course 2': 'https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg'
+            // CBRR Course - Use course banner
+            'Community-Based Risk Reduction (CBRR): Building Resilience from the Ground': 'https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg'
           };
           return { ...m, image: titleToImage[m.title] };
         });

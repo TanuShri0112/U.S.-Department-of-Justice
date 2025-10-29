@@ -6,7 +6,7 @@ import { Book, Users } from "lucide-react";
 const teachingCourses = [
   {
     id: 1,
-    title: "Course 2",
+    title: "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground",
     image: "https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg",
     modules: 3,
     students: 120

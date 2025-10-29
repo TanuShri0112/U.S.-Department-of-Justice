@@ -7,23 +7,23 @@ const OngoingCourses = () => {
 
   const courses = [
     {
-      title: currentLanguage === 'en' ? "Course 1" : "Kurs 1",
+      title: currentLanguage === 'en' ? "Course 1" : "Курс 1",
       progress: 75,
-      nextLesson: currentLanguage === 'en' ? "Module 2: Advanced Topics" : "Modul 2: Fortgeschrittene Themen",
+      nextLesson: currentLanguage === 'en' ? "Module 2: Advanced Topics" : "Модуль 2: Продвинутые темы",
       dueDate: "Nov 15, 2025",
       thumbnail: "/assets/course-1.png"
     },
     {
-      title: currentLanguage === 'en' ? "Course 2" : "Kurs 2",
+      title: currentLanguage === 'en' ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground" : "Снижение рисков на основе сообщества (CBRR): Повышение устойчивости с нуля",
       progress: 45,
-      nextLesson: currentLanguage === 'en' ? "Module 3: Practical Applications" : "Modul 3: Praktische Anwendungen",
+      nextLesson: currentLanguage === 'en' ? "Module 3: Practical Applications" : "Модуль 3: Практическое применение",
       dueDate: "Nov 20, 2025",
       thumbnail: "/assets/course-2.png"
     },
     {
-      title: currentLanguage === 'en' ? "Course 3" : "Kurs 3",
+      title: currentLanguage === 'en' ? "Course 3" : "Курс 3",
       progress: 30,
-      nextLesson: currentLanguage === 'en' ? "Module 1: Fundamentals" : "Modul 1: Grundlagen",
+      nextLesson: currentLanguage === 'en' ? "Module 1: Fundamentals" : "Модуль 1: Основы",
       dueDate: "Nov 25, 2025",
       thumbnail: "/assets/course-3.png"
     }
@@ -36,7 +36,7 @@ const OngoingCourses = () => {
           <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <h2 className="text-2xl font-bold">
-          {currentLanguage === 'en' ? 'Ongoing Courses' : 'Laufende Kurse'}
+          {currentLanguage === 'en' ? 'Ongoing Courses' : 'Текущие курсы'}
         </h2>
       </div>
 

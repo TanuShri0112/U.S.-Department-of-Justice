@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 // Module information mapping
 const getModuleName = (courseId) => {
   const courseNames = {
-    '1': 'Course 2',
+    '1': 'Community-Based Risk Reduction (CBRR): Building Resilience from the Ground',
     '1757539': 'Advanced Credit Analysis'
   };
   return courseNames[courseId] || 'Training Module';

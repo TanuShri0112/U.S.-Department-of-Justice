@@ -26,11 +26,11 @@ const Courses = () => {
     {
       id: 1,
       title: currentLanguage === 'en' 
-        ? "Course 1"
-        : "Kurs 1",
+        ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground"
+        : "Снижение рисков на основе сообщества (CBRR): Повышение устойчивости с нуля",
       description: currentLanguage === 'en'
-        ? "Comprehensive training program covering current developments in economic youth welfare, legal frameworks, and financial aspects"
-        : "Umfassendes Schulungsprogramm zu aktuellen Entwicklungen in der wirtschaftlichen Jugendhilfe, rechtlichen Rahmenbedingungen und finanziellen Aspekten",
+        ? "Comprehensive training program covering community-based approaches to risk reduction, resilience building, and disaster preparedness"
+        : "Комплексная программа обучения, охватывающая подходы на основе сообщества к снижению рисков, повышению устойчивости и готовности к чрезвычайным ситуациям",
       students: 120,
       duration: "6 weeks",
       level: "Beginner",
@@ -38,7 +38,7 @@ const Courses = () => {
       image: "https://campustechnology.com/-/media/edu/campustechnology/2019-images/20191209online.jpg",
       archived: false,
       deleted: false,
-      catalog: "Youth Welfare"
+      catalog: "Risk Reduction"
     }
   ];
 
@@ -66,10 +66,10 @@ const Courses = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader 
-        title={currentLanguage === 'en' ? "My Courses" : "Meine Kurse"}
+        title={currentLanguage === 'en' ? "My Courses" : "Мои курсы"}
         description={currentLanguage === 'en' 
           ? "Access and manage your enrolled courses" 
-          : "Greifen Sie auf Ihre eingeschriebenen Kurse zu und verwalten Sie diese"}
+          : "Получите доступ к своим курсам и управляйте ими"}
       />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -80,7 +80,7 @@ const Courses = () => {
             className="flex items-center gap-2"
           >
             <Compass className="h-4 w-4" />
-            {currentLanguage === 'en' ? "Discover Courses" : "Kurse entdecken"}
+            {currentLanguage === 'en' ? "Discover Courses" : "Найти курсы"}
           </Button>
         </div>
       </div>
@@ -90,7 +90,7 @@ const Courses = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input 
             className="pl-9" 
-            placeholder={currentLanguage === 'en' ? "Search courses..." : "Kurse suchen..."}
+            placeholder={currentLanguage === 'en' ? "Search courses..." : "Поиск курсов..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -99,13 +99,13 @@ const Courses = () => {
         <div className="flex items-center gap-2">
           <Select>
             <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder={currentLanguage === 'en' ? "All levels" : "Alle Stufen"} />
+              <SelectValue placeholder={currentLanguage === 'en' ? "All levels" : "Все уровни"} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">{currentLanguage === 'en' ? "All levels" : "Alle Stufen"}</SelectItem>
-              <SelectItem value="beginner">{currentLanguage === 'en' ? "Beginner" : "Anfänger"}</SelectItem>
-              <SelectItem value="intermediate">{currentLanguage === 'en' ? "Intermediate" : "Fortgeschritten"}</SelectItem>
-              <SelectItem value="advanced">{currentLanguage === 'en' ? "Advanced" : "Experte"}</SelectItem>
+              <SelectItem value="all">{currentLanguage === 'en' ? "All levels" : "Все уровни"}</SelectItem>
+              <SelectItem value="beginner">{currentLanguage === 'en' ? "Beginner" : "Начинающий"}</SelectItem>
+              <SelectItem value="intermediate">{currentLanguage === 'en' ? "Intermediate" : "Средний"}</SelectItem>
+              <SelectItem value="advanced">{currentLanguage === 'en' ? "Advanced" : "Продвинутый"}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -149,7 +149,7 @@ const Courses = () => {
                   className="w-full bg-blue-500 hover:bg-blue-600 transition-colors"
                   onClick={() => handleCourseClick(course.id)}
                 >
-                  {currentLanguage === 'en' ? "Continue Learning" : "Weiter lernen"}
+                  {currentLanguage === 'en' ? "Continue Learning" : "Продолжить обучение"}
                 </Button>
               </div>
             </CardContent>

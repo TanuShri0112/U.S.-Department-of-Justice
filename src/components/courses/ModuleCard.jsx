@@ -41,7 +41,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
         const moduleId = module.id;
         
         // Use module title to determine course (most reliable)
-        if (module.title && module.title.includes('Course 2')) {
+        if (module.title && (module.title.includes('Course 2') || module.title.includes('CBRR') || module.title.includes('Community-Based'))) {
           detectedCourseId = '1';
         } else if (module.title && module.title.includes('Law Enforcement')) {
           detectedCourseId = '1';
@@ -55,7 +55,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
         }
       } else {
         // Final fallback - use module title to determine course
-        if (module.title && module.title.includes('Course 2')) {
+        if (module.title && (module.title.includes('Course 2') || module.title.includes('CBRR') || module.title.includes('Community-Based'))) {
           detectedCourseId = '1';
         } else if (module.title && module.title.includes('Law Enforcement')) {
           detectedCourseId = '1';
@@ -68,8 +68,24 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
     console.log('Module ID:', module.id);
     console.log('Module title:', module.title);
     
-    // Navigate to the module units page instead of opening external links
-    navigate(`/courses/${detectedCourseId}/modules/${module.id}/units`);
+    // Check if there's an external lesson URL for this module
+    const moduleLinks = {
+      // Course 1 modules - Articulate Rise content
+      '1-1': 'https://rise.articulate.com/share/yRQH1VOQ-9B6pJHCKcoOgJkzh6n0vCao',
+      '1-2': 'https://rise.articulate.com/share/yRQH1VOQ-9B6pJHCKcoOgJkzh6n0vCao',
+      '1-3': 'https://rise.articulate.com/share/yRQH1VOQ-9B6pJHCKcoOgJkzh6n0vCao',
+    };
+    
+    const linkKey = `${detectedCourseId}-${module.id}`;
+    const externalLink = moduleLinks[linkKey];
+    
+    if (externalLink) {
+      // Open link directly in new tab
+      window.open(externalLink, '_blank', 'noopener,noreferrer');
+    } else {
+      // Navigate to the module units page if no external link
+      navigate(`/courses/${detectedCourseId}/modules/${module.id}/units`);
+    }
   };
 
   const handleAssessmentsClick = () => {
