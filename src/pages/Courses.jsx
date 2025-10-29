@@ -25,7 +25,7 @@ const Courses = () => {
   const mockCourses = [
     {
       id: 1,
-      title: "Disaster Risk Finance Basics",
+      title: "Course 1",
       description: "Objectives: Understand DRF instruments and triggers. Interaction: quick quiz & reflection.",
       students: 320,
       duration: "30 min",
@@ -38,7 +38,7 @@ const Courses = () => {
     },
     {
       id: 2,
-      title: "Monitoring and Evaluation in Development Programs",
+      title: "Course 2",
       description: "Objectives: Define indicators, outcomes, and evidence logs. Interaction: drag & drop indicators.",
       students: 280,
       duration: "35 min",
@@ -51,7 +51,7 @@ const Courses = () => {
     },
     {
       id: 3,
-      title: "Learning from Lessons: Case Studies in Risk Response",
+      title: "Course 3",
       description: "Objectives: Extract lessons learned and apply feedback loops. Interaction: scenario reflection.",
       students: 190,
       duration: "25 min",
