@@ -167,25 +167,25 @@ const AdminPortal = ({ onToggle }) => {
            <div className="space-y-6">
              {/* Main Stats Cards */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-               <div className="flex items-center gap-3 mb-6">
-                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                   <BarChart2 className="w-6 h-6 text-blue-600" />
-                 </div>
-                 <div>
-                   <h1 className="text-2xl font-bold text-gray-900">Occupational Safety Overview</h1>
-                   <p className="text-gray-600">Dashboard analytics and key metrics for BLB NRW</p>
-                 </div>
-               </div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <BarChart2 className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">DAI Global MEL Overview</h1>
+                  <p className="text-gray-600">Dashboard analytics and key metrics for DAI Global</p>
+                </div>
+              </div>
                
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                 <div className="bg-blue-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
+                <div className="bg-green-50 rounded-lg p-4 group hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                    <div className="flex items-center justify-between">
                      <div>
-                       <p className="text-sm font-medium text-blue-600">Total Users Enrolled</p>
-                      <p className="text-2xl font-bold text-blue-900">{metrics.totalUsers.toLocaleString()}</p>
-                      <p className="text-xs text-blue-600 mt-1">BLB NRW employees</p>
+                      <p className="text-sm font-medium text-green-700">Total Users Enrolled</p>
+                     <p className="text-2xl font-bold text-green-900">{metrics.totalUsers.toLocaleString()}</p>
+                     <p className="text-xs text-green-700 mt-1">DAI Global learners</p>
                     </div>
-                    <Users className="w-8 h-8 text-blue-500 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                    <Users className="w-8 h-8 text-green-600 transform transition-transform group-hover:scale-110 group-hover:rotate-12" />
                   </div>
                 </div>
                 
@@ -354,12 +354,12 @@ const AdminPortal = ({ onToggle }) => {
              {/* Header */}
              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                <div className="flex items-center gap-3 mb-6">
-                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                   <Upload className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <Upload className="w-6 h-6 text-green-600" />
                  </div>
                  <div>
-                   <h1 className="text-2xl font-bold text-gray-900">Safety Training Management</h1>
-                   <p className="text-gray-600">Upload and manage occupational safety training courses</p>
+                  <h1 className="text-2xl font-bold text-gray-900">Training Management</h1>
+                  <p className="text-gray-600">Upload and manage MEL learning modules</p>
                  </div>
                </div>
              </div>
@@ -370,7 +370,7 @@ const AdminPortal = ({ onToggle }) => {
               <div 
                 className={cn(
                   "border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200",
-                  isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-blue-400",
+                  isDragging ? "border-green-500 bg-green-50" : "border-gray-300 hover:border-green-400",
                   "relative cursor-pointer"
                 )}
                 onDragEnter={(e) => {
@@ -403,7 +403,7 @@ const AdminPortal = ({ onToggle }) => {
                 />
                 <Upload className={cn(
                   "w-12 h-12 mx-auto mb-4 transition-transform duration-200",
-                  isDragging ? "text-blue-500 scale-110" : "text-gray-400",
+                  isDragging ? "text-green-600 scale-110" : "text-gray-400",
                   "transform hover:scale-110"
                 )} />
                 <h4 className="text-lg font-medium text-gray-900 mb-2">
@@ -413,7 +413,7 @@ const AdminPortal = ({ onToggle }) => {
                 <button 
                   className={cn(
                     "px-6 py-2 rounded-lg font-medium transition-all duration-200",
-                    "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg",
+                    "bg-green-600 text-white hover:bg-green-700 hover:shadow-lg",
                     "transform hover:-translate-y-0.5 active:translate-y-0"
                   )}
                   onClick={(e) => {
@@ -426,7 +426,7 @@ const AdminPortal = ({ onToggle }) => {
                 {uploadProgress > 0 && (
                   <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded-b-lg overflow-hidden">
                     <div 
-                      className="h-full bg-blue-600 transition-all duration-300"
+                      className="h-full bg-green-600 transition-all duration-300"
                       style={{ width: `${uploadProgress}%` }}
                     />
                   </div>
@@ -536,7 +536,7 @@ const AdminPortal = ({ onToggle }) => {
                     className={cn(
                       "px-3 py-1 text-sm rounded-lg transition-all duration-200",
                       courseFilter === 'all' 
-                        ? "bg-blue-100 text-blue-700 shadow-sm" 
+                        ? "bg-green-100 text-green-700 shadow-sm" 
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     )}
                   >
@@ -672,7 +672,7 @@ const AdminPortal = ({ onToggle }) => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">Platform Name</label>
                       <input 
                         type="text" 
-                        defaultValue="Bau- und Liegenschaftsbetrieb NRW Zentral" 
+                        defaultValue="DAI Global" 
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -680,7 +680,7 @@ const AdminPortal = ({ onToggle }) => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">Support Email</label>
                       <input 
                         type="email" 
-                        defaultValue="support@blbnrw.de" 
+                        defaultValue="support@daiglobal.com" 
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -895,8 +895,8 @@ const AdminPortal = ({ onToggle }) => {
       <div className="bg-white border-b border-gray-200">
         <div className="px-6 py-4">
               <div className="flex items-center gap-3">
-                <Shield className="w-6 h-6 text-blue-600" />
-                <h1 className="text-xl font-semibold text-gray-900">Admin Portal</h1>
+                <Shield className="w-6 h-6 text-green-600" />
+                <h1 className="text-xl font-semibold text-gray-900">DAI Global Admin Portal</h1>
           </div>
         </div>
       </div>
@@ -916,13 +916,13 @@ const AdminPortal = ({ onToggle }) => {
                       "w-full flex items-center gap-3 px-3 py-2.5 text-left rounded-lg transition-all duration-200",
                       "hover:bg-gray-50 hover:scale-105",
                       activeSection === section.id
-                        ? "bg-blue-50 text-blue-700 border border-blue-200"
+                        ? "bg-green-50 text-green-700 border border-green-200"
                         : "text-gray-700 hover:text-gray-900"
                     )}
                   >
                     <Icon className={cn(
                       "w-5 h-5",
-                      activeSection === section.id ? "text-blue-600" : "text-gray-500"
+                      activeSection === section.id ? "text-green-600" : "text-gray-500"
                     )} />
                     <span className="font-medium">{section.label}</span>
                   </button>
