@@ -25,16 +25,42 @@ const Courses = () => {
   const mockCourses = [
     {
       id: 1,
-      title: "Ethical Decision-Making for Travel Professionals.",
-      description: "Comprehensive training program covering foundations, stakeholder analysis, and curriculum design for law enforcement professionals",
-      students: 120,
-      duration: "6 weeks",
+      title: "Disaster Risk Finance Basics",
+      description: "Objectives: Understand DRF instruments and triggers. Interaction: quick quiz & reflection.",
+      students: 320,
+      duration: "30 min",
       level: "Beginner",
       status: "Active",
-      image: "/assets/clogo.png",
+      image: "/assets/course-1.png",
       archived: false,
       deleted: false,
-      catalog: "Law Enforcement"
+      catalog: "MEL"
+    },
+    {
+      id: 2,
+      title: "Monitoring and Evaluation in Development Programs",
+      description: "Objectives: Define indicators, outcomes, and evidence logs. Interaction: drag & drop indicators.",
+      students: 280,
+      duration: "35 min",
+      level: "Intermediate",
+      status: "Active",
+      image: "/assets/course-2.png",
+      archived: false,
+      deleted: false,
+      catalog: "MEL"
+    },
+    {
+      id: 3,
+      title: "Learning from Lessons: Case Studies in Risk Response",
+      description: "Objectives: Extract lessons learned and apply feedback loops. Interaction: scenario reflection.",
+      students: 190,
+      duration: "25 min",
+      level: "Beginner",
+      status: "Active",
+      image: "/assets/course-3.png",
+      archived: false,
+      deleted: false,
+      catalog: "MEL"
     }
   ];
 

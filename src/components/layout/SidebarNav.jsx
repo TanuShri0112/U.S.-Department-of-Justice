@@ -65,7 +65,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
       {/* Header */}
       <div 
         className={cn(
-          "flex h-20 items-center border-b border-gray-100 bg-blue-600",
+          "flex h-20 items-center border-b border-gray-100 bg-green-600",
           isMainCollapsed ? "px-3 justify-center" : "px-6 justify-between"
         )}
       >
@@ -74,20 +74,20 @@ export const SidebarNav = ({ onCloseMobile }) => {
           onClick={handleLogoClick}
         >
           {isMainCollapsed ? (
-            <img 
-              src="/assets/bau.png" 
-              alt="BLB NRW Logo" 
+              <img 
+              src="/assets/Updated-dai-logo.png" 
+              alt="DAI Global Logo" 
               className="w-12 h-12 object-contain"
             />
           ) : (
             <div className="flex items-center gap-4">
               <img 
-                src="/assets/bau.png" 
-                alt="BLB NRW Logo" 
+                src="/assets/Updated-dai-logo.png" 
+                alt="DAI Global Logo" 
                 className="w-12 h-12 object-contain"
               />
               <div className="text-white">
-                <h1 className="text-sm font-semibold leading-tight">Bau- und Liegenschaftsbetrieb NRW Zentral</h1>
+                <h1 className="text-sm font-semibold leading-tight">DAI Global</h1>
               </div>
             </div>
           )}

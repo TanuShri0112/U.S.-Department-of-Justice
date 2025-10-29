@@ -43,14 +43,14 @@ export default function Index() {
             className="text-5xl font-bold mb-6"
             {...fadeIn}
           >
-            Bau- und Liegenschaftsbetrieb NRW Zentral Training
+            DAI Global LMS
           </motion.h1>
           <motion.p
             className="text-xl mb-8 max-w-2xl mx-auto"
             {...fadeIn}
             transition={{ delay: 0.2 }}
           >
-            Comprehensive e-learning modules designed for industry professionals
+            This demo dashboard illustrates how DAI Global LMS supports Monitoring, Evaluation, and Learning (MEL) for development and disaster risk finance programs.
           </motion.p>
           <motion.div
             {...fadeIn}
@@ -63,6 +63,34 @@ export default function Index() {
               Start Learning
             </Button>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Quick Navigation */}
+      <section className="py-12 bg-white border-b">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <a href="/" className="block p-5 rounded-lg border hover:shadow-sm transition">
+              <div className="font-semibold mb-1">Home</div>
+              <p className="text-sm text-gray-600">Overview and purpose</p>
+            </a>
+            <a href="/dashboard" className="block p-5 rounded-lg border hover:shadow-sm transition">
+              <div className="font-semibold mb-1">MEL Insights Dashboard</div>
+              <p className="text-sm text-gray-600">Analytics and impact</p>
+            </a>
+            <a href="/courses" className="block p-5 rounded-lg border hover:shadow-sm transition">
+              <div className="font-semibold mb-1">Learning Modules</div>
+              <p className="text-sm text-gray-600">Demo modules and objectives</p>
+            </a>
+            <a href="/resources" className="block p-5 rounded-lg border hover:shadow-sm transition">
+              <div className="font-semibold mb-1">Knowledge Repository</div>
+              <p className="text-sm text-gray-600">Library and document center</p>
+            </a>
+            <a href="/reports" className="block p-5 rounded-lg border hover:shadow-sm transition">
+              <div className="font-semibold mb-1">Reports and Analytics</div>
+              <p className="text-sm text-gray-600">Exports and filters</p>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -157,7 +185,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section + Contact */}
       <section className="py-20 bg-primary-50">
         <div className="container mx-auto px-4 text-center">
           <motion.div
@@ -167,17 +195,22 @@ export default function Index() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-bold mb-6">
-              Ready to Enhance Your Professional Skills?
+              Request a live walkthrough or access credentials
             </h2>
             <p className="text-lg text-foreground-subtle mb-8 max-w-2xl mx-auto">
-              Join our comprehensive training program designed specifically for travel and tourism industry professionals.
+              Our team will provide a guided demo of the MEL features and analytics capabilities.
             </p>
+            <a href="/help?section=contact">
             <Button
               size="lg"
               className="bg-primary hover:bg-primary-600"
             >
-              Browse Courses
+              Contact / Request Demo
             </Button>
+            </a>
+            <p className="text-xs text-gray-500 mt-4 max-w-2xl mx-auto">
+              By requesting access you agree to our data handling practices. DAI Global complies with GDPR. We only process demo contact details to arrange access and support and do not share them with third parties.
+            </p>
           </motion.div>
         </div>
       </section>

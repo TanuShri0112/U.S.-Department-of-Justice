@@ -150,6 +150,7 @@ const Reports = () => {
   const [loading, setLoading] = useState(false);
   const [timeFilter, setTimeFilter] = useState('2024');
   const [regionFilter, setRegionFilter] = useState('all');
+  const [programFilter, setProgramFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
   // Calculate KPIs from mock data
@@ -179,6 +180,9 @@ const Reports = () => {
     if (regionFilter !== 'all') {
       filtered = filtered.filter(item => item.region.toLowerCase() === regionFilter.toLowerCase());
     }
+    if (programFilter !== 'all') {
+      filtered = filtered.filter(item => (item.program || 'general').toLowerCase() === programFilter.toLowerCase());
+    }
     
     if (searchTerm) {
       filtered = filtered.filter(item => 
@@ -187,7 +191,7 @@ const Reports = () => {
     }
     
     return filtered;
-  }, [timeFilter, regionFilter, searchTerm]);
+  }, [timeFilter, regionFilter, programFilter, searchTerm]);
 
   // Export to Excel
   const exportToExcel = () => {
@@ -329,8 +333,8 @@ const Reports = () => {
     <div className="p-6 space-y-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">📊 Data & Reporting</h1>
-        <p className="text-gray-600">Track enrollments, completions, outreach, and impact metrics.</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">📊 Reports and Analytics</h1>
+        <p className="text-gray-600">Export to PDF/Excel and filter by country, region, and program type.</p>
       </div>
 
       {/* KPI Cards */}
@@ -494,6 +498,18 @@ const Reports = () => {
                   <SelectItem value="east">East</SelectItem>
                   <SelectItem value="west">West</SelectItem>
                   <SelectItem value="central">Central</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <Select value={programFilter} onValueChange={setProgramFilter}>
+                <SelectTrigger className="w-48">
+                  <SelectValue placeholder="Program Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Programs</SelectItem>
+                  <SelectItem value="drf">Disaster Risk Finance</SelectItem>
+                  <SelectItem value="mel">MEL Capacity Building</SelectItem>
+                  <SelectItem value="general">General</SelectItem>
                 </SelectContent>
               </Select>
               

@@ -71,7 +71,7 @@ export const Header = ({ onMenuClick }) => {
   const handleAthenaLMSClick = () => {
     navigate('/');
     toast({
-      title: "Welcome to Athena LMS",
+      title: "Welcome to DAI Global",
       description: "You're now on the homepage",
       duration: 2000,
     });
@@ -110,7 +110,7 @@ export const Header = ({ onMenuClick }) => {
             onClick={handleAthenaLMSClick}
           >
             <h1 className="text-xl font-semibold text-gray-900">
-              Athena LMS
+              DAI Global
             </h1>
           </div>
         </div>
@@ -167,7 +167,7 @@ export const Header = ({ onMenuClick }) => {
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">Instructor</p>
                   <p className="text-xs leading-none text-muted-foreground">
-                    instructor@athena.edu
+                    instructor@daiglobal.com
                   </p>
                 </div>
               </DropdownMenuLabel>

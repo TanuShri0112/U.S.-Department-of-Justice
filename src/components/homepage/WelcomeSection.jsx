@@ -31,19 +31,19 @@ export function WelcomeSection() {
                 {/* Course Tag */}
                 <div className="inline-block bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 mb-4">
                   <span className="text-white text-xs font-semibold uppercase tracking-wide">
-                    Occupational Safety Training
+                    MEL Insights
                   </span>
                 </div>
                 
                 {/* Main Headline */}
                 <h1 className="text-white text-2xl md:text-3xl font-bold leading-tight mb-3">
                   <span className="block">Welcome to</span>
-                  <span className="block">Bau- und Liegenschaftsbetrieb NRW Zentral</span>
+                  <span className="block">DAI Global</span>
                 </h1>
                 
                 {/* Subtitle */}
                 <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-md">
-                  Access your legally compliant occupational safety training. Learn essential workplace safety practices, guidelines, and protocols in accordance with German occupational health and safety laws.
+                  This demo shows how the LMS supports Monitoring, Evaluation, and Learning (MEL) with indicators, outcomes, and evidence logs.
                 </p>
               </div>
               

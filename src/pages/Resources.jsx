@@ -59,85 +59,80 @@ import { EditResourceDialog } from '@/components/resources/EditResourceDialog';
 const initialResourcesData = [
   {
     id: '1',
-    title: '3D Animator',
+    title: 'Lessons Learned Report: DRF Pilot (2024)',
     image: '/placeholder.svg',
-    date: '10/11/2022',
-    author: 'Sys Admin',
+    date: '06/15/2024',
+    author: 'DAI Global',
     type: 'document',
     content: {
-      skills: [
-        {
-          category: 'Essential Skills and Competences',
-          items: [
-            '3DANI-ESC 1.1. Animate 3D organic forms',
-            '3DANI-ESC 1.2. Render 3D images',
-            '3DANI-ESC 1.3. Apply 3D imaging techniques',
-            '3DANI-ESC 1.4. Operate 3D computer graphics software',
-            '3DANI-ESC 1.5. Create 3D characters',
-            '3DANI-ESC 1.6. Discuss artwork',
-            '3DANI-ESC 1.7. Rig 3D characters',
-            '3DANI-ESC 1.8. Create 3D environments'
-          ]
-        },
-        {
-          category: 'Essential Knowledge',
-          items: [
-            '3DANI-EK 2.1. Augmented reality',
-            '3DANI-EK 2.2. 3D lighting',
-            '3DANI-EK 2.3. 3D texturing',
-            '3DANI-EK 2.4. Particle animation',
-            '3DANI-EK 2.5. Principles of animation'
-          ]
-        }
-      ],
       metadata: {
-        creator: 'Sys Admin',
-        created: 'Oct 11, 2022',
-        tags: ['esco', 'cgi animator', '3d animators', 'computer-generated imagery animator', '3d designer', 'cgi designer', '3d animator']
+        creator: 'MEL Team',
+        created: 'Jun 15, 2024',
+        tags: ['lessons learned', 'DRF', 'MEL', 'evaluation']
       },
       library: {
-        type: 'Curriculum',
-        scope: 'Built-in',
+        type: 'Lessons Learned',
+        scope: 'Organization',
         favorite: true
       }
     }
   },
   {
     id: '2',
-    title: '3D Modeller',
+    title: 'MEL Framework Templates (Logframe, Indicator Register)',
     image: '/placeholder.svg',
-    date: '10/11/2022',
-    author: 'Sys Admin',
-    type: 'document',
+    date: '09/01/2025',
+    author: 'DAI Global',
+    type: 'template',
     content: {
       metadata: {
-        creator: 'Sys Admin',
-        created: 'Oct 11, 2022',
-        tags: ['3d modeller', 'esco', 'modeling']
+        creator: 'MEL Team',
+        created: 'Sep 1, 2025',
+        tags: ['templates', 'logframe', 'indicators']
       },
       library: {
-        type: 'Curriculum',
-        scope: 'Built-in',
+        type: 'Templates',
+        scope: 'Organization',
         favorite: false
       }
     }
   },
   {
     id: '3',
-    title: '3D Printing Technician',
+    title: 'Policy Brief: Strengthening Evidence in DRF Programs',
     image: '/placeholder.svg',
-    date: '11/02/2022',
-    author: 'Sys Admin',
-    type: 'document',
+    date: '07/20/2025',
+    author: 'DAI Global',
+    type: 'brief',
     content: {
       metadata: {
-        creator: 'Sys Admin',
-        created: 'Nov 2, 2022',
-        tags: ['3d printing', 'technician', 'service and sales', 'printing machine']
+        creator: 'Policy Unit',
+        created: 'Jul 20, 2025',
+        tags: ['policy', 'learning brief', 'evidence']
       },
       library: {
-        type: 'Curriculum',
-        scope: 'Built-in',
+        type: 'Briefs',
+        scope: 'Organization',
+        favorite: false
+      }
+    }
+  },
+  {
+    id: '4',
+    title: 'Recorded Webinar: Reflection Workshop (Q3 2025)',
+    image: '/placeholder.svg',
+    date: '08/12/2025',
+    author: 'DAI Global',
+    type: 'video',
+    content: {
+      metadata: {
+        creator: 'Knowledge Team',
+        created: 'Aug 12, 2025',
+        tags: ['webinar', 'reflection', 'recording']
+      },
+      library: {
+        type: 'Webinars',
+        scope: 'Organization',
         favorite: false
       }
     }
@@ -229,8 +224,8 @@ const Resources = () => {
   return (
     <div className="p-6 animate-fade-in max-w-7xl mx-auto">
       <PageHeader 
-        title="Resources" 
-        description="Manage and access all your learning resources" 
+        title="Knowledge Repository" 
+        description="Digital library for lessons learned, MEL templates, briefs, and recordings"
       />
 
       {/* Search Bar */}
@@ -257,7 +252,7 @@ const Resources = () => {
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="catalog" className="flex items-center gap-2">
                 <List className="h-4 w-4" />
-                <span className="hidden sm:inline">Catalog</span>
+                <span className="hidden sm:inline">Library</span>
                 <span className="ml-1 bg-gray-200 text-gray-700 text-xs px-2 py-0.5 rounded-full">2694</span>
               </TabsTrigger>
               <TabsTrigger value="uploaded" className="flex items-center gap-2">
