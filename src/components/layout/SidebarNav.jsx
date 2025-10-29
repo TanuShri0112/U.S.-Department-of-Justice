@@ -60,7 +60,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
             <div className="w-full flex justify-center">
               <img 
                 src="/assets/logo.png" 
-                alt="New College Swindon Logo" 
+                alt="National Guard of Kazakhstan Logo" 
                 className="h-10 w-auto"
               />
             </div>
@@ -69,12 +69,12 @@ export const SidebarNav = ({ onCloseMobile }) => {
               <div className="flex items-center gap-3">
                 <img 
                   src="/assets/logo.png" 
-                  alt="New College Swindon Logo" 
+                  alt="National Guard of Kazakhstan Logo" 
                   className="h-12 w-auto"
                 />
               </div>
-              <h1 className="text-sm font-semibold text-[hsl(var(--sidebar-foreground))] leading-tight">
-                New College Swindon
+              <h1 className="text-xs font-semibold text-[hsl(var(--sidebar-foreground))] leading-tight">
+                Regional Command "Shygys" – National Guard of Kazakhstan
               </h1>
             </div>
           )}

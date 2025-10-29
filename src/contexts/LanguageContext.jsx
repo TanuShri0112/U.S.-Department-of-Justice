@@ -4,16 +4,16 @@ const LanguageContext = createContext();
 
 const metadata = {
   en: {
-    title: "New College Swindon - LMS",
-    description: "Learning Management System of New College Swindon",
-    ogTitle: "New College Swindon LMS",
-    ogDescription: "Official Learning Platform of New College Swindon"
+    title: "Regional Command \"Shygys\" – National Guard of Kazakhstan - LMS",
+    description: "Learning Management System of Regional Command \"Shygys\" – National Guard of Kazakhstan",
+    ogTitle: "Regional Command \"Shygys\" LMS",
+    ogDescription: "Official Learning Platform of Regional Command \"Shygys\" – National Guard of Kazakhstan"
   },
-  de: {
-    title: "New College Swindon - LMS",
-    description: "Lernmanagementsystem von New College Swindon",
-    ogTitle: "New College Swindon LMS",
-    ogDescription: "Offizielle Lernplattform von New College Swindon"
+  ru: {
+    title: "Региональное командование «Шығыс» – Национальная гвардия Казахстана - СДО",
+    description: "Система дистанционного обучения Регионального командования «Шығыс» – Национальной гвардии Казахстана",
+    ogTitle: "Региональное командование «Шығыс» СДО",
+    ogDescription: "Официальная обучающая платформа Регионального командования «Шығыс» – Национальной гвардии Казахстана"
   }
 };
 

@@ -15,18 +15,18 @@ export function WelcomeSection() {
 
   const content = {
     en: {
-      tag: "Occupational Safety Training",
+      tag: "X-Ray Security Training",
       welcome: "Welcome to",
-      ministry: "New College Swindon",
-      subtitle: "Access your legally compliant occupational safety training. Learn essential workplace safety practices, guidelines, and protocols in accordance with German occupational health and safety laws.",
+      ministry: "Regional Command \"Shygys\" – National Guard of Kazakhstan",
+      subtitle: "Access your comprehensive X-ray security and safety training. Learn essential scanning procedures, threat detection, and safety protocols for baggage and cargo inspection systems.",
       button: "Start Training"
     },
-    de: {
-      tag: "Arbeitssicherheitsschulung",
-      welcome: "Willkommen beim",
-      ministry: "New College Swindon",
-      subtitle: "Greifen Sie auf Ihre gesetzlich vorgeschriebene Arbeitssicherheitsschulung zu. Lernen Sie wichtige Praktiken, Richtlinien und Protokolle zur Arbeitssicherheit gemäß den deutschen Arbeitsschutzgesetzen.",
-      button: "Schulung beginnen"
+    ru: {
+      tag: "Обучение рентгеновской безопасности",
+      welcome: "Добро пожаловать в",
+      ministry: "Региональное командование «Шығыс» – Национальная гвардия Казахстана",
+      subtitle: "Получите доступ к комплексному обучению рентгеновской безопасности. Изучите основные процедуры сканирования, обнаружение угроз и протоколы безопасности для систем досмотра багажа и грузов.",
+      button: "Начать обучение"
     }
   };
 

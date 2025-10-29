@@ -74,6 +74,7 @@ import CourseEdit from "./pages/CourseEdit";
 import EditModulePage from './pages/EditModulePage';
 import Chatbot from './pages/Chatbot.jsx';
 import Webinars from './pages/Webinars.jsx';
+import BScanDemo from './pages/BScanDemo.jsx';
 
 const queryClient = new QueryClient();
 
@@ -92,6 +93,7 @@ const App = () => (
                 <Route path="/" element={<AdminLayout />}>
                   {/* Main pages */}
                   <Route index element={<Dashboard />} />
+                  <Route path="bscan-demo" element={<BScanDemo />} />
                   <Route path="courses" element={<Courses />} />
                   <Route path="courses/create" element={<CourseCreation />} />
                   <Route path="/courses/edit/:courseId" element={<CourseEdit />} />

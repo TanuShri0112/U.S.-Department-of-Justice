@@ -9,6 +9,7 @@ import TrainingSessions from '@/components/ui/TrainingSessions';
 import OngoingCourses from '@/components/ui/OngoingCourses';
 import TaskListSection from './TaskListSection';
 import {CalendarSection} from './CalendarSection';
+import {BScanDashboardWidget} from './BScanDashboardWidget';
 
 export function StudentDashboard() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export function StudentDashboard() {
         {/* Right Column - Optimized width and spacing */}
         <div className="space-y-5 lg:col-span-4">
           <div className="lg:sticky lg:top-6 space-y-5">
+            <BScanDashboardWidget />
             <CalendarSection />
             <TaskListSection />
           </div>

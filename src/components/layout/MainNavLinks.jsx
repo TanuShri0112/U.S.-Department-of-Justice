@@ -13,59 +13,65 @@ import {
   Calendar,
   Bell,
   Folder,
-  Video
+  Video,
+  Scan
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const navItems = [
   {
     icon: Home,
-    label: { en: 'Dashboard', de: 'Dashboard' },
+    label: { en: 'Dashboard', ru: 'Панель управления' },
     href: '/'
   },
   {
+    icon: Scan,
+    label: { en: 'B-Scan Demo', ru: 'Демо B-Scan' },
+    href: '/bscan-demo'
+  },
+  {
     icon: BookOpen,
-    label: { en: 'Courses', de: 'Kurse' },
+    label: { en: 'Courses', ru: 'Курсы' },
     href: '/courses'
   },
   {
     icon: Users,
-    label: { en: 'Groups', de: 'Gruppen' },
+    label: { en: 'Groups', ru: 'Группы' },
     href: '/groups'
   },
   {
     icon: Calendar,
-    label: { en: 'Calendar', de: 'Kalender' },
+    label: { en: 'Calendar', ru: 'Календарь' },
     href: '/calendar'
   },
   {
     icon: Bell,
-    label: { en: 'Announcements', de: 'Ankündigungen' },
+    label: { en: 'Announcements', ru: 'Объявления' },
     href: '/announcements'
   },
   {
     icon: BarChart,
-    label: { en: 'Reports', de: 'Berichte' },
+    label: { en: 'Reports', ru: 'Отчеты' },
     href: '/reports'
   },
   {
     icon: FileText,
-    label: { en: 'Resources', de: 'Ressourcen' },
+    label: { en: 'Resources', ru: 'Ресурсы' },
     href: '/resources'
   },
   {
     icon: Video,
-    label: { en: 'Webinars', de: 'Webinare' },
+    label: { en: 'Webinars', ru: 'Вебинары' },
     href: '/webinars'
   },
   {
     icon: MessageSquare,
-    label: { en: 'Messages', de: 'Nachrichten' },
+    label: { en: 'Messages', ru: 'Сообщения' },
     href: '/messages'
   },
   {
     icon: HelpCircle,
-    label: { en: 'Help', de: 'Hilfe' },
+    label: { en: 'Help', ru: 'Помощь' },
     href: '/help'
   }
 ];
