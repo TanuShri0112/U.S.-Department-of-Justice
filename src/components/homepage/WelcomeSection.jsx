@@ -15,25 +15,25 @@ export function WelcomeSection() {
 
   const content = {
     no: {
-      tag: "Informasjonssikkerhet",
+      tag: "Profesjonell opplæring",
       welcome: "Velkommen til",
-      ministry: "Norsk filminstitutt",
-      subtitle: "Tilgang til omfattende cybersikkerhet og informasjonssikkerhet opplæring. Beskytt NFI mot phishing, datainnbrudd og digitale trusler med WCAG 2.1 samsvar.",
-      button: "Start opplæring"
+      ministry: "Athena LMS",
+      subtitle: "Din komplette læringsplattform for profesjonell opplæring og utvikling. Tilgang til kurs, sertifiseringer og læressurser med WCAG 2.1 samsvar.",
+      button: "Start læring"
     },
     en: {
-      tag: "Information Security",
+      tag: "Professional Training",
       welcome: "Welcome to",
-      ministry: "Norwegian Film Institute",
-      subtitle: "Access comprehensive cybersecurity and information security training. Protect NFI from phishing, data breaches, and digital threats with WCAG 2.1 compliance.",
-      button: "Start Training"
+      ministry: "Athena LMS",
+      subtitle: "Your complete learning platform for professional training and development. Access courses, certifications, and learning resources with WCAG 2.1 compliance.",
+      button: "Start Learning"
     },
     fr: {
-      tag: "Sécurité de l'information",
+      tag: "Formation professionnelle",
       welcome: "Bienvenue à",
-      ministry: "Institut norvégien du film",
-      subtitle: "Accédez à une formation complète en cybersécurité et sécurité de l'information. Protégez NFI contre l'hameçonnage, les violations de données et les menaces numériques avec la conformité WCAG 2.1.",
-      button: "Commencer la formation"
+      ministry: "Athena LMS",
+      subtitle: "Votre plateforme d'apprentissage complète pour la formation et le développement professionnels. Accédez aux cours, certifications et ressources d'apprentissage avec conformité WCAG 2.1.",
+      button: "Commencer l'apprentissage"
     }
   };
 

@@ -26,10 +26,10 @@ const Courses = () => {
     {
       id: 1,
       title: currentLanguage === 'no'
-        ? "Informasjonssikkerhet og Cybersikkerhet for NFI"
+        ? "Informasjonssikkerhet og Cybersikkerhet"
         : currentLanguage === 'en' 
-        ? "Information Security and Cybersecurity for NFI"
-        : "Sécurité de l'information et cybersécurité pour NFI",
+        ? "Information Security and Cybersecurity"
+        : "Sécurité de l'information et cybersécurité",
       description: currentLanguage === 'no'
         ? "Omfattende opplæringsprogram som dekker phishing-gjenkjenning, GDPR, sikre digitale arbeidspraksis og hendelsesrespons"
         : currentLanguage === 'en'

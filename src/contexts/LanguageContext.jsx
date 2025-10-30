@@ -4,22 +4,22 @@ const LanguageContext = createContext();
 
 const metadata = {
   en: {
-    title: "Norsk filminstitutt - Learning Management System",
-    description: "NFI Information Security Training Platform with WCAG 2.1 Compliance",
-    ogTitle: "NFI Training Platform",
-    ogDescription: "Norwegian Film Institute Security Awareness and Compliance Training"
+    title: "Athena LMS - Learning Management System",
+    description: "Athena LMS - Advanced Learning Platform with WCAG 2.1 Compliance and SCORM Integration",
+    ogTitle: "Athena LMS",
+    ogDescription: "Professional Learning Management System for Training and Development"
   },
   no: {
-    title: "Norsk filminstitutt - Læringsplattform",
-    description: "NFI Informasjonssikkerhet Opplæringsplattform med WCAG 2.1 Samsvar",
-    ogTitle: "NFI Opplæringsplattform",
-    ogDescription: "Norsk filminstitutts sikkerhetsbevissthet og overholdelse opplæring"
+    title: "Athena LMS - Læringsplattform",
+    description: "Athena LMS - Avansert læringsplattform med WCAG 2.1 samsvar og SCORM-integrering",
+    ogTitle: "Athena LMS",
+    ogDescription: "Profesjonelt læringsstyringssystem for opplæring og utvikling"
   },
   fr: {
-    title: "Institut norvégien du film - Système de gestion de l'apprentissage",
-    description: "Plateforme de formation en sécurité de l'information NFI conforme WCAG 2.1",
-    ogTitle: "Plateforme de formation NFI",
-    ogDescription: "Formation à la sensibilisation à la sécurité de l'Institut norvégien du film"
+    title: "Athena LMS - Système de gestion de l'apprentissage",
+    description: "Athena LMS - Plateforme d'apprentissage avancée conforme WCAG 2.1 avec intégration SCORM",
+    ogTitle: "Athena LMS",
+    ogDescription: "Système de gestion de l'apprentissage professionnel pour la formation et le développement"
   }
 };
 
