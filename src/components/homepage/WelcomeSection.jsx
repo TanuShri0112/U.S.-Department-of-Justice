@@ -15,18 +15,18 @@ export function WelcomeSection() {
 
   const content = {
     en: {
-      tag: "X-Ray Security Training",
+      tag: "Higher Education Excellence",
       welcome: "Welcome to",
-      ministry: "Regional Command \"Shygys\" – National Guard of Kazakhstan",
-      subtitle: "Access your comprehensive X-ray security and safety training. Learn essential scanning procedures, threat detection, and safety protocols for baggage and cargo inspection systems.",
-      button: "Start Training"
+      ministry: "University Learning Platform",
+      subtitle: "Access your comprehensive online learning programs with WCAG 2.1 accessibility compliance, SCORM integration, and advanced analytics. Designed for modern higher education.",
+      button: "Start Learning"
     },
-    ru: {
-      tag: "Обучение рентгеновской безопасности",
-      welcome: "Добро пожаловать в",
-      ministry: "Региональное командование «Шығыс» – Национальная гвардия Казахстана",
-      subtitle: "Получите доступ к комплексному обучению рентгеновской безопасности. Изучите основные процедуры сканирования, обнаружение угроз и протоколы безопасности для систем досмотра багажа и грузов.",
-      button: "Начать обучение"
+    fr: {
+      tag: "Excellence en enseignement supérieur",
+      welcome: "Bienvenue à",
+      ministry: "Plateforme d'apprentissage universitaire",
+      subtitle: "Accédez à vos programmes d'apprentissage en ligne complets avec conformité WCAG 2.1, intégration SCORM et analyses avancées. Conçu pour l'enseignement supérieur moderne.",
+      button: "Commencer l'apprentissage"
     }
   };
 
@@ -36,7 +36,7 @@ export function WelcomeSection() {
     <section className="mb-4">
       <Card className="w-full shadow-sm">
         <CardContent className="p-4">
-          <div className="relative bg-gradient-to-br from-[hsl(var(--secondary))] via-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-3xl p-6 min-h-[200px] overflow-hidden">
+          <div className="relative bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-600 rounded-3xl p-6 min-h-[200px] overflow-hidden">
             {/* Starburst/Sparkle Graphics */}
             <div className="absolute right-4 top-8 opacity-20">
               <Sparkles size={32} className="text-white animate-pulse" />
@@ -71,10 +71,10 @@ export function WelcomeSection() {
               <div className="flex items-center">
                 <button
                   onClick={handleJoinNow}
-                  className="group bg-white text-[hsl(var(--secondary))] px-6 py-3 rounded-full font-semibold text-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105 shadow-lg flex items-center gap-2"
+                  className="group bg-white text-purple-700 px-6 py-3 rounded-full font-semibold text-sm hover:bg-purple-50 transition-all duration-200 hover:scale-105 shadow-lg flex items-center gap-2"
                 >
                   <span>{t.button}</span>
-                  <div className="w-5 h-5 bg-[hsl(var(--primary))] rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform duration-200">
+                  <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform duration-200">
                     <ArrowRight size={12} className="text-white" />
                   </div>
                 </button>

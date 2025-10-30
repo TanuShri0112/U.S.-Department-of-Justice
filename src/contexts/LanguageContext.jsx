@@ -4,16 +4,16 @@ const LanguageContext = createContext();
 
 const metadata = {
   en: {
-    title: "Regional Command \"Shygys\" – National Guard of Kazakhstan - LMS",
-    description: "Learning Management System of Regional Command \"Shygys\" – National Guard of Kazakhstan",
-    ogTitle: "Regional Command \"Shygys\" LMS",
-    ogDescription: "Official Learning Platform of Regional Command \"Shygys\" – National Guard of Kazakhstan"
+    title: "University Learning Management System - LMS",
+    description: "Advanced Learning Management System for Higher Education",
+    ogTitle: "University LMS",
+    ogDescription: "Official Learning Platform with WCAG 2.1 Compliance and SCORM Integration"
   },
-  ru: {
-    title: "Региональное командование «Шығыс» – Национальная гвардия Казахстана - СДО",
-    description: "Система дистанционного обучения Регионального командования «Шығыс» – Национальной гвардии Казахстана",
-    ogTitle: "Региональное командование «Шығыс» СДО",
-    ogDescription: "Официальная обучающая платформа Регионального командования «Шығыс» – Национальной гвардии Казахстана"
+  fr: {
+    title: "Système de gestion de l'apprentissage universitaire - SGA",
+    description: "Système avancé de gestion de l'apprentissage pour l'enseignement supérieur",
+    ogTitle: "SGA Universitaire",
+    ogDescription: "Plateforme d'apprentissage officielle conforme WCAG 2.1 et intégration SCORM"
   }
 };
 

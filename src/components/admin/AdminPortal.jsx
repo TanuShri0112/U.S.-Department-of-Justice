@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { usePortal } from '@/contexts/PortalContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import LanguageSwitcher from '../ui/LanguageSwitcher';
 
 // Import admin page components
 import WebinarManagement from '../../pages/admin/WebinarManagement';
@@ -894,9 +895,12 @@ const AdminPortal = ({ onToggle }) => {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="px-6 py-4">
-              <div className="flex items-center gap-3">
-                <Shield className="w-6 h-6 text-blue-600" />
-                <h1 className="text-xl font-semibold text-gray-900">Admin Portal</h1>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Shield className="w-6 h-6 text-blue-600" />
+                  <h1 className="text-xl font-semibold text-gray-900">Admin Portal</h1>
+                </div>
+                <LanguageSwitcher />
           </div>
         </div>
       </div>

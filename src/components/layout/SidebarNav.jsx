@@ -74,7 +74,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
                 />
               </div>
               <h1 className="text-xs font-semibold text-[hsl(var(--sidebar-foreground))] leading-tight">
-                Regional Command "Shygys" – National Guard of Kazakhstan
+                University Learning Platform
               </h1>
             </div>
           )}

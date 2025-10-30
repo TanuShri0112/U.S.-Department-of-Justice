@@ -18,10 +18,10 @@ const Catalog = () => {
       id: 1,
       name: currentLanguage === 'en'
         ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground"
-        : "Снижение рисков на основе сообщества (CBRR): Повышение устойчивости с нуля",
+        : "Réduction des risques communautaires (CBRR): Renforcer la résilience à partir de la base",
       description: currentLanguage === 'en'
         ? "Comprehensive training program covering community-based approaches to risk reduction, resilience building, and disaster preparedness"
-        : "Комплексная программа обучения, охватывающая подходы на основе сообщества к снижению рисков, повышению устойчивости и готовности к чрезвычайным ситуациям",
+        : "Programme de formation complet couvrant les approches communautaires de réduction des risques, de renforcement de la résilience et de préparation aux catastrophes",
       imageUrl: '/assets/clogo.png',
       courseCount: 3,
       studentCount: 120,

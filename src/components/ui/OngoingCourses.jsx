@@ -7,23 +7,23 @@ const OngoingCourses = () => {
 
   const courses = [
     {
-      title: currentLanguage === 'en' ? "Course 1" : "Курс 1",
+      title: currentLanguage === 'en' ? "Course 1" : "Cours 1",
       progress: 75,
-      nextLesson: currentLanguage === 'en' ? "Module 2: Advanced Topics" : "Модуль 2: Продвинутые темы",
+      nextLesson: currentLanguage === 'en' ? "Module 2: Advanced Topics" : "Module 2: Sujets avancés",
       dueDate: "Nov 15, 2025",
       thumbnail: "/assets/course-1.png"
     },
     {
-      title: currentLanguage === 'en' ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground" : "Снижение рисков на основе сообщества (CBRR): Повышение устойчивости с нуля",
+      title: currentLanguage === 'en' ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground" : "Réduction des risques communautaires (CBRR): Renforcer la résilience à partir de la base",
       progress: 45,
-      nextLesson: currentLanguage === 'en' ? "Module 3: Practical Applications" : "Модуль 3: Практическое применение",
+      nextLesson: currentLanguage === 'en' ? "Module 3: Practical Applications" : "Module 3: Applications pratiques",
       dueDate: "Nov 20, 2025",
       thumbnail: "/assets/course-2.png"
     },
     {
-      title: currentLanguage === 'en' ? "Course 3" : "Курс 3",
+      title: currentLanguage === 'en' ? "Course 3" : "Cours 3",
       progress: 30,
-      nextLesson: currentLanguage === 'en' ? "Module 1: Fundamentals" : "Модуль 1: Основы",
+      nextLesson: currentLanguage === 'en' ? "Module 1: Fundamentals" : "Module 1: Fondamentaux",
       dueDate: "Nov 25, 2025",
       thumbnail: "/assets/course-3.png"
     }

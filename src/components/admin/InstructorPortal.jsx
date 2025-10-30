@@ -22,6 +22,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import LanguageSwitcher from '../ui/LanguageSwitcher';
 
 // Assignment Card Component with Expandable Sections
 const AssignmentCard = ({ title, course, dueDate, totalStudents, submitted, pending, questions, submissions }) => {
@@ -953,9 +954,12 @@ const InstructorPortal = ({ onToggle }) => {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="px-6 py-4">
-          <div className="flex items-center gap-3">
-            <GraduationCap className="w-6 h-6 text-green-600" />
-            <h1 className="text-xl font-semibold text-gray-900">Instructor Portal</h1>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <GraduationCap className="w-6 h-6 text-green-600" />
+              <h1 className="text-xl font-semibold text-gray-900">Instructor Portal</h1>
+            </div>
+            <LanguageSwitcher />
           </div>
         </div>
       </div>
