@@ -14,19 +14,26 @@ export function WelcomeSection() {
   };
 
   const content = {
+    no: {
+      tag: "Informasjonssikkerhet",
+      welcome: "Velkommen til",
+      ministry: "Norsk filminstitutt",
+      subtitle: "Tilgang til omfattende cybersikkerhet og informasjonssikkerhet opplæring. Beskytt NFI mot phishing, datainnbrudd og digitale trusler med WCAG 2.1 samsvar.",
+      button: "Start opplæring"
+    },
     en: {
-      tag: "Higher Education Excellence",
+      tag: "Information Security",
       welcome: "Welcome to",
-      ministry: "University Learning Platform",
-      subtitle: "Access your comprehensive online learning programs with WCAG 2.1 accessibility compliance, SCORM integration, and advanced analytics. Designed for modern higher education.",
-      button: "Start Learning"
+      ministry: "Norwegian Film Institute",
+      subtitle: "Access comprehensive cybersecurity and information security training. Protect NFI from phishing, data breaches, and digital threats with WCAG 2.1 compliance.",
+      button: "Start Training"
     },
     fr: {
-      tag: "Excellence en enseignement supérieur",
+      tag: "Sécurité de l'information",
       welcome: "Bienvenue à",
-      ministry: "Plateforme d'apprentissage universitaire",
-      subtitle: "Accédez à vos programmes d'apprentissage en ligne complets avec conformité WCAG 2.1, intégration SCORM et analyses avancées. Conçu pour l'enseignement supérieur moderne.",
-      button: "Commencer l'apprentissage"
+      ministry: "Institut norvégien du film",
+      subtitle: "Accédez à une formation complète en cybersécurité et sécurité de l'information. Protégez NFI contre l'hameçonnage, les violations de données et les menaces numériques avec la conformité WCAG 2.1.",
+      button: "Commencer la formation"
     }
   };
 

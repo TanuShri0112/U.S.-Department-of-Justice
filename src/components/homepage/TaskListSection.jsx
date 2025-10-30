@@ -9,8 +9,8 @@ export function TaskListSection() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      title: 'Complete Workplace Safety Fundamentals',
-      description: 'Essential safety principles according to Arbeitsschutzgesetz',
+      title: 'Complete Phishing Awareness Training',
+      description: 'Essential cybersecurity principles and threat recognition',
       dueDate: '2025-10-30',
       time: '9:00 AM - 11:00 AM',
       completed: false,

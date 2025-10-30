@@ -4,21 +4,27 @@ const LanguageContext = createContext();
 
 const metadata = {
   en: {
-    title: "University Learning Management System - LMS",
-    description: "Advanced Learning Management System for Higher Education",
-    ogTitle: "University LMS",
-    ogDescription: "Official Learning Platform with WCAG 2.1 Compliance and SCORM Integration"
+    title: "Norsk filminstitutt - Learning Management System",
+    description: "NFI Information Security Training Platform with WCAG 2.1 Compliance",
+    ogTitle: "NFI Training Platform",
+    ogDescription: "Norwegian Film Institute Security Awareness and Compliance Training"
+  },
+  no: {
+    title: "Norsk filminstitutt - Læringsplattform",
+    description: "NFI Informasjonssikkerhet Opplæringsplattform med WCAG 2.1 Samsvar",
+    ogTitle: "NFI Opplæringsplattform",
+    ogDescription: "Norsk filminstitutts sikkerhetsbevissthet og overholdelse opplæring"
   },
   fr: {
-    title: "Système de gestion de l'apprentissage universitaire - SGA",
-    description: "Système avancé de gestion de l'apprentissage pour l'enseignement supérieur",
-    ogTitle: "SGA Universitaire",
-    ogDescription: "Plateforme d'apprentissage officielle conforme WCAG 2.1 et intégration SCORM"
+    title: "Institut norvégien du film - Système de gestion de l'apprentissage",
+    description: "Plateforme de formation en sécurité de l'information NFI conforme WCAG 2.1",
+    ogTitle: "Plateforme de formation NFI",
+    ogDescription: "Formation à la sensibilisation à la sécurité de l'Institut norvégien du film"
   }
 };
 
 export function LanguageProvider({ children }) {
-  const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [currentLanguage, setCurrentLanguage] = useState('no');
 
   // Update metadata when language changes
   useEffect(() => {

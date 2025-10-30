@@ -1,4 +1,56 @@
 export const translations = {
+  no: {
+    nav: {
+      home: 'Hjem',
+      courses: 'Kurs',
+      training: 'Opplæring',
+      profile: 'Profil',
+      settings: 'Innstillinger',
+      dashboard: 'Kontrollpanel',
+      groups: 'Grupper',
+      reports: 'Rapporter',
+      resources: 'Ressurser',
+      webinars: 'Webinarer',
+      messages: 'Meldinger',
+      help: 'Hjelp'
+    },
+    dashboard: {
+      welcome: 'Velkommen tilbake',
+      myProgress: 'Min fremgang',
+      completionRate: 'Fullføringsgrad',
+      safetyScore: 'Sikkerhetspoeng',
+      certificatesEarned: 'Sertifikater oppnådd',
+      hoursLearned: 'Timer lært',
+      upcomingWebinars: 'Kommende webinarer',
+      myCertificates: 'Mine sertifikater',
+      downloadCertificate: 'Last ned sertifikat',
+      viewCertificate: 'Se sertifikat',
+      xrayProficiency: 'Dataferdighet',
+      safetyTraining: 'Sikkerhetstrening status',
+      viewDetails: 'Se detaljer',
+      continueTraining: 'Fortsett opplæring'
+    },
+    training: {
+      sessions: {
+        title: 'Treningsøkter',
+        upcoming: 'Kommende økter',
+        completed: 'Fullførte økter',
+        joinButton: 'Bli med',
+        noUpcoming: 'Ingen kommende økter',
+        noCompleted: 'Ingen fullførte økter'
+      },
+      courses: {
+        title: 'Pågående kurs',
+        continue: 'Fortsett læring',
+        nextLesson: 'Neste leksjon',
+        dueDate: 'Forfallsdato',
+        progress: 'Fremgang',
+        participants: 'Deltakere',
+        duration: 'Varighet',
+        instructor: 'Instruktør'
+      }
+    }
+  },
   en: {
     nav: {
       home: 'Home',

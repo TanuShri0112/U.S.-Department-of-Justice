@@ -18,17 +18,17 @@ export function ViewModeToggle({ isCollapsed }) {
   const modes = {
     student: {
       icon: School,
-      label: { en: 'Student View', fr: 'Vue étudiant' },
+      label: { no: 'Studentvisning', en: 'Student View', fr: 'Vue étudiant' },
       color: 'text-[hsl(var(--sidebar-accent-foreground))]'
     },
     instructor: {
       icon: Users,
-      label: { en: 'Instructor View', fr: 'Vue instructeur' },
+      label: { no: 'Instruktørvisning', en: 'Instructor View', fr: 'Vue instructeur' },
       color: 'text-[hsl(var(--sidebar-accent-foreground))]'
     },
     admin: {
       icon: Shield,
-      label: { en: 'Admin View', fr: 'Vue administrateur' },
+      label: { no: 'Adminvisning', en: 'Admin View', fr: 'Vue administrateur' },
       color: 'text-[hsl(var(--sidebar-accent-foreground))]'
     },
   };

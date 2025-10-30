@@ -20,52 +20,52 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const navItems = [
   {
     icon: Home,
-    label: { en: 'Dashboard', fr: 'Tableau de bord' },
+    label: { no: 'Kontrollpanel', en: 'Dashboard', fr: 'Tableau de bord' },
     href: '/'
   },
   {
     icon: BookOpen,
-    label: { en: 'Courses', fr: 'Cours' },
+    label: { no: 'Kurs', en: 'Courses', fr: 'Cours' },
     href: '/courses'
   },
   {
     icon: Users,
-    label: { en: 'Groups', fr: 'Groupes' },
+    label: { no: 'Grupper', en: 'Groups', fr: 'Groupes' },
     href: '/groups'
   },
   {
     icon: Calendar,
-    label: { en: 'Calendar', fr: 'Calendrier' },
+    label: { no: 'Kalender', en: 'Calendar', fr: 'Calendrier' },
     href: '/calendar'
   },
   {
     icon: Bell,
-    label: { en: 'Announcements', fr: 'Annonces' },
+    label: { no: 'Kunngjøringer', en: 'Announcements', fr: 'Annonces' },
     href: '/announcements'
   },
   {
     icon: BarChart,
-    label: { en: 'Reports', fr: 'Rapports' },
+    label: { no: 'Rapporter', en: 'Reports', fr: 'Rapports' },
     href: '/reports'
   },
   {
     icon: FileText,
-    label: { en: 'Resources', fr: 'Ressources' },
+    label: { no: 'Ressurser', en: 'Resources', fr: 'Ressources' },
     href: '/resources'
   },
   {
     icon: Video,
-    label: { en: 'Webinars', fr: 'Webinaires' },
+    label: { no: 'Webinarer', en: 'Webinars', fr: 'Webinaires' },
     href: '/webinars'
   },
   {
     icon: MessageSquare,
-    label: { en: 'Messages', fr: 'Messages' },
+    label: { no: 'Meldinger', en: 'Messages', fr: 'Messages' },
     href: '/messages'
   },
   {
     icon: HelpCircle,
-    label: { en: 'Help', fr: 'Aide' },
+    label: { no: 'Hjelp', en: 'Help', fr: 'Aide' },
     href: '/help'
   }
 ];

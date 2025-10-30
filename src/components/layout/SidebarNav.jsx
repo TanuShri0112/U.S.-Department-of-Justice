@@ -60,7 +60,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
             <div className="w-full flex justify-center">
               <img 
                 src="/assets/logo.png" 
-                alt="National Guard of Kazakhstan Logo" 
+                alt="Norsk filminstitutt Logo" 
                 className="h-10 w-auto"
               />
             </div>
@@ -69,12 +69,12 @@ export const SidebarNav = ({ onCloseMobile }) => {
               <div className="flex items-center gap-3">
                 <img 
                   src="/assets/logo.png" 
-                  alt="National Guard of Kazakhstan Logo" 
+                  alt="Norsk filminstitutt Logo" 
                   className="h-12 w-auto"
                 />
               </div>
               <h1 className="text-xs font-semibold text-[hsl(var(--sidebar-foreground))] leading-tight">
-                University Learning Platform
+                Norsk filminstitutt
               </h1>
             </div>
           )}

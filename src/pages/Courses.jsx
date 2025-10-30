@@ -25,12 +25,16 @@ const Courses = () => {
   const mockCourses = [
     {
       id: 1,
-      title: currentLanguage === 'en' 
-        ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground"
-        : "Réduction des risques communautaires (CBRR): Renforcer la résilience à partir de la base",
-      description: currentLanguage === 'en'
-        ? "Comprehensive training program covering community-based approaches to risk reduction, resilience building, and disaster preparedness"
-        : "Programme de formation complet couvrant les approches communautaires de réduction des risques, de renforcement de la résilience et de préparation aux catastrophes",
+      title: currentLanguage === 'no'
+        ? "Informasjonssikkerhet og Cybersikkerhet for NFI"
+        : currentLanguage === 'en' 
+        ? "Information Security and Cybersecurity for NFI"
+        : "Sécurité de l'information et cybersécurité pour NFI",
+      description: currentLanguage === 'no'
+        ? "Omfattende opplæringsprogram som dekker phishing-gjenkjenning, GDPR, sikre digitale arbeidspraksis og hendelsesrespons"
+        : currentLanguage === 'en'
+        ? "Comprehensive training program covering phishing recognition, GDPR, secure digital work practices, and incident response"
+        : "Programme de formation complet couvrant la reconnaissance de l'hameçonnage, le RGPD, les pratiques de travail numérique sécurisées et la réponse aux incidents",
       students: 120,
       duration: "6 weeks",
       level: "Beginner",
@@ -66,10 +70,12 @@ const Courses = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader 
-        title={currentLanguage === 'en' ? "My Courses" : "Мои курсы"}
-        description={currentLanguage === 'en' 
+        title={currentLanguage === 'no' ? "Mine kurs" : currentLanguage === 'en' ? "My Courses" : "Mes cours"}
+        description={currentLanguage === 'no'
+          ? "Få tilgang til og administrer dine påmeldte kurs"
+          : currentLanguage === 'en' 
           ? "Access and manage your enrolled courses" 
-          : "Получите доступ к своим курсам и управляйте ими"}
+          : "Accéder et gérer vos cours inscrits"}
       />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -80,7 +86,7 @@ const Courses = () => {
             className="flex items-center gap-2"
           >
             <Compass className="h-4 w-4" />
-            {currentLanguage === 'en' ? "Discover Courses" : "Найти курсы"}
+            {currentLanguage === 'no' ? "Oppdag kurs" : currentLanguage === 'en' ? "Discover Courses" : "Découvrir des cours"}
           </Button>
         </div>
       </div>
@@ -90,7 +96,7 @@ const Courses = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input 
             className="pl-9" 
-            placeholder={currentLanguage === 'en' ? "Search courses..." : "Поиск курсов..."}
+            placeholder={currentLanguage === 'no' ? "Søk kurs..." : currentLanguage === 'en' ? "Search courses..." : "Rechercher des cours..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -99,13 +105,13 @@ const Courses = () => {
         <div className="flex items-center gap-2">
           <Select>
             <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder={currentLanguage === 'en' ? "All levels" : "Все уровни"} />
+              <SelectValue placeholder={currentLanguage === 'no' ? "Alle nivåer" : currentLanguage === 'en' ? "All levels" : "Tous les niveaux"} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">{currentLanguage === 'en' ? "All levels" : "Все уровни"}</SelectItem>
-              <SelectItem value="beginner">{currentLanguage === 'en' ? "Beginner" : "Начинающий"}</SelectItem>
-              <SelectItem value="intermediate">{currentLanguage === 'en' ? "Intermediate" : "Средний"}</SelectItem>
-              <SelectItem value="advanced">{currentLanguage === 'en' ? "Advanced" : "Продвинутый"}</SelectItem>
+              <SelectItem value="all">{currentLanguage === 'no' ? "Alle nivåer" : currentLanguage === 'en' ? "All levels" : "Tous les niveaux"}</SelectItem>
+              <SelectItem value="beginner">{currentLanguage === 'no' ? "Nybegynner" : currentLanguage === 'en' ? "Beginner" : "Débutant"}</SelectItem>
+              <SelectItem value="intermediate">{currentLanguage === 'no' ? "Middels" : currentLanguage === 'en' ? "Intermediate" : "Intermédiaire"}</SelectItem>
+              <SelectItem value="advanced">{currentLanguage === 'no' ? "Avansert" : currentLanguage === 'en' ? "Advanced" : "Avancé"}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -149,7 +155,7 @@ const Courses = () => {
                   className="w-full bg-blue-500 hover:bg-blue-600 transition-colors"
                   onClick={() => handleCourseClick(course.id)}
                 >
-                  {currentLanguage === 'en' ? "Continue Learning" : "Продолжить обучение"}
+                  {currentLanguage === 'no' ? "Fortsett læring" : currentLanguage === 'en' ? "Continue Learning" : "Continuer l'apprentissage"}
                 </Button>
               </div>
             </CardContent>

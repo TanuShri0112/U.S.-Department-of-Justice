@@ -7,23 +7,23 @@ const OngoingCourses = () => {
 
   const courses = [
     {
-      title: currentLanguage === 'en' ? "Course 1" : "Cours 1",
+      title: currentLanguage === 'no' ? "Gjenkjenne phishing og sosial manipulering" : currentLanguage === 'en' ? "Recognizing Phishing & Social Engineering" : "Reconnaissance de l'hameçonnage",
       progress: 75,
-      nextLesson: currentLanguage === 'en' ? "Module 2: Advanced Topics" : "Module 2: Sujets avancés",
+      nextLesson: currentLanguage === 'no' ? "Modul 2: Mistenkelige e-poster" : currentLanguage === 'en' ? "Module 2: Suspicious Emails" : "Module 2: Courriels suspects",
       dueDate: "Nov 15, 2025",
       thumbnail: "/assets/course-1.png"
     },
     {
-      title: currentLanguage === 'en' ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground" : "Réduction des risques communautaires (CBRR): Renforcer la résilience à partir de la base",
+      title: currentLanguage === 'no' ? "Databeskyttelse og GDPR" : currentLanguage === 'en' ? "Data Protection & GDPR" : "Protection des données et RGPD",
       progress: 45,
-      nextLesson: currentLanguage === 'en' ? "Module 3: Practical Applications" : "Module 3: Applications pratiques",
+      nextLesson: currentLanguage === 'no' ? "Modul 3: Praktiske anvendelser" : currentLanguage === 'en' ? "Module 3: Practical Applications" : "Module 3: Applications pratiques",
       dueDate: "Nov 20, 2025",
       thumbnail: "/assets/course-2.png"
     },
     {
-      title: currentLanguage === 'en' ? "Course 3" : "Cours 3",
+      title: currentLanguage === 'no' ? "Sikre digitale arbeidspraksis" : currentLanguage === 'en' ? "Secure Digital Work Practices" : "Pratiques de travail numérique sécurisées",
       progress: 30,
-      nextLesson: currentLanguage === 'en' ? "Module 1: Fundamentals" : "Module 1: Fondamentaux",
+      nextLesson: currentLanguage === 'no' ? "Modul 1: Grunnleggende" : currentLanguage === 'en' ? "Module 1: Fundamentals" : "Module 1: Fondamentaux",
       dueDate: "Nov 25, 2025",
       thumbnail: "/assets/course-3.png"
     }
@@ -36,7 +36,7 @@ const OngoingCourses = () => {
           <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <h2 className="text-2xl font-bold">
-          {currentLanguage === 'en' ? 'Ongoing Courses' : 'Текущие курсы'}
+          {currentLanguage === 'no' ? 'Pågående kurs' : currentLanguage === 'en' ? 'Ongoing Courses' : 'Cours en cours'}
         </h2>
       </div>
 

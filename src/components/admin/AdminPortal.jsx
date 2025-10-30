@@ -307,7 +307,7 @@ const AdminPortal = ({ onToggle }) => {
                      <span className="text-xl font-bold text-purple-600">{metrics.complianceRate}%</span>
                    </div>
                    <p className="text-sm font-medium text-gray-900">Compliance Rate</p>
-                   <p className="text-xs text-gray-500">Arbeitsschutzgesetz</p>
+                   <p className="text-xs text-gray-500">Data Protection</p>
                  </div>
                </div>
              </div>
