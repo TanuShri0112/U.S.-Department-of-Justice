@@ -143,7 +143,7 @@ const Courses = () => {
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-1.5">
                     <Users className="h-4 w-4 text-gray-500" />
-                    <span className="text-muted-foreground">{course.students} students</span>
+                    <span className="text-muted-foreground">{course.students} student's </span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Clock className="h-4 w-4 text-gray-500" />
