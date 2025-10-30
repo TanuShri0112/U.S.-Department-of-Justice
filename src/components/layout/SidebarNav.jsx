@@ -59,8 +59,8 @@ export const SidebarNav = ({ onCloseMobile }) => {
           {isMainCollapsed ? (
             <div className="w-full flex justify-center">
               <img 
-                src="/assets/logo.png" 
-                alt="National Guard of Kazakhstan Logo" 
+                src="/assets/ualberta-crest.png" 
+                alt="University of Alberta Crest" 
                 className="h-10 w-auto"
               />
             </div>
@@ -68,13 +68,13 @@ export const SidebarNav = ({ onCloseMobile }) => {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
                 <img 
-                  src="/assets/logo.png" 
-                  alt="National Guard of Kazakhstan Logo" 
+                  src="/assets/ualberta-crest.png" 
+                  alt="University of Alberta Crest" 
                   className="h-12 w-auto"
                 />
               </div>
               <h1 className="text-xs font-semibold text-[hsl(var(--sidebar-foreground))] leading-tight">
-                University Learning Platform
+              University of Alberta
               </h1>
             </div>
           )}

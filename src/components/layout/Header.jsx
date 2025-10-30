@@ -43,7 +43,7 @@ export const Header = ({ onMenuClick }) => {
             onClick={handleLogoClick}
           >
             <h1 className="text-lg font-semibold text-gray-900">
-              {currentLanguage === 'en' ? 'Learning Platform' : 'Plateforme d\'apprentissage'}
+              {currentLanguage === 'en' ? 'Athena LMS' : 'Athena LMS'}
             </h1>
           </div>
         </div>

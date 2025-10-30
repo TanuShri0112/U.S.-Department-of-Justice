@@ -32,7 +32,6 @@ export function StudentDashboard() {
           <div className="lg:sticky lg:top-6 space-y-5">
             <WCAGScoreWidget />
             <GamificationWidget />
-            <LeaderboardWidget />
             <CalendarSection />
             <TaskListSection />
           </div>

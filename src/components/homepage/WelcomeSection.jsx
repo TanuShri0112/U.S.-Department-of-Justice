@@ -17,14 +17,14 @@ export function WelcomeSection() {
     en: {
       tag: "Higher Education Excellence",
       welcome: "Welcome to",
-      ministry: "University Learning Platform",
+      ministry: "University of Alberta",
       subtitle: "Access your comprehensive online learning programs with WCAG 2.1 accessibility compliance, SCORM integration, and advanced analytics. Designed for modern higher education.",
       button: "Start Learning"
     },
     fr: {
       tag: "Excellence en enseignement supérieur",
       welcome: "Bienvenue à",
-      ministry: "Plateforme d'apprentissage universitaire",
+      ministry: "Université de l'Alberta",
       subtitle: "Accédez à vos programmes d'apprentissage en ligne complets avec conformité WCAG 2.1, intégration SCORM et analyses avancées. Conçu pour l'enseignement supérieur moderne.",
       button: "Commencer l'apprentissage"
     }
