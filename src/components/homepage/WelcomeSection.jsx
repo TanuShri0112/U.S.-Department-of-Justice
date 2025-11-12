@@ -14,13 +14,6 @@ export function WelcomeSection() {
   };
 
   const content = {
-    no: {
-      tag: "Profesjonell opplæring",
-      welcome: "Velkommen til",
-      ministry: "Athena LMS",
-      subtitle: "Din komplette læringsplattform for profesjonell opplæring og utvikling. Tilgang til kurs, sertifiseringer og læressurser med WCAG 2.1 samsvar.",
-      button: "Start læring"
-    },
     en: {
       tag: "Professional Training",
       welcome: "Welcome to",
@@ -28,16 +21,16 @@ export function WelcomeSection() {
       subtitle: "Your complete learning platform for professional training and development. Access courses, certifications, and learning resources with WCAG 2.1 compliance.",
       button: "Start Learning"
     },
-    fr: {
-      tag: "Formation professionnelle",
-      welcome: "Bienvenue à",
+    mk: {
+      tag: "Професионална обука",
+      welcome: "Добредојдовте во",
       ministry: "Athena LMS",
-      subtitle: "Votre plateforme d'apprentissage complète pour la formation et le développement professionnels. Accédez aux cours, certifications et ressources d'apprentissage avec conformité WCAG 2.1.",
-      button: "Commencer l'apprentissage"
+      subtitle: "Вашата целосна платформа за професионална обука и развој. Пристапете до курсеви, сертификати и ресурси за учење со усогласеност со WCAG 2.1.",
+      button: "Започни со учење"
     }
   };
 
-  const t = content[currentLanguage];
+  const t = content[currentLanguage] ?? content.en;
 
   return (
     <section className="mb-4">

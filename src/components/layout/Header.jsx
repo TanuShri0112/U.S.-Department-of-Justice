@@ -186,13 +186,13 @@ export const Header = ({ onMenuClick }) => {
                     : 'Напредниот модул за безбедност сега е отворен за пријавување'}
                 </p>
                 <span className="text-xs text-blue-600">
-                  {currentLanguage === 'no' ? '5 minutter siden' : currentLanguage === 'en' ? '5 minutes ago' : 'Il y a 5 minutes'}
+                  {currentLanguage === 'en' ? '5 minutes ago' : 'пред 5 минути'}
                 </span>
               </div>
             </div>
             <div className="mt-4 pt-3 border-t">
               <Button variant="outline" size="sm" className="w-full">
-                {currentLanguage === 'no' ? 'Merk alle som lest' : currentLanguage === 'en' ? 'Mark All as Read' : 'Tout marquer comme lu'}
+                {currentLanguage === 'en' ? 'Mark All as Read' : 'Означи ги сите како прочитани'}
               </Button>
             </div>
           </div>

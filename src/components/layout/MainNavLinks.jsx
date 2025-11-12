@@ -20,52 +20,52 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const navItems = [
   {
     icon: Home,
-    label: { no: 'Kontrollpanel', en: 'Dashboard', fr: 'Tableau de bord' },
+    label: { en: 'Dashboard', mk: 'Контролна табла' },
     href: '/'
   },
   {
     icon: BookOpen,
-    label: { no: 'Kurs', en: 'Courses', fr: 'Cours' },
+    label: { en: 'Courses', mk: 'Курсеви' },
     href: '/courses'
   },
   {
     icon: Users,
-    label: { no: 'Grupper', en: 'Groups', fr: 'Groupes' },
+    label: { en: 'Groups', mk: 'Групи' },
     href: '/groups'
   },
   {
     icon: Calendar,
-    label: { no: 'Kalender', en: 'Calendar', fr: 'Calendrier' },
+    label: { en: 'Calendar', mk: 'Календар' },
     href: '/calendar'
   },
   {
     icon: Bell,
-    label: { no: 'Kunngjøringer', en: 'Announcements', fr: 'Annonces' },
+    label: { en: 'Announcements', mk: 'Известувања' },
     href: '/announcements'
   },
   {
     icon: BarChart,
-    label: { no: 'Rapporter', en: 'Reports', fr: 'Rapports' },
+    label: { en: 'Reports', mk: 'Извештаи' },
     href: '/reports'
   },
   {
     icon: FileText,
-    label: { no: 'Ressurser', en: 'Resources', fr: 'Ressources' },
+    label: { en: 'Resources', mk: 'Ресурси' },
     href: '/resources'
   },
   {
     icon: Video,
-    label: { no: 'Webinarer', en: 'Webinars', fr: 'Webinaires' },
+    label: { en: 'Webinars', mk: 'Вебинари' },
     href: '/webinars'
   },
   {
     icon: MessageSquare,
-    label: { no: 'Meldinger', en: 'Messages', fr: 'Messages' },
+    label: { en: 'Messages', mk: 'Пораки' },
     href: '/messages'
   },
   {
     icon: HelpCircle,
-    label: { no: 'Hjelp', en: 'Help', fr: 'Aide' },
+    label: { en: 'Help', mk: 'Помош' },
     href: '/help'
   }
 ];
@@ -91,7 +91,7 @@ export function MainNavLinks({ isCollapsed, onCloseMobile }) {
           }
         >
           <item.icon className={cn('h-5 w-5 flex-shrink-0')} />
-          {!isCollapsed && <span>{item.label[currentLanguage]}</span>}
+          {!isCollapsed && <span>{item.label[currentLanguage] ?? item.label.en}</span>}
         </NavLink>
       ))}
     </div>
