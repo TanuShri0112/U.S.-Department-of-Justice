@@ -7,23 +7,35 @@ const OngoingCourses = () => {
 
   const courses = [
     {
-      title: currentLanguage === 'no' ? "Gjenkjenne phishing og sosial manipulering" : currentLanguage === 'en' ? "Recognizing Phishing & Social Engineering" : "Reconnaissance de l'hameçonnage",
+      title: currentLanguage === 'en' 
+        ? "Course 1" 
+        : "Препознавање на фишинг и социјална манипулација",
       progress: 75,
-      nextLesson: currentLanguage === 'no' ? "Modul 2: Mistenkelige e-poster" : currentLanguage === 'en' ? "Module 2: Suspicious Emails" : "Module 2: Courriels suspects",
+      nextLesson: currentLanguage === 'en' 
+        ? "Module 2: Suspicious Emails" 
+        : "Модул 2: Сомнителни е-пошти",
       dueDate: "Nov 15, 2025",
       thumbnail: "/assets/course-1.png"
     },
     {
-      title: currentLanguage === 'no' ? "Databeskyttelse og GDPR" : currentLanguage === 'en' ? "Data Protection & GDPR" : "Protection des données et RGPD",
+      title: currentLanguage === 'en' 
+        ? "Class 2" 
+        : "Заштита на податоци и GDPR",
       progress: 45,
-      nextLesson: currentLanguage === 'no' ? "Modul 3: Praktiske anvendelser" : currentLanguage === 'en' ? "Module 3: Practical Applications" : "Module 3: Applications pratiques",
+      nextLesson: currentLanguage === 'en' 
+        ? "Module 3: Practical Applications" 
+        : "Модул 3: Практични применувања",
       dueDate: "Nov 20, 2025",
       thumbnail: "/assets/course-2.png"
     },
     {
-      title: currentLanguage === 'no' ? "Sikre digitale arbeidspraksis" : currentLanguage === 'en' ? "Secure Digital Work Practices" : "Pratiques de travail numérique sécurisées",
+      title: currentLanguage === 'en' 
+        ? "Course 3" 
+        : "Безбедни дигитални работни практики",
       progress: 30,
-      nextLesson: currentLanguage === 'no' ? "Modul 1: Grunnleggende" : currentLanguage === 'en' ? "Module 1: Fundamentals" : "Module 1: Fondamentaux",
+      nextLesson: currentLanguage === 'en' 
+        ? "Module 1: Fundamentals" 
+        : "Модул 1: Основи",
       dueDate: "Nov 25, 2025",
       thumbnail: "/assets/course-3.png"
     }
@@ -36,7 +48,7 @@ const OngoingCourses = () => {
           <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <h2 className="text-2xl font-bold">
-          {currentLanguage === 'no' ? 'Pågående kurs' : currentLanguage === 'en' ? 'Ongoing Courses' : 'Cours en cours'}
+          {currentLanguage === 'en' ? 'Ongoing Courses' : 'Тековни курсеви'}
         </h2>
       </div>
 
@@ -53,7 +65,7 @@ const OngoingCourses = () => {
               
               <div className="mb-4">
                 <div className="flex justify-between text-sm text-gray-600 mb-1">
-                  <span>{currentLanguage === 'en' ? 'Progress' : 'Fortschritt'}</span>
+                  <span>{currentLanguage === 'en' ? 'Progress' : 'Напредок'}</span>
                   <span>{course.progress}%</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
@@ -66,20 +78,20 @@ const OngoingCourses = () => {
 
               <div className="mb-4">
                 <p className="text-sm text-gray-500">
-                  {currentLanguage === 'en' ? 'Next Lesson' : 'Nächste Lektion'}
+                  {currentLanguage === 'en' ? 'Next Lesson' : 'Следен час'}
                 </p>
                 <p className="text-sm">{course.nextLesson}</p>
               </div>
 
               <div className="mb-4">
                 <p className="text-sm text-gray-500">
-                  {currentLanguage === 'en' ? 'Due Date' : 'Fälligkeitsdatum'}
+                  {currentLanguage === 'en' ? 'Due Date' : 'Краен рок'}
                 </p>
                 <p className="text-sm">{course.dueDate}</p>
               </div>
 
               <Button variant="outline" className="w-full">
-                {currentLanguage === 'en' ? 'Continue Learning' : 'Weitermachen'}
+                {currentLanguage === 'en' ? 'Continue Learning' : 'Продолжи со учење'}
               </Button>
             </div>
           </div>

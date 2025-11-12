@@ -59,7 +59,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
           {isMainCollapsed ? (
             <div className="w-full flex justify-center">
               <img 
-                src="/assets/clogo.png" 
+                src="https://www.vhv.rs/dpng/d/476-4763966_your-company-slogen-here-company-logo-your-logo.png" 
                 alt="Norwegian Film Institute" 
                 className="h-10 w-auto object-contain"
               />
@@ -67,7 +67,7 @@ export const SidebarNav = ({ onCloseMobile }) => {
           ) : (
             <div className="flex items-center gap-3 w-full">
               <img 
-                src="/assets/clogo.png" 
+                src="https://www.vhv.rs/dpng/d/476-4763966_your-company-slogen-here-company-logo-your-logo.png" 
                 alt="Norwegian Film Institute" 
                 className="h-12 w-auto object-contain"
               />

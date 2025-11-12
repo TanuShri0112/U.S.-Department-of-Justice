@@ -18,11 +18,11 @@ const Catalog = () => {
       id: 1,
       name: currentLanguage === 'en'
         ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground"
-        : "Réduction des risques communautaires (CBRR): Renforcer la résilience à partir de la base",
+        : "Намалување на ризиците засновано на заедницата (CBRR): Градење отпорност од основата",
       description: currentLanguage === 'en'
         ? "Comprehensive training program covering community-based approaches to risk reduction, resilience building, and disaster preparedness"
-        : "Programme de formation complet couvrant les approches communautaires de réduction des risques, de renforcement de la résilience et de préparation aux catastrophes",
-      imageUrl: '/assets/clogo.png',
+        : "Сеопфатна програма за обука која опфаќа пристапи засновани на заедницата за намалување на ризиците, градење отпорност и подготвеност за катастрофи",
+      imageUrl: 'https://www.vhv.rs/dpng/d/476-4763966_your-company-slogen-here-company-logo-your-logo.png',
       courseCount: 3,
       studentCount: 120,
       duration: '12 weeks',
@@ -61,12 +61,12 @@ const Catalog = () => {
           {/* Header */}
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              {currentLanguage === 'en' ? "Course Catalog" : "Kurskatalog"}
+              {currentLanguage === 'en' ? "Course Catalog" : "Каталог на курсеви"}
             </h1>
             <p className="mt-2 text-gray-600">
               {currentLanguage === 'en' 
                 ? "Browse our collection of professional training courses" 
-                : "Durchsuchen Sie unsere Sammlung von professionellen Schulungskursen"}
+                : "Прегледајте ја нашата колекција на професионални курсеви за обука"}
             </p>
           </div>
 
@@ -76,7 +76,7 @@ const Catalog = () => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 type="search"
-                placeholder={currentLanguage === 'en' ? "Search courses..." : "Kurse suchen..."}
+                placeholder={currentLanguage === 'en' ? "Search courses..." : "Пребарај курсеви..."}
                 className="pl-9 w-full"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -119,13 +119,13 @@ const Catalog = () => {
                         <div className="flex items-center gap-1.5">
                           <BookOpen className="h-4 w-4 text-gray-500" />
                           <span className="text-gray-600">
-                            {catalog.courseCount} {currentLanguage === 'en' ? "courses" : "Kurse"}
+                            {catalog.courseCount} {currentLanguage === 'en' ? "courses" : "курсеви"}
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <Users className="h-4 w-4 text-gray-500" />
                           <span className="text-gray-600">
-                            {catalog.studentCount} {currentLanguage === 'en' ? "students" : "Teilnehmer"}
+                            {catalog.studentCount} {currentLanguage === 'en' ? "students" : "ученици"}
                           </span>
                         </div>
                       </div>

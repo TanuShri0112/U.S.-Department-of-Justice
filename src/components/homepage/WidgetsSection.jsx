@@ -37,7 +37,7 @@ const catalog = [
     id: 1,
     name: "Class 1",
     description: "Basic Training Module",
-    img: "/assets/clogo.png",
+    img: "https://www.vhv.rs/dpng/d/476-4763966_your-company-slogen-here-company-logo-your-logo.png",
     modules: 3,
     students: 120,
     icon: Shield
@@ -79,10 +79,10 @@ export default function WidgetsSection() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-800">
-                          {currentLanguage === 'en' ? 'Training Catalog' : 'Schulungskatalog'}
+                          {currentLanguage === 'en' ? 'Training Catalog' : 'Каталог за обука'}
                         </h3>
                         <p className="text-sm text-gray-500">
-                          {currentLanguage === 'en' ? 'Browse all courses' : 'Alle Kurse durchsuchen'}
+                          {currentLanguage === 'en' ? 'Browse all courses' : 'Прегледај ги сите курсеви'}
                         </p>
                       </div>
                     </div>
@@ -144,10 +144,10 @@ export default function WidgetsSection() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-800">
-                          {currentLanguage === 'en' ? 'Training Groups' : 'Schulungsgruppen'}
+                          {currentLanguage === 'en' ? 'Training Groups' : 'Групи за обука'}
                         </h3>
                         <p className="text-sm text-gray-500">
-                          {groups.length} {currentLanguage === 'en' ? 'active groups' : 'aktive Gruppen'}
+                          {groups.length} {currentLanguage === 'en' ? 'active groups' : 'активни групи'}
                         </p>
                       </div>
                     </div>
@@ -179,11 +179,11 @@ export default function WidgetsSection() {
                             <p className="text-xs text-gray-500 truncate">{group.desc}</p>
                             <div className="flex items-center gap-3 mt-1">
                               <span className="text-xs text-gray-400">
-                                {group.members} {currentLanguage === 'en' ? 'members' : 'Mitglieder'}
+                                {group.members} {currentLanguage === 'en' ? 'members' : 'членови'}
                               </span>
                               <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
                               <span className="text-xs text-green-600">
-                                {currentLanguage === 'en' ? 'Active' : 'Aktiv'}
+                                {currentLanguage === 'en' ? 'Active' : 'Активна'}
                               </span>
                             </div>
                           </div>

@@ -59,7 +59,7 @@ export const Header = ({ onMenuClick }) => {
             <input
               type="search"
               className="w-[300px] py-2 pl-10 pr-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))]"
-              placeholder={currentLanguage === 'no' ? "Søk..." : currentLanguage === 'en' ? "Search..." : "Rechercher..."}
+              placeholder={currentLanguage === 'en' ? "Search..." : "Пребарај..."}
             />
           </div>
 
@@ -68,7 +68,7 @@ export const Header = ({ onMenuClick }) => {
             size="icon"
             onClick={() => setCalendarDialogOpen(true)}
             className="text-gray-600 hover:bg-gray-100"
-            aria-label={currentLanguage === 'no' ? "Kalender" : currentLanguage === 'en' ? "Calendar" : "Calendrier"}
+            aria-label={currentLanguage === 'en' ? "Calendar" : "Календар"}
           >
             <Calendar className="h-5 w-5" />
           </Button>
@@ -100,7 +100,7 @@ export const Header = ({ onMenuClick }) => {
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">
-                    {currentLanguage === 'no' ? 'Instruktør' : currentLanguage === 'en' ? 'Instructor' : 'Instructeur'}
+                    {currentLanguage === 'en' ? 'Instructor' : 'Инструктор'}
                   </p>
                   <p className="text-xs leading-none text-muted-foreground">
                     instructor@sachsen.de
@@ -110,21 +110,19 @@ export const Header = ({ onMenuClick }) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => navigate('/profile')}>
                 <User className="mr-2 h-4 w-4" />
-                <span>{currentLanguage === 'no' ? 'Profil' : currentLanguage === 'en' ? 'Profile' : 'Profil'}</span>
+                <span>{currentLanguage === 'en' ? 'Profile' : 'Профил'}</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => {
                 toast({
-                  title: currentLanguage === 'no' ? "Logget ut" : currentLanguage === 'en' ? "Logged out" : "Déconnecté",
-                  description: currentLanguage === 'no' 
-                    ? "Du har blitt logget ut" 
-                    : currentLanguage === 'en'
+                  title: currentLanguage === 'en' ? "Logged out" : "Одјавено",
+                  description: currentLanguage === 'en'
                     ? "You have been logged out successfully" 
-                    : "Vous avez été déconnecté avec succès",
+                    : "Успешно сте одјавени",
                   duration: 2000,
                 });
               }}>
-                {currentLanguage === 'no' ? 'Logg ut' : currentLanguage === 'en' ? 'Log out' : 'Se déconnecter'}
+                {currentLanguage === 'en' ? 'Log out' : 'Одјави се'}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -136,19 +134,19 @@ export const Header = ({ onMenuClick }) => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
-              {currentLanguage === 'no' ? 'Kalender og hendelser' : currentLanguage === 'en' ? 'Calendar & Events' : 'Calendrier et événements'}
+              {currentLanguage === 'en' ? 'Calendar & Events' : 'Календар и настани'}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="bg-blue-50 p-4 rounded-lg">
               <h3 className="font-medium text-blue-900">
-                {currentLanguage === 'no' ? "Dagens hendelser" : currentLanguage === 'en' ? "Today's Events" : 'Événements d\'aujourd\'hui'}
+                {currentLanguage === 'en' ? "Today's Events" : 'Денешни настани'}
               </h3>
               <div className="mt-2 space-y-2 text-sm">
                 <div className="flex justify-between items-center">
                   <div>
                     <span className="font-medium">
-                      {currentLanguage === 'no' ? 'Teammøte' : currentLanguage === 'en' ? 'Team Meeting' : 'Réunion d\'équipe'}
+                      {currentLanguage === 'en' ? 'Team Meeting' : 'Состанок на тим'}
                     </span>
                     <div className="text-blue-600 text-xs">10:00</div>
                   </div>
@@ -157,7 +155,7 @@ export const Header = ({ onMenuClick }) => {
                     variant="outline"
                     className="flex items-center gap-1 text-xs px-2 py-1 h-7"
                   >
-                    {currentLanguage === 'no' ? 'Bli med' : currentLanguage === 'en' ? 'Join' : 'Rejoindre'}
+                    {currentLanguage === 'en' ? 'Join' : 'Приклучи се'}
                     <ExternalLink className="h-3 w-3" />
                   </Button>
                 </div>
@@ -172,7 +170,7 @@ export const Header = ({ onMenuClick }) => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Bell className="h-5 w-5" />
-              {currentLanguage === 'en' ? 'Notifications' : 'Notifications'}
+              {currentLanguage === 'en' ? 'Notifications' : 'Известувања'}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
@@ -180,14 +178,12 @@ export const Header = ({ onMenuClick }) => {
               <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
               <div className="flex-1">
                 <p className="font-medium text-sm">
-                  {currentLanguage === 'no' ? 'Nytt kurs tilgjengelig' : currentLanguage === 'en' ? 'New course available' : 'Nouveau cours disponible'}
+                  {currentLanguage === 'en' ? 'New course available' : 'Нов курс достапен'}
                 </p>
                 <p className="text-xs text-gray-600">
-                  {currentLanguage === 'no'
-                    ? 'Avansert sikkerhetsmodul er nå åpen for påmelding'
-                    : currentLanguage === 'en' 
+                  {currentLanguage === 'en' 
                     ? 'Advanced Security Module is now open for enrollment'
-                    : 'Le module de sécurité avancé est maintenant ouvert aux inscriptions'}
+                    : 'Напредниот модул за безбедност сега е отворен за пријавување'}
                 </p>
                 <span className="text-xs text-blue-600">
                   {currentLanguage === 'no' ? '5 minutter siden' : currentLanguage === 'en' ? '5 minutes ago' : 'Il y a 5 minutes'}

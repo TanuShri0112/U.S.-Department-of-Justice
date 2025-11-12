@@ -9,22 +9,16 @@ const metadata = {
     ogTitle: "Athena LMS",
     ogDescription: "Professional Learning Management System for Training and Development"
   },
-  no: {
-    title: "Athena LMS - Læringsplattform",
-    description: "Athena LMS - Avansert læringsplattform med WCAG 2.1 samsvar og SCORM-integrering",
+  mk: {
+    title: "Athena LMS - Систем за управување со учење",
+    description: "Athena LMS - Напредна платформа за учење со усогласеност со WCAG 2.1 и SCORM интеграција",
     ogTitle: "Athena LMS",
-    ogDescription: "Profesjonelt læringsstyringssystem for opplæring og utvikling"
-  },
-  fr: {
-    title: "Athena LMS - Système de gestion de l'apprentissage",
-    description: "Athena LMS - Plateforme d'apprentissage avancée conforme WCAG 2.1 avec intégration SCORM",
-    ogTitle: "Athena LMS",
-    ogDescription: "Système de gestion de l'apprentissage professionnel pour la formation et le développement"
+    ogDescription: "Професионален систем за управување со учење за обука и развој"
   }
 };
 
 export function LanguageProvider({ children }) {
-  const [currentLanguage, setCurrentLanguage] = useState('no');
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   // Update metadata when language changes
   useEffect(() => {
