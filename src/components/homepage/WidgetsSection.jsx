@@ -1,31 +1,72 @@
-import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React, { useMemo } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { Users, Folder, BookOpen, Shield, GraduationCap, MoreVertical } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from '@/contexts/LanguageContext';
 
+const copy = {
+  en: {
+    catalogTitle: 'Training Catalog',
+    catalogSubtitle: 'Browse all courses',
+    modulesLabel: 'modules',
+    studentsLabel: 'students',
+    groupsTitle: 'Training Groups',
+    activeGroups: 'active groups',
+    membersLabel: 'members',
+    statusActive: 'Active',
+  },
+  es: {
+    catalogTitle: 'Catálogo de formación',
+    catalogSubtitle: 'Explora todos los cursos',
+    modulesLabel: 'módulos',
+    studentsLabel: 'alumnos',
+    groupsTitle: 'Grupos de formación',
+    activeGroups: 'grupos activos',
+    membersLabel: 'miembros',
+    statusActive: 'Activa',
+  },
+};
+
 const groups = [
   {
     id: 1,
-    name: "Group 1",
-    desc: "Training Group",
+    name: {
+      en: "Group 1",
+      es: "Grupo 1",
+    },
+    desc: {
+      en: "Training Group",
+      es: "Grupo de formación",
+    },
     img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=40&q=80",
     members: 45,
     icon: Shield
   },
   {
     id: 2,
-    name: "Group 2",
-    desc: "Professional Development",
+    name: {
+      en: "Group 2",
+      es: "Grupo 2",
+    },
+    desc: {
+      en: "Professional Development",
+      es: "Desarrollo profesional",
+    },
     img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&q=80",
     members: 12,
     icon: GraduationCap
   },
   {
     id: 3,
-    name: "Group 3",
-    desc: "Training Program",
+    name: {
+      en: "Group 3",
+      es: "Grupo 3",
+    },
+    desc: {
+      en: "Training Program",
+      es: "Programa de formación",
+    },
     img: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&q=80",
     members: 28,
     icon: Users
@@ -35,8 +76,14 @@ const groups = [
 const catalog = [
   {
     id: 1,
-    name: "Class 1",
-    description: "Basic Training Module",
+    name: {
+      en: "Class 1",
+      es: "Clase 1",
+    },
+    description: {
+      en: "Basic Training Module",
+      es: "Módulo de formación básica",
+    },
     img: "https://www.vhv.rs/dpng/d/476-4763966_your-company-slogen-here-company-logo-your-logo.png",
     modules: 3,
     students: 120,
@@ -44,9 +91,37 @@ const catalog = [
   }
 ];
 
+const localize = (value, language) => {
+  if (typeof value === 'string') {
+    return value;
+  }
+  return value[language] ?? value.en;
+};
+
 export default function WidgetsSection() {
   const navigate = useNavigate();
   const { currentLanguage } = useLanguage();
+  const t = copy[currentLanguage] ?? copy.en;
+
+  const catalogItems = useMemo(
+    () =>
+      catalog.map((course) => ({
+        ...course,
+        name: localize(course.name, currentLanguage),
+        description: localize(course.description, currentLanguage),
+      })),
+    [currentLanguage],
+  );
+
+  const groupItems = useMemo(
+    () =>
+      groups.map((group) => ({
+        ...group,
+        name: localize(group.name, currentLanguage),
+        desc: localize(group.desc, currentLanguage),
+      })),
+    [currentLanguage],
+  );
 
   const handleCatalogClick = () => {
     navigate("/catalog");
@@ -79,10 +154,10 @@ export default function WidgetsSection() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-800">
-                          {currentLanguage === 'en' ? 'Training Catalog' : 'Каталог за обука'}
+                          {t.catalogTitle}
                         </h3>
                         <p className="text-sm text-gray-500">
-                          {currentLanguage === 'en' ? 'Browse all courses' : 'Прегледај ги сите курсеви'}
+                          {t.catalogSubtitle}
                         </p>
                       </div>
                     </div>
@@ -90,7 +165,7 @@ export default function WidgetsSection() {
                   </div>
                   
                   <div className="space-y-3">
-                    {catalog.map((course) => {
+                    {catalogItems.map((course) => {
                       const IconComponent = course.icon;
                       return (
                         <div
@@ -113,9 +188,13 @@ export default function WidgetsSection() {
                             </h4>
                             <p className="text-xs text-gray-500 truncate">{course.description}</p>
                             <div className="flex items-center gap-3 mt-1">
-                              <span className="text-xs text-gray-400">{course.modules} modules</span>
+                              <span className="text-xs text-gray-400">
+                                {course.modules} {t.modulesLabel}
+                              </span>
                               <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
-                              <span className="text-xs text-blue-600">{course.students} students</span>
+                              <span className="text-xs text-blue-600">
+                                {course.students} {t.studentsLabel}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -144,10 +223,10 @@ export default function WidgetsSection() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-800">
-                          {currentLanguage === 'en' ? 'Training Groups' : 'Групи за обука'}
+                          {t.groupsTitle}
                         </h3>
                         <p className="text-sm text-gray-500">
-                          {groups.length} {currentLanguage === 'en' ? 'active groups' : 'активни групи'}
+                          {groupItems.length} {t.activeGroups}
                         </p>
                       </div>
                     </div>
@@ -155,7 +234,7 @@ export default function WidgetsSection() {
                   </div>
                   
                   <div className="space-y-3">
-                    {groups.map((group) => {
+                    {groupItems.map((group) => {
                       const IconComponent = group.icon;
                       return (
                         <div
@@ -179,11 +258,11 @@ export default function WidgetsSection() {
                             <p className="text-xs text-gray-500 truncate">{group.desc}</p>
                             <div className="flex items-center gap-3 mt-1">
                               <span className="text-xs text-gray-400">
-                                {group.members} {currentLanguage === 'en' ? 'members' : 'членови'}
+                                {group.members} {t.membersLabel}
                               </span>
                               <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
                               <span className="text-xs text-green-600">
-                                {currentLanguage === 'en' ? 'Active' : 'Активна'}
+                                {t.statusActive}
                               </span>
                             </div>
                           </div>

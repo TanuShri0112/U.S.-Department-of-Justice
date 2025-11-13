@@ -18,10 +18,10 @@ const Catalog = () => {
       id: 1,
       name: currentLanguage === 'en'
         ? "Community-Based Risk Reduction (CBRR): Building Resilience from the Ground"
-        : "Намалување на ризиците засновано на заедницата (CBRR): Градење отпорност од основата",
+        : "Reducción de riesgos basada en la comunidad (CBRR): Construir resiliencia desde la base",
       description: currentLanguage === 'en'
         ? "Comprehensive training program covering community-based approaches to risk reduction, resilience building, and disaster preparedness"
-        : "Сеопфатна програма за обука која опфаќа пристапи засновани на заедницата за намалување на ризиците, градење отпорност и подготвеност за катастрофи",
+        : "Programa formativo integral que aborda enfoques comunitarios de reducción de riesgos, resiliencia y preparación ante desastres",
       imageUrl: 'https://www.vhv.rs/dpng/d/476-4763966_your-company-slogen-here-company-logo-your-logo.png',
       courseCount: 3,
       studentCount: 120,
@@ -54,6 +54,20 @@ const Catalog = () => {
     }
   };
 
+const getDifficultyLabel = (difficulty, language) => {
+  if (language === 'en') return difficulty;
+  switch (difficulty.toLowerCase()) {
+    case 'beginner':
+      return 'Principiante';
+    case 'intermediate':
+      return 'Intermedio';
+    case 'advanced':
+      return 'Avanzado';
+    default:
+      return difficulty;
+  }
+};
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white overflow-y-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -61,12 +75,12 @@ const Catalog = () => {
           {/* Header */}
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              {currentLanguage === 'en' ? "Course Catalog" : "Каталог на курсеви"}
+              {currentLanguage === 'en' ? "Course Catalog" : "Catálogo de cursos"}
             </h1>
             <p className="mt-2 text-gray-600">
               {currentLanguage === 'en' 
                 ? "Browse our collection of professional training courses" 
-                : "Прегледајте ја нашата колекција на професионални курсеви за обука"}
+                : "Explora nuestra colección de cursos de formación profesional"}
             </p>
           </div>
 
@@ -76,7 +90,7 @@ const Catalog = () => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 type="search"
-                placeholder={currentLanguage === 'en' ? "Search courses..." : "Пребарај курсеви..."}
+                placeholder={currentLanguage === 'en' ? "Search courses..." : "Buscar cursos..."}
                 className="pl-9 w-full"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -119,13 +133,13 @@ const Catalog = () => {
                         <div className="flex items-center gap-1.5">
                           <BookOpen className="h-4 w-4 text-gray-500" />
                           <span className="text-gray-600">
-                            {catalog.courseCount} {currentLanguage === 'en' ? "courses" : "курсеви"}
+                            {catalog.courseCount} {currentLanguage === 'en' ? "courses" : "cursos"}
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <Users className="h-4 w-4 text-gray-500" />
                           <span className="text-gray-600">
-                            {catalog.studentCount} {currentLanguage === 'en' ? "students" : "ученици"}
+                            {catalog.studentCount} {currentLanguage === 'en' ? "students" : "alumnos"}
                           </span>
                         </div>
                       </div>
@@ -135,7 +149,7 @@ const Catalog = () => {
                           <span className="text-gray-600">{catalog.duration}</span>
                         </div>
                         <span className={`px-2 py-1 rounded text-xs font-medium ${getDifficultyColor(catalog.difficulty)}`}>
-                          {catalog.difficulty}
+                          {getDifficultyLabel(catalog.difficulty, currentLanguage)}
                         </span>
                       </div>
                     </div>

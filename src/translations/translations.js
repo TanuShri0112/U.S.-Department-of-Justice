@@ -1,56 +1,4 @@
 export const translations = {
-  no: {
-    nav: {
-      home: 'Hjem',
-      courses: 'Kurs',
-      training: 'Opplæring',
-      profile: 'Profil',
-      settings: 'Innstillinger',
-      dashboard: 'Kontrollpanel',
-      groups: 'Grupper',
-      reports: 'Rapporter',
-      resources: 'Ressurser',
-      webinars: 'Webinarer',
-      messages: 'Meldinger',
-      help: 'Hjelp'
-    },
-    dashboard: {
-      welcome: 'Velkommen tilbake',
-      myProgress: 'Min fremgang',
-      completionRate: 'Fullføringsgrad',
-      safetyScore: 'Sikkerhetspoeng',
-      certificatesEarned: 'Sertifikater oppnådd',
-      hoursLearned: 'Timer lært',
-      upcomingWebinars: 'Kommende webinarer',
-      myCertificates: 'Mine sertifikater',
-      downloadCertificate: 'Last ned sertifikat',
-      viewCertificate: 'Se sertifikat',
-      xrayProficiency: 'Dataferdighet',
-      safetyTraining: 'Sikkerhetstrening status',
-      viewDetails: 'Se detaljer',
-      continueTraining: 'Fortsett opplæring'
-    },
-    training: {
-      sessions: {
-        title: 'Treningsøkter',
-        upcoming: 'Kommende økter',
-        completed: 'Fullførte økter',
-        joinButton: 'Bli med',
-        noUpcoming: 'Ingen kommende økter',
-        noCompleted: 'Ingen fullførte økter'
-      },
-      courses: {
-        title: 'Pågående kurs',
-        continue: 'Fortsett læring',
-        nextLesson: 'Neste leksjon',
-        dueDate: 'Forfallsdato',
-        progress: 'Fremgang',
-        participants: 'Deltakere',
-        duration: 'Varighet',
-        instructor: 'Instruktør'
-      }
-    }
-  },
   en: {
     nav: {
       home: 'Home',
@@ -103,55 +51,55 @@ export const translations = {
       }
     }
   },
-  fr: {
+  es: {
     nav: {
-      home: 'Accueil',
-      courses: 'Cours',
-      training: 'Formation',
-      profile: 'Profil',
-      settings: 'Paramètres',
-      dashboard: 'Tableau de bord',
-      groups: 'Groupes',
-      reports: 'Rapports',
-      resources: 'Ressources',
-      webinars: 'Webinaires',
-      messages: 'Messages',
-      help: 'Aide'
+      home: 'Inicio',
+      courses: 'Cursos',
+      training: 'Formación',
+      profile: 'Perfil',
+      settings: 'Configuración',
+      dashboard: 'Panel',
+      groups: 'Grupos',
+      reports: 'Informes',
+      resources: 'Recursos',
+      webinars: 'Webinarios',
+      messages: 'Mensajes',
+      help: 'Ayuda'
     },
     dashboard: {
-      welcome: 'Bienvenue',
-      myProgress: 'Ma progression',
-      completionRate: 'Taux de complétion',
-      safetyScore: 'Score de sécurité',
-      certificatesEarned: 'Certificats obtenus',
-      hoursLearned: 'Heures d\'apprentissage',
-      upcomingWebinars: 'Webinaires à venir',
-      myCertificates: 'Mes certificats',
-      downloadCertificate: 'Télécharger le certificat',
-      viewCertificate: 'Voir le certificat',
-      xrayProficiency: 'Compétence en rayons X',
-      safetyTraining: 'Statut de formation en sécurité',
-      viewDetails: 'Voir les détails',
-      continueTraining: 'Continuer la formation'
+      welcome: 'Bienvenido de nuevo',
+      myProgress: 'Mi progreso',
+      completionRate: 'Tasa de finalización',
+      safetyScore: 'Puntuación de seguridad',
+      certificatesEarned: 'Certificados obtenidos',
+      hoursLearned: 'Horas de formación',
+      upcomingWebinars: 'Próximos webinarios',
+      myCertificates: 'Mis certificados',
+      downloadCertificate: 'Descargar certificado',
+      viewCertificate: 'Ver certificado',
+      xrayProficiency: 'Competencia digital',
+      safetyTraining: 'Estado de la formación en seguridad',
+      viewDetails: 'Ver detalles',
+      continueTraining: 'Continuar formación'
     },
     training: {
       sessions: {
-        title: 'Sessions de formation',
-        upcoming: 'Sessions à venir',
-        completed: 'Sessions terminées',
-        joinButton: 'Rejoindre',
-        noUpcoming: 'Aucune session à venir',
-        noCompleted: 'Aucune session terminée'
+        title: 'Sesiones de formación',
+        upcoming: 'Sesiones próximas',
+        completed: 'Sesiones completadas',
+        joinButton: 'Unirse',
+        noUpcoming: 'No hay sesiones próximas',
+        noCompleted: 'No hay sesiones completadas'
       },
       courses: {
-        title: 'Cours en cours',
-        continue: 'Continuer l\'apprentissage',
-        nextLesson: 'Leçon suivante',
-        dueDate: 'Date d\'échéance',
-        progress: 'Progression',
-        participants: 'Participants',
-        duration: 'Durée',
-        instructor: 'Instructeur'
+        title: 'Cursos en curso',
+        continue: 'Continuar aprendiendo',
+        nextLesson: 'Próxima lección',
+        dueDate: 'Fecha límite',
+        progress: 'Progreso',
+        participants: 'Participantes',
+        duration: 'Duración',
+        instructor: 'Instructor'
       }
     }
   }

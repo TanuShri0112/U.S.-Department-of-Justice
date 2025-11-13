@@ -9,6 +9,10 @@ import { SidebarProvider } from "./contexts/SidebarContext";
 import { UserFilterProvider } from "./contexts/UserFilterContext";
 import { CourseSidebarProvider } from "./contexts/CourseSidebarContext";
 import { PortalProvider } from "./contexts/PortalContext";
+import { RoleProvider } from "./contexts/RoleContext";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import AccessDenied from "./pages/AccessDenied.jsx";
+import { ROLES } from "./constants/roles";
 // ECPAT update start - Assessment components removed
 // Assessment functionality disabled as per ECPAT requirements
 // ECPAT update end
@@ -76,6 +80,11 @@ import Chatbot from './pages/Chatbot.jsx';
 import Webinars from './pages/Webinars.jsx';
 
 const queryClient = new QueryClient();
+const COURSE_AUTHOR_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER];
+const USER_ADMIN_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.SUPPORT];
+const REPORTING_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.EVALUATOR];
+const EVALUATION_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.EVALUATOR];
+const SCHEDULER_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER];
 
 const App = () => (
   <LanguageProvider>
@@ -87,79 +96,281 @@ const App = () => (
         <SidebarProvider>
           <UserFilterProvider>
             <CourseSidebarProvider>
-              <PortalProvider>
+              <RoleProvider>
+                <PortalProvider>
                 <Routes>
-                <Route path="/" element={<AdminLayout />}>
-                  {/* Main pages */}
-                  <Route index element={<Dashboard />} />
-                  <Route path="courses" element={<Courses />} />
-                  <Route path="courses/create" element={<CourseCreation />} />
-                  <Route path="/courses/edit/:courseId" element={<CourseEdit />} />
-                  <Route path="/courses/:courseId/modules/:moduleId/edit" element={<EditModulePage />} />
-                  <Route path="courses/builder/:courseId" element={<CourseBuilder />} />
-                  <Route path="courses/builder/:courseId/modules/:moduleId/units" element={<UnitsBuilder />} />
-                  <Route path="courses/builder/:courseId/modules/:moduleId/units/creator" element={<UnitCreator />} />
-                  <Route path="courses/builder/:courseId/modules/:moduleId/units/creator/:unitId" element={<UnitCreator />} />
-                  <Route path="courses/builder/:courseId/modules/:moduleId/assessments" element={<AssessmentsBuilder />} />
-                  <Route path="courses/builder/:courseId/modules/:moduleId/assessments/creator" element={<AssessmentCreator />} />
-                  <Route path="courses/builder/:courseId/modules/:moduleId/assessments/creator/:assessmentId" element={<AssessmentCreator />} />
-                  <Route path="courses/view/:courseId/*" element={<CourseDetail />} />
-                  <Route path="courses/view/:courseId/news" element={<CourseNewsPage />} />
-                  <Route path="courses/view/:courseId/attendance" element={<CourseAttendance />} />
-                  <Route path="courses/:courseId/modules/:moduleId/assessments" element={<ModuleAssessments />} />
-                  <Route path="courses/:courseId/modules/:moduleId/quiz" element={<QuizPage />} />
-                  <Route path="courses/modules/:moduleId/assignments/:assignmentId" element={<AssignmentInstructorPage />} />
-                  <Route path="courses/modules/:moduleId/debates/:debateId" element={<DebateInstructorPage />} />
-                  <Route path="courses/modules/:moduleId/quizzes/:quizId" element={<QuizInstructorPage />} />
-                  <Route path="courses/modules/:moduleId/essays/:essayId" element={<EssayInstructorPage />} />
-                  <Route path="courses/modules/:moduleId/surveys/:surveyId" element={<SurveyInstructorPage />} />
-                  <Route path="courses/modules/:moduleId/units" element={<ModuleUnits />} />
-                  
-                  <Route path="catalog" element={<Catalog />} />
-                  <Route path="catalog/:categoryId" element={<CategoryDetail />} />
-                  <Route path="catalog/:courseId/:moduleId/:unitId" element={<CourseLessons />} />
-                  <Route path="catalog/:courseId/:moduleId/:unitId/:lessonId" element={<LessonContent />} />
-                  <Route path="groups" element={<Groups />} />
-                  <Route path="groups/catalog" element={<GroupCatalog />} />
-                  
-                  {/* Group Detail Routes */}
-                  <Route path="groups/view/:groupId" element={<GroupDetail />}>
-                    <Route path="overview" element={<GroupOverviewPage />} />
-                    <Route path="about" element={<GroupAboutPage />} />
-                    <Route path="news" element={<GroupNewsPage />} />
-                    <Route path="calendar" element={<GroupCalendarPage />} />
-                    <Route path="members" element={<GroupMembersPage />} />
-                    <Route path="admins" element={<GroupAdminsPage />} />
-                    <Route path="resources" element={<GroupResourcesPage />} />
-                    <Route path="forums" element={<GroupForumsPage />} />
-                    <Route path="chat" element={<GroupChatPage />} />
-                    <Route path="rss" element={<GroupRssFeeds />} />
+                  <Route path="/" element={<AdminLayout />}>
+                    {/* Main pages */}
+                    <Route index element={<Dashboard />} />
+                    <Route path="courses" element={<Courses />} />
+                    <Route
+                      path="courses/create"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <CourseCreation />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/edit/:courseId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <CourseEdit />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/:courseId/modules/:moduleId/edit"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <EditModulePage />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/builder/:courseId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <CourseBuilder />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/builder/:courseId/modules/:moduleId/units"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <UnitsBuilder />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/builder/:courseId/modules/:moduleId/units/creator"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <UnitCreator />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/builder/:courseId/modules/:moduleId/units/creator/:unitId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <UnitCreator />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/builder/:courseId/modules/:moduleId/assessments"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <AssessmentsBuilder />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/builder/:courseId/modules/:moduleId/assessments/creator"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <AssessmentCreator />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/builder/:courseId/modules/:moduleId/assessments/creator/:assessmentId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <AssessmentCreator />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route path="courses/view/:courseId/*" element={<CourseDetail />} />
+                    <Route path="courses/view/:courseId/news" element={<CourseNewsPage />} />
+                    <Route
+                      path="courses/view/:courseId/attendance"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <CourseAttendance />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/:courseId/modules/:moduleId/assessments"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <ModuleAssessments />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/:courseId/modules/:moduleId/quiz"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <QuizPage />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/modules/:moduleId/assignments/:assignmentId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <AssignmentInstructorPage />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/modules/:moduleId/debates/:debateId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <DebateInstructorPage />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/modules/:moduleId/quizzes/:quizId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <QuizInstructorPage />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/modules/:moduleId/essays/:essayId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <EssayInstructorPage />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/modules/:moduleId/surveys/:surveyId"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <SurveyInstructorPage />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="courses/modules/:moduleId/units"
+                      element={(
+                        <ProtectedRoute allowedRoles={COURSE_AUTHOR_ROLES}>
+                          <ModuleUnits />
+                        </ProtectedRoute>
+                      )}
+                    />
+
+                    <Route path="catalog" element={<Catalog />} />
+                    <Route path="catalog/:categoryId" element={<CategoryDetail />} />
+                    <Route path="catalog/:courseId/:moduleId/:unitId" element={<CourseLessons />} />
+                    <Route
+                      path="catalog/:courseId/:moduleId/:unitId/:lessonId"
+                      element={<LessonContent />}
+                    />
+                    <Route path="groups" element={<Groups />} />
+                    <Route path="groups/catalog" element={<GroupCatalog />} />
+
+                    {/* Group Detail Routes */}
+                    <Route path="groups/view/:groupId" element={<GroupDetail />}>
+                      <Route path="overview" element={<GroupOverviewPage />} />
+                      <Route path="about" element={<GroupAboutPage />} />
+                      <Route path="news" element={<GroupNewsPage />} />
+                      <Route path="calendar" element={<GroupCalendarPage />} />
+                      <Route path="members" element={<GroupMembersPage />} />
+                      <Route path="admins" element={<GroupAdminsPage />} />
+                      <Route path="resources" element={<GroupResourcesPage />} />
+                      <Route path="forums" element={<GroupForumsPage />} />
+                      <Route path="chat" element={<GroupChatPage />} />
+                      <Route path="rss" element={<GroupRssFeeds />} />
+                    </Route>
+
+                    <Route
+                      path="users"
+                      element={(
+                        <ProtectedRoute allowedRoles={USER_ADMIN_ROLES}>
+                          <Users />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="reports"
+                      element={(
+                        <ProtectedRoute allowedRoles={REPORTING_ROLES}>
+                          <Reports />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="evaluation"
+                      element={(
+                        <ProtectedRoute allowedRoles={EVALUATION_ROLES}>
+                          <EvaluationFeedback />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="feedback-reports"
+                      element={(
+                        <ProtectedRoute allowedRoles={EVALUATION_ROLES}>
+                          <DEAAdmin />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="survey"
+                      element={(
+                        <ProtectedRoute allowedRoles={EVALUATION_ROLES}>
+                          <Survey />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="self-assessment"
+                      element={(
+                        <ProtectedRoute allowedRoles={EVALUATION_ROLES}>
+                          <SelfAssessment />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route path="resources" element={<Resources />} />
+                    <Route path="messages" element={<Messages />} />
+                    <Route path="help" element={<Help />} />
+                    <Route path="profile" element={<Profile />} />
+                    <Route path="chatbot" element={<Chatbot />} />
+                    <Route path="webinars" element={<Webinars />} />
+
+                    {/* New Instructor Dashboard Routes */}
+                    <Route
+                      path="tasks"
+                      element={(
+                        <ProtectedRoute allowedRoles={SCHEDULER_ROLES}>
+                          <TaskManagement />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="announcements"
+                      element={(
+                        <ProtectedRoute allowedRoles={SCHEDULER_ROLES}>
+                          <AnnouncementManagement />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route
+                      path="calendar"
+                      element={(
+                        <ProtectedRoute allowedRoles={SCHEDULER_ROLES}>
+                          <CalendarManagement />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    <Route path="access-denied" element={<AccessDenied />} />
+
+                    {/* ECPAT update start - Assessment routes removed */}
+                    {/* Assessment functionality disabled as per ECPAT requirements */}
+                    {/* ECPAT update end */}
                   </Route>
-                  
-                  <Route path="users" element={<Users />} />
-                  <Route path="reports" element={<Reports />} />
-                  <Route path="evaluation" element={<EvaluationFeedback />} />
-                  <Route path="feedback-reports" element={<DEAAdmin />} />
-                  <Route path="survey" element={<Survey />} />
-                  <Route path="self-assessment" element={<SelfAssessment />} />
-                  <Route path="resources" element={<Resources />} />
-                  <Route path="messages" element={<Messages />} />
-                  <Route path="help" element={<Help />} />
-                  <Route path="profile" element={<Profile />} />
-                  <Route path="chatbot" element={<Chatbot />} />
-                  <Route path="webinars" element={<Webinars />} />
-                  
-                  {/* New Instructor Dashboard Routes */}
-                  <Route path="tasks" element={<TaskManagement />} />
-                  <Route path="announcements" element={<AnnouncementManagement />} />
-                  <Route path="calendar" element={<CalendarManagement />} />
-                  
-                  {/* ECPAT update start - Assessment routes removed */}
-                  {/* Assessment functionality disabled as per ECPAT requirements */}
-                  {/* ECPAT update end */}
-                </Route>
-              </Routes>
-              </PortalProvider>
+                </Routes>
+                </PortalProvider>
+              </RoleProvider>
             </CourseSidebarProvider>
           </UserFilterProvider>
         </SidebarProvider>

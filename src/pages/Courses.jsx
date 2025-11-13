@@ -41,27 +41,27 @@ const Courses = () => {
 
   const overviewStats = [
     {
-      label: currentLanguage === 'en' ? 'Active Curricula' : 'Активни наставни програми',
+      label: currentLanguage === 'en' ? 'Active Curricula' : 'Planes formativos activos',
       value: '12',
-      trend: currentLanguage === 'en' ? '+3 new this month' : '+3 нови овој месец',
+      trend: currentLanguage === 'en' ? '+3 new this month' : '+3 nuevos este mes',
       icon: Layers
     },
     {
-      label: currentLanguage === 'en' ? 'Teacher Training Progress' : 'Напредок на обука на наставници',
+      label: currentLanguage === 'en' ? 'Teacher Training Progress' : 'Progreso de formación docente',
       value: '68%',
-      trend: currentLanguage === 'en' ? 'Average completion rate' : 'Просечна стапка на завршување',
+      trend: currentLanguage === 'en' ? 'Average completion rate' : 'Tasa media de finalización',
       icon: Target
     },
     {
-      label: currentLanguage === 'en' ? 'Courses Completed' : 'Завршени курсеви',
+      label: currentLanguage === 'en' ? 'Courses Completed' : 'Cursos completados',
       value: '156',
-      trend: currentLanguage === 'en' ? 'Across all cohorts' : 'Преку сите групи',
+      trend: currentLanguage === 'en' ? 'Across all cohorts' : 'En todos los grupos',
       icon: ClipboardCheck
     },
     {
-      label: currentLanguage === 'en' ? 'Pending Reviews' : 'Прегледи на чекање',
+      label: currentLanguage === 'en' ? 'Pending Reviews' : 'Revisiones pendientes',
       value: '9',
-      trend: currentLanguage === 'en' ? 'Awaiting board approval' : 'Чека одобрување од одборот',
+      trend: currentLanguage === 'en' ? 'Awaiting board approval' : 'En espera de aprobación del comité',
       icon: FileText
     }
   ];
@@ -70,29 +70,29 @@ const Courses = () => {
     {
       title: currentLanguage === 'en' 
         ? 'Curriculum draft ready for review' 
-        : 'Нацрт на наставна програма подготвен за преглед',
+        : 'Borrador de currículo listo para revisión',
       detail: currentLanguage === 'en'
         ? 'Macedonian language arts module submitted by Design Team.'
-        : 'Модул за македонски јазик и литература поднесен од тимот за дизајн.',
-      time: currentLanguage === 'en' ? '2h ago' : 'Пред 2 часа'
+        : 'Módulo de lengua y literatura presentado por el equipo de diseño.',
+      time: currentLanguage === 'en' ? '2h ago' : 'Hace 2 h'
     },
     {
       title: currentLanguage === 'en'
         ? 'Teacher workshop scheduled'
-        : 'Закажана работилница за наставници',
+        : 'Taller docente programado',
       detail: currentLanguage === 'en'
         ? 'Digital Citizenship virtual workshop on Nov 18.'
-        : 'Виртуелна работилница за дигитално граѓанство на 18 ноември.',
-      time: currentLanguage === 'en' ? 'Yesterday' : 'Вчера'
+        : 'Taller virtual de ciudadanía digital el 18 de noviembre.',
+      time: currentLanguage === 'en' ? 'Yesterday' : 'Ayer'
     },
     {
       title: currentLanguage === 'en'
         ? 'Security policy update'
-        : 'Ажурирање на политика за безбедност',
+        : 'Actualización de política de seguridad',
       detail: currentLanguage === 'en'
         ? 'GDPR compliance checklist refreshed—action required by Admins.'
-        : 'Листата за усогласеност со GDPR е освежена—потребна е акција од администраторите.',
-      time: currentLanguage === 'en' ? '2 days ago' : 'Пред 2 дена'
+        : 'Lista de verificación de cumplimiento RGPD actualizada—se requiere acción de los administradores.',
+      time: currentLanguage === 'en' ? '2 days ago' : 'Hace 2 días'
     }
   ];
 
@@ -100,26 +100,26 @@ const Courses = () => {
     {
       phase: currentLanguage === 'en'
         ? 'Setup & Configuration (Month 1-2)'
-        : 'Поставување и конфигурација (Месец 1-2)',
+        : 'Configuración inicial (Meses 1-2)',
       detail: currentLanguage === 'en'
         ? 'Activate Admin/Designer roles, configure localization (MK & EN), import initial data.'
-        : 'Активирајте улоги на администратор/дизајнер, конфигурирајте локализација (МК и АН), увезете почетни податоци.'
+        : 'Activa los roles de administrador/diseñador, configura la localización (ES e EN) e importa datos iniciales.'
     },
     {
       phase: currentLanguage === 'en'
         ? 'Training Delivery (Month 3-4)'
-        : 'Спроведување на обука (Месец 3-4)',
+        : 'Impartición de la formación (Meses 3-4)',
       detail: currentLanguage === 'en'
         ? 'Trainers onboard teachers, deliver blended learning sessions, gather feedback.'
-        : 'Тренерите ги вклучуваат наставниците, спроведуваат мешани сесии за учење, собираат повратни информации.'
+        : 'Los formadores incorporan al profesorado, imparten sesiones híbridas y recogen retroalimentación.'
     },
     {
       phase: currentLanguage === 'en'
         ? 'Evaluation & Analytics (Month 5-6)'
-        : 'Евалуација и аналитика (Месец 5-6)',
+        : 'Evaluación y analítica (Meses 5-6)',
       detail: currentLanguage === 'en'
         ? 'Reviewers analyze progress dashboards, export reports, finalize curriculum approvals.'
-        : 'Прегледувачите анализираат табла за напредок, извезуваат извештаи, финализираат одобрувања на наставни програми.'
+        : 'Los evaluadores analizan paneles de progreso, exportan informes y validan las aprobaciones curriculares.'
     }
   ];
 
@@ -130,56 +130,56 @@ const Courses = () => {
         'Inquiry-based learning framework'
       ]
     : [
-        'Усогласување со национални стандарди',
-        'Мапа на компетенции за дигитална безбедност',
-        'Рамка за учење засновано на истражување'
+        'Alineación con estándares nacionales',
+        'Mapa de competencias en seguridad digital',
+        'Marco de aprendizaje basado en la indagación'
       ];
 
   const teacherMilestones = [
     {
-      title: currentLanguage === 'en' ? 'Certification Pathway' : 'Патека за сертификација',
+      title: currentLanguage === 'en' ? 'Certification Pathway' : 'Ruta de certificación',
       detail: currentLanguage === 'en'
         ? '4 of 6 micro-credentials earned'
-        : '4 од 6 микро-акредитации заработени',
+        : '4 de 6 microcredenciales obtenidas',
       progress: '67%'
     },
     {
-      title: currentLanguage === 'en' ? 'Evaluation Scores' : 'Резултати од евалуација',
+      title: currentLanguage === 'en' ? 'Evaluation Scores' : 'Resultados de evaluación',
       detail: currentLanguage === 'en'
         ? 'Average peer review score 4.3/5'
-        : 'Просечна оценка од колеги 4.3/5',
-      progress: currentLanguage === 'en' ? 'Latest cycle Oct 2025' : 'Последен циклус окт 2025'
+        : 'Puntuación media de revisión por pares 4,3/5',
+      progress: currentLanguage === 'en' ? 'Latest cycle Oct 2025' : 'Último ciclo oct 2025'
     },
     {
-      title: currentLanguage === 'en' ? 'Engagement Heatmap' : 'Мапа на ангажман',
+      title: currentLanguage === 'en' ? 'Engagement Heatmap' : 'Mapa de participación',
       detail: currentLanguage === 'en'
         ? 'High participation in virtual labs'
-        : 'Високо учество во виртуелни лаборатории',
-      progress: currentLanguage === 'en' ? 'Updated weekly' : 'Ажурирано неделно'
+        : 'Alta participación en laboratorios virtuales',
+      progress: currentLanguage === 'en' ? 'Updated weekly' : 'Actualizado semanalmente'
     }
   ];
 
   const analyticsWidgets = [
     {
-      title: currentLanguage === 'en' ? 'Completion Rate' : 'Стапка на завршување',
+      title: currentLanguage === 'en' ? 'Completion Rate' : 'Tasa de finalización',
       figure: '82%',
       description: currentLanguage === 'en'
         ? 'Blended learning modules'
-        : 'Модули за мешано учење'
+        : 'Módulos de aprendizaje combinado'
     },
     {
-      title: currentLanguage === 'en' ? 'Engagement Index' : 'Индекс на ангажман',
+      title: currentLanguage === 'en' ? 'Engagement Index' : 'Índice de participación',
       figure: '7.4',
       description: currentLanguage === 'en'
         ? 'Discussion activity level'
-        : 'Ниво на активност во дискусии'
+        : 'Nivel de actividad en foros'
     },
     {
-      title: currentLanguage === 'en' ? 'Assessment Insights' : 'Согледувања од проценка',
+      title: currentLanguage === 'en' ? 'Assessment Insights' : 'Información de evaluaciones',
       figure: '22%',
       description: currentLanguage === 'en'
         ? 'Questions flagged for review'
-        : 'Прашања означени за преглед'
+        : 'Preguntas marcadas para revisión'
     }
   ];
 
@@ -191,75 +191,75 @@ const Courses = () => {
         'Training Playbooks'
       ]
     : [
-        'Документи за наставни програми',
-        'Мултимедијални ресурси',
-        'Политика и усогласеност',
-        'Прирачници за обука'
+        'Documentos curriculares',
+        'Recursos multimedia',
+        'Política y cumplimiento',
+        'Guías de formación'
       ];
 
   const collaborationTools = [
     {
-      name: currentLanguage === 'en' ? 'Discussion Forums' : 'Форуми за дискусија',
+      name: currentLanguage === 'en' ? 'Discussion Forums' : 'Foros de discusión',
       description: currentLanguage === 'en'
         ? 'Role-based threads for peer support'
-        : 'Нишки засновани на улоги за поддршка од колеги'
+        : 'Hilos por roles para apoyo entre pares'
     },
     {
-      name: currentLanguage === 'en' ? 'Shared Lesson Planning' : 'Споделено планирање на часови',
+      name: currentLanguage === 'en' ? 'Shared Lesson Planning' : 'Planificación de clases colaborativa',
       description: currentLanguage === 'en'
         ? 'Real-time co-authoring with version history'
-        : 'Совместно авторство во реално време со историја на верзии'
+        : 'Coautoría en tiempo real con historial de versiones'
     },
     {
-      name: currentLanguage === 'en' ? 'Announcements' : 'Најави',
+      name: currentLanguage === 'en' ? 'Announcements' : 'Anuncios',
       description: currentLanguage === 'en'
         ? 'Notify cohorts and school boards instantly'
-        : 'Веднаш известувајте ги групите и училишните одбори'
+        : 'Notifica al instante a cohortes y juntas escolares'
     },
     {
-      name: currentLanguage === 'en' ? 'Helpdesk Chat' : 'Чет за поддршка',
+      name: currentLanguage === 'en' ? 'Helpdesk Chat' : 'Chat de soporte',
       description: currentLanguage === 'en'
         ? 'Connect with support for technical guidance'
-        : 'Поврзете се со поддршка за технички водич'
+        : 'Conéctate con soporte para guía técnica'
     }
   ];
 
   const roleDashboards = [
     {
-      role: currentLanguage === 'en' ? 'Administrator' : 'Администратор',
+      role: currentLanguage === 'en' ? 'Administrator' : 'Administrador',
       responsibilities: currentLanguage === 'en'
         ? 'Manage users, roles, compliance dashboards, data exports.'
-        : 'Управувајте со корисници, улоги, табла за усогласеност, извоз на податоци.'
+        : 'Gestiona usuarios, roles, tableros de cumplimiento y exportaciones de datos.'
     },
     {
-      role: currentLanguage === 'en' ? 'Curriculum Designer' : 'Дизајнер на наставни програми',
+      role: currentLanguage === 'en' ? 'Curriculum Designer' : 'Diseñador curricular',
       responsibilities: currentLanguage === 'en'
         ? 'Build curriculum blueprints, maintain resource libraries, request approvals.'
-        : 'Градете нацрти на наставни програми, одржувајте библиотеки на ресурси, побарајте одобрувања.'
+        : 'Diseña planes curriculares, mantiene bibliotecas de recursos y solicita aprobaciones.'
     },
     {
-      role: currentLanguage === 'en' ? 'Trainer / Instructor' : 'Тренер / Инструктор',
+      role: currentLanguage === 'en' ? 'Trainer / Instructor' : 'Formador / Instructor',
       responsibilities: currentLanguage === 'en'
         ? 'Deliver modules, grade assessments, monitor learner progress.'
-        : 'Спроведувајте модули, оценувајте проценки, следете го напредокот на учесниците.'
+        : 'Imparte módulos, califica evaluaciones y supervisa el progreso del alumnado.'
     },
     {
-      role: currentLanguage === 'en' ? 'Learner / Teacher' : 'Учесник / Наставник',
+      role: currentLanguage === 'en' ? 'Learner / Teacher' : 'Alumno / Docente',
       responsibilities: currentLanguage === 'en'
         ? 'Complete modules, track milestones, download certificates.'
-        : 'Завршете модули, следете ги пресвртниците, преземете сертификати.'
+        : 'Completa módulos, sigue hitos y descarga certificados.'
     },
     {
-      role: currentLanguage === 'en' ? 'Reviewer / Board' : 'Прегледувач / Одбор',
+      role: currentLanguage === 'en' ? 'Reviewer / Board' : 'Evaluador / Comité',
       responsibilities: currentLanguage === 'en'
         ? 'Audit curricula, approve updates, validate compliance.'
-        : 'Аудитирајте наставни програми, одобрувајте ажурирања, валидирајте усогласеност.'
+        : 'Audita planes, aprueba actualizaciones y valida el cumplimiento.'
     },
     {
-      role: currentLanguage === 'en' ? 'Support / Helpdesk' : 'Поддршка / Служба за помош',
+      role: currentLanguage === 'en' ? 'Support / Helpdesk' : 'Soporte / Mesa de ayuda',
       responsibilities: currentLanguage === 'en'
         ? 'Handle tickets, monitor system health, assist users.'
-        : 'Решавајте тикети, следете го здравјето на системот, помагајте на корисници.'
+        : 'Gestiona tickets, monitoriza la salud del sistema y asiste a los usuarios.'
     }
   ];
 
@@ -269,11 +269,11 @@ const Courses = () => {
       title:
         currentLanguage === 'en'
           ? 'Information Security and Cybersecurity'
-          : 'Информациона безбедност и кибербезбедност',
+          : 'Seguridad de la información y ciberseguridad',
       description:
         currentLanguage === 'en'
           ? 'Covers phishing recognition, GDPR, secure digital work practices, and incident response.'
-          : 'Опишува препознавање на фишинг, GDPR, безбедни дигитални работни практики и одговор на инциденти.',
+          : 'Incluye reconocimiento de phishing, RGPD, buenas prácticas digitales y respuesta a incidentes.',
       students: 120,
       duration: '6 weeks',
       level: 'Beginner',
@@ -287,11 +287,11 @@ const Courses = () => {
       title:
         currentLanguage === 'en'
           ? 'Digital Pedagogy for Blended Learning'
-          : 'Дигитална педагогија за мешано учење',
+          : 'Pedagogía digital para aprendizaje combinado',
       description:
         currentLanguage === 'en'
           ? 'Plan modular content, virtual workshops, and self-paced assignments.'
-          : 'Планирајте модуларна содржина, виртуелни работилници и самостојни задачи.',
+          : 'Planifica contenido modular, talleres virtuales y actividades auto-dirigidas.',
       students: 86,
       duration: '4 weeks',
       level: 'Intermediate',
@@ -305,11 +305,11 @@ const Courses = () => {
       title:
         currentLanguage === 'en'
           ? 'Learner Assessment with Instant Feedback'
-          : 'Проценка на учесници со моментална повратна информација',
+          : 'Evaluación del alumnado con retroalimentación inmediata',
       description:
         currentLanguage === 'en'
           ? 'SCORM-compliant assessments, automated feedback, and certificate generation.'
-          : 'SCORM-усогласени проценки, автоматизирана повратна информација и генерирање на сертификати.',
+          : 'Evaluaciones compatibles con SCORM, retroalimentación automática y emisión de certificados.',
       students: 64,
       duration: '3 weeks',
       level: 'Advanced',
@@ -342,12 +342,12 @@ const Courses = () => {
         title={
           currentLanguage === 'en'
             ? 'LMS Dashboard'
-            : 'LMS Табла'
+            : 'Panel LMS'
         }
         description={
           currentLanguage === 'en'
             ? 'Track curriculum design, training delivery, and quality metrics.'
-            : 'Следете дизајн на наставни програми, спроведување на обуки и квалитетни метрики.'
+            : 'Supervisa el diseño curricular, la impartición de la formación y las métricas de calidad.'
         }
       />
 
@@ -372,16 +372,16 @@ const Courses = () => {
             <div>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Bell className="h-5 w-5 text-primary" />
-                {currentLanguage === 'en' ? 'Notifications & Announcements' : 'Известувања и најави'}
+                {currentLanguage === 'en' ? 'Notifications & Announcements' : 'Notificaciones y anuncios'}
               </CardTitle>
               <p className="text-sm text-muted-foreground">
                 {currentLanguage === 'en'
                   ? 'Keep every role aligned with new curricula, training, and compliance alerts.'
-                  : 'Одржувајте ја секоја улога усогласена со нови наставни програми, обуки и аларми за усогласеност.'}
+                  : 'Mantén a cada rol alineado con nuevos planes, formaciones y alertas de cumplimiento.'}
               </p>
             </div>
             <Button variant="outline" size="sm">
-              {currentLanguage === 'en' ? 'View all' : 'Види се'}
+              {currentLanguage === 'en' ? 'View all' : 'Ver todo'}
             </Button>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -404,12 +404,12 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <Target className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Phased Rollout Plan' : 'План за фазна имплементација'}
+              {currentLanguage === 'en' ? 'Phased Rollout Plan' : 'Plan de despliegue por fases'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? '6-month implementation roadmap aligned with tender milestones.'
-                : 'Патна карта за имплементација од 6 месеци усогласена со пресвртниците на тендерот.'}
+                : 'Hoja de ruta de 6 meses alineada con los hitos del pliego.'}
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -428,12 +428,12 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <BookOpen className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Curriculum Design Workspace' : 'Работна површина за дизајн на наставни програми'}
+              {currentLanguage === 'en' ? 'Curriculum Design Workspace' : 'Área de diseño curricular'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Drag and drop modules, align learning outcomes, and integrate multimedia assets.'
-                : 'Влечете и спуштајте модули, усогласете ги исходите од учење и интегрирајте мултимедијални ресурси.'}
+                : 'Arrastra módulos, alinea resultados de aprendizaje e integra recursos multimedia.'}
             </p>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -447,11 +447,11 @@ const Courses = () => {
             <div className="rounded-lg border border-dashed border-primary/30 p-6 text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Drop competencies, standards, and resources here to prototype the curriculum sequence.'
-                : 'Спуштете компетенции, стандарди и ресурси овде за да прототипирате секвенцата на наставната програма.'}
+                : 'Suelta competencias, estándares y recursos aquí para prototipar la secuencia curricular.'}
             </div>
             <Button variant="default" className="w-full gap-2">
               <Plus className="h-4 w-4" />
-              {currentLanguage === 'en' ? 'Launch Curriculum Studio Prototype' : 'Лансирај прототип на студио за наставни програми'}
+              {currentLanguage === 'en' ? 'Launch Curriculum Studio Prototype' : 'Lanzar prototipo del estudio curricular'}
             </Button>
           </CardContent>
         </Card>
@@ -460,60 +460,60 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <ClipboardCheck className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Course Builder & Assessments' : 'Градител на курсеви и проценки'}
+              {currentLanguage === 'en' ? 'Course Builder & Assessments' : 'Constructor de cursos y evaluaciones'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Create SCORM/xAPI-ready lessons, define objectives, and configure automated feedback.'
-                : 'Создадете часови подготвени за SCORM/xAPI, дефинирајте цели и конфигурирајте автоматизирана повратна информација.'}
+                : 'Crea lecciones listas para SCORM/xAPI, define objetivos y configura retroalimentación automática.'}
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div className="rounded-lg border border-border/70 p-3">
                 <h4 className="font-semibold">
-                  {currentLanguage === 'en' ? 'Lesson Templates' : 'Шаблони за часови'}
+                  {currentLanguage === 'en' ? 'Lesson Templates' : 'Plantillas de lecciones'}
                 </h4>
                 <p className="text-xs text-muted-foreground">
                   {currentLanguage === 'en'
                     ? 'Objectives, outcomes, resources, blended steps.'
-                    : 'Цели, исходи, ресурси, мешани чекори.'}
+                    : 'Objetivos, resultados, recursos y pasos híbridos.'}
                 </p>
               </div>
               <div className="rounded-lg border border-border/70 p-3">
                 <h4 className="font-semibold">
-                  {currentLanguage === 'en' ? 'Assessment Library' : 'Библиотека за проценка'}
+                  {currentLanguage === 'en' ? 'Assessment Library' : 'Biblioteca de evaluaciones'}
                 </h4>
                 <p className="text-xs text-muted-foreground">
                   {currentLanguage === 'en'
                     ? 'Quizzes, case studies, rubric-based evaluations.'
-                    : 'Квизови, студиски случаи, проценки засновани на рубрики.'}
+                    : 'Cuestionarios, estudios de caso y evaluaciones basadas en rúbricas.'}
                 </p>
               </div>
               <div className="rounded-lg border border-border/70 p-3">
                 <h4 className="font-semibold">
-                  {currentLanguage === 'en' ? 'Certification Rules' : 'Правила за сертификација'}
+                  {currentLanguage === 'en' ? 'Certification Rules' : 'Reglas de certificación'}
                 </h4>
                 <p className="text-xs text-muted-foreground">
                   {currentLanguage === 'en'
                     ? 'Automate credential issuance after rubric thresholds.'
-                    : 'Автоматизирајте издавање на акредитации по прагови на рубрики.'}
+                    : 'Automatiza la emisión de credenciales al alcanzar los umbrales de la rúbrica.'}
                 </p>
               </div>
               <div className="rounded-lg border border-border/70 p-3">
                 <h4 className="font-semibold">
-                  {currentLanguage === 'en' ? 'Digital Signature' : 'Дигитален потпис'}
+                  {currentLanguage === 'en' ? 'Digital Signature' : 'Firma digital'}
                 </h4>
                 <p className="text-xs text-muted-foreground">
                   {currentLanguage === 'en'
                     ? 'Validate submissions before reviewer approval.'
-                    : 'Валидирајте поднесоци пред одобрување од прегледувач.'}
+                    : 'Valida envíos antes de la aprobación del evaluador.'}
                 </p>
               </div>
             </div>
             <Button variant="outline" className="w-full gap-2">
               <FileText className="h-4 w-4" />
-              {currentLanguage === 'en' ? 'Browse Course Catalog Prototype' : 'Прегледај прототип на каталог на курсеви'}
+              {currentLanguage === 'en' ? 'Browse Course Catalog Prototype' : 'Ver prototipo del catálogo de cursos'}
             </Button>
           </CardContent>
         </Card>
@@ -524,12 +524,12 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <Users className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Teacher Progress Tracker' : 'Следбеник на напредок на наставници'}
+              {currentLanguage === 'en' ? 'Teacher Progress Tracker' : 'Seguimiento del progreso docente'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Visualize micro-credential progress, evaluation insights, and cohort health.'
-                : 'Визуализирајте напредок на микро-акредитации, согледувања од евалуација и здравје на групите.'}
+                : 'Visualiza el avance en microcredenciales, los insights de evaluación y la salud de las cohortes.'}
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -549,12 +549,12 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <BarChart3 className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Analytics & Reporting' : 'Аналитика и известување'}
+              {currentLanguage === 'en' ? 'Analytics & Reporting' : 'Analítica e informes'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Present leadership-ready dashboards with exportable insights.'
-                : 'Прикажете табла подготвени за лидерство со извозливи согледувања.'}
+                : 'Presenta paneles listos para la dirección con insights exportables.'}
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -569,7 +569,7 @@ const Courses = () => {
             ))}
             <Button variant="outline" className="w-full gap-2">
               <BarChart3 className="h-4 w-4" />
-              {currentLanguage === 'en' ? 'Export Board Report (CSV/PDF)' : 'Извези извештај од одбор (CSV/PDF)'}
+              {currentLanguage === 'en' ? 'Export Board Report (CSV/PDF)' : 'Exportar informe para el comité (CSV/PDF)'}
             </Button>
           </CardContent>
         </Card>
@@ -580,12 +580,12 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <FolderOpen className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Resource Library' : 'Библиотека на ресурси'}
+              {currentLanguage === 'en' ? 'Resource Library' : 'Biblioteca de recursos'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Searchable, tagged repository syncing policy, curriculum, and multimedia assets.'
-                : 'Пребарувачка, обележана складишна база што синхронизира политика, наставни програми и мултимедијални ресурси.'}
+                : 'Repositorio etiquetado y buscable que sincroniza políticas, currículo y recursos multimedia.'}
             </p>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -598,7 +598,7 @@ const Courses = () => {
             </div>
             <Button variant="outline" className="w-full gap-2">
               <Search className="h-4 w-4" />
-              {currentLanguage === 'en' ? 'Explore Repository Prototype' : 'Истражете прототип на складишна база'}
+              {currentLanguage === 'en' ? 'Explore Repository Prototype' : 'Explorar prototipo del repositorio'}
             </Button>
           </CardContent>
         </Card>
@@ -607,12 +607,12 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <MessageCircle className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Collaboration & Communication' : 'Соработка и комуникација'}
+              {currentLanguage === 'en' ? 'Collaboration & Communication' : 'Colaboración y comunicación'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Enable cross-role teamwork, feedback loops, and knowledge sharing.'
-                : 'Овозможете тимска работа преку улоги, јамки за повратна информација и споделување знаење.'}
+                : 'Facilita el trabajo entre roles, los bucles de feedback y el intercambio de conocimiento.'}
             </p>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -629,12 +629,12 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <ShieldCheck className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Role-based Dashboards & Compliance' : 'Табла засновани на улоги и усогласеност'}
+              {currentLanguage === 'en' ? 'Role-based Dashboards & Compliance' : 'Paneles por rol y cumplimiento'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Secure access, GDPR safeguards, and Macedonian/English localization coverage.'
-                : 'Безбеден пристап, GDPR заштити и покриеност на локализација на македонски/англиски.'}
+                : 'Acceso seguro, salvaguardas RGPD y cobertura de localización en español/inglés.'}
             </p>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -643,7 +643,7 @@ const Courses = () => {
                 <div className="flex items-center justify-between">
                   <h4 className="font-semibold">{role}</h4>
                   <Badge variant="secondary">
-                    {currentLanguage === 'en' ? 'Demo access' : 'Демо пристап'}
+                    {currentLanguage === 'en' ? 'Demo access' : 'Acceso demo'}
                   </Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">{responsibilities}</p>
@@ -652,7 +652,7 @@ const Courses = () => {
             <div className="rounded-lg border border-dashed border-primary/40 p-4 text-xs text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Simulate 25–30 demo accounts spanning all roles for tender presentation.'
-                : 'Симулирајте 25–30 демо сметки кои опфаќаат сите улоги за презентација на тендерот.'}
+                : 'Simula 25-30 cuentas demo que cubren todos los roles para la presentación.'}
             </div>
           </CardContent>
         </Card>
@@ -663,53 +663,53 @@ const Courses = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
               <Globe className="h-5 w-5 text-primary" />
-              {currentLanguage === 'en' ? 'Localization & Accessibility' : 'Локализација и пристапност'}
+              {currentLanguage === 'en' ? 'Localization & Accessibility' : 'Localización y accesibilidad'}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {currentLanguage === 'en'
                 ? 'Showcase Macedonian & English UI, WCAG-compliant patterns, and scalable architecture.'
-                : 'Прикажете кориснички интерфејс на македонски и англиски, WCAG-усогласени модели и скалабилна архитектура.'}
+                : 'Muestra interfaz en español e inglés, patrones conformes a WCAG y arquitectura escalable.'}
             </p>
           </CardHeader>
           <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-lg border border-border/70 p-4 text-sm">
               <span className="font-semibold">
-                {currentLanguage === 'en' ? 'Multilingual Toggle' : 'Префрлување на повеќе јазици'}
+                {currentLanguage === 'en' ? 'Multilingual Toggle' : 'Selector multilingüe'}
               </span>
               <p className="text-xs text-muted-foreground mt-2">
                 {currentLanguage === 'en'
                   ? 'Demonstrate Macedonian (MK) and English (EN) translations across dashboards.'
-                  : 'Демонстрирајте преводи на македонски (МК) и англиски (АН) преку таблата.'}
+                  : 'Demuestra traducciones en español (ES) e inglés (EN) en los paneles.'}
               </p>
             </div>
             <div className="rounded-lg border border-border/70 p-4 text-sm">
               <span className="font-semibold">
-                {currentLanguage === 'en' ? 'Accessibility Checklist' : 'Листа за пристапност'}
+                {currentLanguage === 'en' ? 'Accessibility Checklist' : 'Lista de accesibilidad'}
               </span>
               <p className="text-xs text-muted-foreground mt-2">
                 {currentLanguage === 'en'
                   ? 'Contrast, keyboard navigation, descriptive labeling per WCAG AA.'
-                  : 'Контраст, навигација со тастатура, описни етикети според WCAG AA.'}
+                  : 'Contraste, navegación por teclado y etiquetas descriptivas según WCAG AA.'}
               </p>
             </div>
             <div className="rounded-lg border border-border/70 p-4 text-sm">
               <span className="font-semibold">
-                {currentLanguage === 'en' ? 'Secure Data Flow' : 'Безбеден проток на податоци'}
+                {currentLanguage === 'en' ? 'Secure Data Flow' : 'Flujo de datos seguro'}
               </span>
               <p className="text-xs text-muted-foreground mt-2">
                 {currentLanguage === 'en'
                   ? 'GDPR-compliant hosting, audit logging, encrypted exports/imports.'
-                  : 'GDPR-усогласено хостирање, аудит логирање, шифриран извоз/увоз.'}
+                  : 'Alojamiento conforme al RGPD, registro de auditoría y exportaciones/importaciones cifradas.'}
               </p>
             </div>
             <div className="rounded-lg border border-border/70 p-4 text-sm">
               <span className="font-semibold">
-                {currentLanguage === 'en' ? 'Blended Learning Support' : 'Поддршка за мешано учење'}
+                {currentLanguage === 'en' ? 'Blended Learning Support' : 'Soporte para aprendizaje combinado'}
               </span>
               <p className="text-xs text-muted-foreground mt-2">
                 {currentLanguage === 'en'
                   ? 'Combine virtual workshops with self-paced LMS modules in one calendar.'
-                  : 'Комбинирајте виртуелни работилници со самостојни LMS модули во еден календар.'}
+                  : 'Combina talleres virtuales con módulos autodirigidos en un único calendario.'}
               </p>
             </div>
           </CardContent>
@@ -720,16 +720,16 @@ const Courses = () => {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h2 className="text-lg font-semibold flex items-center gap-2">
             <Compass className="h-5 w-5 text-primary" />
-            {currentLanguage === 'en' ? 'Training Catalogue Preview' : 'Преглед на каталог за обука'}
+            {currentLanguage === 'en' ? 'Training Catalogue Preview' : 'Vista previa del catálogo de formación'}
           </h2>
           <div className="flex flex-wrap items-center gap-2">
             <Button variant="outline" onClick={handleCatalogClick} className="flex items-center gap-2">
               <Filter className="h-4 w-4" />
-              {currentLanguage === 'en' ? 'Browse full catalogue' : 'Прегледај целосен каталог'}
+              {currentLanguage === 'en' ? 'Browse full catalogue' : 'Ver catálogo completo'}
             </Button>
             <Button variant="default" className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
-              {currentLanguage === 'en' ? 'Create new course' : 'Создади нов курс'}
+              {currentLanguage === 'en' ? 'Create new course' : 'Crear nuevo curso'}
             </Button>
           </div>
         </div>
@@ -739,7 +739,7 @@ const Courses = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               className="pl-9"
-              placeholder={currentLanguage === 'en' ? 'Search courses...' : 'Пребарај курсеви...'}
+              placeholder={currentLanguage === 'en' ? 'Search courses...' : 'Buscar cursos...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -747,31 +747,61 @@ const Courses = () => {
 
           <Select defaultValue="all">
             <SelectTrigger className="w-[150px]">
-              <SelectValue placeholder={currentLanguage === 'en' ? 'All levels' : 'Сите нивоа'} />
+              <SelectValue placeholder={currentLanguage === 'en' ? 'All levels' : 'Todos los niveles'} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">{currentLanguage === 'en' ? 'All levels' : 'Сите нивоа'}</SelectItem>
-              <SelectItem value="beginner">{currentLanguage === 'en' ? 'Beginner' : 'Почетник'}</SelectItem>
-              <SelectItem value="intermediate">{currentLanguage === 'en' ? 'Intermediate' : 'Средно'}</SelectItem>
-              <SelectItem value="advanced">{currentLanguage === 'en' ? 'Advanced' : 'Напредно'}</SelectItem>
+              <SelectItem value="all">{currentLanguage === 'en' ? 'All levels' : 'Todos los niveles'}</SelectItem>
+              <SelectItem value="beginner">{currentLanguage === 'en' ? 'Beginner' : 'Principiante'}</SelectItem>
+              <SelectItem value="intermediate">{currentLanguage === 'en' ? 'Intermediate' : 'Intermedio'}</SelectItem>
+              <SelectItem value="advanced">{currentLanguage === 'en' ? 'Advanced' : 'Avanzado'}</SelectItem>
             </SelectContent>
           </Select>
 
           <Select defaultValue="all">
             <SelectTrigger className="w-[170px]">
-              <SelectValue placeholder={currentLanguage === 'en' ? 'All catalogs' : 'Сите каталози'} />
+              <SelectValue placeholder={currentLanguage === 'en' ? 'All catalogs' : 'Todos los catálogos'} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">{currentLanguage === 'en' ? 'All catalogs' : 'Сите каталози'}</SelectItem>
-              <SelectItem value="risk">{currentLanguage === 'en' ? 'Risk Reduction' : 'Намалување на ризик'}</SelectItem>
-              <SelectItem value="training">{currentLanguage === 'en' ? 'Teacher Training' : 'Обука на наставници'}</SelectItem>
-              <SelectItem value="assessment">{currentLanguage === 'en' ? 'Assessment Tools' : 'Алатки за проценка'}</SelectItem>
+              <SelectItem value="all">{currentLanguage === 'en' ? 'All catalogs' : 'Todos los catálogos'}</SelectItem>
+              <SelectItem value="risk">{currentLanguage === 'en' ? 'Risk Reduction' : 'Reducción de riesgos'}</SelectItem>
+              <SelectItem value="training">{currentLanguage === 'en' ? 'Teacher Training' : 'Formación docente'}</SelectItem>
+              <SelectItem value="assessment">{currentLanguage === 'en' ? 'Assessment Tools' : 'Herramientas de evaluación'}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div className="grid	grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-          {filteredCourses.map((course) => (
+          {filteredCourses.map((course) => {
+            const statusLabel =
+              currentLanguage === 'en'
+                ? course.status
+                : course.status === 'Active'
+                  ? 'Activo'
+                  : course.status === 'Upcoming'
+                    ? 'Próximo'
+                    : course.status;
+            const levelLabel =
+              currentLanguage === 'en'
+                ? course.level
+                : course.level === 'Beginner'
+                  ? 'Principiante'
+                  : course.level === 'Intermediate'
+                    ? 'Intermedio'
+                    : course.level === 'Advanced'
+                      ? 'Avanzado'
+                      : course.level;
+            const catalogLabel =
+              currentLanguage === 'en'
+                ? course.catalog
+                : course.catalog === 'Risk Reduction'
+                  ? 'Reducción de riesgos'
+                  : course.catalog === 'Teacher Training'
+                    ? 'Formación docente'
+                    : course.catalog === 'Assessment Tools'
+                      ? 'Herramientas de evaluación'
+                      : course.catalog;
+
+            return (
             <Card key={course.id} className="relative overflow-hidden border border-border/60">
               <div className="h-40 overflow-hidden relative">
                 <img
@@ -781,7 +811,7 @@ const Courses = () => {
                 />
                 <div className="absolute top-3 right-3">
                   <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                    {course.status}
+                    {statusLabel}
                   </Badge>
                 </div>
               </div>
@@ -804,7 +834,7 @@ const Courses = () => {
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="flex items-center gap-1.5">
                     <Users className="h-4 w-4 text-primary/80" />
-                    {course.students} {currentLanguage === 'en' ? 'enrolled' : 'вклучени'}
+                    {course.students} {currentLanguage === 'en' ? 'enrolled' : 'inscritos'}
                   </span>
                   <span className="flex items-center gap-1.5">
                     <Clock className="h-4 w-4 text-primary/80" />
@@ -812,19 +842,19 @@ const Courses = () => {
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span>{currentLanguage === 'en' ? 'Level:' : 'Ниво:'} {course.level}</span>
-                  <span>{currentLanguage === 'en' ? 'Catalog:' : 'Каталог:'} {course.catalog}</span>
+                  <span>{currentLanguage === 'en' ? 'Level:' : 'Nivel:'} {levelLabel}</span>
+                  <span>{currentLanguage === 'en' ? 'Catalog:' : 'Catálogo:'} {catalogLabel}</span>
                 </div>
                 <Button
                   variant="default"
                   className="w-full bg-primary hover:bg-primary/90"
                   onClick={() => handleCourseClick(course.id)}
                 >
-                  {currentLanguage === 'en' ? 'Continue learning' : 'Продолжи со учење'}
+                  {currentLanguage === 'en' ? 'Continue learning' : 'Continuar aprendiendo'}
                 </Button>
               </CardContent>
             </Card>
-          ))}
+          )})}
         </div>
       </section>
     </div>

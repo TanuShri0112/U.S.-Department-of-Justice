@@ -10,30 +10,43 @@ import { Users, School, Shield } from 'lucide-react';
 import { usePortal } from '@/contexts/PortalContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
+import { useRole } from '@/contexts/RoleContext';
+import { ROLES } from '@/constants/roles';
 
 export function ViewModeToggle({ isCollapsed }) {
   const { portalMode, switchPortal } = usePortal();
   const { currentLanguage } = useLanguage();
+  const { assumeRole } = useRole();
 
   const modes = {
     student: {
       icon: School,
-      label: { en: 'Student View', mk: 'Поглед за ученик' },
-      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
+      label: { en: 'Student View', es: 'Vista de estudiante' },
+      color: 'text-[hsl(var(--sidebar-accent-foreground))]',
+      role: ROLES.LEARNER,
     },
     instructor: {
       icon: Users,
-      label: { en: 'Instructor View', mk: 'Поглед за инструктор' },
-      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
+      label: { en: 'Instructor View', es: 'Vista de instructor' },
+      color: 'text-[hsl(var(--sidebar-accent-foreground))]',
+      role: ROLES.TRAINER,
     },
     admin: {
       icon: Shield,
-      label: { en: 'Admin View', mk: 'Поглед за администратор' },
-      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
+      label: { en: 'Admin View', es: 'Vista de administrador' },
+      color: 'text-[hsl(var(--sidebar-accent-foreground))]',
+      role: ROLES.ADMIN,
     },
   };
 
   const CurrentIcon = modes[portalMode]?.icon || School;
+  const handleSwitch = (mode) => {
+    switchPortal(mode);
+    const targetRole = modes[mode]?.role;
+    if (targetRole) {
+      assumeRole(targetRole);
+    }
+  };
 
   if (isCollapsed) {
     return (
@@ -53,21 +66,21 @@ export function ViewModeToggle({ isCollapsed }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent side="right" align="start" className="w-48">
             <DropdownMenuItem 
-              onClick={() => switchPortal('student')}
+              onClick={() => handleSwitch('student')}
               className="flex items-center gap-2"
             >
               <School className="h-4 w-4 text-green-600" />
               <span>{modes.student.label[currentLanguage] ?? modes.student.label.en}</span>
             </DropdownMenuItem>
             <DropdownMenuItem 
-              onClick={() => switchPortal('instructor')}
+              onClick={() => handleSwitch('instructor')}
               className="flex items-center gap-2"
             >
               <Users className="h-4 w-4 text-blue-600" />
               <span>{modes.instructor.label[currentLanguage] ?? modes.instructor.label.en}</span>
             </DropdownMenuItem>
             <DropdownMenuItem 
-              onClick={() => switchPortal('admin')}
+              onClick={() => handleSwitch('admin')}
               className="flex items-center gap-2"
             >
               <Shield className="h-4 w-4 text-purple-600" />
@@ -98,21 +111,21 @@ export function ViewModeToggle({ isCollapsed }) {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-48">
           <DropdownMenuItem 
-            onClick={() => switchPortal('student')}
+            onClick={() => handleSwitch('student')}
             className="flex items-center gap-2"
           >
             <School className="h-4 w-4 text-green-600" />
             <span>{modes.student.label[currentLanguage] ?? modes.student.label.en}</span>
           </DropdownMenuItem>
           <DropdownMenuItem 
-            onClick={() => switchPortal('instructor')}
+            onClick={() => handleSwitch('instructor')}
             className="flex items-center gap-2"
           >
             <Users className="h-4 w-4 text-blue-600" />
             <span>{modes.instructor.label[currentLanguage] ?? modes.instructor.label.en}</span>
           </DropdownMenuItem>
           <DropdownMenuItem 
-            onClick={() => switchPortal('admin')}
+            onClick={() => handleSwitch('admin')}
             className="flex items-center gap-2"
           >
             <Shield className="h-4 w-4 text-purple-600" />

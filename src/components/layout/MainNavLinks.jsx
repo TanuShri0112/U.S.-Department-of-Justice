@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import {
@@ -16,66 +16,91 @@ import {
   Video
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useRole } from '@/contexts/RoleContext';
+import { ROLES } from '@/constants/roles';
+
+const COURSE_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER, ROLES.LEARNER];
+const GROUP_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER, ROLES.LEARNER, ROLES.SUPPORT];
+const REPORT_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.EVALUATOR];
+const COMMUNICATION_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER, ROLES.SUPPORT];
 
 const navItems = [
   {
     icon: Home,
-    label: { en: 'Dashboard', mk: 'Контролна табла' },
-    href: '/'
+    label: { en: 'Dashboard', es: 'Panel' },
+    href: '/',
+    allowedRoles: null,
   },
   {
     icon: BookOpen,
-    label: { en: 'Courses', mk: 'Курсеви' },
-    href: '/courses'
+    label: { en: 'Courses', es: 'Cursos' },
+    href: '/courses',
+    allowedRoles: COURSE_ROLES,
   },
   {
     icon: Users,
-    label: { en: 'Groups', mk: 'Групи' },
-    href: '/groups'
+    label: { en: 'Groups', es: 'Grupos' },
+    href: '/groups',
+    allowedRoles: GROUP_ROLES,
   },
   {
     icon: Calendar,
-    label: { en: 'Calendar', mk: 'Календар' },
-    href: '/calendar'
+    label: { en: 'Calendar', es: 'Calendario' },
+    href: '/calendar',
+    allowedRoles: GROUP_ROLES,
   },
   {
     icon: Bell,
-    label: { en: 'Announcements', mk: 'Известувања' },
-    href: '/announcements'
+    label: { en: 'Announcements', es: 'Anuncios' },
+    href: '/announcements',
+    allowedRoles: COMMUNICATION_ROLES,
   },
   {
     icon: BarChart,
-    label: { en: 'Reports', mk: 'Извештаи' },
-    href: '/reports'
+    label: { en: 'Reports', es: 'Informes' },
+    href: '/reports',
+    allowedRoles: REPORT_ROLES,
   },
   {
     icon: FileText,
-    label: { en: 'Resources', mk: 'Ресурси' },
-    href: '/resources'
+    label: { en: 'Resources', es: 'Recursos' },
+    href: '/resources',
+    allowedRoles: null,
   },
   {
     icon: Video,
-    label: { en: 'Webinars', mk: 'Вебинари' },
-    href: '/webinars'
+    label: { en: 'Webinars', es: 'Webinarios' },
+    href: '/webinars',
+    allowedRoles: COURSE_ROLES,
   },
   {
     icon: MessageSquare,
-    label: { en: 'Messages', mk: 'Пораки' },
-    href: '/messages'
+    label: { en: 'Messages', es: 'Mensajes' },
+    href: '/messages',
+    allowedRoles: COMMUNICATION_ROLES,
   },
   {
     icon: HelpCircle,
-    label: { en: 'Help', mk: 'Помош' },
-    href: '/help'
+    label: { en: 'Help', es: 'Ayuda' },
+    href: '/help',
+    allowedRoles: null,
   }
 ];
 
 export function MainNavLinks({ isCollapsed, onCloseMobile }) {
   const { currentLanguage } = useLanguage();
+  const { hasAnyRole } = useRole();
+
+  const items = useMemo(() => navItems.filter((item) => {
+    if (!item.allowedRoles || item.allowedRoles.length === 0) {
+      return true;
+    }
+    return hasAnyRole(item.allowedRoles);
+  }), [hasAnyRole]);
 
   return (
     <div className="space-y-1 py-2">
-      {navItems.map((item) => (
+      {items.map((item) => (
         <NavLink
           key={item.href}
           to={item.href}

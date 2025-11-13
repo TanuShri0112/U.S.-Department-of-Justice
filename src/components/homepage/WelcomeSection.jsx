@@ -21,12 +21,12 @@ export function WelcomeSection() {
       subtitle: "Your complete learning platform for professional training and development. Access courses, certifications, and learning resources with WCAG 2.1 compliance.",
       button: "Start Learning"
     },
-    mk: {
-      tag: "Професионална обука",
-      welcome: "Добредојдовте во",
+    es: {
+      tag: "Formación profesional",
+      welcome: "Bienvenido a",
       ministry: "Athena LMS",
-      subtitle: "Вашата целосна платформа за професионална обука и развој. Пристапете до курсеви, сертификати и ресурси за учење со усогласеност со WCAG 2.1.",
-      button: "Започни со учење"
+      subtitle: "Tu plataforma completa de aprendizaje para formación y desarrollo profesional. Accede a cursos, certificaciones y recursos con cumplimiento WCAG 2.1.",
+      button: "Comenzar a aprender"
     }
   };
 

@@ -10,12 +10,17 @@ import { Button } from "@/components/ui/button";
 import { Languages, Check } from 'lucide-react';
 
 const LanguageSwitcher = () => {
-  const { currentLanguage, setLanguage } = useLanguage();
+  const { currentLanguage, setLanguage, availableLanguages } = useLanguage();
 
-  const languages = [
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'mk', name: 'Македонски', flag: '🇲🇰' }
-  ];
+  const languages = availableLanguages.map((code) => {
+    switch (code) {
+      case 'es':
+        return { code, name: 'Español', flag: '🇪🇸' };
+      case 'en':
+      default:
+        return { code: 'en', name: 'English', flag: '🇺🇸' };
+    }
+  });
 
   const currentLang = languages.find(lang => lang.code === currentLanguage);
 
