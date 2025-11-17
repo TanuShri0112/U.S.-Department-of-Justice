@@ -79,6 +79,11 @@ import EditModulePage from './pages/EditModulePage';
 import Chatbot from './pages/Chatbot.jsx';
 import Webinars from './pages/Webinars.jsx';
 import GDPRCompliance from './pages/GDPRCompliance.jsx';
+import TechnicalRequirements from './pages/TechnicalRequirements.jsx';
+import AccessibilityFeatures from './pages/AccessibilityFeatures.jsx';
+import AccessibilityToolbar from './components/accessibility/AccessibilityToolbar';
+import SkipLinks from './components/accessibility/SkipLinks';
+import { AppWithAccessibility } from './components/AppWithAccessibility';
 
 const queryClient = new QueryClient();
 const COURSE_AUTHOR_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER];
@@ -94,12 +99,15 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <SidebarProvider>
-          <UserFilterProvider>
-            <CourseSidebarProvider>
-              <RoleProvider>
-                <PortalProvider>
-                <Routes>
+        <AppWithAccessibility>
+          <SkipLinks />
+          <SidebarProvider>
+            <UserFilterProvider>
+              <CourseSidebarProvider>
+                <RoleProvider>
+                  <PortalProvider>
+                  <AccessibilityToolbar />
+                  <Routes>
                   <Route path="/" element={<AdminLayout />}>
                     {/* Main pages */}
                     <Route index element={<Dashboard />} />
@@ -338,6 +346,8 @@ const App = () => (
                     <Route path="chatbot" element={<Chatbot />} />
                     <Route path="webinars" element={<Webinars />} />
                     <Route path="gdpr-compliance" element={<GDPRCompliance />} />
+                    <Route path="technical-requirements" element={<TechnicalRequirements />} />
+                    <Route path="accessibility" element={<AccessibilityFeatures />} />
 
                     {/* New Instructor Dashboard Routes */}
                     <Route
@@ -370,12 +380,13 @@ const App = () => (
                     {/* Assessment functionality disabled as per ECPAT requirements */}
                     {/* ECPAT update end */}
                   </Route>
-                </Routes>
-                </PortalProvider>
-              </RoleProvider>
-            </CourseSidebarProvider>
-          </UserFilterProvider>
-        </SidebarProvider>
+                  </Routes>
+                  </PortalProvider>
+                </RoleProvider>
+              </CourseSidebarProvider>
+            </UserFilterProvider>
+          </SidebarProvider>
+        </AppWithAccessibility>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

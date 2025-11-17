@@ -45,7 +45,11 @@ export const Header = ({ onMenuClick }) => {
 
   return (
     <>
-      <header className="px-4 h-16 flex items-center justify-between bg-white shadow-md z-40 border-b border-gray-200">
+      <header 
+        id="main-navigation"
+        className="px-4 h-16 flex items-center justify-between bg-white shadow-md z-40 border-b border-gray-200"
+        role="banner"
+      >
         <div className="flex items-center gap-8">
           <div 
             className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
@@ -72,9 +76,11 @@ export const Header = ({ onMenuClick }) => {
               <Search className="w-4 h-4 text-gray-400" />
             </div>
             <input
+              id="search-input"
               type="search"
               className="w-[300px] py-2 pl-10 pr-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:border-[hsl(var(--primary))]"
               placeholder={currentLanguage === 'en' ? 'Search...' : 'Buscar...'}
+              aria-label={currentLanguage === 'en' ? 'Search the platform' : 'Buscar en la plataforma'}
             />
           </div>
 

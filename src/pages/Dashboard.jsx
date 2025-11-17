@@ -3,9 +3,9 @@ import { StudentDashboard } from '@/components/homepage/StudentDashboard';
 
 const Dashboard = () => {
   return (
-    <div className="animate-fade-in">
+    <main id="main-content" className="animate-fade-in" role="main" tabIndex={-1}>
       <StudentDashboard />
-    </div>
+    </main>
   );
 };
 

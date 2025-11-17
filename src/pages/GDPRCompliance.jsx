@@ -295,7 +295,10 @@ const GDPRCompliance = () => {
                 <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-5 w-5 text-green-600" />
-                    <span className="font-medium">Data Encryption</span>
+                    <div>
+                      <span className="font-medium">Data Encryption</span>
+                      <p className="text-xs text-gray-600 mt-0.5">AES-256-GCM encryption for data at rest and in transit</p>
+                    </div>
                   </div>
                   <Badge variant="default" className="bg-green-600">Active</Badge>
                 </div>

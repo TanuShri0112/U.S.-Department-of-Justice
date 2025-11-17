@@ -14,11 +14,28 @@ const LanguageSwitcher = () => {
 
   const languages = availableLanguages.map((code) => {
     switch (code) {
+      case 'en':
+        return { code, name: 'English', flag: '🇬🇧' };
       case 'es':
         return { code, name: 'Español', flag: '🇪🇸' };
-      case 'en':
+      case 'fr':
+        return { code, name: 'Français', flag: '🇫🇷' };
+      case 'de':
+        return { code, name: 'Deutsch', flag: '🇩🇪' };
+      case 'pl':
+        return { code, name: 'Polski', flag: '🇵🇱' };
+      case 'ro':
+        return { code, name: 'Română', flag: '🇷🇴' };
+      case 'bg':
+        return { code, name: 'Български', flag: '🇧🇬' };
+      case 'hi':
+        return { code, name: 'हिन्दी', flag: '🇮🇳' };
+      case 'ur':
+        return { code, name: 'اردو', flag: '🇵🇰' };
+      case 'ar':
+        return { code, name: 'العربية', flag: '🇸🇦' };
       default:
-        return { code: 'en', name: 'English', flag: '🇺🇸' };
+        return { code: 'en', name: 'English', flag: '🇬🇧' };
     }
   });
 
@@ -40,7 +57,7 @@ const LanguageSwitcher = () => {
           <span className="text-sm font-medium">{currentLang.code.toUpperCase()}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-40">
+      <DropdownMenuContent align="end" className="w-48 max-h-[400px] overflow-y-auto">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
