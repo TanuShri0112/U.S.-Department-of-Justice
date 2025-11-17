@@ -24,6 +24,13 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Separator } from '@/components/ui/separator';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+export const openAccessibilityToolbar = () => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('open-accessibility-toolbar'));
+  }
+};
 
 const AccessibilityToolbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +45,21 @@ const AccessibilityToolbar = () => {
   const [textToSpeech, setTextToSpeech] = useState(false);
   const [screenReader, setScreenReader] = useState(false);
   const [showKeyboardShortcuts, setShowKeyboardShortcuts] = useState(false);
+  const [speechSupported, setSpeechSupported] = useState(false);
+  const { currentLanguage } = useLanguage();
+
+  const languageLocales = {
+    en: 'en-GB',
+    es: 'es-ES',
+    fr: 'fr-FR',
+    de: 'de-DE',
+    pl: 'pl-PL',
+    ro: 'ro-RO',
+    bg: 'bg-BG',
+    hi: 'hi-IN',
+    ur: 'ur-PK',
+    ar: 'ar-SA',
+  };
 
   // Apply font size changes
   useEffect(() => {
@@ -66,6 +88,32 @@ const AccessibilityToolbar = () => {
     }
   }, [highContrast]);
 
+  // Detect text-to-speech support and clean up on unmount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window) {
+      setSpeechSupported(true);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  // Listen for external open events
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('open-accessibility-toolbar', handleOpen);
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('open-accessibility-toolbar', handleOpen);
+      }
+    };
+  }, []);
+
   // Announce to screen readers
   const announceToScreenReader = (message) => {
     const announcement = document.createElement('div');
@@ -90,9 +138,42 @@ const AccessibilityToolbar = () => {
     announceToScreenReader(checked ? 'High contrast mode enabled' : 'High contrast mode disabled');
   };
 
+  const playTextToSpeechDemo = () => {
+    if (!speechSupported || typeof window === 'undefined') {
+      announceToScreenReader('Text to speech is not supported in this browser');
+      return;
+    }
+
+    const synth = window.speechSynthesis;
+    if (!synth) {
+      announceToScreenReader('Unable to start text to speech');
+      return;
+    }
+
+    synth.cancel();
+
+    const demoText =
+      'Ipswich Borough Council accessibility assistant reporting. We can narrate menus, lessons, and compliance guidance so every staff member can learn comfortably.';
+
+    const utterance = new window.SpeechSynthesisUtterance(demoText);
+    utterance.lang = languageLocales[currentLanguage] || 'en-GB';
+    utterance.rate = 1;
+    utterance.pitch = 1;
+
+    synth.speak(utterance);
+  };
+
   const handleTextToSpeechToggle = (checked) => {
     setTextToSpeech(checked);
-    announceToScreenReader(checked ? 'Text to speech enabled' : 'Text to speech disabled');
+    if (checked) {
+      playTextToSpeechDemo();
+      announceToScreenReader('Text to speech enabled with sample narration');
+    } else {
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+      announceToScreenReader('Text to speech disabled');
+    }
   };
 
   const keyboardShortcuts = [
@@ -108,36 +189,6 @@ const AccessibilityToolbar = () => {
 
   return (
     <>
-      {/* Floating Accessibility Button */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setIsOpen(true);
-        }}
-        onMouseDown={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-        onTouchStart={(e) => {
-          e.stopPropagation();
-        }}
-        className="fixed bottom-4 right-4 z-[9999] rounded-full h-14 w-14 shadow-lg hover:shadow-xl transition-shadow pointer-events-auto bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
-        aria-label="Open accessibility options"
-        title="Accessibility Options"
-        style={{ 
-          position: 'fixed',
-          zIndex: 9999,
-          pointerEvents: 'auto',
-          cursor: 'pointer',
-          border: 'none',
-          outline: 'none'
-        }}
-      >
-        <Accessibility className="h-6 w-6" />
-      </button>
-
       {/* Accessibility Dialog */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -225,7 +276,8 @@ const AccessibilityToolbar = () => {
 
             <Separator />
 
-            {/* Text to Speech */}
+          {/* Text to Speech */}
+          <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="text-to-speech" className="flex items-center gap-2">
@@ -233,16 +285,38 @@ const AccessibilityToolbar = () => {
                   Text to Speech
                 </Label>
                 <p className="text-xs text-gray-500">
-                  Enable text-to-speech for content reading
+                  Enable narrated guidance for lessons, dashboards, and compliance policies.
                 </p>
+                {!speechSupported && (
+                  <p className="text-xs text-red-500">
+                    Text to speech is not supported in this browser.
+                  </p>
+                )}
               </div>
               <Switch
                 id="text-to-speech"
                 checked={textToSpeech}
                 onCheckedChange={handleTextToSpeechToggle}
                 aria-label="Toggle text to speech"
+                disabled={!speechSupported}
               />
             </div>
+            {speechSupported && (
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <p className="text-xs text-gray-500">
+                  Tap play to hear the sample narration again in your selected language.
+                </p>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={playTextToSpeechDemo}
+                  className="w-full sm:w-auto"
+                >
+                  Play sample narration
+                </Button>
+              </div>
+            )}
+          </div>
 
             <Separator />
 

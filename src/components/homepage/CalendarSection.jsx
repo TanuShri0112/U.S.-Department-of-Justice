@@ -112,6 +112,7 @@ export function CalendarSection() {
                 size="sm"
                 className="w-8 h-8 p-0 bg-blue-100 hover:bg-blue-200 rounded-lg"
                 onClick={handlePreviousMonth}
+                aria-label="Previous month"
               >
                 <ChevronLeft className="w-4 h-4 text-blue-600" />
               </Button>
@@ -120,6 +121,7 @@ export function CalendarSection() {
                 size="sm"
                 className="w-8 h-8 p-0 bg-blue-100 hover:bg-blue-200 rounded-lg"
                 onClick={handleNextMonth}
+                aria-label="Next month"
               >
                 <ChevronRight className="w-4 h-4 text-blue-600" />
               </Button>

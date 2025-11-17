@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Calendar, Clock, MessageSquare, Users, BarChart, Bell, ChevronRight, Plus } from 'lucide-react';
+import { BookOpen, Calendar, Clock, MessageSquare, Users, BarChart, Bell, ChevronRight, Plus, Accessibility } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import {WelcomeSection} from './WelcomeSection';
 import QuickStatsSection from './QuickStatsSection';
@@ -9,6 +9,7 @@ import TrainingSessions from '@/components/ui/TrainingSessions';
 import OngoingCourses from '@/components/ui/OngoingCourses';
 import TaskListSection from './TaskListSection';
 import {CalendarSection} from './CalendarSection';
+import { openAccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar';
 
 export function StudentDashboard() {
   const navigate = useNavigate();
@@ -27,6 +28,17 @@ export function StudentDashboard() {
         {/* Right Column - Optimized width and spacing */}
         <div className="space-y-5 lg:col-span-4">
           <div className="lg:sticky lg:top-6 space-y-5">
+            <div className="flex justify-end">
+              <Button
+                variant="secondary"
+                className="flex items-center gap-2"
+                onClick={openAccessibilityToolbar}
+                aria-label="Open accessibility options"
+              >
+                <Accessibility className="h-4 w-4" />
+                <span>Accessibility</span>
+              </Button>
+            </div>
             <CalendarSection />
             <TaskListSection />
           </div>
