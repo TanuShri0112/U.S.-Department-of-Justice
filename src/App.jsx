@@ -78,6 +78,7 @@ import CourseEdit from "./pages/CourseEdit";
 import EditModulePage from './pages/EditModulePage';
 import Chatbot from './pages/Chatbot.jsx';
 import Webinars from './pages/Webinars.jsx';
+import GDPRCompliance from './pages/GDPRCompliance.jsx';
 
 const queryClient = new QueryClient();
 const COURSE_AUTHOR_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER];
@@ -336,6 +337,7 @@ const App = () => (
                     <Route path="profile" element={<Profile />} />
                     <Route path="chatbot" element={<Chatbot />} />
                     <Route path="webinars" element={<Webinars />} />
+                    <Route path="gdpr-compliance" element={<GDPRCompliance />} />
 
                     {/* New Instructor Dashboard Routes */}
                     <Route

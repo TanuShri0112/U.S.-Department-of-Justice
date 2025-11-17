@@ -52,7 +52,7 @@ export const Header = ({ onMenuClick }) => {
             onClick={handleLogoClick}
           >
             <h1 className="text-lg font-semibold text-gray-900">
-              Athena LMS
+              Ipswich Borough Council (IBC)
             </h1>
           </div>
         </div>

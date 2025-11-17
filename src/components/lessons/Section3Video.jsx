@@ -31,9 +31,9 @@ const Section3Video = () => {
     const base = (langCode || 'en-US').split('-')[0];
     const texts = {
       en: (
-        'Bau- und Liegenschaftsbetrieb NRW Zentral Rakshak Smart - One Page Overview\n' +
+        'Ipswich Borough Council (IBC) Training - One Page Overview\n' +
         'Overview\n' +
-        'Bau- und Liegenschaftsbetrieb NRW Zentral Rakshak Smart is a life insurance savings plan designed to provide protection, ' +
+        'Ipswich Borough Council (IBC) Learning Portal provides comprehensive training and development programs designed to provide professional development, ' +
         'guaranteed income, and long-term financial security for individuals and families.\n' +
         'Key Benefits\n' +
         '✔ Life Insurance cover during the policy term\n' +

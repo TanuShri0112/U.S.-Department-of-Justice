@@ -91,16 +91,16 @@ const mockData = {
     { month: 'Dec', campaigns: 42, surveys: 35 }
   ],
   reportsTable: [
-    { year: 2024, region: 'North', enrollments: 450, completions: 405, outreachHours: 2400, campaigns: 42, surveys: 35 },
-    { year: 2024, region: 'South', enrollments: 320, completions: 288, outreachHours: 1800, campaigns: 38, surveys: 30 },
-    { year: 2024, region: 'East', enrollments: 280, completions: 252, outreachHours: 1600, campaigns: 35, surveys: 28 },
-    { year: 2024, region: 'West', enrollments: 380, completions: 342, outreachHours: 2200, campaigns: 40, surveys: 32 },
-    { year: 2024, region: 'Central', enrollments: 220, completions: 198, outreachHours: 1200, campaigns: 32, surveys: 25 },
-    { year: 2023, region: 'North', enrollments: 420, completions: 378, outreachHours: 2200, campaigns: 38, surveys: 30 },
-    { year: 2023, region: 'South', enrollments: 300, completions: 270, outreachHours: 1600, campaigns: 35, surveys: 28 },
-    { year: 2023, region: 'East', enrollments: 260, completions: 234, outreachHours: 1400, campaigns: 32, surveys: 25 },
-    { year: 2023, region: 'West', enrollments: 350, completions: 315, outreachHours: 2000, campaigns: 38, surveys: 30 },
-    { year: 2023, region: 'Central', enrollments: 200, completions: 180, outreachHours: 1100, campaigns: 28, surveys: 22 }
+    { year: 2024, region: 'North', department: 'HR', enrollments: 450, completions: 405, outreachHours: 2400, campaigns: 42, surveys: 35 },
+    { year: 2024, region: 'South', department: 'IT', enrollments: 320, completions: 288, outreachHours: 1800, campaigns: 38, surveys: 30 },
+    { year: 2024, region: 'East', department: 'Finance', enrollments: 280, completions: 252, outreachHours: 1600, campaigns: 35, surveys: 28 },
+    { year: 2024, region: 'West', department: 'HR', enrollments: 380, completions: 342, outreachHours: 2200, campaigns: 40, surveys: 32 },
+    { year: 2024, region: 'Central', department: 'Operations', enrollments: 220, completions: 198, outreachHours: 1200, campaigns: 32, surveys: 25 },
+    { year: 2023, region: 'North', department: 'HR', enrollments: 420, completions: 378, outreachHours: 2200, campaigns: 38, surveys: 30 },
+    { year: 2023, region: 'South', department: 'IT', enrollments: 300, completions: 270, outreachHours: 1600, campaigns: 35, surveys: 28 },
+    { year: 2023, region: 'East', department: 'Finance', enrollments: 260, completions: 234, outreachHours: 1400, campaigns: 32, surveys: 25 },
+    { year: 2023, region: 'West', department: 'HR', enrollments: 350, completions: 315, outreachHours: 2000, campaigns: 38, surveys: 30 },
+    { year: 2023, region: 'Central', department: 'Operations', enrollments: 200, completions: 180, outreachHours: 1100, campaigns: 28, surveys: 22 }
   ]
 };
 
@@ -150,6 +150,7 @@ const Reports = () => {
   const [loading, setLoading] = useState(false);
   const [timeFilter, setTimeFilter] = useState('2024');
   const [regionFilter, setRegionFilter] = useState('all');
+  const [departmentFilter, setDepartmentFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
   // Calculate KPIs from mock data
@@ -180,14 +181,59 @@ const Reports = () => {
       filtered = filtered.filter(item => item.region.toLowerCase() === regionFilter.toLowerCase());
     }
     
+    if (departmentFilter !== 'all') {
+      filtered = filtered.filter(item => item.department?.toLowerCase() === departmentFilter.toLowerCase());
+    }
+    
     if (searchTerm) {
       filtered = filtered.filter(item => 
-        item.region.toLowerCase().includes(searchTerm.toLowerCase())
+        item.region.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.department?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     
     return filtered;
-  }, [timeFilter, regionFilter, searchTerm]);
+  }, [timeFilter, regionFilter, departmentFilter, searchTerm]);
+
+  // Export to CSV
+  const exportToCSV = () => {
+    try {
+      setLoading(true);
+      
+      // Convert data to CSV format
+      const headers = ['Year', 'Region', 'Department', 'Enrollments', 'Completions', 'Outreach Hours', 'Campaigns', 'Surveys'];
+      const csvRows = [
+        headers.join(','),
+        ...filteredTableData.map(row => [
+          row.year,
+          row.region,
+          row.department || '',
+          row.enrollments,
+          row.completions,
+          row.outreachHours,
+          row.campaigns,
+          row.surveys
+        ].join(','))
+      ];
+      
+      const csvContent = csvRows.join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `reports_${timeFilter}_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      setTimeout(() => setLoading(false), 500);
+    } catch (error) {
+      console.error('CSV Export Error:', error);
+      alert('Error exporting CSV file. Please try again.');
+      setLoading(false);
+    }
+  };
 
   // Export to Excel
   const exportToExcel = () => {
@@ -284,7 +330,7 @@ const Reports = () => {
       
       // Footer
       doc.setFontSize(8);
-      doc.text('Generated by Bau- und Liegenschaftsbetrieb NRW Zentral Training System', 20, doc.internal.pageSize.height - 20);
+      doc.text('Generated by Ipswich Borough Council (IBC) Learning Management System', 20, doc.internal.pageSize.height - 20);
       
       doc.save(`reports_${timeFilter}_${new Date().toISOString().split('T')[0]}.pdf`);
       
@@ -304,7 +350,7 @@ const Reports = () => {
         fallbackDoc.text(`Completion Rate: ${kpis.completionRate}%`, 20, 85);
         fallbackDoc.text(`Total Outreach Hours: ${kpis.totalOutreachHours}`, 20, 100);
         fallbackDoc.text(`Impact Metrics: ${kpis.impactMetrics}`, 20, 115);
-        fallbackDoc.text('Generated by Bau- und Liegenschaftsbetrieb NRW Zentral', 20, 150);
+        fallbackDoc.text('Generated by Ipswich Borough Council (IBC)', 20, 150);
         fallbackDoc.save(`reports_simple_${timeFilter}.pdf`);
       } catch (fallbackError) {
         console.error('Fallback PDF Error:', fallbackError);
@@ -497,14 +543,31 @@ const Reports = () => {
                 </SelectContent>
               </Select>
               
+              <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Department" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Departments</SelectItem>
+                  <SelectItem value="hr">HR</SelectItem>
+                  <SelectItem value="it">IT</SelectItem>
+                  <SelectItem value="finance">Finance</SelectItem>
+                  <SelectItem value="operations">Operations</SelectItem>
+                </SelectContent>
+              </Select>
+              
               <Input
-                placeholder="Search regions..."
+                placeholder="Search regions or departments..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-48"
               />
               
               <div className="flex gap-2">
+                <Button onClick={exportToCSV} variant="outline" size="sm" className="flex items-center gap-2">
+                  <FileSpreadsheet className="h-4 w-4" />
+                  CSV
+                </Button>
                 <Button onClick={exportToExcel} variant="outline" size="sm" className="flex items-center gap-2">
                   <FileSpreadsheet className="h-4 w-4" />
                   Excel
@@ -524,6 +587,7 @@ const Reports = () => {
                 <TableRow>
                   <TableHead>Year</TableHead>
                   <TableHead>Region</TableHead>
+                  <TableHead>Department</TableHead>
                   <TableHead>Enrollments</TableHead>
                   <TableHead>Completions</TableHead>
                   <TableHead>Outreach Hours</TableHead>
@@ -540,6 +604,9 @@ const Reports = () => {
                         <MapPin className="h-4 w-4 text-gray-400" />
                         {row.region}
           </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">{row.department || 'N/A'}</Badge>
                     </TableCell>
                     <TableCell>
                       <Badge variant="secondary">{row.enrollments.toLocaleString()}</Badge>

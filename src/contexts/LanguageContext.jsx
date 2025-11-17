@@ -7,18 +7,18 @@ const STORAGE_KEY = 'athena-language';
 
 const metadata = {
   en: {
-    title: 'Athena LMS - Learning Management System',
+    title: 'Ipswich Borough Council (IBC) - Learning Management System',
     description:
-      'Athena LMS - Advanced Learning Platform with WCAG 2.1 Compliance and SCORM Integration',
-    ogTitle: 'Athena LMS',
-    ogDescription: 'Professional Learning Management System for Training and Development',
+      'Ipswich Borough Council (IBC) - Corporate Learning Portal with WCAG 2.1 Compliance and SCORM Integration',
+    ogTitle: 'Ipswich Borough Council (IBC)',
+    ogDescription: 'Corporate Learning Management System for Staff Development, Onboarding, and Compliance Training',
   },
   es: {
-    title: 'Athena LMS - Sistema de Gestión del Aprendizaje',
+    title: 'Ipswich Borough Council (IBC) - Sistema de Gestión del Aprendizaje',
     description:
-      'Athena LMS - Plataforma avanzada de aprendizaje con cumplimiento WCAG 2.1 e integración SCORM',
-    ogTitle: 'Athena LMS',
-    ogDescription: 'Sistema profesional de gestión del aprendizaje para formación y desarrollo',
+      'Ipswich Borough Council (IBC) - Portal de Aprendizaje Corporativo con cumplimiento WCAG 2.1 e integración SCORM',
+    ogTitle: 'Ipswich Borough Council (IBC)',
+    ogDescription: 'Sistema de gestión del aprendizaje corporativo para desarrollo del personal, incorporación y formación en cumplimiento',
   },
 };
 

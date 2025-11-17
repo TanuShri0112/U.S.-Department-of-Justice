@@ -104,8 +104,8 @@ const AdminReports = () => {
     }
   };
 
-  const handleExportExcel = () => {
-    const loadingToast = toast.loading('Generating Excel report...');
+  const handleExportCSV = () => {
+    const loadingToast = toast.loading('Generating CSV report...');
     
     try {
       // Prepare CSV data
@@ -121,7 +121,7 @@ const AdminReports = () => {
       const csvContent = [
         headers.join(','),
         ...rows.map(row => row.join(','))
-      ].join('\\n');
+      ].join('\n');
 
       // Create blob and download
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -135,7 +135,34 @@ const AdminReports = () => {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
-      toast.success('Excel report downloaded successfully!', { id: loadingToast });
+      toast.success('CSV report downloaded successfully!', { id: loadingToast });
+    } catch (error) {
+      toast.error('Failed to generate CSV report', { id: loadingToast });
+      console.error('Export error:', error);
+    }
+  };
+
+  const handleExportExcel = () => {
+    const loadingToast = toast.loading('Generating Excel report...');
+    
+    try {
+      // Import XLSX dynamically if available, otherwise use CSV
+      import('xlsx').then(XLSX => {
+        const worksheet = XLSX.utils.json_to_sheet(coursePerformanceData.map(course => ({
+          Course: course.course,
+          Enrolled: course.enrolled,
+          Completed: course.completed,
+          'Completion Rate': Math.round((course.completed / course.enrolled) * 100) + '%',
+          'Avg Score': course.avgScore + '%'
+        })));
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Course Performance');
+        XLSX.writeFile(workbook, `course-performance-${new Date().toISOString().split('T')[0]}.xlsx`);
+        toast.success('Excel report downloaded successfully!', { id: loadingToast });
+      }).catch(() => {
+        // Fallback to CSV if XLSX is not available
+        handleExportCSV();
+      });
     } catch (error) {
       toast.error('Failed to generate Excel report', { id: loadingToast });
       console.error('Export error:', error);
@@ -255,6 +282,13 @@ const AdminReports = () => {
               <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
             </div>
             <div className="flex items-center gap-2">
+              <button
+                onClick={handleExportCSV}
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Export CSV
+              </button>
               <button
                 onClick={handleExportPDF}
                 className="bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-2 rounded-xl hover:shadow-lg transform transition-all duration-200 hover:-translate-y-1 flex items-center gap-2"

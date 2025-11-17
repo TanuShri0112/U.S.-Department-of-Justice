@@ -673,7 +673,7 @@ const AdminPortal = ({ onToggle }) => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">Platform Name</label>
                       <input 
                         type="text" 
-                        defaultValue="Bau- und Liegenschaftsbetrieb NRW Zentral" 
+                        defaultValue="Ipswich Borough Council (IBC)" 
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                       />
                     </div>

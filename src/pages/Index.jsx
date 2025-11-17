@@ -43,7 +43,7 @@ export default function Index() {
             className="text-5xl font-bold mb-6"
             {...fadeIn}
           >
-            Bau- und Liegenschaftsbetrieb NRW Zentral Training
+            Ipswich Borough Council (IBC) Learning Portal
           </motion.h1>
           <motion.p
             className="text-xl mb-8 max-w-2xl mx-auto"

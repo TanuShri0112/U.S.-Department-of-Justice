@@ -38,7 +38,7 @@ const AdminSettings = () => {
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="platformName">Platform Name</Label>
-                <Input id="platformName" defaultValue="Bau- und Liegenschaftsbetrieb NRW Zentral" />
+                <Input id="platformName" defaultValue="Ipswich Borough Council (IBC)" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="supportEmail">Support Email</Label>

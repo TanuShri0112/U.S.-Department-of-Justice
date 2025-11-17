@@ -74,7 +74,7 @@ export const AdminLayout = ({ title = 'Dashboard' }) => {
       }
     }
 
-    document.title = `${newTitle} | Bau- und Liegenschaftsbetrieb NRW Zentral`;
+    document.title = `${newTitle} | Ipswich Borough Council (IBC)`;
   }, [location.pathname, title, courseId, setCourseTitle]);
 
   return (
