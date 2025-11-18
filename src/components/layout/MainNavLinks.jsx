@@ -13,7 +13,10 @@ import {
   Calendar,
   Bell,
   Folder,
-  Video
+  Video,
+  Layers,
+  Award,
+  GitBranch
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useRole } from '@/contexts/RoleContext';
@@ -29,6 +32,12 @@ const navItems = [
     icon: Home,
     label: { en: 'Dashboard', es: 'Panel' },
     href: '/',
+    allowedRoles: null,
+  },
+  {
+    icon: Layers,
+    label: { en: 'Role Dashboards', es: 'Paneles por rol' },
+    href: '/role-dashboards',
     allowedRoles: null,
   },
   {
@@ -50,6 +59,12 @@ const navItems = [
     allowedRoles: GROUP_ROLES,
   },
   {
+    icon: GitBranch,
+    label: { en: 'Learning Paths', es: 'Rutas de aprendizaje' },
+    href: '/learning-paths',
+    allowedRoles: null,
+  },
+  {
     icon: Bell,
     label: { en: 'Announcements', es: 'Anuncios' },
     href: '/announcements',
@@ -65,6 +80,12 @@ const navItems = [
     icon: FileText,
     label: { en: 'Resources', es: 'Recursos' },
     href: '/resources',
+    allowedRoles: null,
+  },
+  {
+    icon: Award,
+    label: { en: 'Certificates', es: 'Certificados' },
+    href: '/certificates/preview',
     allowedRoles: null,
   },
   {

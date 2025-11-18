@@ -78,6 +78,13 @@ import CourseEdit from "./pages/CourseEdit";
 import EditModulePage from './pages/EditModulePage';
 import Chatbot from './pages/Chatbot.jsx';
 import Webinars from './pages/Webinars.jsx';
+import RoleDashboards from './pages/RoleDashboards.jsx';
+import QuizAttempt from './pages/QuizAttempt.jsx';
+import AssignmentUpload from './pages/AssignmentUpload.jsx';
+import PracticalChecklist from './pages/PracticalChecklist.jsx';
+import SimulationLab from './pages/SimulationLab.jsx';
+import CertificatePreview from './pages/CertificatePreview.jsx';
+import LearningPaths from './pages/LearningPaths.jsx';
 
 const queryClient = new QueryClient();
 const COURSE_AUTHOR_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER];
@@ -336,6 +343,13 @@ const App = () => (
                     <Route path="profile" element={<Profile />} />
                     <Route path="chatbot" element={<Chatbot />} />
                     <Route path="webinars" element={<Webinars />} />
+                    <Route path="role-dashboards" element={<RoleDashboards />} />
+                    <Route path="learning-paths" element={<LearningPaths />} />
+                    <Route path="certificates/preview" element={<CertificatePreview />} />
+                    <Route path="simulation-lab" element={<SimulationLab />} />
+                    <Route path="assessments/mcq-demo" element={<QuizAttempt />} />
+                    <Route path="assessments/assignment-demo" element={<AssignmentUpload />} />
+                    <Route path="assessments/practical-checklist" element={<PracticalChecklist />} />
 
                     {/* New Instructor Dashboard Routes */}
                     <Route

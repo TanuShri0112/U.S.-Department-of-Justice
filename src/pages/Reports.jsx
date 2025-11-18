@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { 
   Download, 
@@ -89,6 +90,23 @@ const mockData = {
     { month: 'Oct', campaigns: 38, surveys: 30 },
     { month: 'Nov', campaigns: 40, surveys: 32 },
     { month: 'Dec', campaigns: 42, surveys: 35 }
+  ],
+  courseCompletionSummary: [
+    { course: 'Hand Hygiene Essentials', completion: 92, activeLearners: 1240 },
+    { course: 'PPE Compliance', completion: 88, activeLearners: 980 },
+    { course: 'Outbreak Communication', completion: 76, activeLearners: 760 },
+    { course: 'Biomedical Waste Mgmt', completion: 81, activeLearners: 650 },
+  ],
+  quizScoreSummary: [
+    { quiz: 'PPE Basics', avgScore: 86, attempts: 420 },
+    { quiz: 'Hand Hygiene Quiz', avgScore: 91, attempts: 388 },
+    { quiz: 'Waste Segregation', avgScore: 78, attempts: 312 },
+  ],
+  institutePerformance: [
+    { institute: 'AIIMS Delhi', completion: 95, quiz: 88, learners: 2400 },
+    { institute: 'Safdarjung Hospital', completion: 89, quiz: 82, learners: 1800 },
+    { institute: 'JIPMER Puducherry', completion: 87, quiz: 84, learners: 1320 },
+    { institute: 'PGIMER Chandigarh', completion: 91, quiz: 86, learners: 1550 },
   ],
   reportsTable: [
     { year: 2024, region: 'North', enrollments: 450, completions: 405, outreachHours: 2400, campaigns: 42, surveys: 35 },
@@ -464,6 +482,90 @@ const Reports = () => {
                   </div>
                 </TabsContent>
           </Tabs>
+        </CardContent>
+      </Card>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Course Completion Progress</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {mockData.courseCompletionSummary.map((course) => (
+              <div key={course.course}>
+                <div className="flex items-center justify-between text-sm mb-1">
+                  <span className="font-medium">{course.course}</span>
+                  <span className="text-gray-500">{course.completion}%</span>
+                </div>
+                <Progress value={course.completion} className="h-2" />
+                <p className="text-xs text-gray-500 mt-1">
+                  Active learners: {course.activeLearners.toLocaleString()}
+                </p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Quiz Score Summary</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="rounded-md border">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Quiz</TableHead>
+                    <TableHead>Avg Score</TableHead>
+                    <TableHead>Attempts</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {mockData.quizScoreSummary.map((quiz) => (
+                    <TableRow key={quiz.quiz}>
+                      <TableCell className="font-medium">{quiz.quiz}</TableCell>
+                      <TableCell>
+                        <Badge variant="outline">{quiz.avgScore}%</Badge>
+                      </TableCell>
+                      <TableCell>{quiz.attempts.toLocaleString()}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Institute-wise Performance</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="rounded-md border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Institute</TableHead>
+                  <TableHead>Completion %</TableHead>
+                  <TableHead>Avg Quiz</TableHead>
+                  <TableHead>Learners</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {mockData.institutePerformance.map((item) => (
+                  <TableRow key={item.institute}>
+                    <TableCell className="font-medium">{item.institute}</TableCell>
+                    <TableCell>
+                      <Badge variant="secondary">{item.completion}%</Badge>
+                    </TableCell>
+                    <TableCell>{item.quiz}%</TableCell>
+                    <TableCell>{item.learners.toLocaleString()}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
 

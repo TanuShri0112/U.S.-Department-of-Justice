@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen, Video } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 import ModuleCard from './ModuleCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import EditModuleDialog from './EditModuleDialog';
+import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 const CourseModules = () => {
   console.log('Rendering CourseModules');
@@ -19,6 +23,22 @@ const CourseModules = () => {
   const [loading, setLoading] = useState(true);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [moduleToEdit, setModuleToEdit] = useState(null);
+  const [isScheduleDialogOpen, setIsScheduleDialogOpen] = useState(false);
+
+  const liveSessions = [
+    { id: 1, title: 'Hand Hygiene Live Session', date: '24 Jan, 15:30', status: 'Scheduled' },
+    { id: 2, title: 'Waste Management Demo', date: '26 Jan, 10:00', status: 'Completed' },
+  ];
+
+  const attendanceRecords = [
+    { learner: 'Aditi Sharma', join: '15:29', leave: '16:10' },
+    { learner: 'Rohit Verma', join: '15:35', leave: '16:05' },
+  ];
+
+  const recordings = [
+    { title: 'Hand Hygiene Live Session', length: '40 mins', url: '#' },
+    { title: 'Waste Management Demo', length: '35 mins', url: '#' },
+  ];
 
   // Get course name based on courseId
   const getCourseName = (courseId) => {
@@ -242,6 +262,71 @@ const CourseModules = () => {
         </div>
       </div>
 
+      <Card className="mb-6">
+        <CardHeader className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <div>
+            <CardTitle>Live Class Module</CardTitle>
+            <p className="text-sm text-gray-500">Schedule sessions, track attendance, and surface recordings.</p>
+          </div>
+          <Button onClick={() => setIsScheduleDialogOpen(true)} className="bg-blue-600 hover:bg-blue-700">
+            Schedule Live Session
+          </Button>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="grid gap-3 md:grid-cols-2">
+            <div className="space-y-2">
+              <h3 className="text-sm font-semibold text-gray-700">Upcoming / Recent</h3>
+              {liveSessions.map((session) => (
+                <div key={session.id} className="flex items-center justify-between rounded-lg border px-3 py-2 text-sm">
+                  <div>
+                    <p className="font-medium">{session.title}</p>
+                    <p className="text-xs text-gray-500">{session.date}</p>
+                  </div>
+                  <Badge variant="outline">{session.status}</Badge>
+                </div>
+              ))}
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">Recordings</h3>
+              <div className="space-y-2">
+                {recordings.map((recording) => (
+                  <div key={recording.title} className="flex items-center justify-between rounded-lg border px-3 py-2 text-sm">
+                    <div>
+                      <p className="font-medium">{recording.title}</p>
+                      <p className="text-xs text-gray-500">{recording.length}</p>
+                    </div>
+                    <Button variant="ghost" size="sm">Play</Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-gray-700 mb-2">Attendance Snapshot</h3>
+            <div className="overflow-auto rounded-lg border">
+              <table className="min-w-full text-sm">
+                <thead className="bg-gray-50 text-gray-500">
+                  <tr>
+                    <th className="px-3 py-2 text-left">Learner</th>
+                    <th className="px-3 py-2 text-left">Join</th>
+                    <th className="px-3 py-2 text-left">Leave</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {attendanceRecords.map((item) => (
+                    <tr key={item.learner} className="border-t">
+                      <td className="px-3 py-2">{item.learner}</td>
+                      <td className="px-3 py-2">{item.join}</td>
+                      <td className="px-3 py-2">{item.leave}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {modules.map((module) => (
           <ModuleCard
@@ -269,6 +354,23 @@ const CourseModules = () => {
           onUpdate={handleModuleUpdate}
         />
       )}
+
+      <Dialog open={isScheduleDialogOpen} onOpenChange={setIsScheduleDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Schedule Live Session</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            <Input placeholder="Session title" />
+            <div className="grid gap-3 md:grid-cols-2">
+              <Input type="date" />
+              <Input type="time" />
+            </div>
+            <Textarea rows={3} placeholder="Agenda / notes" />
+            <Button className="w-full bg-blue-600 hover:bg-blue-700">Save (Demo Only)</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

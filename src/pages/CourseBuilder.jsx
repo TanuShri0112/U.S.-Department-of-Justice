@@ -3,7 +3,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Plus, BookOpen, ClipboardList, Edit, Trash2, Save, Upload } from 'lucide-react';
+import { ArrowLeft, Plus, BookOpen, ClipboardList, Edit, Trash2, Save, Upload, Video, FileText, ShieldCheck } from 'lucide-react';
 import AddModuleDialog from '@/components/courses/AddModuleDialog';
 import EditModuleDialog from '@/components/courses/EditModuleDialog';
 import { toast } from '@/hooks/use-toast';
@@ -18,6 +18,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Textarea } from '@/components/ui/textarea';
 
 const CourseBuilder = () => {
   const navigate = useNavigate();
@@ -38,6 +46,16 @@ const CourseBuilder = () => {
       duration: '2 hours',
     },
   ]);
+  const [uploadItems, setUploadItems] = useState([
+    { id: 1, type: 'Video', title: 'Hand hygiene demo.mp4', size: '120 MB' },
+    { id: 2, type: 'PDF', title: 'Protocol summary.pdf', size: '2.4 MB' },
+  ]);
+  const [quizQuestions] = useState([
+    { id: 1, question: 'What is the minimum handwash duration?', answer: '20 seconds' },
+    { id: 2, question: 'Select correct PPE order', answer: 'Gown → Mask → Goggles → Gloves' },
+  ]);
+  const [approvalStatus, setApprovalStatus] = useState('draft');
+  const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -74,6 +92,44 @@ const CourseBuilder = () => {
     toast({
       title: "Module Added",
       description: `${moduleData.title} has been added to your course.`,
+    });
+  };
+
+  const handleAddUpload = (type) => {
+    const titles = {
+      video: 'New training video.mp4',
+      pdf: 'Updated SOP.pdf',
+      scorm: 'SCORM package.zip'
+    };
+    setUploadItems((prev) => [
+      ...prev,
+      {
+        id: prev.length + 1,
+        type: type.toUpperCase(),
+        title: titles[type],
+        size: type === 'video' ? '85 MB' : type === 'pdf' ? '1.2 MB' : '45 MB',
+      },
+    ]);
+    setIsUploadDialogOpen(false);
+    toast({
+      title: 'Placeholder created',
+      description: `${titles[type]} added to your content list.`,
+    });
+  };
+
+  const handleSendForApproval = () => {
+    setApprovalStatus('pending');
+    toast({
+      title: 'Submitted for approval',
+      description: 'Reviewers will be notified (demo state).',
+    });
+  };
+
+  const handleApprove = () => {
+    setApprovalStatus('approved');
+    toast({
+      title: 'Course Approved',
+      description: 'Status switched to Approved (prototype).',
     });
   };
 
@@ -294,6 +350,100 @@ const CourseBuilder = () => {
         )}
       </div>
 
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Card className="border-blue-200">
+          <CardHeader className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div>
+              <CardTitle>Upload Video / PDF / SCORM</CardTitle>
+              <p className="text-sm text-gray-500">Prototype placeholder for content ingestion.</p>
+            </div>
+            <Button onClick={() => setIsUploadDialogOpen(true)} className="bg-blue-600 hover:bg-blue-700">
+              <Upload className="h-4 w-4 mr-2" />
+              Add Placeholder
+            </Button>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {uploadItems.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-between rounded-lg border px-3 py-2 text-sm"
+              >
+                <div className="flex items-center gap-3">
+                  {item.type === 'Video' ? (
+                    <Video className="h-4 w-4 text-blue-500" />
+                  ) : item.type === 'PDF' ? (
+                    <FileText className="h-4 w-4 text-red-500" />
+                  ) : (
+                    <ShieldCheck className="h-4 w-4 text-green-600" />
+                  )}
+                  <div>
+                    <p className="font-medium">{item.title}</p>
+                    <p className="text-xs text-gray-500">
+                      {item.type} • {item.size}
+                    </p>
+                  </div>
+                </div>
+                <Badge variant="outline">{item.type}</Badge>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>MCQ Quiz Builder (Trainer View)</CardTitle>
+            <p className="text-sm text-gray-500">Static demo – no persistence.</p>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm">
+            {quizQuestions.map((question) => (
+              <div key={question.id} className="rounded-lg border p-3">
+                <p className="font-medium">{question.question}</p>
+                <p className="text-xs text-gray-500 mt-1">Correct answer: {question.answer}</p>
+              </div>
+            ))}
+            <Button variant="outline" className="w-full">
+              + Add MCQ (placeholder)
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="border-yellow-200 bg-yellow-50">
+        <CardHeader className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <div>
+            <CardTitle>Course Approval Workflow</CardTitle>
+            <p className="text-sm text-gray-600">
+              Simulates “Send for Approval” → “Approved” process requested in tender.
+            </p>
+          </div>
+          <Badge
+            variant={approvalStatus === 'approved' ? 'default' : 'outline'}
+            className="uppercase tracking-wide"
+          >
+            {approvalStatus === 'draft' && 'Draft'}
+            {approvalStatus === 'pending' && 'Pending Review'}
+            {approvalStatus === 'approved' && 'Approved'}
+          </Badge>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-3 md:flex-row">
+          <Button
+            variant="secondary"
+            className="flex-1"
+            onClick={handleSendForApproval}
+            disabled={approvalStatus !== 'draft'}
+          >
+            Send for Approval
+          </Button>
+          <Button
+            className="flex-1 bg-green-600 hover:bg-green-700"
+            onClick={handleApprove}
+            disabled={approvalStatus !== 'pending'}
+          >
+            Mark as Approved
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Course Publishing Section */}
       {modules.length > 0 && (
         <Card className="border-green-200 bg-green-50">
@@ -347,6 +497,35 @@ const CourseBuilder = () => {
           onUpdate={handleUpdateModule}
         />
       )}
+
+      <Dialog open={isUploadDialogOpen} onOpenChange={setIsUploadDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Upload Placeholder Asset</DialogTitle>
+            <DialogDescription>
+              Choose the type of content to simulate (no files created).
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <Button className="w-full justify-start gap-2" variant="outline" onClick={() => handleAddUpload('video')}>
+              <Video className="h-4 w-4" />
+              Video Placeholder
+            </Button>
+            <Button className="w-full justify-start gap-2" variant="outline" onClick={() => handleAddUpload('pdf')}>
+              <FileText className="h-4 w-4" />
+              PDF Placeholder
+            </Button>
+            <Button className="w-full justify-start gap-2" variant="outline" onClick={() => handleAddUpload('scorm')}>
+              <ShieldCheck className="h-4 w-4" />
+              SCORM Package Placeholder
+            </Button>
+            <div className="space-y-2 pt-3">
+              <label className="text-xs text-gray-500">Optional notes</label>
+              <Textarea rows={3} placeholder="Describe what this asset contains..." />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
