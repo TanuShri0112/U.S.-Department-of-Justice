@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { FileText, Upload, Plus, List, Grid, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox'; // Note: Checkbox is imported but not used in this component.
+import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { ResourceListView } from '@/components/resources/ResourceListView';
@@ -13,6 +13,8 @@ import { AddResourceDialog } from '@/components/resources/AddResourceDialog';
 import { FileUploadTab } from '@/components/resources/FileUploadTab';
 import { ResourceDetailDialog } from '@/components/resources/ResourceDetailDialog';
 import { EditResourceDialog } from '@/components/resources/EditResourceDialog';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/hooks/use-translations';
 
 /**
  * JSDoc type definitions for clarity and editor support.
@@ -145,6 +147,8 @@ const initialResourcesData = [
 ];
 
 const Resources = () => {
+  const { currentLanguage } = useLanguage();
+  const t = useTranslations();
   const [activeTab, setActiveTab] = useState('catalog');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedResource, setSelectedResource] = useState(null);
@@ -229,8 +233,8 @@ const Resources = () => {
   return (
     <div className="p-6 animate-fade-in max-w-7xl mx-auto">
       <PageHeader 
-        title="Resources" 
-        description="Manage and access all your learning resources" 
+        title={t.resources.title} 
+        description={t.resources.description} 
       />
 
       {/* Search Bar */}
@@ -239,7 +243,7 @@ const Resources = () => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
             type="text"
-            placeholder="Search resources..."
+            placeholder={t.resources.searchResources}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -257,12 +261,12 @@ const Resources = () => {
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="catalog" className="flex items-center gap-2">
                 <List className="h-4 w-4" />
-                <span className="hidden sm:inline">Catalog</span>
+                <span className="hidden sm:inline">{currentLanguage === 'de' ? 'Katalog' : currentLanguage === 'en' ? 'Catalog' : 'Catálogo'}</span>
                 <span className="ml-1 bg-gray-200 text-gray-700 text-xs px-2 py-0.5 rounded-full">2694</span>
               </TabsTrigger>
               <TabsTrigger value="uploaded" className="flex items-center gap-2">
                 <Upload className="h-4 w-4" />
-                <span className="hidden sm:inline">Uploaded files</span>
+                <span className="hidden sm:inline">{currentLanguage === 'de' ? 'Hochgeladene Dateien' : currentLanguage === 'en' ? 'Uploaded files' : 'Archivos subidos'}</span>
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -274,7 +278,7 @@ const Resources = () => {
               onClick={handleAddResource}
             >
               <Plus className="h-4 w-4 mr-2" />
-              Add
+              {currentLanguage === 'de' ? 'Hinzufügen' : currentLanguage === 'en' ? 'Add' : 'Agregar'}
             </Button>
             <div className="flex border rounded-md">
               <Button 

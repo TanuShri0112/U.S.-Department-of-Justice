@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Video, Calendar, Users, ExternalLink, Eye, Download, Edit, Trash2, Plus } from 'lucide-react';
+import { Video, Calendar, Users, ExternalLink, Eye, Download, Edit, Trash2, Plus, MessageSquare } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { toast } from 'sonner';
 
 const ZoomClassesSection = () => {
+  const { currentLanguage } = useLanguage();
   const [classes, setClasses] = useState([
     {
       id: 1,
@@ -21,7 +23,9 @@ const ZoomClassesSection = () => {
       duration: "1 hour",
       description: "Introduction to Child Protection Standards in Travel & Tourism",
       zoomLink: "https://zoom.us/j/123456789",
+      teamsLink: null,
       meetingId: "123 456 789",
+      platform: "zoom", // "zoom" or "teams"
       attendance: 0,
       totalStudents: 25,
       isCompleted: false,
@@ -36,7 +40,9 @@ const ZoomClassesSection = () => {
       duration: "2 hours",
       description: "Best Practices for Sustainable and Ethical Tourism",
       zoomLink: "https://zoom.us/j/987654321",
+      teamsLink: "https://teams.microsoft.com/l/meetup-join/example",
       meetingId: "987 654 321",
+      platform: "teams",
       attendance: 0,
       totalStudents: 30,
       isCompleted: false,
@@ -97,9 +103,19 @@ const ZoomClassesSection = () => {
     toast.success('Class deleted successfully!');
   };
 
-  const handleJoinZoom = (zoomLink, title) => {
-    window.open(zoomLink, '_blank');
-    toast.success(`Joining ${title} on Zoom`);
+  const handleJoinSession = (session, title) => {
+    const link = session.platform === 'teams' && session.teamsLink 
+      ? session.teamsLink 
+      : session.zoomLink;
+    if (link) {
+      window.open(link, '_blank');
+      const platformName = session.platform === 'teams' ? 'MS Teams' : 'Zoom';
+      toast.success(
+        currentLanguage === 'de' 
+          ? `Beitritt zu ${title} auf ${platformName}`
+          : `Joining ${title} on ${platformName}`
+      );
+    }
   };
 
   const handleViewRecording = (cls) => {
@@ -128,7 +144,7 @@ const ZoomClassesSection = () => {
               <div className="p-2 bg-teal-500 rounded-lg shadow-md">
                 <Video className="h-5 w-5 text-white" />
               </div>
-              Training Sessions
+              {currentLanguage === 'de' ? 'Live-Schulungssitzungen' : 'Training Sessions'}
             </CardTitle>
           </div>
         </CardHeader>
@@ -137,11 +153,11 @@ const ZoomClassesSection = () => {
             <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded-xl mb-6">
               <TabsTrigger value="upcoming" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Calendar className="h-4 w-4" />
-                Upcoming Sessions
+                {currentLanguage === 'de' ? 'Anstehende Sitzungen' : 'Upcoming Sessions'}
               </TabsTrigger>
               <TabsTrigger value="completed" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-md transition-all duration-300">
                 <Video className="h-4 w-4" />
-                Completed Sessions
+                {currentLanguage === 'de' ? 'Abgeschlossene Sitzungen' : 'Completed Sessions'}
               </TabsTrigger>
             </TabsList>
             
@@ -207,14 +223,24 @@ const ZoomClassesSection = () => {
                             <p className="text-xs text-gray-500">Instructor</p>
                             <p className="text-sm font-medium text-gray-700">{cls.instructor}</p>
                           </div>
-                          {cls.zoomLink && (
+                          {(cls.zoomLink || cls.teamsLink) && (
                             <Button
                               size="sm"
-                              onClick={() => handleJoinZoom(cls.zoomLink, cls.title)}
-                              className="bg-teal-600 hover:bg-teal-700 shadow-md hover:shadow-lg transition-all duration-300"
+                              onClick={() => handleJoinSession(cls, cls.title)}
+                              className={`${
+                                cls.platform === 'teams' 
+                                  ? 'bg-blue-600 hover:bg-blue-700' 
+                                  : 'bg-teal-600 hover:bg-teal-700'
+                              } shadow-md hover:shadow-lg transition-all duration-300`}
                             >
-                              <ExternalLink className="h-4 w-4 mr-2" />
-                              Join Session
+                              {cls.platform === 'teams' ? (
+                                <MessageSquare className="h-4 w-4 mr-2" />
+                              ) : (
+                                <ExternalLink className="h-4 w-4 mr-2" />
+                              )}
+                              {currentLanguage === 'de' 
+                                ? 'Sitzung beitreten' 
+                                : 'Join Session'}
                             </Button>
                           )}
                         </div>

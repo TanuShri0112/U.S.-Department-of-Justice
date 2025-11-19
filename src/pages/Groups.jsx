@@ -17,6 +17,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/hooks/use-translations';
 
 /**
  * @typedef {object} Group
@@ -33,6 +35,8 @@ const GroupsContent = () => {
   const [isEditGroupOpen, setIsEditGroupOpen] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState(null);
   const navigate = useNavigate();
+  const { currentLanguage } = useLanguage();
+  const t = useTranslations();
   
   const { groups, updateGroup, deleteGroup, addGroup } = useGroup();
 
@@ -73,8 +77,8 @@ const GroupsContent = () => {
     const newGroup = {
       name: groupData.name,
       members: 0,
-      type: 'Study group', // Default type
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&auto=format' // Default image
+      type: currentLanguage === 'de' ? 'Lerngruppe' : currentLanguage === 'en' ? 'Study group' : 'Grupo de estudio',
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&auto=format'
     };
     addGroup(newGroup);
   };
@@ -82,8 +86,8 @@ const GroupsContent = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader 
-        title="My Community Resources" 
-        description="Manage and participate in your enrolled community resources"
+        title={t.groups.title} 
+        description={t.groups.description}
       />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -94,7 +98,7 @@ const GroupsContent = () => {
             className="flex items-center gap-2"
           >
             <Compass className="h-4 w-4" />
-            Discover Groups
+            {t.groups.discoverGroups}
           </Button>
         </div>
       </div>
@@ -104,7 +108,7 @@ const GroupsContent = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input 
             className="pl-9" 
-            placeholder="Search my groups..." 
+            placeholder={currentLanguage === 'de' ? 'Meine Gruppen durchsuchen...' : currentLanguage === 'en' ? 'Search my groups...' : 'Buscar mis grupos...'} 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -113,13 +117,13 @@ const GroupsContent = () => {
         <div className="flex items-center gap-2">
           <Select>
             <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder="All types" />
+              <SelectValue placeholder={currentLanguage === 'de' ? 'Alle Typen' : currentLanguage === 'en' ? 'All types' : 'Todos los tipos'} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All types</SelectItem>
-              <SelectItem value="interest">Interest groups</SelectItem>
-              <SelectItem value="study">Study groups</SelectItem>
-              <SelectItem value="business">Business groups</SelectItem>
+              <SelectItem value="all">{currentLanguage === 'de' ? 'Alle Typen' : currentLanguage === 'en' ? 'All types' : 'Todos los tipos'}</SelectItem>
+              <SelectItem value="interest">{currentLanguage === 'de' ? 'Interessengruppen' : currentLanguage === 'en' ? 'Interest groups' : 'Grupos de interés'}</SelectItem>
+              <SelectItem value="study">{currentLanguage === 'de' ? 'Lerngruppen' : currentLanguage === 'en' ? 'Study groups' : 'Grupos de estudio'}</SelectItem>
+              <SelectItem value="business">{currentLanguage === 'de' ? 'Geschäftsgruppen' : currentLanguage === 'en' ? 'Business groups' : 'Grupos empresariales'}</SelectItem>
             </SelectContent>
           </Select>
           
@@ -137,7 +141,7 @@ const GroupsContent = () => {
               />
               <div className="absolute top-2 right-2 flex items-center gap-2">
                 <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200">
-                  Enrolled
+                  {currentLanguage === 'de' ? 'Eingeschrieben' : currentLanguage === 'en' ? 'Enrolled' : 'Inscrito'}
                 </Badge>
                 <div className="bg-white/90 rounded-md">
                   <GroupOptionsMenu 
@@ -159,7 +163,7 @@ const GroupsContent = () => {
             <CardContent>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Members</span>
+                  <span className="text-muted-foreground">{t.groups.members}</span>
                   <span className="font-medium">{group.members}</span>
                 </div>
                 <Button 
@@ -167,7 +171,7 @@ const GroupsContent = () => {
                   className="w-full bg-blue-500 hover:bg-blue-600 transition-colors"
                   onClick={() => handleViewGroup(group.id)}
                 >
-                  Open Group
+                  {t.groups.viewGroup}
                 </Button>
               </div>
             </CardContent>

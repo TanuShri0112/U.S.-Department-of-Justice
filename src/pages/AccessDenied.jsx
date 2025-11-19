@@ -5,6 +5,13 @@ import { ShieldAlert } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const messages = {
+  de: {
+    title: 'Zugriff verweigert',
+    subtitle: 'Sie haben nicht die erforderliche Rolle, um diese Seite anzuzeigen.',
+    description:
+      'Fordern Sie die entsprechenden Berechtigungen von Ihrem Programmadministrator an oder wechseln Sie zu einer Rolle mit dem erforderlichen Zugriffslevel.',
+    action: 'Zurück zum Dashboard',
+  },
   en: {
     title: 'Access restricted',
     subtitle: 'You do not have the required role to view this page.',
@@ -26,7 +33,7 @@ const AccessDenied = () => {
   const location = useLocation();
   const { currentLanguage } = useLanguage();
 
-  const t = messages[currentLanguage] ?? messages.en;
+  const t = messages[currentLanguage] ?? messages.de;
 
   const handleBack = () => {
     if (location.state?.from?.pathname) {

@@ -27,61 +27,61 @@ const COMMUNICATION_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER, 
 const navItems = [
   {
     icon: Home,
-    label: { en: 'Dashboard', es: 'Panel' },
+    label: { de: 'Dashboard', en: 'Dashboard', es: 'Panel' },
     href: '/',
     allowedRoles: null,
   },
   {
     icon: BookOpen,
-    label: { en: 'Courses', es: 'Cursos' },
+    label: { de: 'Kurse', en: 'Courses', es: 'Cursos' },
     href: '/courses',
     allowedRoles: COURSE_ROLES,
   },
   {
     icon: Users,
-    label: { en: 'Groups', es: 'Grupos' },
+    label: { de: 'Gruppen', en: 'Groups', es: 'Grupos' },
     href: '/groups',
     allowedRoles: GROUP_ROLES,
   },
   {
     icon: Calendar,
-    label: { en: 'Calendar', es: 'Calendario' },
+    label: { de: 'Kalender', en: 'Calendar', es: 'Calendario' },
     href: '/calendar',
     allowedRoles: GROUP_ROLES,
   },
   {
     icon: Bell,
-    label: { en: 'Announcements', es: 'Anuncios' },
+    label: { de: 'Ankündigungen', en: 'Announcements', es: 'Anuncios' },
     href: '/announcements',
     allowedRoles: COMMUNICATION_ROLES,
   },
   {
     icon: BarChart,
-    label: { en: 'Reports', es: 'Informes' },
+    label: { de: 'Berichte', en: 'Reports', es: 'Informes' },
     href: '/reports',
     allowedRoles: REPORT_ROLES,
   },
   {
     icon: FileText,
-    label: { en: 'Resources', es: 'Recursos' },
+    label: { de: 'Ressourcen', en: 'Resources', es: 'Recursos' },
     href: '/resources',
     allowedRoles: null,
   },
   {
     icon: Video,
-    label: { en: 'Webinars', es: 'Webinarios' },
+    label: { de: 'Webinare', en: 'Webinars', es: 'Webinarios' },
     href: '/webinars',
     allowedRoles: COURSE_ROLES,
   },
   {
     icon: MessageSquare,
-    label: { en: 'Messages', es: 'Mensajes' },
+    label: { de: 'Nachrichten', en: 'Messages', es: 'Mensajes' },
     href: '/messages',
     allowedRoles: COMMUNICATION_ROLES,
   },
   {
     icon: HelpCircle,
-    label: { en: 'Help', es: 'Ayuda' },
+    label: { de: 'Hilfe', en: 'Help', es: 'Ayuda' },
     href: '/help',
     allowedRoles: null,
   }
@@ -116,7 +116,7 @@ export function MainNavLinks({ isCollapsed, onCloseMobile }) {
           }
         >
           <item.icon className={cn('h-5 w-5 flex-shrink-0')} />
-          {!isCollapsed && <span>{item.label[currentLanguage] ?? item.label.en}</span>}
+          {!isCollapsed && <span>{item.label[currentLanguage] ?? item.label.de ?? item.label.en}</span>}
         </NavLink>
       ))}
     </div>

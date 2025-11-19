@@ -78,13 +78,18 @@ import CourseEdit from "./pages/CourseEdit";
 import EditModulePage from './pages/EditModulePage';
 import Chatbot from './pages/Chatbot.jsx';
 import Webinars from './pages/Webinars.jsx';
+import { SupervisorDashboard } from './components/supervisor/SupervisorDashboard';
+import { DataProtectionPanel } from './components/gdpr/DataProtectionPanel';
+import { CookieConsent } from './components/gdpr/CookieConsent';
+import { AccessibilityControls } from './components/accessibility/AccessibilityControls';
 
 const queryClient = new QueryClient();
 const COURSE_AUTHOR_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER];
 const USER_ADMIN_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.SUPPORT];
-const REPORTING_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.EVALUATOR];
+const REPORTING_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.EVALUATOR, ROLES.SUPERVISOR];
 const EVALUATION_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.EVALUATOR];
 const SCHEDULER_ROLES = [ROLES.ADMIN, ROLES.PROGRAM_MANAGER, ROLES.TRAINER];
+const SUPERVISOR_ROLES = [ROLES.SUPERVISOR, ROLES.ADMIN];
 
 const App = () => (
   <LanguageProvider>
@@ -336,6 +341,26 @@ const App = () => (
                     <Route path="profile" element={<Profile />} />
                     <Route path="chatbot" element={<Chatbot />} />
                     <Route path="webinars" element={<Webinars />} />
+                    
+                    {/* Supervisor Dashboard */}
+                    <Route
+                      path="supervisor"
+                      element={(
+                        <ProtectedRoute allowedRoles={SUPERVISOR_ROLES}>
+                          <SupervisorDashboard />
+                        </ProtectedRoute>
+                      )}
+                    />
+                    
+                    {/* GDPR/Data Protection */}
+                    <Route
+                      path="data-protection"
+                      element={(
+                        <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
+                          <DataProtectionPanel />
+                        </ProtectedRoute>
+                      )}
+                    />
 
                     {/* New Instructor Dashboard Routes */}
                     <Route
@@ -369,6 +394,8 @@ const App = () => (
                     {/* ECPAT update end */}
                   </Route>
                 </Routes>
+                <CookieConsent />
+                <AccessibilityControls />
                 </PortalProvider>
               </RoleProvider>
             </CourseSidebarProvider>

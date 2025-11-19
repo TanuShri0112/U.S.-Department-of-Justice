@@ -2,29 +2,36 @@ import React, { createContext, useContext, useState, useEffect, useMemo } from '
 
 const LanguageContext = createContext();
 
-const SUPPORTED_LANGUAGES = ['en', 'es'];
+const SUPPORTED_LANGUAGES = ['de', 'en', 'es'];
 const STORAGE_KEY = 'athena-language';
 
 const metadata = {
-  en: {
-    title: 'Athena LMS - Learning Management System',
+  de: {
+    title: 'Kreis Wesel – Lernportal',
     description:
-      'Athena LMS - Advanced Learning Platform with WCAG 2.1 Compliance and SCORM Integration',
-    ogTitle: 'Athena LMS',
+      'Kreis Wesel – Lernportal - Fortgeschrittene Lernplattform mit WCAG 2.1 Konformität und SCORM Integration',
+    ogTitle: 'Kreis Wesel – Lernportal',
+    ogDescription: 'Professionelles Lernmanagementsystem für Schulung und Entwicklung',
+  },
+  en: {
+    title: 'Kreis Wesel – Lernportal',
+    description:
+      'Kreis Wesel – Lernportal - Advanced Learning Platform with WCAG 2.1 Compliance and SCORM Integration',
+    ogTitle: 'Kreis Wesel – Lernportal',
     ogDescription: 'Professional Learning Management System for Training and Development',
   },
   es: {
-    title: 'Athena LMS - Sistema de Gestión del Aprendizaje',
+    title: 'Kreis Wesel – Lernportal',
     description:
-      'Athena LMS - Plataforma avanzada de aprendizaje con cumplimiento WCAG 2.1 e integración SCORM',
-    ogTitle: 'Athena LMS',
+      'Kreis Wesel – Lernportal - Plataforma avanzada de aprendizaje con cumplimiento WCAG 2.1 e integración SCORM',
+    ogTitle: 'Kreis Wesel – Lernportal',
     ogDescription: 'Sistema profesional de gestión del aprendizaje para formación y desarrollo',
   },
 };
 
 const resolveInitialLanguage = () => {
   if (typeof window === 'undefined') {
-    return 'en';
+    return 'de'; // Default to German
   }
 
   const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -32,12 +39,8 @@ const resolveInitialLanguage = () => {
     return stored;
   }
 
-  const browserLanguage = navigator.language?.slice(0, 2).toLowerCase();
-  if (browserLanguage && SUPPORTED_LANGUAGES.includes(browserLanguage)) {
-    return browserLanguage;
-  }
-
-  return 'en';
+  // Always default to German for Kreis Wesel, regardless of browser language
+  return 'de';
 };
 
 export function LanguageProvider({ children }) {

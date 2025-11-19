@@ -20,6 +20,8 @@ import { useUserFilter } from '@/contexts/UserFilterContext';
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
 import { UserDetailDialog } from '@/components/users/UserDetailDialog';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/hooks/use-translations';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -37,19 +39,21 @@ import {
  */
 
 /**
- * @type {Record<UserRole, string>}
+ * @type {Record<UserRole, Record<string, string>>}
  */
 const roleDisplayNames = {
-  all: 'All',
-  administrator: 'Administrators',
-  learner: 'Learners',
-  friends: 'Friends',
-  archived: 'Archived',
-  manager: 'Managers',
-  instructor: 'Instructors',
+  all: { de: 'Alle', en: 'All', es: 'Todos' },
+  administrator: { de: 'Administratoren', en: 'Administrators', es: 'Administradores' },
+  learner: { de: 'Lernende', en: 'Learners', es: 'Alumnos' },
+  friends: { de: 'Freunde', en: 'Friends', es: 'Amigos' },
+  archived: { de: 'Archiviert', en: 'Archived', es: 'Archivados' },
+  manager: { de: 'Manager', en: 'Managers', es: 'Gerentes' },
+  instructor: { de: 'Instruktoren', en: 'Instructors', es: 'Instructores' },
 };
 
 const UsersPage = () => {
+  const { currentLanguage } = useLanguage();
+  const t = useTranslations();
   const { 
     filteredUsers, 
     selectedRole, 
@@ -127,8 +131,12 @@ const UsersPage = () => {
   const handleAction = (action) => {
     if (selectedUsers.length === 0) {
       toast({
-        title: "No users selected",
-        description: "Please select at least one user to perform this action.",
+        title: currentLanguage === 'de' ? "Keine Benutzer ausgewählt" : currentLanguage === 'en' ? "No users selected" : "No se seleccionaron usuarios",
+        description: currentLanguage === 'de' 
+          ? "Bitte wählen Sie mindestens einen Benutzer aus, um diese Aktion auszuführen."
+          : currentLanguage === 'en'
+          ? "Please select at least one user to perform this action."
+          : "Por favor seleccione al menos un usuario para realizar esta acción.",
         variant: "destructive"
       });
       return;
@@ -174,8 +182,12 @@ const UsersPage = () => {
     }
     
     toast({
-      title: `${action} successful`,
-      description: `Action performed on ${selectedUsers.length} users.`
+      title: currentLanguage === 'de' ? `${action} erfolgreich` : currentLanguage === 'en' ? `${action} successful` : `${action} exitoso`,
+      description: currentLanguage === 'de' 
+        ? `Aktion wurde für ${selectedUsers.length} Benutzer ausgeführt.`
+        : currentLanguage === 'en'
+        ? `Action performed on ${selectedUsers.length} users.`
+        : `Acción realizada en ${selectedUsers.length} usuarios.`
     });
     
     setSelectedUsers([]);
@@ -187,8 +199,12 @@ const UsersPage = () => {
     removeUsers(selectedUsers);
     
     toast({
-      title: "Users removed",
-      description: `${selectedUsers.length} user(s) have been successfully removed.`,
+      title: currentLanguage === 'de' ? "Benutzer entfernt" : currentLanguage === 'en' ? "Users removed" : "Usuarios eliminados",
+      description: currentLanguage === 'de' 
+        ? `${selectedUsers.length} Benutzer wurde(n) erfolgreich entfernt.`
+        : currentLanguage === 'en'
+        ? `${selectedUsers.length} user(s) have been successfully removed.`
+        : `${selectedUsers.length} usuario(s) ha(n) sido eliminado(s) exitosamente.`,
     });
     
     setSelectedUsers([]);
@@ -218,8 +234,12 @@ const UsersPage = () => {
       removeUsers([userToDelete.id]);
       
       toast({
-        title: "User deleted",
-        description: `${userToDelete.name} has been successfully deleted.`,
+        title: currentLanguage === 'de' ? "Benutzer gelöscht" : currentLanguage === 'en' ? "User deleted" : "Usuario eliminado",
+        description: currentLanguage === 'de' 
+          ? `${userToDelete.name} wurde erfolgreich gelöscht.`
+          : currentLanguage === 'en'
+          ? `${userToDelete.name} has been successfully deleted.`
+          : `${userToDelete.name} ha sido eliminado exitosamente.`,
       });
       
       setUserToDelete(null);
@@ -240,43 +260,43 @@ const UsersPage = () => {
 
   const getColumns = () => {
     const baseColumns = [
-      { key: 'name', label: 'Name' },
-      { key: 'lastVisited', label: 'Last visited' }
+      { key: 'name', label: t.users.name },
+      { key: 'lastVisited', label: currentLanguage === 'de' ? 'Zuletzt besucht' : currentLanguage === 'en' ? 'Last visited' : 'Última visita' }
     ];
     
     switch (selectedRole) {
       case 'learner':
         return [
           ...baseColumns.slice(0, 1),
-          { key: 'courses', label: 'Courses' },
-          { key: 'completed', label: 'Completed' },
-          { key: 'deactivated', label: 'Deactivated' },
-          { key: 'groups', label: 'Groups' },
-          { key: 'awards', label: 'Awards' },
+          { key: 'courses', label: t.courses.title },
+          { key: 'completed', label: t.common.completed },
+          { key: 'deactivated', label: currentLanguage === 'de' ? 'Deaktiviert' : currentLanguage === 'en' ? 'Deactivated' : 'Desactivado' },
+          { key: 'groups', label: t.groups.title },
+          { key: 'awards', label: currentLanguage === 'de' ? 'Auszeichnungen' : currentLanguage === 'en' ? 'Awards' : 'Premios' },
           baseColumns[1]
         ];
       case 'instructor':
         return [
           ...baseColumns.slice(0, 1),
-          { key: 'courses', label: 'Courses' },
-          { key: 'archived', label: 'Archived' },
-          { key: 'groups', label: 'Groups' },
+          { key: 'courses', label: t.courses.title },
+          { key: 'archived', label: t.users.archived },
+          { key: 'groups', label: t.groups.title },
           baseColumns[1]
         ];
       case 'administrator':
         return [
           ...baseColumns.slice(0, 1),
-          { key: 'superAdmin', label: 'Super admin' },
-          { key: 'contactMessages', label: 'Contact messages' },
-          { key: 'groups', label: 'Groups' },
+          { key: 'superAdmin', label: currentLanguage === 'de' ? 'Super-Administrator' : currentLanguage === 'en' ? 'Super admin' : 'Super administrador' },
+          { key: 'contactMessages', label: currentLanguage === 'de' ? 'Kontaktnachrichten' : currentLanguage === 'en' ? 'Contact messages' : 'Mensajes de contacto' },
+          { key: 'groups', label: t.groups.title },
           baseColumns[1]
         ];
       default:
         return [
           ...baseColumns.slice(0, 1),
-          { key: 'learner', label: 'Learner' },
-          { key: 'instructor', label: 'Instructor' },
-          { key: 'administrator', label: 'Administrator' },
+          { key: 'learner', label: t.users.learners },
+          { key: 'instructor', label: t.users.instructors },
+          { key: 'administrator', label: t.users.administrators },
           baseColumns[1]
         ];
     }
@@ -284,27 +304,27 @@ const UsersPage = () => {
 
   const getActionButtons = () => {
     const baseActions = [
-      { label: 'Message', icon: <Mail className="h-4 w-4 mr-2" /> },
-      { label: 'Edit', icon: <Pencil className="h-4 w-4 mr-2" /> },
-      { label: 'Remove', icon: <Trash className="h-4 w-4 mr-2" /> }
+      { label: currentLanguage === 'de' ? 'Nachricht' : currentLanguage === 'en' ? 'Message' : 'Mensaje', icon: <Mail className="h-4 w-4 mr-2" /> },
+      { label: t.common.edit, icon: <Pencil className="h-4 w-4 mr-2" /> },
+      { label: currentLanguage === 'de' ? 'Entfernen' : currentLanguage === 'en' ? 'Remove' : 'Eliminar', icon: <Trash className="h-4 w-4 mr-2" /> }
     ];
     
     switch (selectedRole) {
       case 'learner':
         return [
-          { label: 'Message', icon: <Mail className="h-4 w-4 mr-2" /> },
-          { label: 'Scores', icon: <ArrowUpDown className="h-4 w-4 mr-2" /> },
-          { label: 'Passwords', icon: <Lock className="h-4 w-4 mr-2" /> },
-          { label: 'Resend login', icon: <RotateCcw className="h-4 w-4 mr-2" /> },
-          { label: 'Award', icon: <Check className="h-4 w-4 mr-2" /> },
-          { label: 'Edit', icon: <Pencil className="h-4 w-4 mr-2" /> },
-          { label: 'Remove', icon: <Trash className="h-4 w-4 mr-2" /> },
-          { label: 'Archive', icon: <Filter className="h-4 w-4 mr-2" /> }
+          { label: currentLanguage === 'de' ? 'Nachricht' : currentLanguage === 'en' ? 'Message' : 'Mensaje', icon: <Mail className="h-4 w-4 mr-2" /> },
+          { label: currentLanguage === 'de' ? 'Bewertungen' : currentLanguage === 'en' ? 'Scores' : 'Puntuaciones', icon: <ArrowUpDown className="h-4 w-4 mr-2" /> },
+          { label: currentLanguage === 'de' ? 'Passwörter' : currentLanguage === 'en' ? 'Passwords' : 'Contraseñas', icon: <Lock className="h-4 w-4 mr-2" /> },
+          { label: currentLanguage === 'de' ? 'Anmeldung erneut senden' : currentLanguage === 'en' ? 'Resend login' : 'Reenviar inicio de sesión', icon: <RotateCcw className="h-4 w-4 mr-2" /> },
+          { label: currentLanguage === 'de' ? 'Auszeichnung' : currentLanguage === 'en' ? 'Award' : 'Premio', icon: <Check className="h-4 w-4 mr-2" /> },
+          { label: t.common.edit, icon: <Pencil className="h-4 w-4 mr-2" /> },
+          { label: currentLanguage === 'de' ? 'Entfernen' : currentLanguage === 'en' ? 'Remove' : 'Eliminar', icon: <Trash className="h-4 w-4 mr-2" /> },
+          { label: currentLanguage === 'de' ? 'Archivieren' : currentLanguage === 'en' ? 'Archive' : 'Archivar', icon: <Filter className="h-4 w-4 mr-2" /> }
         ];
       case 'instructor':
       case 'administrator':
         return [
-          { label: 'Message', icon: <Mail className="h-4 w-4 mr-2" /> }
+          { label: currentLanguage === 'de' ? 'Nachricht' : currentLanguage === 'en' ? 'Message' : 'Mensaje', icon: <Mail className="h-4 w-4 mr-2" /> }
         ];
       default:
         return baseActions;
@@ -337,9 +357,9 @@ const UsersPage = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <PageHeader 
-        title="Users" 
+        title={t.users.title} 
         action={{
-          label: "Add User",
+          label: t.users.addUser,
           onClick: () => setDialogOpen(true)
         }}
       />
@@ -357,7 +377,7 @@ const UsersPage = () => {
                 value="all"
                 className="data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded-full px-4 py-2 border border-gray-200 hover:border-blue-300 transition-colors"
               >
-                All <span className="ml-2 px-2 py-0.5 bg-gray-100 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 text-xs rounded-full">
+                {roleDisplayNames.all[currentLanguage] || roleDisplayNames.all.de} <span className="ml-2 px-2 py-0.5 bg-gray-100 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 text-xs rounded-full">
                   {userCounts.all}
                 </span>
               </TabsTrigger>
@@ -366,7 +386,7 @@ const UsersPage = () => {
                 value="learner"
                 className="data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded-full px-4 py-2 border border-gray-200 hover:border-blue-300 transition-colors"
               >
-                Learners <span className="ml-2 px-2 py-0.5 bg-gray-100 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 text-xs rounded-full">
+                {roleDisplayNames.learner[currentLanguage] || roleDisplayNames.learner.de} <span className="ml-2 px-2 py-0.5 bg-gray-100 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 text-xs rounded-full">
                   {userCounts.learner}
                 </span>
               </TabsTrigger>
@@ -375,7 +395,7 @@ const UsersPage = () => {
                 value="instructor"
                 className="data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded-full px-4 py-2 border border-gray-200 hover:border-blue-300 transition-colors"
               >
-                Instructors <span className="ml-2 px-2 py-0.5 bg-gray-100 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 text-xs rounded-full">
+                {roleDisplayNames.instructor[currentLanguage] || roleDisplayNames.instructor.de} <span className="ml-2 px-2 py-0.5 bg-gray-100 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 text-xs rounded-full">
                   {userCounts.instructor}
                 </span>
               </TabsTrigger>
@@ -384,7 +404,7 @@ const UsersPage = () => {
                 value="administrator"
                 className="data-[state=active]:bg-blue-600 data-[state=active]:text-white rounded-full px-4 py-2 border border-gray-200 hover:border-blue-300 transition-colors"
               >
-                Administrators <span className="ml-2 px-2 py-0.5 bg-gray-100 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 text-xs rounded-full">
+                {roleDisplayNames.administrator[currentLanguage] || roleDisplayNames.administrator.de} <span className="ml-2 px-2 py-0.5 bg-gray-100 data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800 text-xs rounded-full">
                   {userCounts.administrator}
                 </span>
               </TabsTrigger>
@@ -399,7 +419,7 @@ const UsersPage = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input 
               className="pl-9 bg-white border-gray-200" 
-              placeholder="Search users..." 
+              placeholder={t.users.searchUsers} 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -452,7 +472,7 @@ const UsersPage = () => {
                     </div>
                   </th>
                 ))}
-                <th className="p-4 text-sm font-medium text-gray-600">Actions</th>
+                <th className="p-4 text-sm font-medium text-gray-600">{t.common.actions}</th>
               </tr>
             </thead>
             <tbody>

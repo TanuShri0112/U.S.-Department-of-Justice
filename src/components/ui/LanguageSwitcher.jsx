@@ -14,6 +14,8 @@ const LanguageSwitcher = () => {
 
   const languages = availableLanguages.map((code) => {
     switch (code) {
+      case 'de':
+        return { code, name: 'Deutsch', flag: '🇩🇪' };
       case 'es':
         return { code, name: 'Español', flag: '🇪🇸' };
       case 'en':

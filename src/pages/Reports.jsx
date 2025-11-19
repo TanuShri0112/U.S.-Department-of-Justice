@@ -6,6 +6,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { PageHeader } from '@/components/shared/PageHeader';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/hooks/use-translations';
 import { 
   Download, 
   FileSpreadsheet, 
@@ -147,6 +150,8 @@ const LoadingSkeleton = () => (
 );
 
 const Reports = () => {
+  const { currentLanguage } = useLanguage();
+  const t = useTranslations();
   const [loading, setLoading] = useState(false);
   const [timeFilter, setTimeFilter] = useState('2024');
   const [regionFilter, setRegionFilter] = useState('all');
@@ -316,10 +321,10 @@ const Reports = () => {
   if (loading) {
     return (
       <div className="p-6">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">📊 Data & Reporting</h1>
-          <p className="text-gray-600">Track enrollments, completions, outreach, and impact metrics.</p>
-        </div>
+        <PageHeader 
+          title={t.reports.title} 
+          description={t.reports.description} 
+        />
         <LoadingSkeleton />
       </div>
     );
@@ -328,39 +333,39 @@ const Reports = () => {
   return (
     <div className="p-6 space-y-8">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">📊 Data & Reporting</h1>
-        <p className="text-gray-600">Track enrollments, completions, outreach, and impact metrics.</p>
-      </div>
+      <PageHeader 
+        title={t.reports.title} 
+        description={t.reports.description} 
+      />
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
-          title="Enrollment by Region"
+          title={t.reports.enrollmentByRegion}
           value={kpis.totalEnrollments.toLocaleString()}
           icon={Users}
-          trend="+12% vs last year"
+          trend={currentLanguage === 'de' ? '+12% vs. Vorjahr' : currentLanguage === 'en' ? '+12% vs last year' : '+12% vs año pasado'}
           color="blue"
         />
         <StatCard
-          title="Completion Rate"
+          title={t.reports.completionRate}
           value={`${kpis.completionRate}%`}
           icon={Target}
-          trend="+5% vs last year"
+          trend={currentLanguage === 'de' ? '+5% vs. Vorjahr' : currentLanguage === 'en' ? '+5% vs last year' : '+5% vs año pasado'}
           color="green"
         />
         <StatCard
-          title="Community Outreach Hours"
+          title={t.reports.communityHours}
           value={kpis.totalOutreachHours.toLocaleString()}
           icon={Clock}
-          trend="+18% vs last year"
+          trend={currentLanguage === 'de' ? '+18% vs. Vorjahr' : currentLanguage === 'en' ? '+18% vs last year' : '+18% vs año pasado'}
           color="purple"
         />
         <StatCard
-          title="Impact Metrics"
+          title={t.reports.impactMetrics}
           value={kpis.impactMetrics}
           icon={BarChart3}
-          trend="+22% vs last year"
+          trend={currentLanguage === 'de' ? '+22% vs. Vorjahr' : currentLanguage === 'en' ? '+22% vs last year' : '+22% vs año pasado'}
           color="orange"
         />
       </div>
@@ -368,31 +373,31 @@ const Reports = () => {
       {/* Charts Section */}
       <Card>
         <CardHeader>
-          <CardTitle>Analytics Dashboard</CardTitle>
+          <CardTitle>{currentLanguage === 'de' ? 'Analytics-Dashboard' : currentLanguage === 'en' ? 'Analytics Dashboard' : 'Panel de Análisis'}</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="enrollment" className="space-y-4">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="enrollment" className="flex items-center gap-2">
                 <PieChart className="h-4 w-4" />
-                Enrollment
+                {t.reports.enrollment}
               </TabsTrigger>
               <TabsTrigger value="completion" className="flex items-center gap-2">
                 <LineChart className="h-4 w-4" />
-                Completion
+                {t.reports.completion}
               </TabsTrigger>
               <TabsTrigger value="outreach" className="flex items-center gap-2">
                 <BarChart3 className="h-4 w-4" />
-                Outreach
+                {t.reports.outreach}
               </TabsTrigger>
               <TabsTrigger value="impact" className="flex items-center gap-2">
                 <Target className="h-4 w-4" />
-                Impact
+                {t.reports.impact}
               </TabsTrigger>
               </TabsList>
 
             <TabsContent value="enrollment" className="space-y-4">
-              <h3 className="text-lg font-semibold">Enrollment by Region</h3>
+              <h3 className="text-lg font-semibold">{t.reports.enrollmentByRegion}</h3>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <RechartsPieChart>
@@ -471,11 +476,11 @@ const Reports = () => {
       <Card>
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <CardTitle>Detailed Reports</CardTitle>
+            <CardTitle>{currentLanguage === 'de' ? 'Detaillierte Berichte' : currentLanguage === 'en' ? 'Detailed Reports' : 'Informes Detallados'}</CardTitle>
             <div className="flex flex-col sm:flex-row gap-2">
               <Select value={timeFilter} onValueChange={setTimeFilter}>
                 <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Time Period" />
+                  <SelectValue placeholder={currentLanguage === 'de' ? 'Zeitraum' : currentLanguage === 'en' ? 'Time Period' : 'Período de Tiempo'} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="2024">2024</SelectItem>
@@ -485,7 +490,7 @@ const Reports = () => {
               
               <Select value={regionFilter} onValueChange={setRegionFilter}>
                 <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Region" />
+                  <SelectValue placeholder={t.reports.region} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Regions</SelectItem>
@@ -498,7 +503,7 @@ const Reports = () => {
               </Select>
               
               <Input
-                placeholder="Search regions..."
+                placeholder={currentLanguage === 'de' ? 'Regionen suchen...' : currentLanguage === 'en' ? 'Search regions...' : 'Buscar regiones...'}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-48"

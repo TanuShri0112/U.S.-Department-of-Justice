@@ -2,6 +2,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* High Contrast Mode for Accessibility */
+.high-contrast {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --muted: 0 0% 95%;
+  --muted-foreground: 0 0% 20%;
+  --border: 0 0% 0%;
+  --input: 0 0% 0%;
+  --primary: 0 0% 0%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 90%;
+  --secondary-foreground: 0 0% 0%;
+  --accent: 0 0% 0%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 0 0% 0%;
+}
+
+.high-contrast * {
+  border-color: hsl(0, 0%, 0%) !important;
+}
+
+.high-contrast button,
+.high-contrast a {
+  border: 2px solid hsl(0, 0%, 0%) !important;
+}
  
 @layer base {
   :root {
