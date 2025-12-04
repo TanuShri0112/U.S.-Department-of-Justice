@@ -14,15 +14,16 @@ const LanguageSwitcher = () => {
 
   const languages = availableLanguages.map((code) => {
     switch (code) {
-      case 'ar':
-        return { code, name: 'العربية', flag: '🇸🇦', direction: 'rtl' };
+      case 'uk':
+        return { code, name: 'Українська', flag: '🇺🇦', direction: 'ltr' };
       case 'en':
+        return { code, name: 'English', flag: '🇺🇸', direction: 'ltr' };
       default:
-        return { code: 'en', name: 'English', flag: '🇺🇸', direction: 'ltr' };
+        return { code, name: code.toUpperCase(), flag: '🌐', direction: 'ltr' };
     }
   });
 
-  const currentLang = languages.find(lang => lang.code === currentLanguage);
+  const currentLang = languages.find(lang => lang.code === currentLanguage) ?? languages[0];
 
   return (
     <DropdownMenu>

@@ -2,11 +2,19 @@ import React, { createContext, useContext, useState, useEffect, useMemo } from '
 
 const LanguageContext = createContext();
 
-const SUPPORTED_LANGUAGES = ['en', 'ar'];
-const RTL_LANGUAGES = new Set(['ar']);
+const DEFAULT_LANGUAGE = 'uk';
+const SUPPORTED_LANGUAGES = [DEFAULT_LANGUAGE, 'en'];
+const RTL_LANGUAGES = new Set();
 const STORAGE_KEY = 'athena-language';
 
 const metadata = {
+  uk: {
+    title: 'Athena LMS — Система управління навчанням',
+    description:
+      'Athena LMS — доступна платформа з відповідністю WCAG 2.1, SCORM та аналітикою для курсів “Voice of Accessibility”.',
+    ogTitle: 'Athena LMS Україна',
+    ogDescription: 'Повністю локалізована платформа для навчання з підтримкою доступності та AI-асистента.',
+  },
   en: {
     title: 'Athena LMS - Learning Management System',
     description:
@@ -14,18 +22,11 @@ const metadata = {
     ogTitle: 'Athena LMS',
     ogDescription: 'Professional Learning Management System for Training and Development',
   },
-  ar: {
-    title: 'منصة أثينا للتعلم - نظام إدارة التعلم',
-    description:
-      'أثينا LMS - منصة تعلم متقدمة متوافقة مع معايير WCAG 2.1 وتتكامل مع حزمة SCORM',
-    ogTitle: 'منصة أثينا للتعلم',
-    ogDescription: 'نظام احترافي لإدارة التعلم وبرامج التدريب والتطوير',
-  },
 };
 
 const resolveInitialLanguage = () => {
   if (typeof window === 'undefined') {
-    return 'en';
+    return DEFAULT_LANGUAGE;
   }
 
   const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -38,7 +39,7 @@ const resolveInitialLanguage = () => {
     return browserLanguage;
   }
 
-  return 'en';
+  return DEFAULT_LANGUAGE;
 };
 
 export function LanguageProvider({ children }) {

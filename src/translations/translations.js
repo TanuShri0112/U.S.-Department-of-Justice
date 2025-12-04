@@ -1,4 +1,56 @@
 export const translations = {
+  uk: {
+    nav: {
+      home: 'Головна',
+      courses: 'Курси',
+      training: 'Навчання',
+      profile: 'Профіль',
+      settings: 'Налаштування',
+      dashboard: 'Панель',
+      groups: 'Групи',
+      reports: 'Звіти',
+      resources: 'Ресурси',
+      webinars: 'Вебінари',
+      messages: 'Повідомлення',
+      help: 'Допомога'
+    },
+    dashboard: {
+      welcome: 'Ласкаво просимо назад',
+      myProgress: 'Мій прогрес',
+      completionRate: 'Рівень завершення',
+      safetyScore: 'Індекс безпеки',
+      certificatesEarned: 'Отримані сертифікати',
+      hoursLearned: 'Годин навчання',
+      upcomingWebinars: 'Майбутні вебінари',
+      myCertificates: 'Мої сертифікати',
+      downloadCertificate: 'Завантажити сертифікат',
+      viewCertificate: 'Переглянути сертифікат',
+      xrayProficiency: 'Компетентність з рентгену',
+      safetyTraining: 'Статус тренінгу з безпеки',
+      viewDetails: 'Переглянути деталі',
+      continueTraining: 'Продовжити навчання'
+    },
+    training: {
+      sessions: {
+        title: 'Навчальні сесії',
+        upcoming: 'Майбутні сесії',
+        completed: 'Завершені сесії',
+        joinButton: 'Приєднатися',
+        noUpcoming: 'Немає запланованих сесій',
+        noCompleted: 'Немає завершених сесій'
+      },
+      courses: {
+        title: 'Поточні курси',
+        continue: 'Продовжити навчання',
+        nextLesson: 'Наступний урок',
+        dueDate: 'Кінцевий термін',
+        progress: 'Прогрес',
+        participants: 'Учасники',
+        duration: 'Тривалість',
+        instructor: 'Інструктор'
+      }
+    }
+  },
   en: {
     nav: {
       home: 'Home',
@@ -51,56 +103,4 @@ export const translations = {
       }
     }
   },
-  ar: {
-    nav: {
-      home: 'الرئيسية',
-      courses: 'الدورات',
-      training: 'التدريب',
-      profile: 'الملف الشخصي',
-      settings: 'الإعدادات',
-      dashboard: 'لوحة المعلومات',
-      groups: 'المجموعات',
-      reports: 'التقارير',
-      resources: 'الموارد',
-      webinars: 'الندوات عبر الويب',
-      messages: 'الرسائل',
-      help: 'المساعدة'
-    },
-    dashboard: {
-      welcome: 'مرحباً بعودتك',
-      myProgress: 'تقدمي',
-      completionRate: 'نسبة الإكمال',
-      safetyScore: 'درجة السلامة',
-      certificatesEarned: 'الشهادات المحققة',
-      hoursLearned: 'ساعات التعلم',
-      upcomingWebinars: 'الندوات القادمة',
-      myCertificates: 'شهاداتي',
-      downloadCertificate: 'تحميل الشهادة',
-      viewCertificate: 'عرض الشهادة',
-      xrayProficiency: 'إجادة الأشعة',
-      safetyTraining: 'حالة تدريب السلامة',
-      viewDetails: 'عرض التفاصيل',
-      continueTraining: 'متابعة التدريب'
-    },
-    training: {
-      sessions: {
-        title: 'جلسات التدريب',
-        upcoming: 'الجلسات القادمة',
-        completed: 'الجلسات المنجزة',
-        joinButton: 'الانضمام للجلسة',
-        noUpcoming: 'لا توجد جلسات قادمة',
-        noCompleted: 'لا توجد جلسات منجزة'
-      },
-      courses: {
-        title: 'الدورات الجارية',
-        continue: 'متابعة التعلم',
-        nextLesson: 'الدرس التالي',
-        dueDate: 'تاريخ الاستحقاق',
-        progress: 'التقدم',
-        participants: 'المشاركون',
-        duration: 'المدة',
-        instructor: 'المدرب'
-      }
-    }
-  }
 };
