@@ -12,12 +12,12 @@ const messages = {
       'Request the appropriate permissions from your program administrator or switch to a role with the necessary access level.',
     action: 'Go back to dashboard',
   },
-  es: {
-    title: 'Acceso restringido',
-    subtitle: 'No tienes el perfil necesario para ver esta página.',
+  ar: {
+    title: 'تم تقييد الوصول',
+    subtitle: 'ليست لديك الصلاحيات المطلوبة لعرض هذه الصفحة.',
     description:
-      'Solicita los permisos correspondientes a tu administrador del programa o cambia a un rol con el nivel de acceso requerido.',
-    action: 'Volver al panel',
+      'يرجى طلب الأذونات المناسبة من مسؤول البرنامج أو التبديل إلى دور يمتلك مستوى الوصول المطلوب.',
+    action: 'العودة إلى لوحة التحكم',
   },
 };
 

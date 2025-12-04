@@ -14,11 +14,11 @@ const LanguageSwitcher = () => {
 
   const languages = availableLanguages.map((code) => {
     switch (code) {
-      case 'es':
-        return { code, name: 'Español', flag: '🇪🇸' };
+      case 'ar':
+        return { code, name: 'العربية', flag: '🇸🇦', direction: 'rtl' };
       case 'en':
       default:
-        return { code: 'en', name: 'English', flag: '🇺🇸' };
+        return { code: 'en', name: 'English', flag: '🇺🇸', direction: 'ltr' };
     }
   });
 

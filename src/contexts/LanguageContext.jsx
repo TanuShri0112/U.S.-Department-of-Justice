@@ -2,7 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useMemo } from '
 
 const LanguageContext = createContext();
 
-const SUPPORTED_LANGUAGES = ['en', 'es'];
+const SUPPORTED_LANGUAGES = ['en', 'ar'];
+const RTL_LANGUAGES = new Set(['ar']);
 const STORAGE_KEY = 'athena-language';
 
 const metadata = {
@@ -13,12 +14,12 @@ const metadata = {
     ogTitle: 'Athena LMS',
     ogDescription: 'Professional Learning Management System for Training and Development',
   },
-  es: {
-    title: 'Athena LMS - Sistema de Gestión del Aprendizaje',
+  ar: {
+    title: 'منصة أثينا للتعلم - نظام إدارة التعلم',
     description:
-      'Athena LMS - Plataforma avanzada de aprendizaje con cumplimiento WCAG 2.1 e integración SCORM',
-    ogTitle: 'Athena LMS',
-    ogDescription: 'Sistema profesional de gestión del aprendizaje para formación y desarrollo',
+      'أثينا LMS - منصة تعلم متقدمة متوافقة مع معايير WCAG 2.1 وتتكامل مع حزمة SCORM',
+    ogTitle: 'منصة أثينا للتعلم',
+    ogDescription: 'نظام احترافي لإدارة التعلم وبرامج التدريب والتطوير',
   },
 };
 
@@ -62,6 +63,8 @@ export function LanguageProvider({ children }) {
     if (ogDescMeta) {
       ogDescMeta.setAttribute('content', meta.ogDescription);
     }
+
+    document.documentElement.dir = RTL_LANGUAGES.has(currentLanguage) ? 'rtl' : 'ltr';
 
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(STORAGE_KEY, currentLanguage);

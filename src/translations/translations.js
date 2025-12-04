@@ -51,55 +51,55 @@ export const translations = {
       }
     }
   },
-  es: {
+  ar: {
     nav: {
-      home: 'Inicio',
-      courses: 'Cursos',
-      training: 'Formación',
-      profile: 'Perfil',
-      settings: 'Configuración',
-      dashboard: 'Panel',
-      groups: 'Grupos',
-      reports: 'Informes',
-      resources: 'Recursos',
-      webinars: 'Webinarios',
-      messages: 'Mensajes',
-      help: 'Ayuda'
+      home: 'الرئيسية',
+      courses: 'الدورات',
+      training: 'التدريب',
+      profile: 'الملف الشخصي',
+      settings: 'الإعدادات',
+      dashboard: 'لوحة المعلومات',
+      groups: 'المجموعات',
+      reports: 'التقارير',
+      resources: 'الموارد',
+      webinars: 'الندوات عبر الويب',
+      messages: 'الرسائل',
+      help: 'المساعدة'
     },
     dashboard: {
-      welcome: 'Bienvenido de nuevo',
-      myProgress: 'Mi progreso',
-      completionRate: 'Tasa de finalización',
-      safetyScore: 'Puntuación de seguridad',
-      certificatesEarned: 'Certificados obtenidos',
-      hoursLearned: 'Horas de formación',
-      upcomingWebinars: 'Próximos webinarios',
-      myCertificates: 'Mis certificados',
-      downloadCertificate: 'Descargar certificado',
-      viewCertificate: 'Ver certificado',
-      xrayProficiency: 'Competencia digital',
-      safetyTraining: 'Estado de la formación en seguridad',
-      viewDetails: 'Ver detalles',
-      continueTraining: 'Continuar formación'
+      welcome: 'مرحباً بعودتك',
+      myProgress: 'تقدمي',
+      completionRate: 'نسبة الإكمال',
+      safetyScore: 'درجة السلامة',
+      certificatesEarned: 'الشهادات المحققة',
+      hoursLearned: 'ساعات التعلم',
+      upcomingWebinars: 'الندوات القادمة',
+      myCertificates: 'شهاداتي',
+      downloadCertificate: 'تحميل الشهادة',
+      viewCertificate: 'عرض الشهادة',
+      xrayProficiency: 'إجادة الأشعة',
+      safetyTraining: 'حالة تدريب السلامة',
+      viewDetails: 'عرض التفاصيل',
+      continueTraining: 'متابعة التدريب'
     },
     training: {
       sessions: {
-        title: 'Sesiones de formación',
-        upcoming: 'Sesiones próximas',
-        completed: 'Sesiones completadas',
-        joinButton: 'Unirse',
-        noUpcoming: 'No hay sesiones próximas',
-        noCompleted: 'No hay sesiones completadas'
+        title: 'جلسات التدريب',
+        upcoming: 'الجلسات القادمة',
+        completed: 'الجلسات المنجزة',
+        joinButton: 'الانضمام للجلسة',
+        noUpcoming: 'لا توجد جلسات قادمة',
+        noCompleted: 'لا توجد جلسات منجزة'
       },
       courses: {
-        title: 'Cursos en curso',
-        continue: 'Continuar aprendiendo',
-        nextLesson: 'Próxima lección',
-        dueDate: 'Fecha límite',
-        progress: 'Progreso',
-        participants: 'Participantes',
-        duration: 'Duración',
-        instructor: 'Instructor'
+        title: 'الدورات الجارية',
+        continue: 'متابعة التعلم',
+        nextLesson: 'الدرس التالي',
+        dueDate: 'تاريخ الاستحقاق',
+        progress: 'التقدم',
+        participants: 'المشاركون',
+        duration: 'المدة',
+        instructor: 'المدرب'
       }
     }
   }

@@ -23,48 +23,48 @@ export const OPTIONAL_ROLES = [ROLES.GUEST, ROLES.COORDINATOR];
 export const ALL_ROLES = [...PRIMARY_ROLES, ...OPTIONAL_ROLES];
 
 export const ROLE_LABELS = {
-  [ROLES.ADMIN]: { en: 'Admin', es: 'Administrador' },
-  [ROLES.PROGRAM_MANAGER]: { en: 'Program Manager', es: 'Gestor de programas' },
-  [ROLES.TRAINER]: { en: 'Trainer', es: 'Formador' },
-  [ROLES.EVALUATOR]: { en: 'Evaluator', es: 'Evaluador' },
-  [ROLES.LEARNER]: { en: 'Learner', es: 'Alumno' },
-  [ROLES.SUPPORT]: { en: 'Support', es: 'Soporte' },
-  [ROLES.GUEST]: { en: 'Guest', es: 'Invitado' },
-  [ROLES.COORDINATOR]: { en: 'Coordinator', es: 'Coordinador' },
+  [ROLES.ADMIN]: { en: 'Admin', ar: 'مسؤول النظام' },
+  [ROLES.PROGRAM_MANAGER]: { en: 'Program Manager', ar: 'مدير البرنامج' },
+  [ROLES.TRAINER]: { en: 'Trainer', ar: 'مدرب' },
+  [ROLES.EVALUATOR]: { en: 'Evaluator', ar: 'مقيم' },
+  [ROLES.LEARNER]: { en: 'Learner', ar: 'متعلم' },
+  [ROLES.SUPPORT]: { en: 'Support', ar: 'الدعم' },
+  [ROLES.GUEST]: { en: 'Guest', ar: 'زائر' },
+  [ROLES.COORDINATOR]: { en: 'Coordinator', ar: 'منسق' },
 };
 
 export const ROLE_DESCRIPTIONS = {
   [ROLES.ADMIN]: {
     en: 'Full system administrator with access to all modules and governance tools.',
-    es: 'Administrador del sistema con acceso total a todos los módulos y herramientas de gobernanza.',
+    ar: 'مسؤول نظام شامل يتمتع بإمكانية الوصول إلى جميع الوحدات وأدوات الحوكمة.',
   },
   [ROLES.PROGRAM_MANAGER]: {
     en: 'Oversees curricula, cohorts, and program performance analytics.',
-    es: 'Supervisa planes formativos, cohortes y analíticas de desempeño del programa.',
+    ar: 'يشرف على المناهج والفِرق وتحليلات أداء البرنامج.',
   },
   [ROLES.TRAINER]: {
     en: 'Creates courses, delivers live sessions, and evaluates learner progress.',
-    es: 'Crea cursos, imparte sesiones en directo y evalúa el progreso del alumnado.',
+    ar: 'ينشئ الدورات ويقدم الجلسات المباشرة ويقيّم تقدم المتعلمين.',
   },
   [ROLES.EVALUATOR]: {
     en: 'Audits assessments, compliance checkpoints, and certification quality.',
-    es: 'Audita evaluaciones, puntos de cumplimiento y la calidad de las certificaciones.',
+    ar: 'يراجع التقييمات ونقاط الامتثال وجودة الشهادات.',
   },
   [ROLES.LEARNER]: {
     en: 'Consumes learning content, completes assignments, and earns credentials.',
-    es: 'Consume contenidos formativos, completa tareas y obtiene credenciales.',
+    ar: 'يستهلك المحتوى التدريبي ويكمل الواجبات ويحصل على الاعتمادات.',
   },
   [ROLES.SUPPORT]: {
     en: 'Provides helpdesk assistance, knowledge base updates, and ticket triage.',
-    es: 'Ofrece asistencia de mesa de ayuda, actualiza la base de conocimiento y gestiona incidencias.',
+    ar: 'يقدم دعم مركز المساعدة ويحدّث قاعدة المعرفة ويرتب التذاكر.',
   },
   [ROLES.GUEST]: {
     en: 'Limited read-only access for demos or external reviewers.',
-    es: 'Acceso limitado de solo lectura para demostraciones o revisores externos.',
+    ar: 'وصول محدود للعرض فقط مخصص للعروض التوضيحية أو المراجعين الخارجيين.',
   },
   [ROLES.COORDINATOR]: {
     en: 'Coordinates logistics, scheduling, and stakeholder communications.',
-    es: 'Coordina logística, programación y comunicaciones con los grupos de interés.',
+    ar: 'ينسق الجوانب اللوجستية والجدولة والتواصل مع أصحاب المصلحة.',
   },
 };
 
