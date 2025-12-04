@@ -6,40 +6,49 @@ const BASE_COURSES = [
   {
     title: {
       en: 'Course 1: Digital Safety Essentials',
-      es: 'Curso 1: Fundamentos de seguridad digital',
+      uk: 'Курс 1: Основи цифрової безпеки',
     },
     progress: 75,
     nextLesson: {
       en: 'Module 2: Suspicious Emails',
-      es: 'Módulo 2: Correos sospechosos',
+      uk: 'Модуль 2: Підозрілі листи',
     },
-    dueDate: 'Nov 15, 2025',
+    dueDate: {
+      en: 'Nov 15, 2025',
+      uk: '15 листопада 2025',
+    },
     thumbnail: '/assets/course-1.png',
   },
   {
     title: {
       en: 'Class 2: Data Protection & GDPR',
-      es: 'Clase 2: Protección de datos y RGPD',
+      uk: 'Заняття 2: Захист даних та GDPR',
     },
     progress: 45,
     nextLesson: {
       en: 'Module 3: Practical Applications',
-      es: 'Módulo 3: Aplicaciones prácticas',
+      uk: 'Модуль 3: Практичні застосування',
     },
-    dueDate: 'Nov 20, 2025',
+    dueDate: {
+      en: 'Nov 20, 2025',
+      uk: '20 листопада 2025',
+    },
     thumbnail: '/assets/course-2.png',
   },
   {
     title: {
       en: 'Course 3: Secure Workplace Practices',
-      es: 'Curso 3: Prácticas seguras en el trabajo digital',
+      uk: 'Курс 3: Безпечні практики на робочому місці',
     },
     progress: 30,
     nextLesson: {
       en: 'Module 1: Fundamentals',
-      es: 'Módulo 1: Fundamentos',
+      uk: 'Модуль 1: Основи',
     },
-    dueDate: 'Nov 25, 2025',
+    dueDate: {
+      en: 'Nov 25, 2025',
+      uk: '25 листопада 2025',
+    },
     thumbnail: '/assets/course-3.png',
   },
 ];
@@ -52,12 +61,12 @@ const copy = {
     dueDate: 'Due Date',
     cta: 'Continue Learning',
   },
-  es: {
-    heading: 'Cursos en curso',
-    progress: 'Progreso',
-    nextLesson: 'Próxima lección',
-    dueDate: 'Fecha límite',
-    cta: 'Continuar aprendiendo',
+  uk: {
+    heading: 'Поточні курси',
+    progress: 'Прогрес',
+    nextLesson: 'Наступний урок',
+    dueDate: 'Кінцевий термін',
+    cta: 'Продовжити навчання',
   },
 };
 
@@ -78,6 +87,7 @@ const OngoingCourses = () => {
         ...course,
         title: localize(course.title, currentLanguage),
         nextLesson: localize(course.nextLesson, currentLanguage),
+        dueDate: localize(course.dueDate, currentLanguage),
       })),
     [currentLanguage],
   );

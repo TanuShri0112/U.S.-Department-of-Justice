@@ -21,81 +21,85 @@ const Courses = () => {
   const { currentLanguage } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const copy = useMemo(
-    () => ({
-      title: currentLanguage === 'en' ? 'My Courses' : 'دوراتي',
-      subtitle:
-        currentLanguage === 'en'
-          ? 'Browse and launch the learning experiences you are enrolled in.'
-          : 'استعرض وابدأ مسارات التعلم التي أنت مسجل بها.',
-      searchPlaceholder: currentLanguage === 'en' ? 'Search my courses...' : 'ابحث في دوراتي...',
-      emptyTitle: currentLanguage === 'en' ? 'No courses found' : 'لا توجد دورات',
-      emptySubtitle:
-        currentLanguage === 'en'
-          ? 'Try a different keyword or contact the administrator for new enrollments.'
-          : 'جرّب كلمة بحث مختلفة أو تواصل مع المشرف لإضافة تسجيلات جديدة.',
-      openCourse: currentLanguage === 'en' ? 'Open course' : 'فتح الدورة',
-    }),
-    [currentLanguage],
-  );
+  const copy = useMemo(() => {
+    const messages = {
+      en: {
+        title: 'My Courses',
+        subtitle: 'Browse and launch the learning experiences you are enrolled in.',
+        searchPlaceholder: 'Search my courses...',
+        emptyTitle: 'No courses found',
+        emptySubtitle: 'Try a different keyword or contact the administrator for new enrollments.',
+        openCourse: 'Open course',
+      },
+      uk: {
+        title: 'Мої курси',
+        subtitle: 'Переглядайте та запускайте навчальні програми, на які ви зараховані.',
+        searchPlaceholder: 'Пошук моїх курсів...',
+        emptyTitle: 'Курсів не знайдено',
+        emptySubtitle: 'Спробуйте інший запит або зверніться до адміністратора для нових записів.',
+        openCourse: 'Відкрити курс',
+      },
+    };
+    return messages[currentLanguage] ?? messages.en;
+  }, [currentLanguage]);
 
   const enrolledCourses = useMemo(
     () => [
       {
         id: 'clinical-safety',
-        title: { en: 'Clinical Safety Refresher', ar: 'مراجعة السلامة السريرية' },
+        title: { en: 'Clinical Safety Refresher', uk: 'Поновлення знань з клінічної безпеки' },
         summary: {
           en: 'Scenario drills on infection control, triage, and medication alerts.',
-          ar: 'تمارين مبنية على سيناريوهات لمكافحة العدوى والتفرز وتنبيهات الأدوية.',
+          uk: 'Сценарні тренування з інфекційного контролю, сортування пацієнтів і попереджень щодо ліків.',
         },
-        catalog: { en: 'Compliance', ar: 'الامتثال' },
-        duration: { en: '6 lessons · 3h', ar: '6 دروس · 3 ساعات' },
-        status: { en: 'In progress', ar: 'قيد التقدم' },
-        lastAccessed: { en: 'Last accessed 2 days ago', ar: 'آخر دخول منذ يومين' },
+        catalog: { en: 'Compliance', uk: 'Відповідність' },
+        duration: { en: '6 lessons · 3h', uk: '6 уроків · 3 год' },
+        status: { en: 'In progress', uk: 'У процесі' },
+        lastAccessed: { en: 'Last accessed 2 days ago', uk: 'Останній перегляд 2 дні тому' },
         progress: 72,
         cover:
           'https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&h=720',
         tags: [
-          { en: 'Mandatory', ar: 'إلزامي' },
-          { en: 'Clinical', ar: 'سريري' },
+          { en: 'Mandatory', uk: 'Обов’язково' },
+          { en: 'Clinical', uk: 'Клінічний' },
         ],
       },
       {
         id: 'onboarding-core',
-        title: { en: 'Onboarding — Core eLearning', ar: 'الدورة التأسيسية للمنضمين الجدد' },
+        title: { en: 'Onboarding — Core eLearning', uk: 'Вступний курс — базове eLearning' },
         summary: {
           en: 'Orientation path covering policy, LMS walkthrough, and proficiency quiz.',
-          ar: 'مسار تهيئة يشمل السياسات وجولة في المنصة واختبار كفاءة.',
+          uk: 'Орієнтаційний маршрут із політиками, оглядом LMS і тестом на компетентність.',
         },
-        catalog: { en: 'Foundations', ar: 'الأساسيات' },
-        duration: { en: '4 modules · 90 min', ar: '4 وحدات · 90 دقيقة' },
-        status: { en: 'Not started', ar: 'لم يبدأ بعد' },
-        lastAccessed: { en: 'Invite sent today', ar: 'تم إرسال الدعوة اليوم' },
+        catalog: { en: 'Foundations', uk: 'Основи' },
+        duration: { en: '4 modules · 90 min', uk: '4 модулі · 90 хв' },
+        status: { en: 'Not started', uk: 'Не розпочато' },
+        lastAccessed: { en: 'Invite sent today', uk: 'Запрошення надіслано сьогодні' },
         progress: 0,
         cover:
           'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&h=720',
         tags: [
-          { en: 'Orientation', ar: 'تهيئة' },
-          { en: 'Self-paced', ar: 'ذاتي' },
+          { en: 'Orientation', uk: 'Орієнтація' },
+          { en: 'Self-paced', uk: 'У власному темпі' },
         ],
       },
       {
         id: 'clinical-safety-pro',
-        title: { en: 'Clinical Safety Pro', ar: 'سلامة سريرية متقدمة' },
+        title: { en: 'Clinical Safety Pro', uk: 'Клінічна безпека Pro' },
         summary: {
           en: 'Advanced cohort with live simulations, SCORM assessments, and certificates.',
-          ar: 'دفعة متقدمة مع محاكاة مباشرة وتقييمات SCORM وشهادات اعتماد.',
+          uk: 'Просунутий потік із живими симуляціями, оцінюваннями SCORM та сертифікатами.',
         },
-        catalog: { en: 'Professional Development', ar: 'التطوير المهني' },
-        duration: { en: '8 weeks · blended', ar: '8 أسابيع · تعلّم مدمج' },
-        status: { en: 'Ready to start', ar: 'جاهز للبدء' },
-        lastAccessed: { en: 'Starts Monday', ar: 'يبدأ يوم الاثنين' },
+        catalog: { en: 'Professional Development', uk: 'Професійний розвиток' },
+        duration: { en: '8 weeks · blended', uk: '8 тижнів · змішаний формат' },
+        status: { en: 'Ready to start', uk: 'Готово до старту' },
+        lastAccessed: { en: 'Starts Monday', uk: 'Починається у понеділок' },
         progress: 0,
         cover:
           'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&h=720',
         tags: [
-          { en: 'Live cohort', ar: 'دفعة مباشرة' },
-          { en: 'Certificate', ar: 'شهادة' },
+          { en: 'Live cohort', uk: 'Живий потік' },
+          { en: 'Certificate', uk: 'Сертифікат' },
         ],
       },
     ],

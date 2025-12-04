@@ -16,15 +16,15 @@ const copy = {
     membersLabel: 'members',
     statusActive: 'Active',
   },
-  es: {
-    catalogTitle: 'Catálogo de formación',
-    catalogSubtitle: 'Explora todos los cursos',
-    modulesLabel: 'módulos',
-    studentsLabel: 'alumnos',
-    groupsTitle: 'Grupos de formación',
-    activeGroups: 'grupos activos',
-    membersLabel: 'miembros',
-    statusActive: 'Activa',
+  uk: {
+    catalogTitle: 'Навчальний каталог',
+    catalogSubtitle: 'Перегляньте всі курси',
+    modulesLabel: 'модулі',
+    studentsLabel: 'слухачів',
+    groupsTitle: 'Навчальні групи',
+    activeGroups: 'активні групи',
+    membersLabel: 'учасників',
+    statusActive: 'Активна',
   },
 };
 
@@ -33,11 +33,11 @@ const groups = [
     id: 1,
     name: {
       en: "Group 1",
-      es: "Grupo 1",
+      uk: "Група 1",
     },
     desc: {
       en: "Training Group",
-      es: "Grupo de formación",
+      uk: "Навчальна група",
     },
     img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=40&q=80",
     members: 45,
@@ -47,11 +47,11 @@ const groups = [
     id: 2,
     name: {
       en: "Group 2",
-      es: "Grupo 2",
+      uk: "Група 2",
     },
     desc: {
       en: "Professional Development",
-      es: "Desarrollo profesional",
+      uk: "Професійний розвиток",
     },
     img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&q=80",
     members: 12,
@@ -61,11 +61,11 @@ const groups = [
     id: 3,
     name: {
       en: "Group 3",
-      es: "Grupo 3",
+      uk: "Група 3",
     },
     desc: {
       en: "Training Program",
-      es: "Programa de formación",
+      uk: "Навчальна програма",
     },
     img: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&q=80",
     members: 28,
@@ -78,11 +78,11 @@ const catalog = [
     id: 1,
     name: {
       en: "Class 1",
-      es: "Clase 1",
+      uk: "Клас 1",
     },
     description: {
       en: "Basic Training Module",
-      es: "Módulo de formación básica",
+      uk: "Базовий навчальний модуль",
     },
     img: "https://www.vhv.rs/dpng/d/476-4763966_your-company-slogen-here-company-logo-your-logo.png",
     modules: 3,

@@ -15,44 +15,44 @@ const copy = {
     instructor: 'Instructor',
     participants: 'Participants',
   },
-  ar: {
-    title: 'جلسات التدريب',
-    upcoming: 'الجلسات القادمة',
-    completed: 'الجلسات المنجزة',
-    join: 'الانضمام إلى الجلسة',
-    noUpcoming: 'لا توجد جلسات قادمة',
-    noCompleted: 'لا توجد جلسات منجزة',
-    dateTime: 'التاريخ والوقت',
-    duration: 'المدة',
-    instructor: 'المدرب',
-    participants: 'المشاركون',
+  uk: {
+    title: 'Навчальні сесії',
+    upcoming: 'Майбутні сесії',
+    completed: 'Завершені сесії',
+    join: 'Приєднатися',
+    noUpcoming: 'Наразі немає запланованих сесій',
+    noCompleted: 'Наразі немає завершених сесій',
+    dateTime: 'Дата й час',
+    duration: 'Тривалість',
+    instructor: 'Тренер',
+    participants: 'Учасники',
   },
 };
 
 const UPCOMING_SESSIONS = [
   {
-    title: { en: 'Class 1', ar: 'الجلسة 1' },
-    tag: { en: 'Basic Training', ar: 'تدريب أساسي' },
+    title: { en: 'Class 1', uk: 'Сесія 1' },
+    tag: { en: 'Basic Training', uk: 'Базовий тренінг' },
     description: {
       en: 'Introduction to training standards and procedures',
-      ar: 'مقدمة عن معايير التدريب وإجراءاته',
+      uk: 'Вступ до стандартів та процедур навчання',
     },
-    date: 'Wed, Jun 12',
+    date: { en: 'Wed, Jun 12', uk: 'Ср, 12 червня' },
     time: '10:00 AM',
-    duration: { en: '1 hour', ar: 'ساعة واحدة' },
+    duration: { en: '1 hour', uk: '1 година' },
     instructor: 'Sarah Thompson',
     participants: '0/25',
   },
   {
-    title: { en: 'Class 2', ar: 'الجلسة 2' },
-    tag: { en: 'Advanced Training', ar: 'تدريب متقدم' },
+    title: { en: 'Class 2', uk: 'Сесія 2' },
+    tag: { en: 'Advanced Training', uk: 'Просунутий тренінг' },
     description: {
       en: 'Best practices for advanced training methods',
-      ar: 'أفضل الممارسات لطرق التدريب المتقدمة',
+      uk: 'Найкращі практики просунутих методик навчання',
     },
-    date: 'Sat, Jun 15',
+    date: { en: 'Sat, Jun 15', uk: 'Сб, 15 червня' },
     time: '2:00 PM',
-    duration: { en: '2 hours', ar: 'ساعتان' },
+    duration: { en: '2 hours', uk: '2 години' },
     instructor: 'Michael Chen',
     participants: '0/30',
   },
@@ -91,10 +91,12 @@ const TrainingSessions = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
             <div>
-              <p className="text-gray-500 mb-1">
+      <p className="text-gray-500 mb-1">
                 {t.dateTime}
               </p>
-              <p className="font-medium text-gray-900">{session.date}</p>
+              <p className="font-medium text-gray-900">
+                {formatCopy(session.date, currentLanguage)}
+              </p>
               <p className="font-medium text-gray-900">{session.time}</p>
             </div>
             <div>

@@ -13,15 +13,25 @@ const Catalog = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const { currentLanguage } = useLanguage();
   
-  const copy = useMemo(() => ({
-    heading: currentLanguage === 'en' ? 'Course Catalog' : 'كتالوج الدورات',
-    subheading: currentLanguage === 'en'
-      ? 'Browse our collection of professional training courses'
-      : 'تصفح مجموعة برامج التدريب الاحترافية لدينا',
-    searchPlaceholder: currentLanguage === 'en' ? 'Search courses...' : 'ابحث عن الدورات...',
-    coursesLabel: currentLanguage === 'en' ? 'courses' : 'دورات',
-    learnersLabel: currentLanguage === 'en' ? 'students' : 'متدربون',
-  }), [currentLanguage]);
+  const copy = useMemo(() => {
+    const translations = {
+      en: {
+        heading: 'Course Catalog',
+        subheading: 'Browse our collection of professional training courses',
+        searchPlaceholder: 'Search courses...',
+        coursesLabel: 'courses',
+        learnersLabel: 'students',
+      },
+      uk: {
+        heading: 'Каталог курсів',
+        subheading: 'Переглядайте добірку професійних навчальних програм',
+        searchPlaceholder: 'Пошук курсів...',
+        coursesLabel: 'курси',
+        learnersLabel: 'слухачі',
+      },
+    };
+    return translations[currentLanguage] ?? translations.en;
+  }, [currentLanguage]);
 
   const formatCopy = (value) => {
     if (typeof value === 'string') {
@@ -36,11 +46,11 @@ const Catalog = () => {
         id: 1,
         name: {
           en: 'Community-Based Risk Reduction (CBRR): Building Resilience from the Ground',
-          ar: 'التخفيف من المخاطر المجتمعية (CBRR): بناء المرونة من القاعدة',
+          uk: 'Зниження ризиків у громадах (CBRR): стійкість із нульового рівня',
         },
         description: {
           en: 'Comprehensive training program covering community-based approaches to risk reduction, resilience building, and disaster preparedness.',
-          ar: 'برنامج تدريب شامل يغطي الأساليب المجتمعية للحد من المخاطر وبناء المرونة والاستعداد للكوارث.',
+          uk: 'Комплексна програма про громадські підходи до зниження ризиків, розбудови стійкості та готовності до надзвичайних ситуацій.',
         },
         imageUrl:
           'https://www.vhv.rs/dpng/d/476-4763966_your-company-slogen-here-company-logo-your-logo.png',
@@ -48,13 +58,13 @@ const Catalog = () => {
         studentCount: 120,
         duration: {
           en: '12 weeks',
-          ar: '12 أسبوعاً',
+          uk: '12 тижнів',
         },
         difficulty: 'Intermediate',
         tags: [
-          { en: 'Risk Reduction', ar: 'تقليل المخاطر' },
-          { en: 'Community', ar: 'مجتمع' },
-          { en: 'Resilience', ar: 'المرونة' },
+          { en: 'Risk Reduction', uk: 'Зменшення ризиків' },
+          { en: 'Community', uk: 'Громада' },
+          { en: 'Resilience', uk: 'Стійкість' },
         ],
       },
     ],
@@ -91,17 +101,19 @@ const Catalog = () => {
   };
 
 const getDifficultyLabel = (difficulty, language) => {
-  if (language === 'en') return difficulty;
-  switch (difficulty.toLowerCase()) {
-    case 'beginner':
-      return 'مبتدئ';
-    case 'intermediate':
-      return 'متوسط';
-    case 'advanced':
-      return 'متقدم';
-    default:
-      return difficulty;
+  if (language === 'uk') {
+    switch (difficulty.toLowerCase()) {
+      case 'beginner':
+        return 'Початковий';
+      case 'intermediate':
+        return 'Середній';
+      case 'advanced':
+        return 'Просунутий';
+      default:
+        return difficulty;
+    }
   }
+  return difficulty;
 };
 
   return (

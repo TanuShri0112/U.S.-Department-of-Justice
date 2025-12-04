@@ -12,12 +12,12 @@ const messages = {
       'Request the appropriate permissions from your program administrator or switch to a role with the necessary access level.',
     action: 'Go back to dashboard',
   },
-  ar: {
-    title: 'تم تقييد الوصول',
-    subtitle: 'ليست لديك الصلاحيات المطلوبة لعرض هذه الصفحة.',
+  uk: {
+    title: 'Доступ обмежено',
+    subtitle: 'У вас немає прав для перегляду цієї сторінки.',
     description:
-      'يرجى طلب الأذونات المناسبة من مسؤول البرنامج أو التبديل إلى دور يمتلك مستوى الوصول المطلوب.',
-    action: 'العودة إلى لوحة التحكم',
+      'Попросіть потрібні дозволи у адміністратора програми або переключіться на роль із відповідним рівнем доступу.',
+    action: 'Повернутися на панель',
   },
 };
 

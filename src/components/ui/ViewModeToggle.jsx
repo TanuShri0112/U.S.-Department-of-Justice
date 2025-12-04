@@ -21,19 +21,19 @@ export function ViewModeToggle({ isCollapsed }) {
   const modes = {
     student: {
       icon: School,
-      label: { en: 'Student View', es: 'Vista de estudiante' },
+      label: { en: 'Student View', uk: 'Перегляд як здобувач' },
       color: 'text-[hsl(var(--sidebar-accent-foreground))]',
       role: ROLES.LEARNER,
     },
     instructor: {
       icon: Users,
-      label: { en: 'Instructor View', es: 'Vista de instructor' },
+      label: { en: 'Instructor View', uk: 'Перегляд як тренер' },
       color: 'text-[hsl(var(--sidebar-accent-foreground))]',
       role: ROLES.TRAINER,
     },
     admin: {
       icon: Shield,
-      label: { en: 'Admin View', es: 'Vista de administrador' },
+      label: { en: 'Admin View', uk: 'Перегляд як адміністратор' },
       color: 'text-[hsl(var(--sidebar-accent-foreground))]',
       role: ROLES.ADMIN,
     },
