@@ -12,12 +12,12 @@ interface StatCardProps {
 export const StatCard = ({ title, value, helper, trend, icon }: StatCardProps) => {
   const positive = trend !== undefined && trend >= 0;
   return (
-    <div className="rounded-xl border bg-white p-4 shadow-sm hover:shadow-md transition">
+    <div className="rounded-xl border border-border bg-card p-4 shadow-sm hover:shadow-md transition text-foreground">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{title}</p>
-          <p className="text-2xl font-bold text-slate-900">{value}</p>
-          {helper && <p className="text-xs text-slate-500 mt-1">{helper}</p>}
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{title}</p>
+          <p className="text-2xl font-bold text-foreground">{value}</p>
+          {helper && <p className="text-xs text-muted-foreground mt-1">{helper}</p>}
         </div>
         <div className="flex items-center gap-2">
           {trend !== undefined && (

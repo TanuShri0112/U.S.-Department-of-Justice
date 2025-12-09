@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Search, Sun, MoonStar, Bell, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/platform";
@@ -8,32 +9,48 @@ interface TopbarProps {
 
 export const Topbar = ({ onRoleChange }: TopbarProps) => {
   const { user, logout } = useAuth();
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark" || stored === "light") return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+    root.classList.add(theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
   return (
-    <header className="sticky top-0 z-20 flex items-center gap-3 border-b bg-white/90 px-6 py-4 backdrop-blur">
-      <div className="flex items-center gap-2 rounded-full border px-3 py-2 bg-slate-50 text-slate-600 flex-1 max-w-xl">
+    <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-border bg-card/90 px-6 py-4 backdrop-blur text-foreground">
+      <div className="flex items-center gap-2 rounded-full border border-border px-3 py-2 bg-muted text-foreground flex-1 max-w-xl">
         <Search size={18} />
         <input
           placeholder="Search courses, candidates, reports..."
-          className="w-full bg-transparent text-sm outline-none placeholder:text-slate-400"
+          className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
         />
       </div>
       <div className="flex items-center gap-3">
         <div className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-[#0033A1] flex items-center gap-2">
           <ShieldCheck size={16} /> POPIA Safe
         </div>
-        <button className="rounded-full p-2 hover:bg-slate-100 text-slate-700 focus-ring" aria-label="Toggle light mode">
-          <Sun size={18} />
+        <button
+          onClick={toggleTheme}
+          className="rounded-full p-2 hover:bg-muted text-foreground focus-ring"
+          aria-label="Toggle theme"
+        >
+          {theme === "light" ? <MoonStar size={18} /> : <Sun size={18} />}
         </button>
-        <button className="rounded-full p-2 hover:bg-slate-100 text-slate-700 focus-ring" aria-label="Toggle dark mode">
-          <MoonStar size={18} />
-        </button>
-        <button className="relative rounded-full p-2 hover:bg-slate-100 text-slate-700 focus-ring" aria-label="Notifications">
+        <button className="relative rounded-full p-2 hover:bg-muted text-foreground focus-ring" aria-label="Notifications">
           <Bell size={18} />
           <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-red-500" />
         </button>
         <select
-          className="rounded-lg border px-3 py-2 text-sm focus-ring"
+          className="rounded-lg border border-border bg-card text-foreground px-3 py-2 text-sm focus-ring"
           value={user?.role}
           onChange={(e) => onRoleChange(e.target.value as Role)}
         >
@@ -42,18 +59,18 @@ export const Topbar = ({ onRoleChange }: TopbarProps) => {
           <option value="learner">Learner</option>
           <option value="recruiter">Recruiter</option>
         </select>
-        <div className="flex items-center gap-2 rounded-lg border px-3 py-2 bg-slate-50">
+        <div className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 bg-muted">
           <div className="h-8 w-8 rounded-full bg-[#0033A1] text-white flex items-center justify-center text-sm font-bold">
             {user?.name?.[0] ?? "U"}
           </div>
           <div>
-            <p className="text-sm font-semibold text-slate-900">{user?.name ?? "Guest"}</p>
-            <p className="text-xs text-slate-500">{user?.email ?? "guest@gov.za"}</p>
+            <p className="text-sm font-semibold text-foreground">{user?.name ?? "Guest"}</p>
+            <p className="text-xs text-muted-foreground">{user?.email ?? "guest@gov.za"}</p>
           </div>
         </div>
         <button
           onClick={logout}
-          className="rounded-lg border px-3 py-2 text-sm font-semibold text-[#0033A1] hover:bg-blue-50 focus-ring"
+          className="rounded-lg border border-border px-3 py-2 text-sm font-semibold text-[#0033A1] hover:bg-blue-50 focus-ring"
         >
           Sign out
         </button>

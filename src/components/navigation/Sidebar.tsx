@@ -19,16 +19,16 @@ export const Sidebar = ({ items, role }: SidebarProps) => {
   const location = useLocation();
 
   return (
-    <aside className="w-72 shrink-0 border-r bg-white text-slate-900 custom-scrollbar">
-      <div className="px-6 py-5 border-b">
-        <div className="text-sm uppercase tracking-[0.2em] text-slate-500">SA Parliament</div>
+    <aside className="w-72 shrink-0 border-r border-border bg-card text-foreground custom-scrollbar">
+      <div className="px-6 py-5 border-b border-border">
+        <div className="text-sm uppercase tracking-[0.2em] text-muted-foreground">SA Parliament</div>
         <div className="text-xl font-semibold text-[#0033A1]">Cloud LMS + ATS</div>
-        <p className="text-xs text-slate-500 mt-1">Secure | Accessible | POPIA-ready</p>
+        <p className="text-xs text-muted-foreground mt-1">Secure | Accessible | POPIA-ready</p>
       </div>
       <nav className="px-4 py-4 space-y-4">
         {items.map(({ section, items: sectionItems }) => (
           <div key={section}>
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 px-2 mb-2">{section}</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground px-2 mb-2">{section}</p>
             <div className="space-y-1">
               {sectionItems
                 .filter((item) => !item.roles || item.roles.includes(role))
@@ -42,10 +42,10 @@ export const Sidebar = ({ items, role }: SidebarProps) => {
                         "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition focus-ring",
                         active
                           ? "bg-blue-50 text-[#0033A1] border border-blue-100"
-                          : "text-slate-700 hover:bg-slate-50"
+                          : "text-muted-foreground hover:bg-muted"
                       )}
                     >
-                      <span className="text-slate-500">{item.icon}</span>
+                      <span className="text-muted-foreground">{item.icon}</span>
                       <span>{item.label}</span>
                     </Link>
                   );
