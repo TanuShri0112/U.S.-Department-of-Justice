@@ -1,70 +1,66 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Clock } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 export function TaskListSection() {
-  const navigate = useNavigate();
-  const [tasks, setTasks] = useState([
+  const [tasks] = useState([
     {
       id: 1,
-      title: 'Complete Phishing Awareness Training',
-      description: 'Essential cybersecurity principles and threat recognition',
-      dueDate: '2025-10-30',
-      time: '9:00 AM - 11:00 AM',
-      completed: false,
-      priority: 'high',
-      course: 'Safety Training',
-      assignees: [
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format'
-      ]
+      title: 'Confirm SSO metadata with Parliament HRIS',
+      description: 'Exchange entityID, ACS URL, signing certificate, and RBAC mapping for Admin / Recruiter / Trainer / Learner / Manager.',
+      dueDate: 'Week 1',
+      owner: 'Security + HRIS',
+      status: 'in-progress'
     },
     {
       id: 2,
-      title: 'Review PPE Guidelines',
-      description: 'Personal Protective Equipment training and certification',
-      dueDate: '2025-11-01',
-      time: '2:00 PM - 3:30 PM',
-      completed: false,
-      priority: 'high',
-      course: 'Safety Training',
-      assignees: [
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format'
-      ]
+      title: 'POPIA consent + audit logging baseline',
+      description: 'Enable consent banner, retention rules, and audit export for POPIA/GDPR with SIEM feed confirmation.',
+      dueDate: 'Week 1',
+      owner: 'Compliance',
+      status: 'in-progress'
     },
     {
       id: 3,
-      title: 'Emergency Response Training',
-      description: 'Complete emergency procedures and protocols module',
-      dueDate: '2025-11-05',
-      time: '10:00 AM - 12:00 PM',
-      completed: false,
-      priority: 'high',
-      course: 'Safety Training',
-      assignees: [
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&auto=format'
-      ]
+      title: 'Recruitment workflow (F7–F11) definition',
+      description: 'Post → screening → interview scheduling → offer with equity metrics and talent pool tagging.',
+      dueDate: 'Week 2',
+      owner: 'Recruitment',
+      status: 'planned'
+    },
+    {
+      id: 4,
+      title: 'LMS learning paths & certificates (F1–F6)',
+      description: 'Publish compliance modules, expiry alerts, certificate templates, and mobile validation.',
+      dueDate: 'Week 3',
+      owner: 'LMS',
+      status: 'planned'
+    },
+    {
+      id: 5,
+      title: 'Analytics pack for governance committees',
+      description: 'Time-to-fill, completion %, POPIA consent export, PDF/Excel templates for quarterly reporting.',
+      dueDate: 'Week 4',
+      owner: 'Analytics',
+      status: 'planned'
     }
   ]);
 
-
-
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case 'high':
-        return 'bg-red-500';
-      case 'medium':
-        return 'bg-yellow-500';
-      case 'low':
-        return 'bg-green-500';
+  const getStatusStyles = (status) => {
+    switch (status) {
+      case 'in-progress':
+        return 'bg-blue-50 text-blue-700 border-blue-200';
+      case 'planned':
+        return 'bg-amber-50 text-amber-700 border-amber-200';
+      case 'done':
+        return 'bg-emerald-50 text-emerald-700 border-emerald-200';
       default:
-        return 'bg-gray-500';
+        return 'bg-gray-50 text-gray-700 border-gray-200';
     }
   };
 
-
   const formatDueDate = (dateString) => {
+    if (dateString.includes('Week')) return dateString;
     const options = { weekday: 'short', month: 'short', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
@@ -81,7 +77,7 @@ export function TaskListSection() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <CardTitle className="text-xl font-bold text-gray-800 mb-1">
-              Today's Task
+              Next delivery actions
             </CardTitle>
             <p className="text-sm text-gray-500">{getTodayDate()}</p>
           </div>
@@ -110,28 +106,22 @@ export function TaskListSection() {
                     <h3 className="font-semibold text-gray-800 mb-1">
                       {task.title}
                     </h3>
-                    <p className="text-sm text-gray-500 mb-3">
+                    <p className="text-sm text-gray-600 mb-3 leading-relaxed">
                       {task.description}
                     </p>
                     
                     {/* Task Details */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1 text-xs text-gray-400">
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-slate-100 text-gray-700">
                         <Clock className="h-3 w-3" />
-                        <span>{task.time}</span>
-                      </div>
-                      
-                      {/* Assignee Avatars */}
-                      <div className="flex items-center -space-x-2">
-                        {task.assignees.map((avatar, index) => (
-                          <img
-                            key={index}
-                            src={avatar}
-                            alt={`Assignee ${index + 1}`}
-                            className="w-6 h-6 rounded-full border-2 border-white object-cover"
-                          />
-                        ))}
-                      </div>
+                        <span>Due: {formatDueDate(task.dueDate)}</span>
+                      </span>
+                      <span className="px-2 py-1 rounded-full bg-slate-50 text-gray-700 border border-slate-200">
+                        Owner: {task.owner}
+                      </span>
+                      <span className={`px-2 py-1 rounded-full border ${getStatusStyles(task.status)}`}>
+                        {task.status.replace('-', ' ')}
+                      </span>
                     </div>
                   </div>
                 </div>

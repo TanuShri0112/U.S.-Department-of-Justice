@@ -10,23 +10,23 @@ export function WelcomeSection() {
   const { currentLanguage } = useLanguage();
 
   const handleJoinNow = () => {
-    navigate('/courses');
+    navigate('/reports');
   };
 
   const content = {
     en: {
-      tag: "Professional Training",
-      welcome: "Welcome to",
-      ministry: "Athena LMS",
-      subtitle: "Your complete learning platform for professional training and development. Access courses, certifications, and learning resources with WCAG 2.1 compliance.",
-      button: "Start Learning"
+      tag: "Parliament of South Africa · RFQ 1553/2025",
+      welcome: "Cloud LMS + Recruitment Platform",
+      ministry: "Implementation Control Room",
+      subtitle: "Live view of the combined Learning + Recruitment + Talent Mobility rollout. Security, LMS (F1–F6), ATS (F7–F11), analytics, and POPIA/GDPR controls aligned to the 2-year contract.",
+      button: "View Implementation Plan"
     },
     mk: {
-      tag: "Професионална обука",
-      welcome: "Добредојдовте во",
-      ministry: "Athena LMS",
-      subtitle: "Вашата целосна платформа за професионална обука и развој. Пристапете до курсеви, сертификати и ресурси за учење со усогласеност со WCAG 2.1.",
-      button: "Започни со учење"
+      tag: "Parliament of South Africa · RFQ 1553/2025",
+      welcome: "Cloud LMS + Recruitment Platform",
+      ministry: "Implementation Control Room",
+      subtitle: "Live view of the combined Learning + Recruitment + Talent Mobility rollout. Security, LMS (F1–F6), ATS (F7–F11), analytics, and POPIA/GDPR controls aligned to the 2-year contract.",
+      button: "View Implementation Plan"
     }
   };
 

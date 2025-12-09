@@ -1,45 +1,56 @@
 import React from 'react';
 import { Button } from './button';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const OngoingCourses = () => {
-  const { currentLanguage } = useLanguage();
-
-  const courses = [
+  const workstreams = [
     {
-      title: currentLanguage === 'en' 
-        ? "Course 1" 
-        : "Препознавање на фишинг и социјална манипулација",
-      progress: 75,
-      nextLesson: currentLanguage === 'en' 
-        ? "Module 2: Suspicious Emails" 
-        : "Модул 2: Сомнителни е-пошти",
-      dueDate: "Nov 15, 2025",
-      thumbnail: "/assets/course-1.png"
+      title: 'Security + Hosting',
+      readiness: 72,
+      summary: 'Parliament tenant, SA region hosting, RBAC, MFA, SIEM feed, SSO metadata ready.',
+      next: 'Finalize SSO cert + MFA enforcement checklist',
+      eta: 'Week 3',
+      owner: 'Security',
+      badge: 'Priority 1',
+      theme: 'emerald'
     },
     {
-      title: currentLanguage === 'en' 
-        ? "Class 2" 
-        : "Заштита на податоци и GDPR",
-      progress: 45,
-      nextLesson: currentLanguage === 'en' 
-        ? "Module 3: Practical Applications" 
-        : "Модул 3: Практични применувања",
-      dueDate: "Nov 20, 2025",
-      thumbnail: "/assets/course-2.png"
+      title: 'LMS (F1–F6)',
+      readiness: 48,
+      summary: 'SCORM/xAPI upload, learning paths, expiry alerts, certificates, responsive/mobile.',
+      next: 'Upload compliance modules + certificate templates',
+      eta: 'Week 9',
+      owner: 'LMS',
+      badge: 'Priority 2',
+      theme: 'blue'
     },
     {
-      title: currentLanguage === 'en' 
-        ? "Course 3" 
-        : "Безбедни дигитални работни практики",
-      progress: 30,
-      nextLesson: currentLanguage === 'en' 
-        ? "Module 1: Fundamentals" 
-        : "Модул 1: Основи",
-      dueDate: "Nov 25, 2025",
-      thumbnail: "/assets/course-3.png"
+      title: 'Recruitment & Talent (F7–F11)',
+      readiness: 42,
+      summary: 'Job posting → screening → interview, talent pool, internal mobility, branded vacancy portal.',
+      next: 'Publish hiring workflow + job board skin',
+      eta: 'Week 12',
+      owner: 'Recruitment',
+      badge: 'Priority 2',
+      theme: 'indigo'
+    },
+    {
+      title: 'Analytics, Compliance & POPIA',
+      readiness: 35,
+      summary: 'Consent logs, retention rules, SIEM, equity metrics, PDF/Excel reports for committees.',
+      next: 'Validate audit export + uptime/alerting runbook',
+      eta: 'Week 14',
+      owner: 'Compliance',
+      badge: 'Priority 3',
+      theme: 'amber'
     }
   ];
+
+  const themeStyles = {
+    emerald: { chip: 'bg-emerald-50 text-emerald-700 border-emerald-200', bar: 'bg-emerald-500' },
+    blue: { chip: 'bg-blue-50 text-blue-700 border-blue-200', bar: 'bg-blue-500' },
+    indigo: { chip: 'bg-indigo-50 text-indigo-700 border-indigo-200', bar: 'bg-indigo-500' },
+    amber: { chip: 'bg-amber-50 text-amber-700 border-amber-200', bar: 'bg-amber-500' }
+  };
 
   return (
     <div className="p-6 border-2 border-green-600 rounded-xl">
@@ -48,54 +59,54 @@ const OngoingCourses = () => {
           <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <h2 className="text-2xl font-bold">
-          {currentLanguage === 'en' ? 'Ongoing Courses' : 'Тековни курсеви'}
+          Workstreams & RFQ feature pack
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {courses.map((course) => (
-          <div key={course.title} className="bg-white rounded-lg shadow-sm overflow-hidden">
-            <img 
-              src={course.thumbnail} 
-              alt={course.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <h3 className="font-semibold text-lg mb-2">{course.title}</h3>
-              
-              <div className="mb-4">
-                <div className="flex justify-between text-sm text-gray-600 mb-1">
-                  <span>{currentLanguage === 'en' ? 'Progress' : 'Напредок'}</span>
-                  <span>{course.progress}%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {workstreams.map((stream) => {
+          const styles = themeStyles[stream.theme] ?? themeStyles.blue;
+          return (
+            <div key={stream.title} className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 flex flex-col h-full">
+              <div className="flex items-center justify-between mb-2">
+                <span className={`text-xs px-2 py-1 rounded-full border font-semibold ${styles.chip}`}>
+                  {stream.badge}
+                </span>
+                <span className="text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-700">
+                  Readiness {stream.readiness}%
+                </span>
+              </div>
+
+              <h3 className="font-semibold text-lg text-gray-900 mb-2 leading-snug">{stream.title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed flex-1">{stream.summary}</p>
+
+              <div className="mt-3 mb-2">
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div 
-                    className="bg-blue-600 h-2 rounded-full" 
-                    style={{ width: `${course.progress}%` }}
-                  ></div>
+                    className={`${styles.bar} h-2 rounded-full`} 
+                    style={{ width: `${stream.readiness}%` }} 
+                  />
                 </div>
               </div>
 
-              <div className="mb-4">
-                <p className="text-sm text-gray-500">
-                  {currentLanguage === 'en' ? 'Next Lesson' : 'Следен час'}
-                </p>
-                <p className="text-sm">{course.nextLesson}</p>
-              </div>
-
-              <div className="mb-4">
-                <p className="text-sm text-gray-500">
-                  {currentLanguage === 'en' ? 'Due Date' : 'Краен рок'}
-                </p>
-                <p className="text-sm">{course.dueDate}</p>
+              <div className="flex flex-wrap gap-2 text-xs text-gray-700 mb-3">
+                <span className="px-2 py-1 rounded-full bg-slate-50 border border-slate-200">
+                  Next: {stream.next}
+                </span>
+                <span className="px-2 py-1 rounded-full bg-slate-50 border border-slate-200">
+                  Owner: {stream.owner}
+                </span>
+                <span className="px-2 py-1 rounded-full bg-slate-50 border border-slate-200">
+                  ETA: {stream.eta}
+                </span>
               </div>
 
               <Button variant="outline" className="w-full">
-                {currentLanguage === 'en' ? 'Continue Learning' : 'Продолжи со учење'}
+                View delivery notes
               </Button>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

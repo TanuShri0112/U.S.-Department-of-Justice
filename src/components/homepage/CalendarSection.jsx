@@ -2,36 +2,35 @@ import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 export function CalendarSection() {
-  const navigate = useNavigate();
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date().getDate());
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 0, 6));
+  const [selectedDate, setSelectedDate] = useState(6);
   
-  // ECPAT International Training Events
   const events = {
-    15: [
-      { id: 1, title: 'Law Enforcement Module 1: Foundations', time: '10:00 AM - 12:00 PM', type: 'module' },
-      { id: 2, title: 'DOJ & POST Training Requirements', time: '2:00 PM - 3:30 PM', type: 'lesson' }
+    6: [
+      { id: 1, title: 'Tenant + SA region hosting live', time: 'Week 1', type: 'security' },
     ],
-    16: [
-      { id: 3, title: 'Educator Training Module 1: Professional Learning', time: '9:00 AM - 11:00 AM', type: 'module' }
+    8: [
+      { id: 2, title: 'SSO metadata exchange (SAML/OAuth)', time: 'Week 1', type: 'integration' }
+    ],
+    12: [
+      { id: 3, title: 'RBAC roles + MFA enforced', time: 'Week 2', type: 'security' }
+    ],
+    15: [
+      { id: 4, title: 'LMS learning paths draft (F1–F6)', time: 'Week 3', type: 'lms' }
     ],
     18: [
-      { id: 4, title: 'Ethical & Civil Rights Foundations', time: '1:00 PM - 2:30 PM', type: 'lesson' },
-      { id: 5, title: 'Youth Advocate Module 1: Advocacy Foundations', time: '3:00 PM - 5:00 PM', type: 'module' }
-    ],
-    20: [
-      { id: 6, title: 'Trauma-informed Instruction for First Responders', time: '10:00 AM - 11:30 AM', type: 'lesson' },
-      { id: 7, title: 'Stakeholder Analysis & Needs Assessment', time: '2:00 PM - 4:00 PM', type: 'module' }
+      { id: 5, title: 'Recruitment workflow mapping (F7–F11)', time: 'Week 3', type: 'ats' }
     ],
     22: [
-      { id: 8, title: 'Customized Curriculum & Scenario Design', time: '9:00 AM - 11:30 AM', type: 'module' },
-      { id: 9, title: 'Assessment & Evaluation Workshop', time: '1:00 PM - 3:00 PM', type: 'workshop' }
+      { id: 6, title: 'POPIA consent + audit log export', time: 'Week 4', type: 'compliance' }
     ],
-    25: [
-      { id: 10, title: 'Final Certification Assessment', time: '10:00 AM - 12:00 PM', type: 'assessment' }
+    26: [
+      { id: 7, title: 'Analytics pack (PDF/Excel) ready', time: 'Week 5', type: 'analytics' }
+    ],
+    30: [
+      { id: 8, title: 'Sandbox go-live readiness review', time: 'Week 6', type: 'golive' }
     ]
   };
 
@@ -81,14 +80,20 @@ export function CalendarSection() {
 
   const getEventTypeStyles = (type) => {
     switch (type) {
-      case 'module':
+      case 'security':
+        return 'bg-emerald-50 text-emerald-700 border-emerald-200';
+      case 'integration':
         return 'bg-blue-50 text-blue-700 border-blue-200';
-      case 'lesson':
-        return 'bg-green-50 text-green-700 border-green-200';
-      case 'workshop':
+      case 'lms':
+        return 'bg-indigo-50 text-indigo-700 border-indigo-200';
+      case 'ats':
         return 'bg-purple-50 text-purple-700 border-purple-200';
-      case 'assessment':
-        return 'bg-orange-50 text-orange-700 border-orange-200';
+      case 'compliance':
+        return 'bg-amber-50 text-amber-700 border-amber-200';
+      case 'analytics':
+        return 'bg-slate-50 text-slate-700 border-slate-200';
+      case 'golive':
+        return 'bg-teal-50 text-teal-700 border-teal-200';
       default:
         return 'bg-gray-50 text-gray-700 border-gray-200';
     }
@@ -145,7 +150,7 @@ export function CalendarSection() {
                 const isSelected = day === selectedDate;
                 const isCurrentMonth = day !== null;
 
-  return (
+                return (
                   <button
                     key={index}
                     onClick={() => handleDateClick(day)}
