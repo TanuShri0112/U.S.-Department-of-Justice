@@ -263,3 +263,4 @@ export const mockSystemMetrics: Record<Role, string[]> = {
   recruiter: ["4 offers awaiting approval", "1 interview overdue"],
 };
 
+

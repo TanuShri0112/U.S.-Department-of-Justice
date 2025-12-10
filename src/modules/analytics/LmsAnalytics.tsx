@@ -66,3 +66,4 @@ export const LmsAnalytics = () => (
   </div>
 );
 
+
