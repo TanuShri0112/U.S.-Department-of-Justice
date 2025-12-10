@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Search, Sun, MoonStar, Bell, ShieldCheck } from "lucide-react";
+import { useEffect } from "react";
+import { Search, Bell, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/platform";
 
@@ -9,21 +9,13 @@ interface TopbarProps {
 
 export const Topbar = ({ onRoleChange }: TopbarProps) => {
   const { user, logout } = useAuth();
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
-    if (typeof window === "undefined") return "light";
-    const stored = localStorage.getItem("theme");
-    if (stored === "dark" || stored === "light") return stored;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  });
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    root.classList.remove("dark");
+    root.classList.add("light");
+    localStorage.setItem("theme", "light");
+  }, []);
 
   return (
     <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-border bg-card/90 px-6 py-4 backdrop-blur text-foreground">
@@ -38,13 +30,6 @@ export const Topbar = ({ onRoleChange }: TopbarProps) => {
         <div className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-[#0033A1] flex items-center gap-2">
           <ShieldCheck size={16} /> POPIA Safe
         </div>
-        <button
-          onClick={toggleTheme}
-          className="rounded-full p-2 hover:bg-muted text-foreground focus-ring"
-          aria-label="Toggle theme"
-        >
-          {theme === "light" ? <MoonStar size={18} /> : <Sun size={18} />}
-        </button>
         <button className="relative rounded-full p-2 hover:bg-muted text-foreground focus-ring" aria-label="Notifications">
           <Bell size={18} />
           <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-red-500" />

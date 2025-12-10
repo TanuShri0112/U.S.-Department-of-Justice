@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ThemeToggle } from "../theme/ThemeToggle";
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import LanguageSwitcher from '../ui/LanguageSwitcher';
@@ -49,7 +48,6 @@ export const Header = ({ onMenuClick }) => {
         </div>
         
         <div className="flex items-center gap-4">
-          <ThemeToggle />
           <LanguageSwitcher />
           
           <div className="relative">
