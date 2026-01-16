@@ -19,17 +19,17 @@ export function ViewModeToggle({ isCollapsed }) {
     student: {
       icon: School,
       label: { en: 'Student View', mk: 'Поглед за ученик' },
-      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
+      color: 'text-[hsl(var(--sidebar-foreground))]'
     },
     instructor: {
       icon: Users,
       label: { en: 'Instructor View', mk: 'Поглед за инструктор' },
-      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
+      color: 'text-[hsl(var(--sidebar-foreground))]'
     },
     admin: {
       icon: Shield,
       label: { en: 'Admin View', mk: 'Поглед за администратор' },
-      color: 'text-[hsl(var(--sidebar-accent-foreground))]'
+      color: 'text-[hsl(var(--sidebar-foreground))]'
     },
   };
 

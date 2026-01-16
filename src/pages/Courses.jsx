@@ -153,7 +153,7 @@ const Courses = () => {
       level: 'beginner',
       status: 'in-progress',
       progress: 65,
-      image: 'https://images.unsplash.com/photo-1523240795612-db22ac3d73b1?q=80&w=2070',
+      image: 'https://media.assettype.com/esakal%2F2023-12%2Fe0e2b445-5100-4396-887a-c19ee6cb6ef6%2FRushikesh_Salvi__7_.jpg?w=1024&auto=format%2Ccompress&fit=max',
       category: t.aiTools,
       features: ['Rise 360', 'Mobile', 'SCORM'],
       lastAccessed: '2 hours ago'
@@ -175,7 +175,7 @@ const Courses = () => {
       level: 'beginner',
       status: 'not-started',
       progress: 0,
-      image: 'https://images.unsplash.com/photo-1543269865-cbf4ce698899?q=80&w=2070',
+      image: 'https://media.licdn.com/dms/image/v2/D4D12AQGlaZd38B6Jlw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1710781276793?e=2147483647&v=beta&t=UpC9YHGX45MH70f0DArlGh9GHWhwqZW9Y-G3LYF08DA',
       category: t.digitalLiteracy,
       features: ['Rise 360', 'Mobile', 'SCORM'],
       lastAccessed: 'Never'
@@ -263,7 +263,7 @@ const Courses = () => {
       level: 'advanced',
       status: 'in-progress',
       progress: 15,
-      image: 'https://images.unsplash.com/photo-1543269865-cbf4ce698899?q=80&w=2070',
+      image: 'https://media.licdn.com/dms/image/v2/D4D12AQGlaZd38B6Jlw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1710781276793?e=2147483647&v=beta&t=UpC9YHGX45MH70f0DArlGh9GHWhwqZW9Y-G3LYF08DA',
       category: t.aiTools,
       features: ['Rise 360', 'Mobile', 'SCORM'],
       lastAccessed: '3 days ago'

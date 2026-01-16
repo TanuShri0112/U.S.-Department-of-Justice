@@ -76,7 +76,7 @@ export function MainNavLinks({ isCollapsed, onCloseMobile }) {
               isCollapsed ? 'justify-center px-2' : 'px-4',
               isActive
                 ? 'bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-accent-foreground))] font-semibold'
-                : 'text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-hover))] hover:text-[hsl(var(--sidebar-accent-foreground))]'
+                : 'text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-hover))] hover:text-[hsl(var(--sidebar-foreground))]'
             )
           }
         >
