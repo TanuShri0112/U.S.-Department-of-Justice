@@ -4,69 +4,59 @@ import { cn } from '@/lib/utils';
 import {
   Home,
   BookOpen,
-  Users,
-  BarChart,
+  GraduationCap,
   FileText,
   MessageSquare,
-  HelpCircle,
-  Settings,
-  Calendar,
-  Bell,
-  Folder,
-  Video
+  Bot,
+  BookText
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const navItems = [
   {
     icon: Home,
-    label: { en: 'Dashboard', mk: 'Контролна табла' },
+    label: { 
+      en: 'Home', 
+      mr: 'मुख्यपृष्ठ',
+      mk: 'मुख्यपृष्ठ' 
+    },
     href: '/'
   },
   {
+    icon: BookText,
+    label: { 
+      en: 'Syllabus', 
+      mr: 'अभ्यासक्रम',
+      mk: 'अभ्यासक्रम' 
+    },
+    href: '/syllabus'
+  },
+  {
+    icon: GraduationCap,
+    label: { 
+      en: 'Successive Pathway', 
+      mr: 'क्रमिक मार्ग',
+      mk: 'क्रमिक मार्ग' 
+    },
+    href: '/pathway'
+  },
+  {
     icon: BookOpen,
-    label: { en: 'Courses', mk: 'Курсеви' },
+    label: { 
+      en: 'My Course Catalogue | माझे अभ्यासक्रम', 
+      mr: 'माझे अभ्यासक्रम',
+      mk: 'माझे अभ्यासक्रम' 
+    },
     href: '/courses'
   },
   {
-    icon: Users,
-    label: { en: 'Groups', mk: 'Групи' },
-    href: '/groups'
-  },
-  {
-    icon: Calendar,
-    label: { en: 'Calendar', mk: 'Календар' },
-    href: '/calendar'
-  },
-  {
-    icon: Bell,
-    label: { en: 'Announcements', mk: 'Известувања' },
-    href: '/announcements'
-  },
-  {
-    icon: BarChart,
-    label: { en: 'Reports', mk: 'Извештаи' },
-    href: '/reports'
-  },
-  {
-    icon: FileText,
-    label: { en: 'Resources', mk: 'Ресурси' },
-    href: '/resources'
-  },
-  {
-    icon: Video,
-    label: { en: 'Webinars', mk: 'Вебинари' },
-    href: '/webinars'
-  },
-  {
-    icon: MessageSquare,
-    label: { en: 'Messages', mk: 'Пораки' },
-    href: '/messages'
-  },
-  {
-    icon: HelpCircle,
-    label: { en: 'Help', mk: 'Помош' },
-    href: '/help'
+    icon: Bot,
+    label: { 
+      en: 'Chatbot', 
+      mr: 'चॅटबॉट',
+      mk: 'चॅटबॉट' 
+    },
+    href: '/chatbot'
   }
 ];
 

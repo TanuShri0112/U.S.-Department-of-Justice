@@ -1,6 +1,6 @@
-// ECPAT update start - Tailwind Configuration
+// MAHARASHTRA GOVERNMENT UPDATE START - Tailwind Configuration
 import type { Config } from 'tailwindcss';
-import { ecpatTheme } from './src/lib/theme/ecpat-theme';
+import { maharashtraTheme } from './src/lib/theme/maharashtra-theme';
 import tailwindcssAnimate from 'tailwindcss-animate';
 import typography from '@tailwindcss/typography';
 
@@ -16,7 +16,7 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '1rem', // Reduced for mobile-first design
       screens: {
         '2xl': '1400px',
       },
@@ -26,16 +26,20 @@ const config: Config = {
         border: 'hsl(var(--border))',
       },
       colors: {
-        primary: ecpatTheme.colors.primary,
-        secondary: ecpatTheme.colors.secondary,
-        accent: ecpatTheme.colors.accent,
-        background: ecpatTheme.colors.background,
-        foreground: ecpatTheme.colors.foreground,
+        primary: maharashtraTheme.colors.primary,
+        secondary: maharashtraTheme.colors.secondary,
+        accent: maharashtraTheme.colors.accent,
+        background: maharashtraTheme.colors.background,
+        foreground: maharashtraTheme.colors.foreground,
+        border: maharashtraTheme.colors.border,
+        success: maharashtraTheme.colors.success,
+        warning: maharashtraTheme.colors.warning,
+        error: maharashtraTheme.colors.error,
       },
-      borderRadius: ecpatTheme.borderRadius,
-      fontFamily: ecpatTheme.fonts,
-      boxShadow: ecpatTheme.shadows,
-      typography: ecpatTheme.typography,
+      borderRadius: maharashtraTheme.borderRadius,
+      fontFamily: maharashtraTheme.fonts,
+      boxShadow: maharashtraTheme.shadows,
+      typography: maharashtraTheme.typography,
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
@@ -79,4 +83,4 @@ const config: Config = {
 };
 
 export default config;
-// ECPAT update end
+// MAHARASHTRA GOVERNMENT UPDATE END

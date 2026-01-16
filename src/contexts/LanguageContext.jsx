@@ -9,6 +9,12 @@ const metadata = {
     ogTitle: "Athena LMS",
     ogDescription: "Professional Learning Management System for Training and Development"
   },
+  mr: {
+    title: "अथेना एलएमएस - शिक्षण व्यवस्थापन प्रणाली",
+    description: "अथेना एलएमएस - डब्ल्यूसीएजी 2.1 सुसंगतता आणि एससीओआरएम एकत्रीकरणासह प्रगत शिक्षण प्लॅटफॉर्म",
+    ogTitle: "अथेना एलएमएस",
+    ogDescription: "प्रशिक्षण आणि विकासासाठी व्यावसायिक शिक्षण व्यवस्थापन प्रणाली"
+  },
   mk: {
     title: "Athena LMS - Систем за управување со учење",
     description: "Athena LMS - Напредна платформа за учење со усогласеност со WCAG 2.1 и SCORM интеграција",
@@ -18,7 +24,7 @@ const metadata = {
 };
 
 export function LanguageProvider({ children }) {
-  const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [currentLanguage, setCurrentLanguage] = useState('mr');
 
   // Update metadata when language changes
   useEffect(() => {

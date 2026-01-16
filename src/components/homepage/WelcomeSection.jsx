@@ -15,11 +15,18 @@ export function WelcomeSection() {
 
   const content = {
     en: {
-      tag: "Professional Training",
+      tag: "Government Teacher Training",
       welcome: "Welcome to",
       ministry: "Athena LMS",
-      subtitle: "Your complete learning platform for professional training and development. Access courses, certifications, and learning resources with WCAG 2.1 compliance.",
+      subtitle: "Your complete learning platform for AI-enabled capacity building of Maharashtra government school teachers. Access courses, resources, and learning tools with offline capability.",
       button: "Start Learning"
+    },
+    mr: {
+      tag: "सरकारी शिक्षक प्रशिक्षण",
+      welcome: "मार्गदर्शन करीत आहे",
+      ministry: "अथेना एलएमएस",
+      subtitle: "महाराष्ट्र सरकारच्या शाळांतील शिक्षकांसाठी एआय-सक्षम क्षमता निर्माणाचे तुमचे संपूर्ण शिकण्याचे माध्यम. ऑफलाइन क्षमतांसह अभ्यासक्रम, साधने आणि शिकण्याची साधने प्राप्त करा.",
+      button: "शिकणे सुरू करा"
     },
     mk: {
       tag: "Професионална обука",
@@ -30,7 +37,7 @@ export function WelcomeSection() {
     }
   };
 
-  const t = content[currentLanguage] ?? content.en;
+  const t = content[currentLanguage] ?? content.mr;
 
   return (
     <section className="mb-4">

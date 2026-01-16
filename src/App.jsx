@@ -47,6 +47,8 @@ import CourseBuilder from "./pages/CourseBuilder.jsx";
 import UnitsBuilder from "./pages/UnitsBuilder";
 import UnitCreator from "./pages/UnitCreator";
 import AssessmentsBuilder from "./pages/AssessmentsBuilder";
+import Syllabus from "./pages/Syllabus.jsx";
+import Pathway from "./pages/Pathway.jsx";
 
 // Import group pages
 import GroupOverviewPage from "./pages/groups/GroupOverviewPage";
@@ -148,6 +150,8 @@ const App = () => (
                   <Route path="profile" element={<Profile />} />
                   <Route path="chatbot" element={<Chatbot />} />
                   <Route path="webinars" element={<Webinars />} />
+                  <Route path="syllabus" element={<Syllabus />} />
+                  <Route path="pathway" element={<Pathway />} />
                   
                   {/* New Instructor Dashboard Routes */}
                   <Route path="tasks" element={<TaskManagement />} />
