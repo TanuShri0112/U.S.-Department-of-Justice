@@ -18,7 +18,7 @@ const metadata = {
 };
 
 export function LanguageProvider({ children }) {
-  const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [currentLanguage, setCurrentLanguage] = useState('mr');
 
   // Update metadata when language changes
   useEffect(() => {

@@ -81,7 +81,7 @@ export function MainNavLinks({ isCollapsed, onCloseMobile }) {
           }
         >
           <item.icon className={cn('h-5 w-5 flex-shrink-0')} />
-          {!isCollapsed && <span>{item.label[currentLanguage] ?? item.label.en}</span>}
+          {!isCollapsed && <span>{item.label[currentLanguage] ?? item.label.mr ?? item.label.en}</span>}
         </NavLink>
       ))}
     </div>

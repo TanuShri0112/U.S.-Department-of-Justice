@@ -18,17 +18,17 @@ export function ViewModeToggle({ isCollapsed }) {
   const modes = {
     student: {
       icon: School,
-      label: { en: 'Student View', mk: 'Поглед за ученик' },
+      label: { mr: 'विद्यार्थी दृष्टी', en: 'Student View' },
       color: 'text-[hsl(var(--sidebar-foreground))]'
     },
     instructor: {
       icon: Users,
-      label: { en: 'Instructor View', mk: 'Поглед за инструктор' },
+      label: { mr: 'प्रशिक्षक दृष्टी', en: 'Instructor View' },
       color: 'text-[hsl(var(--sidebar-foreground))]'
     },
     admin: {
       icon: Shield,
-      label: { en: 'Admin View', mk: 'Поглед за администратор' },
+      label: { mr: 'प्रशासक दृष्टी', en: 'Admin View' },
       color: 'text-[hsl(var(--sidebar-foreground))]'
     },
   };
@@ -57,21 +57,21 @@ export function ViewModeToggle({ isCollapsed }) {
               className="flex items-center gap-2"
             >
               <School className="h-4 w-4 text-green-600" />
-              <span>{modes.student.label[currentLanguage] ?? modes.student.label.en}</span>
+              <span>{modes.student.label[currentLanguage] ?? modes.student.label.mr ?? modes.student.label.en}</span>
             </DropdownMenuItem>
             <DropdownMenuItem 
               onClick={() => switchPortal('instructor')}
               className="flex items-center gap-2"
             >
               <Users className="h-4 w-4 text-blue-600" />
-              <span>{modes.instructor.label[currentLanguage] ?? modes.instructor.label.en}</span>
+              <span>{modes.instructor.label[currentLanguage] ?? modes.instructor.label.mr ?? modes.instructor.label.en}</span>
             </DropdownMenuItem>
             <DropdownMenuItem 
               onClick={() => switchPortal('admin')}
               className="flex items-center gap-2"
             >
               <Shield className="h-4 w-4 text-purple-600" />
-              <span>{modes.admin.label[currentLanguage] ?? modes.admin.label.en}</span>
+              <span>{modes.admin.label[currentLanguage] ?? modes.admin.label.mr ?? modes.admin.label.en}</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -92,7 +92,7 @@ export function ViewModeToggle({ isCollapsed }) {
           >
             <CurrentIcon className="h-5 w-5" />
             <span className="text-[hsl(var(--sidebar-foreground))]">
-              {modes[portalMode]?.label[currentLanguage] ?? modes[portalMode]?.label.en}
+              {modes[portalMode]?.label[currentLanguage] ?? modes[portalMode]?.label.mr ?? modes[portalMode]?.label.en}
             </span>
           </Button>
         </DropdownMenuTrigger>
