@@ -116,8 +116,7 @@ export function MaharashtraDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto">
         {/* Main Content - Takes 2/3 of the space on large screens */}
         <div className="space-y-6 min-w-0 lg:col-span-8">
           <WelcomeSection />
@@ -294,7 +293,6 @@ export function MaharashtraDashboard() {
             </Card>
           </div>
         </div>
-      </div>
     </div>
   );
 }

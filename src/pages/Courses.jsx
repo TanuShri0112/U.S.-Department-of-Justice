@@ -49,30 +49,30 @@ const Courses = () => {
     en: {
       title: "My Course Catalogue | माझे अभ्यासक्रम",
       subtitle: "AI-Enabled Learning Management System for Maharashtra Government School Teachers",
-      searchPlaceholder: "Search courses... | अभ्यासक्रम शोधा...",
-      allLevels: "All levels | सर्व पातळ्या",
-      beginner: "Beginner | प्रारंभिक",
-      intermediate: "Intermediate | मध्यम",
-      advanced: "Advanced | प्रगत",
-      allCatalogs: "All catalogs | सर्व संग्रह",
-      continueLearning: "Continue learning | शिकणे पुढे चालू ठेवा",
-      enrolled: "enrolled | नोंदणीकृत",
-      level: "Level: | पातळी:",
-      duration: "Duration: | कालावधी:",
-      status: "Status | स्थिती",
-      completed: "Completed | पूर्ण झाले",
-      inProgress: "In Progress | प्रगतीत आहे",
-      notStarted: "Not Started | सुरू केलेले नाही",
-      myProgress: "My Progress | माझी प्रगती",
-      startCourse: "Start Course | अभ्यासक्रम सुरू करा",
-      viewDetails: "View Details | तपशील पहा",
-      rise360Integrated: "Rise 360 Integrated | राइझ 360 एकत्रित",
-      mobileFriendly: "Mobile Friendly | मोबाईल अनुकूल",
-      scormCompliant: "SCORM Compliant | एससीओआरएम सुसंगत",
-      aiTools: "AI Tools for Education | शिक्षणासाठी एआय साधने",
-      digitalLiteracy: "Digital Literacy | डिजिटल साक्षरता",
-      aiEthics: "AI Ethics & Safety | एआय नैतिकता आणि सुरक्षा",
-      practicalApplications: "Practical Applications | व्यावहारिक अनुप्रयोग"
+      searchPlaceholder: "Search courses...",
+      allLevels: "All levels",
+      beginner: "Beginner",
+      intermediate: "Intermediate",
+      advanced: "Advanced",
+      allCatalogs: "All catalogs",
+      continueLearning: "Continue",
+      enrolled: "enrolled",
+      level: "Level",
+      duration: "Duration",
+      status: "Status",
+      completed: "Completed",
+      inProgress: "In Progress",
+      notStarted: "Not Started",
+      myProgress: "My Progress",
+      startCourse: "Start Course ",
+      viewDetails: "View Details",
+      rise360Integrated: "Rise 360 Integrated",
+      mobileFriendly: "Mobile Friendly",
+      scormCompliant: "SCORM Compliant",
+      aiTools: "AI Tools for Education",
+      digitalLiteracy: "Digital Literacy ",
+      aiEthics: "AI Ethics & Safety",
+      practicalApplications: "Practical Applications"
     },
     mr: {
       title: "माझे अभ्यासक्रम",
@@ -321,7 +321,7 @@ const Courses = () => {
 
   const getFeatureBadges = (features) => {
     return features.map((feature, index) => (
-      <Badge key={index} variant="secondary" className="text-xs">
+      <Badge key={index} variant="secondary" className={`text-xs ${(feature === 'Rise 360' || feature === 'Mobile' || feature === 'SCORM') ? 'text-white' : ''}`}>
         {feature}
       </Badge>
     ));
@@ -390,7 +390,9 @@ const Courses = () => {
                 />
                 <div className="absolute top-3 right-3 flex gap-2">
                   {getStatusIcon(course.status)}
-                  {getFeatureBadges(course.features)}
+                  <div className="flex gap-1">
+                    {getFeatureBadges(course.features)}
+                  </div>
                 </div>
               </div>
 
