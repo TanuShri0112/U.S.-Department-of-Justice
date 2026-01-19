@@ -66,6 +66,7 @@ const Courses = () => {
       myProgress: "My Progress",
       startCourse: "Start Course ",
       viewDetails: "View Details",
+      chapters: "Chapters",
       rise360Integrated: "Rise 360 Integrated",
       mobileFriendly: "Mobile Friendly",
       scormCompliant: "SCORM Compliant",
@@ -94,6 +95,7 @@ const Courses = () => {
       myProgress: "माझी प्रगती",
       startCourse: "अभ्यासक्रम सुरू करा",
       viewDetails: "तपशील पहा",
+      chapters: "अध्याय",
       rise360Integrated: "राइझ 360 एकत्रित",
       mobileFriendly: "मोबाईल अनुकूल",
       scormCompliant: "एससीओआरएम सुसंगत",
@@ -139,17 +141,17 @@ const Courses = () => {
     {
       id: 1,
       title: {
-        en: 'AI Tools for Educators',
-        mr: 'शिक्षकांसाठी एआय साधने',
+        en: 'ADVANCED AI CONCEPTS AND TOOLS FOR EDUCATORS',
+        mr: 'शिक्षकांसाठीसाठी उन्नत एआय संकल्पना आणि साधने',
         mk: 'АИ алатки за образованици'
       },
       description: {
-        en: 'Learn how to integrate AI tools in your classroom to enhance teaching and learning experiences.',
-        mr: 'शिकवणे आणि शिकणे अनुभव सुधारण्यासाठी तुमच्या वर्गात एआय साधने कशी एकत्रित करायची ते शिका.',
+        en: 'how neural networks and deep learning are inspired by the human brain and form the foundation of modern AI.',
+        mr: 'न्यूरल नेटवर्क आणि डीप लर्निंग मानवी मेंदूपासून प्रेरित आहेत आणि आधुनिक एआयचा पाया घालतात.',
         mk: 'Научете како да ги интегрирате АИ алатките во вашата класа за подобрување на искуствата на учителство и учење.'
       },
       students: 245,
-      duration: '4 weeks',
+      duration: '6 weeks',
       level: 'beginner',
       status: 'in-progress',
       progress: 65,

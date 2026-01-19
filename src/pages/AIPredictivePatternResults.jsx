@@ -12,6 +12,7 @@ const AIPredictivePatternResults = () => {
   const navigate = useNavigate();
   const { currentLanguage } = useLanguage();
   const { formData, results } = location.state || {};
+  const [showMindMap, setShowMindMap] = useState(false);
 
   const translations = {
     en: {
@@ -19,6 +20,7 @@ const AIPredictivePatternResults = () => {
       assessmentCompleted: 'Assessment completed on',
       exportProfile: 'Export Profile',
       newAssessment: 'New Assessment',
+      viewMindMap: 'View Mind Map',
       teacherProfile: 'Teacher Profile',
       name: 'Name',
       overallScore: 'Overall Score',
@@ -52,13 +54,22 @@ const AIPredictivePatternResults = () => {
       onlineTeachingPlatforms: 'Online teaching platforms',
       focusOnComprehensivePedagogicalTraining: 'Focus on comprehensive pedagogical training with hands-on practice and real-world teaching scenarios.',
       developCoreTeachingCompetencies: 'Develop core teaching competencies through practice and structured methodologies.',
-      maximizeLearningThroughTechnology: 'Maximize learning through effective technology integration and digital teaching tools.'
+      maximizeLearningThroughTechnology: 'Maximize learning through effective technology integration and digital teaching tools.',
+      learningPathMindMap: 'Learning Path Mind Map',
+      personalizedLearningJourney: 'Your Personalized Learning Journey',
+      currentLevel: 'Current Level',
+      targetLevel: 'Target Level',
+      learningPath: 'Learning Path',
+      coreCompetencies: 'Core Competencies',
+      advancedSkills: 'Advanced Skills',
+      masteryLevel: 'Mastery Level'
     },
     mr: {
       title: 'शिक्षक प्रोफाइल परिणाम',
       assessmentCompleted: 'मूल्यांकन पूर्ण झाले',
       exportProfile: 'प्रोफाइल एक्सपोर्ट करा',
       newAssessment: 'नवीन मूल्यांकन',
+      viewMindMap: 'माइंड मॅप पहा',
       learnerProfile: 'शिक्षक प्रोफाइल',
       name: 'नाव',
       overallScore: 'एकूण गुण',
@@ -92,7 +103,15 @@ const AIPredictivePatternResults = () => {
       onlineTeachingPlatforms: 'ऑनलाइन शिक्षण प्लॅटफॉर्म',
       focusOnComprehensivePedagogicalTraining: 'व्यावहारिक सराव आणि वास्तव-जगातील शिक्षण परिदृश्यांसह सविस्तर शैक्षणिक प्रशिक्षणावर लक्ष केंद्रित करा.',
       developCoreTeachingCompetencies: 'सराव आणि संरचित पद्धतींद्वारे मूलभूत शिक्षण योग्यता विकसित करा.',
-      maximizeLearningThroughTechnology: 'प्रभावी तंत्रज्ञान एकत्रीकरण आणि डिजिटल शिक्षण साधनांद्वारे शिक्षण कमालीपर्यंत वाढवा.'
+      maximizeLearningThroughTechnology: 'प्रभावी तंत्रज्ञान एकत्रीकरण आणि डिजिटल शिक्षण साधनांद्वारे शिक्षण कमालीपर्यंत वाढवा.',
+      learningPathMindMap: 'शिक्षण मार्ग माइंड मॅप',
+      personalizedLearningJourney: 'आपली वैयक्तिकृत शिक्षण यात्रा',
+      currentLevel: 'वर्तमान स्तर',
+      targetLevel: 'लक्ष्य स्तर',
+      learningPath: 'शिक्षण मार्ग',
+      coreCompetencies: 'मूलभूत कौशल्ये',
+      advancedSkills: 'प्रगत कौशल्ये',
+      masteryLevel: 'प्रभुत्व स्तर'
     }
   };
 
@@ -225,6 +244,212 @@ const AIPredictivePatternResults = () => {
     };
   };
 
+  // Generate learning path based on assessment answers
+  const generateLearningPath = (answers) => {
+    const learningPaths = {
+      pedagogical: {
+        current: 'Basic Teaching Methods',
+        target: 'Advanced Pedagogical Strategies',
+        milestones: [
+          'Understanding Learning Theories',
+          'Curriculum Design Basics',
+          'Assessment Techniques',
+          'Differentiated Instruction',
+          'Advanced Teaching Methodologies'
+        ]
+      },
+      classroom: {
+        current: 'Basic Classroom Setup',
+        target: 'Master Classroom Management',
+        milestones: [
+          'Classroom Organization',
+          'Student Engagement Basics',
+          'Behavior Management',
+          'Inclusive Teaching Practices',
+          'Advanced Classroom Strategies'
+        ]
+      },
+      technology: {
+        current: 'Basic Digital Literacy',
+        target: 'Technology Integration Expert',
+        milestones: [
+          'Digital Tools Basics',
+          'Smart Classroom Usage',
+          'Online Teaching Platforms',
+          'Educational Technology',
+          'Advanced Tech Integration'
+        ]
+      }
+    };
+
+    // Determine primary learning path based on highest scoring area
+    const scores = results?.categoryScores || {};
+    const highestArea = Object.entries(scores).reduce((a, b) => scores[a[0]] > scores[b[0]] ? a : b)[0];
+    
+    return learningPaths[highestArea] || learningPaths.pedagogical;
+  };
+
+  const MindMapComponent = () => {
+    const learningPath = generateLearningPath(formData?.answers || []);
+    const overallScore = results?.overallScore || 0;
+    
+    // Determine current level based on overall score
+    const getCurrentLevel = () => {
+      if (overallScore >= 80) return 4; // Advanced
+      if (overallScore >= 60) return 3; // Proficient
+      if (overallScore >= 40) return 2; // Developing
+      return 1; // Beginning
+    };
+
+    const currentLevelIndex = getCurrentLevel();
+    const milestones = learningPath.milestones;
+    
+    return (
+      <div className="bg-white p-6 rounded-lg shadow-lg">
+        <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <Brain className="h-6 w-6 text-blue-600" />
+          {t.learningPathMindMap}
+        </h3>
+        
+        <div className="relative">
+          {/* Central node */}
+          <div className="flex justify-center mb-8">
+            <div className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-center">
+              {t.personalizedLearningJourney}
+            </div>
+          </div>
+          
+          {/* Learning path visualization */}
+          <div className="space-y-4">
+            {/* Current level indicator */}
+            <div className="flex items-center gap-4">
+              <div className="w-24 text-sm font-medium text-gray-700">
+                {t.currentLevel}
+              </div>
+              <div className="flex-1">
+                <div className="bg-gray-200 rounded-full h-4 relative">
+                  <div 
+                    className="bg-blue-600 h-4 rounded-full transition-all duration-500"
+                    style={{ width: `${(currentLevelIndex / 5) * 100}%` }}
+                  />
+                </div>
+              </div>
+              <div className="text-sm font-semibold text-blue-600">
+                {milestones[currentLevelIndex - 1] || milestones[0]}
+              </div>
+            </div>
+            
+            {/* Target level indicator */}
+            <div className="flex items-center gap-4">
+              <div className="w-24 text-sm font-medium text-gray-700">
+                {t.targetLevel}
+              </div>
+              <div className="flex-1">
+                <div className="bg-gray-200 rounded-full h-4 relative">
+                  <div className="bg-green-600 h-4 rounded-full" style={{ width: '100%' }} />
+                </div>
+              </div>
+              <div className="text-sm font-semibold text-green-600">
+                {learningPath.target}
+              </div>
+            </div>
+          </div>
+          
+          {/* Milestones path */}
+          <div className="mt-8">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">{t.learningPath}</h4>
+            <div className="relative">
+              {/* Connection line */}
+              <div className="absolute left-4 top-8 bottom-8 w-0.5 bg-gray-300" />
+              
+              {/* Milestone nodes */}
+              <div className="space-y-6">
+                {milestones.map((milestone, index) => {
+                  const isCompleted = index < currentLevelIndex;
+                  const isCurrent = index === currentLevelIndex - 1;
+                  const isFuture = index >= currentLevelIndex;
+                  
+                  return (
+                    <div key={index} className="flex items-center gap-4">
+                      <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center z-10 ${
+                        isCompleted 
+                          ? 'bg-green-600 border-green-600' 
+                          : isCurrent 
+                            ? 'bg-blue-600 border-blue-600 animate-pulse'
+                            : 'bg-white border-gray-300'
+                      }`}>
+                        {isCompleted ? (
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        ) : (
+                          <span className={`text-xs font-semibold ${
+                            isCurrent ? 'text-white' : 'text-gray-500'
+                          }`}>
+                            {index + 1}
+                          </span>
+                        )}
+                      </div>
+                      <div className={`flex-1 p-3 rounded-lg ${
+                        isCompleted 
+                          ? 'bg-green-50 border border-green-200' 
+                          : isCurrent 
+                            ? 'bg-blue-50 border border-blue-200'
+                            : 'bg-gray-50 border border-gray-200'
+                      }`}>
+                        <div className={`text-sm font-medium ${
+                          isCompleted 
+                            ? 'text-green-800' 
+                            : isCurrent 
+                              ? 'text-blue-800'
+                              : 'text-gray-600'
+                        }`}>
+                          {milestone}
+                        </div>
+                        {isCurrent && (
+                          <div className="text-xs text-blue-600 mt-1">
+                            {t.currentLevel}
+                          </div>
+                        )}
+                        {isCompleted && (
+                          <div className="text-xs text-green-600 mt-1">
+                            ✓ Completed
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          
+          {/* Skill categories overview */}
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h5 className="font-semibold text-blue-900 mb-2">{t.coreCompetencies}</h5>
+              <div className="text-2xl font-bold text-blue-600">
+                {results?.categoryScores?.pedagogicalKnowledge || 0}%
+              </div>
+            </div>
+            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+              <h5 className="font-semibold text-green-900 mb-2">{t.advancedSkills}</h5>
+              <div className="text-2xl font-bold text-green-600">
+                {results?.categoryScores?.classroomManagement || 0}%
+              </div>
+            </div>
+            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <h5 className="font-semibold text-purple-900 mb-2">{t.masteryLevel}</h5>
+              <div className="text-2xl font-bold text-purple-600">
+                {results?.categoryScores?.technologyIntegration || 0}%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const handleExportProfile = () => {
     // Create a simple text export
     const exportData = `
@@ -259,6 +484,10 @@ ${t.areasForDevelopment}: ${results?.developmentAreas?.join(', ') || 'N/A'}
 
   const handleNewAssessment = () => {
     navigate('/ai-predictive-pattern');
+  };
+
+  const handleViewMindMap = () => {
+    setShowMindMap(true);
   };
 
   const getPriorityColor = (priority) => {
@@ -305,12 +534,11 @@ ${t.areasForDevelopment}: ${results?.developmentAreas?.join(', ') || 'N/A'}
             </div>
             <div className="flex gap-3">
               <Button 
-                onClick={handleExportProfile}
-                variant="outline"
+                onClick={handleViewMindMap}
                 className="flex items-center gap-2"
               >
-                <Download className="h-4 w-4" />
-                {t.exportProfile}
+                <Brain className="h-4 w-4" />
+                {t.viewMindMap}
               </Button>
               <Button 
                 onClick={handleNewAssessment}
@@ -519,6 +747,28 @@ ${t.areasForDevelopment}: ${results?.developmentAreas?.join(', ') || 'N/A'}
           </div>
         </div>
       </div>
+
+      {/* Mind Map Modal */}
+      {showMindMap && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-end mb-6">
+                <Button 
+                  onClick={() => setShowMindMap(false)}
+                  variant="outline"
+                  className="p-2"
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </Button>
+              </div>
+              <MindMapComponent />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
