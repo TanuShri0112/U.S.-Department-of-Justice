@@ -382,7 +382,7 @@ const Courses = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCourses.map((course) => (
+          {filteredCourses.slice(0, 3).map((course) => (
             <Card key={course.id} className="relative overflow-hidden border border-border/60 hover:shadow-md transition-shadow flex flex-col h-full">
               <div className="h-48 overflow-hidden relative">
                 <img
@@ -448,8 +448,9 @@ const Courses = () => {
                 <div className="flex gap-2 mt-auto">
                   <Button
                     variant="default"
-                    className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
-                    onClick={() => handleCourseClick(course.id)}
+                    className={`flex-1 ${course.id === 1 ? 'bg-orange-500 hover:bg-orange-600 text-white' : 'bg-gray-400 text-gray-200 cursor-not-allowed'}`}
+                    onClick={() => course.id === 1 ? handleCourseClick(course.id) : null}
+                    disabled={course.id !== 1}
                   >
                     {course.status === 'completed' 
                       ? <>
