@@ -9,7 +9,8 @@ import {
   MessageSquare,
   Bot,
   BookText,
-  ExternalLink
+  ExternalLink,
+  Brain
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -58,6 +59,15 @@ const navItems = [
       mk: 'चॅटबॉट' 
     },
     href: '/chatbot'
+  },
+  {
+    icon: Brain,
+    label: { 
+      en: 'AI Predictive Pattern', 
+      mr: 'AI भविष्यसूचक पॅटर्न',
+      mk: 'AI भविष्यसूचक पॅटर्न' 
+    },
+    href: '/ai-predictive-pattern'
   },
   {
     icon: ExternalLink,

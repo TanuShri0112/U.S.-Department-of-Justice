@@ -77,6 +77,8 @@ import CourseEdit from "./pages/CourseEdit";
 import EditModulePage from './pages/EditModulePage';
 import Chatbot from './pages/Chatbot.jsx';
 import Webinars from './pages/Webinars.jsx';
+import AIPredictivePatternAssessment from './pages/AIPredictivePatternAssessment.jsx';
+import AIPredictivePatternResults from './pages/AIPredictivePatternResults.jsx';
 
 const queryClient = new QueryClient();
 
@@ -151,6 +153,8 @@ const App = () => (
                   <Route path="help" element={<Help />} />
                   <Route path="profile" element={<Profile />} />
                   <Route path="chatbot" element={<Chatbot />} />
+                  <Route path="ai-predictive-pattern" element={<AIPredictivePatternAssessment />} />
+                  <Route path="ai-predictive-pattern-results" element={<AIPredictivePatternResults />} />
                   <Route path="webinars" element={<Webinars />} />
                   <Route path="syllabus" element={<Syllabus />} />
                   <Route path="pathway" element={<Pathway />} />
