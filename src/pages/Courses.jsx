@@ -381,7 +381,7 @@ const Courses = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.map((course) => (
-            <Card key={course.id} className="relative overflow-hidden border border-border/60 hover:shadow-md transition-shadow">
+            <Card key={course.id} className="relative overflow-hidden border border-border/60 hover:shadow-md transition-shadow flex flex-col h-full">
               <div className="h-48 overflow-hidden relative">
                 <img
                   src={course.image}
@@ -422,7 +422,7 @@ const Courses = () => {
                 </div>
               </CardHeader>
 
-              <CardContent className="px-6 pb-6">
+              <CardContent className="px-6 pb-6 flex flex-col flex-grow">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs text-gray-500">{t.level} {getLevelBadge(course.level)}</span>
                   <span className="text-xs text-gray-500">{course.category}</span>
@@ -443,7 +443,7 @@ const Courses = () => {
                   </div>
                 )}
                 
-                <div className="flex gap-2">
+                <div className="flex gap-2 mt-auto">
                   <Button
                     variant="default"
                     className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"

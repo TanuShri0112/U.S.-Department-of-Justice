@@ -11,9 +11,34 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { toast } from "sonner";
 import LessonContent from './LessonContent';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CourseUnits = ({ showBackButton = false, onBack }) => {
+  const { currentLanguage } = useLanguage();
   const [selectedLesson, setSelectedLesson] = useState(null);
+  
+  const translations = {
+    en: {
+      lessons: 'lessons',
+      lesson: 'lesson',
+      reorderLessons: 'Reorder Lessons',
+      manageLessons: 'Manage lessons and learning materials'
+    },
+    mr: {
+      lessons: 'पाठ',
+      lesson: 'पाठ',
+      reorderLessons: 'पाठ पुन्हा व्यवस्थित करा',
+      manageLessons: 'पाठ आणि शिकण्याची सामग्री व्यवस्थापित करा'
+    },
+    mk: {
+      lessons: 'лекции',
+      lesson: 'лекција',
+      reorderLessons: 'Преуреди лекции',
+      manageLessons: 'Управувај со лекции и материјали за учење'
+    }
+  };
+  
+  const t = translations[currentLanguage] || translations.en;
   const [units, setUnits] = useState([
     {
       id: 1,
@@ -310,7 +335,7 @@ Practical Examples:
           )}
           <div>
             <h1 className="text-2xl font-bold">Course Units</h1>
-            <p className="text-gray-600">Manage lessons and learning materials</p>
+                  <p className="text-gray-600">{t.manageLessons}</p>
           </div>
         </div>
         <Button onClick={handleAddUnit} className="bg-ca-primary hover:bg-ca-secondary">
@@ -336,7 +361,7 @@ Practical Examples:
                   <p className="text-gray-600 mt-1">{unit.description}</p>
                   <div className="mt-2">
                     <Badge variant="outline">
-                      {unit.lessons.length} lessons
+                      {unit.lessons.length} {unit.lessons.length === 1 ? t.lesson : t.lessons}
                     </Badge>
                   </div>
                 </div>
@@ -352,7 +377,7 @@ Practical Examples:
                       Edit Unit
                     </DropdownMenuItem>
                     <DropdownMenuItem>Add Lesson</DropdownMenuItem>
-                    <DropdownMenuItem>Reorder Lessons</DropdownMenuItem>
+                    <DropdownMenuItem>{t.reorderLessons}</DropdownMenuItem>
                     <DropdownMenuItem className="text-red-600">Delete Unit</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

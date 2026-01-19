@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { EmptyStateCard } from './EmptyStateCard';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const sampleSurveys = [
   {
@@ -53,10 +54,37 @@ const sampleSurveys = [
 const CourseAssessments = () => {
   const navigate = useNavigate();
   const { courseId } = useParams();
+  const { currentLanguage } = useLanguage();
   const [assessments, setAssessments] = useState([]);
   const [surveys] = useState(sampleSurveys);
   const [loading, setLoading] = useState(true);
   const [isPublishedCourse, setIsPublishedCourse] = useState(false);
+  
+  const translations = {
+    en: {
+      backToCourses: 'Back to Courses',
+      courseAssessments: 'Course Assessments',
+      manageAssessments: 'Manage assessments and evaluations',
+      publishedCourse: 'Published Course',
+      loadingAssessments: 'Loading assessments...'
+    },
+    mr: {
+      backToCourses: 'अभ्यासक्रमांकडे परत',
+      courseAssessments: 'अभ्यासक्रम मूल्यांकन',
+      manageAssessments: 'मूल्यांकन आणि मूल्यमापन व्यवस्थापित करा',
+      publishedCourse: 'प्रकाशित अभ्यासक्रम',
+      loadingAssessments: 'मूल्यांकन लोड होत आहेत...'
+    },
+    mk: {
+      backToCourses: 'Назад кон курсеви',
+      courseAssessments: 'Оценувања на курсот',
+      manageAssessments: 'Управувај со оценувања и евалуации',
+      publishedCourse: 'Објавен курс',
+      loadingAssessments: 'Вчитување оценувања...'
+    }
+  };
+  
+  const t = translations[currentLanguage] || translations.en;
 
   useEffect(() => {
     const loadAssessments = () => {
@@ -133,7 +161,7 @@ const CourseAssessments = () => {
       <div className="p-6 animate-fade-in">
         <div className="flex items-center justify-center h-64">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-          <span className="ml-2">Loading assessments...</span>
+          <span className="ml-2">{t.loadingAssessments}</span>
         </div>
       </div>
     );
@@ -149,13 +177,13 @@ const CourseAssessments = () => {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Courses
+            {t.backToCourses}
           </Button>
           <div>
-            <h1 className="text-2xl font-bold">Course Assessments</h1>
+            <h1 className="text-2xl font-bold">{t.courseAssessments}</h1>
             <p className="text-gray-600">
-              Manage assessments and evaluations
-              {isPublishedCourse && ' • Published Course'}
+              {t.manageAssessments}
+              {isPublishedCourse && ` • ${t.publishedCourse}`}
             </p>
           </div>
         </div>

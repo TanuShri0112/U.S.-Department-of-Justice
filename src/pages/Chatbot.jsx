@@ -33,6 +33,7 @@ const Chatbot = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
   const inputRef = useRef(null);
   const { currentLanguage } = useLanguage();
 
@@ -164,8 +165,17 @@ const Chatbot = () => {
   ];
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = messagesContainerRef.current;
+    if (!container) return;
+
+    // Only scroll the messages pane (never the whole page)
+    container.scrollTop = container.scrollHeight;
   };
+
+  useEffect(() => {
+    // Ensure the page opens from the top (extra safety on top of global ScrollToTop)
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [messages]);
 
   useEffect(() => {
     scrollToBottom();
@@ -235,79 +245,95 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t.title}</h1>
-          <p className="text-gray-600">{t.subtitle}</p>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-lg">
+              <Bot className="h-8 w-8 text-white" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">{t.title}</h1>
+              <p className="text-gray-600 text-lg">{t.subtitle}</p>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Main Chat Area */}
           <div className="lg:col-span-3">
-            <Card className="h-[600px] flex flex-col border-l-4 border-l-orange-500 bg-white/80 backdrop-blur-sm shadow-md">
-              <CardHeader className="flex flex-row items-center justify-between pb-3">
+            <Card className="h-[650px] flex flex-col border-0 bg-white shadow-xl rounded-2xl overflow-hidden">
+              <CardHeader className="flex flex-row items-center justify-between pb-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-orange-100 rounded-lg">
-                    <Bot className="h-6 w-6 text-orange-600" />
+                  <div className="p-2.5 bg-white/20 rounded-xl backdrop-blur-sm">
+                    <Bot className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-lg">{t.title}</CardTitle>
-                    <p className="text-sm text-gray-500">{t.botResponse}</p>
+                    <CardTitle className="text-lg text-white font-semibold">{t.title}</CardTitle>
+                    <p className="text-sm text-white/90">{t.botResponse}</p>
                   </div>
                 </div>
                 <Button 
                   variant="outline" 
                   size="sm" 
                   onClick={clearChat}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border-white/20 backdrop-blur-sm"
                 >
                   <RotateCcw className="h-4 w-4" />
                   {t.clearChat}
                 </Button>
               </CardHeader>
               
-              <CardContent className="flex-1 flex flex-col p-4">
-                <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
+              <CardContent className="flex-1 flex flex-col p-6 bg-gray-50">
+                <div
+                  ref={messagesContainerRef}
+                  className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar"
+                >
                   {messages.map((message) => (
                     <div
                       key={message.id}
-                      className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                      className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}
                     >
                       <div
-                        className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                        className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-md transition-all hover:shadow-lg ${
                           message.type === 'user'
-                            ? 'bg-orange-500 text-white'
-                            : 'bg-gray-100 text-gray-800'
+                            ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-br-sm'
+                            : 'bg-white text-gray-800 rounded-bl-sm border border-gray-200'
                         }`}
                       >
-                        <div className="flex items-center gap-2 mb-1">
-                          {message.type === 'user' ? (
-                            <User className="h-4 w-4" />
-                          ) : (
-                            <Bot className="h-4 w-4" />
-                          )}
-                          <span className="text-xs opacity-70">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className={`p-1 rounded-full ${message.type === 'user' ? 'bg-white/20' : 'bg-blue-100'}`}>
+                            {message.type === 'user' ? (
+                              <User className="h-3.5 w-3.5 text-white" />
+                            ) : (
+                              <Bot className="h-3.5 w-3.5 text-blue-600" />
+                            )}
+                          </div>
+                          <span className={`text-xs ${message.type === 'user' ? 'text-white/80' : 'text-gray-500'}`}>
                             {formatTime(message.timestamp)}
                           </span>
                         </div>
-                        <p>{message.content[currentLanguage]}</p>
+                        <p className={`text-sm leading-relaxed ${message.type === 'user' ? 'text-white' : 'text-gray-700'}`}>
+                          {message.content[currentLanguage]}
+                        </p>
                       </div>
                     </div>
                   ))}
                   
                   {isLoading && (
-                    <div className="flex justify-start">
-                      <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg max-w-xs">
-                        <div className="flex items-center gap-2">
-                          <Bot className="h-4 w-4" />
-                          <span className="text-xs opacity-70">Typing...</span>
+                    <div className="flex justify-start animate-fade-in">
+                      <div className="bg-white text-gray-800 px-4 py-3 rounded-2xl rounded-bl-sm max-w-xs shadow-md border border-gray-200">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="p-1 rounded-full bg-blue-100">
+                            <Bot className="h-3.5 w-3.5 text-blue-600" />
+                          </div>
+                          <span className="text-xs text-gray-500">Typing...</span>
                         </div>
-                        <div className="flex space-x-1 pt-1">
-                          <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></div>
-                          <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="flex space-x-1.5 pt-1">
+                          <div className="h-2 w-2 bg-blue-500 rounded-full animate-bounce"></div>
+                          <div className="h-2 w-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+                          <div className="h-2 w-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
                         </div>
                       </div>
                     </div>
@@ -315,20 +341,20 @@ const Chatbot = () => {
                   <div ref={messagesEndRef} />
                 </div>
                 
-                <div className="flex gap-2">
+                <div className="flex gap-3 pt-4 border-t border-gray-200 bg-white rounded-xl p-3 shadow-sm">
                   <Input
                     ref={inputRef}
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder={t.placeholder}
-                    className="flex-1"
+                    className="flex-1 border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-lg"
                     disabled={isLoading}
                   />
                   <Button 
                     onClick={handleSendMessage} 
                     disabled={!inputMessage.trim() || isLoading}
-                    className="bg-orange-500 hover:bg-orange-600 text-white flex items-center gap-2"
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white flex items-center gap-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all"
                   >
                     <Send className="h-4 w-4" />
                     {t.send}
@@ -341,50 +367,54 @@ const Chatbot = () => {
           {/* Sidebar with Quick Actions */}
           <div className="space-y-6">
             {/* Quick Questions */}
-            <Card className="bg-white/80 backdrop-blur-sm shadow-md">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <MessageCircle className="h-5 w-5 text-blue-600" />
+            <Card className="bg-white shadow-xl rounded-2xl border-0 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-600 text-white pb-4">
+                <CardTitle className="flex items-center gap-2 text-base text-white font-semibold">
+                  <div className="p-1.5 bg-white/20 rounded-lg backdrop-blur-sm">
+                    <MessageCircle className="h-5 w-5 text-white" />
+                  </div>
                   {t.quickQuestions}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="space-y-3 p-4">
                 {quickQuestions.map((question, index) => (
                   <Button
                     key={index}
                     variant="outline"
-                    className="w-full justify-start h-auto py-3"
+                    className="w-full justify-start h-auto py-3 px-4 rounded-lg border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all text-left text-sm shadow-sm hover:shadow-md"
                     onClick={() => handleQuickQuestion(question)}
                   >
-                    <span className="text-sm">{question[currentLanguage]}</span>
+                    <span className="text-sm text-gray-700">{question[currentLanguage]}</span>
                   </Button>
                 ))}
               </CardContent>
             </Card>
 
             {/* Helpful Resources */}
-            <Card className="bg-white/80 backdrop-blur-sm shadow-md">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <FileText className="h-5 w-5 text-green-600" />
+            <Card className="bg-white shadow-xl rounded-2xl border-0 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-600 text-white pb-4">
+                <CardTitle className="flex items-center gap-2 text-base text-white font-semibold">
+                  <div className="p-1.5 bg-white/20 rounded-lg backdrop-blur-sm">
+                    <FileText className="h-5 w-5 text-white" />
+                  </div>
                   {t.resources}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 p-4">
                 {resources.map((resource, index) => (
                   <div 
                     key={index} 
-                    className="p-3 border rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+                    className="p-4 border border-gray-200 rounded-xl hover:border-blue-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all cursor-pointer shadow-sm hover:shadow-md group"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="text-orange-600 mt-0.5">
+                      <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg text-white group-hover:scale-110 transition-transform shadow-md">
                         {resource.icon}
                       </div>
-                      <div>
-                        <h4 className="font-medium text-sm text-gray-900">
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-sm text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
                           {resource.title[currentLanguage]}
                         </h4>
-                        <p className="text-xs text-gray-600 mt-1">
+                        <p className="text-xs text-gray-600 leading-relaxed">
                           {resource.description[currentLanguage]}
                         </p>
                       </div>
@@ -395,20 +425,22 @@ const Chatbot = () => {
             </Card>
 
             {/* Language Indicator */}
-            <Card className="bg-white/80 backdrop-blur-sm shadow-md">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <Volume2 className="h-5 w-5 text-purple-600" />
+            <Card className="bg-white shadow-xl rounded-2xl border-0 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-purple-500 to-pink-600 text-white pb-4">
+                <CardTitle className="flex items-center gap-2 text-base text-white font-semibold">
+                  <div className="p-1.5 bg-white/20 rounded-lg backdrop-blur-sm">
+                    <Volume2 className="h-5 w-5 text-white" />
+                  </div>
                   {t.transcript}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <Badge variant="outline" className="bg-blue-100 text-blue-800">
+              <CardContent className="p-4">
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-200 px-3 py-1.5 text-xs font-medium shadow-sm">
                     {t.text}
                   </Badge>
-                  <Badge variant="outline" className="bg-green-100 text-green-800">
-                    {currentLanguage === 'mr' ? 'मराठी' : 'English'}
+                  <Badge variant="outline" className="bg-green-100 text-green-800 border-green-200 px-3 py-1.5 text-xs font-medium shadow-sm">
+                    {currentLanguage === 'mr' ? 'मराठी' : currentLanguage === 'mk' ? 'Македонски' : 'English'}
                   </Badge>
                 </div>
               </CardContent>

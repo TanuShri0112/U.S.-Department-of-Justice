@@ -9,6 +9,7 @@ import { SidebarProvider } from "./contexts/SidebarContext";
 import { UserFilterProvider } from "./contexts/UserFilterContext";
 import { CourseSidebarProvider } from "./contexts/CourseSidebarContext";
 import { PortalProvider } from "./contexts/PortalContext";
+import ScrollToTop from "./components/shared/ScrollToTop.jsx";
 // ECPAT update start - Assessment components removed
 // Assessment functionality disabled as per ECPAT requirements
 // ECPAT update end
@@ -86,6 +87,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <SidebarProvider>
           <UserFilterProvider>
             <CourseSidebarProvider>

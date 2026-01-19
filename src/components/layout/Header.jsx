@@ -36,20 +36,20 @@ export const Header = ({ onMenuClick }) => {
 
   return (
     <>
-      <header className="px-4 h-16 flex items-center justify-between bg-white shadow-md z-40 border-b border-gray-200">
+      <header className="px-4 h-16 flex items-center justify-between bg-blue-600 shadow-md z-40 border-b border-blue-700">
         <div className="flex items-center gap-8">
           <div 
             className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
             onClick={handleLogoClick}
           >
-            <h1 className="text-lg font-semibold text-gray-900">
+            <h1 className="text-lg font-semibold text-white">
               Athena LMS
             </h1>
           </div>
         </div>
         
         <div className="flex items-center gap-4">
-          <ThemeToggle />
+          <ThemeToggle className="text-white hover:bg-blue-700" />
           <LanguageSwitcher />
           
           <div className="relative">
@@ -67,7 +67,7 @@ export const Header = ({ onMenuClick }) => {
             variant="ghost" 
             size="icon"
             onClick={() => setCalendarDialogOpen(true)}
-            className="text-gray-600 hover:bg-gray-100"
+            className="text-white hover:bg-blue-700"
             aria-label={currentLanguage === 'en' ? "Calendar" : "Календар"}
           >
             <Calendar className="h-5 w-5" />
@@ -77,7 +77,7 @@ export const Header = ({ onMenuClick }) => {
             variant="ghost" 
             size="icon"
             onClick={() => setNotificationDialogOpen(true)}
-            className="relative text-gray-600 hover:bg-gray-100"
+            className="relative text-white hover:bg-blue-700"
             aria-label={currentLanguage === 'en' ? "Notifications" : "Notifications"}
           >
             <Bell className="h-5 w-5" />
@@ -86,13 +86,13 @@ export const Header = ({ onMenuClick }) => {
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+              <Button variant="ghost" className="relative h-8 w-8 rounded-full text-white hover:bg-blue-700">
                 <Avatar key={avatarKey} className="h-9 w-9">
                   <AvatarImage 
                     src={userAvatar} 
                     alt="User" 
                   />
-                  <AvatarFallback>SM</AvatarFallback>
+                  <AvatarFallback className="bg-blue-700 text-white">SM</AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>

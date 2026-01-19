@@ -8,7 +8,8 @@ import {
   FileText,
   MessageSquare,
   Bot,
-  BookText
+  BookText,
+  ExternalLink
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -57,6 +58,16 @@ const navItems = [
       mk: 'चॅटबॉट' 
     },
     href: '/chatbot'
+  },
+  {
+    icon: ExternalLink,
+    label: {
+      en: 'Assessment',
+      mr: 'मूल्यमापन',
+      mk: 'Оценување'
+    },
+    href: 'https://athenagames.netlify.app/',
+    external: true
   }
 ];
 
@@ -66,23 +77,39 @@ export function MainNavLinks({ isCollapsed, onCloseMobile }) {
   return (
     <div className="space-y-1 py-2">
       {navItems.map((item) => (
-        <NavLink
-          key={item.href}
-          to={item.href}
-          onClick={onCloseMobile}
-          className={({ isActive }) =>
-            cn(
+        item.external ? (
+          <a
+            key={item.href}
+            href={item.href}
+            onClick={onCloseMobile}
+            className={cn(
               'flex items-center gap-3 px-3 py-2 text-sm transition-colors rounded-lg mx-2',
               isCollapsed ? 'justify-center px-2' : 'px-4',
-              isActive
-                ? 'bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-accent-foreground))] font-semibold'
-                : 'text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-hover))] hover:text-[hsl(var(--sidebar-foreground))]'
-            )
-          }
-        >
-          <item.icon className={cn('h-5 w-5 flex-shrink-0')} />
-          {!isCollapsed && <span>{item.label[currentLanguage] ?? item.label.mr ?? item.label.en}</span>}
-        </NavLink>
+              'text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-hover))] hover:text-[hsl(var(--sidebar-foreground))]'
+            )}
+          >
+            <item.icon className={cn('h-5 w-5 flex-shrink-0')} />
+            {!isCollapsed && <span>{item.label[currentLanguage] ?? item.label.mr ?? item.label.en}</span>}
+          </a>
+        ) : (
+          <NavLink
+            key={item.href}
+            to={item.href}
+            onClick={onCloseMobile}
+            className={({ isActive }) =>
+              cn(
+                'flex items-center gap-3 px-3 py-2 text-sm transition-colors rounded-lg mx-2',
+                isCollapsed ? 'justify-center px-2' : 'px-4',
+                isActive
+                  ? 'bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-accent-foreground))] font-semibold'
+                  : 'text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-hover))] hover:text-[hsl(var(--sidebar-foreground))]'
+              )
+            }
+          >
+            <item.icon className={cn('h-5 w-5 flex-shrink-0')} />
+            {!isCollapsed && <span>{item.label[currentLanguage] ?? item.label.mr ?? item.label.en}</span>}
+          </NavLink>
+        )
       ))}
     </div>
   );

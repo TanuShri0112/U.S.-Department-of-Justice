@@ -5,10 +5,38 @@ import { Badge } from '@/components/ui/badge';
 import { BookOpen, Lock, CheckCircle, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '@/contexts/SidebarContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
   const navigate = useNavigate();
   const { setMainCollapsed } = useSidebar();
+  const { currentLanguage } = useLanguage();
+  
+  const translations = {
+    en: {
+      viewLesson: 'View Lesson',
+      markAsComplete: 'Mark as Complete',
+      completed: 'Completed',
+      sequential: 'Sequential',
+      unlockMessage: 'Complete the previous module to unlock this one'
+    },
+    mr: {
+      viewLesson: 'पाठ पहा',
+      markAsComplete: 'पूर्ण म्हणून चिन्हांकित करा',
+      completed: 'पूर्ण झाले',
+      sequential: 'क्रमिक',
+      unlockMessage: 'हे अनलॉक करण्यासाठी मागील मॉड्यूल पूर्ण करा'
+    },
+    mk: {
+      viewLesson: 'Погледни лекција',
+      markAsComplete: 'Означи како завршено',
+      completed: 'Завршено',
+      sequential: 'Секвенцијално',
+      unlockMessage: 'Заврши го претходниот модул за да го отклучиш ова'
+    }
+  };
+  
+  const t = translations[currentLanguage] || translations.en;
 
   const handleViewLessonClick = (e) => {
     e.preventDefault();
@@ -123,7 +151,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
             <div className="absolute bottom-4 left-4">
               <Badge className="bg-green-500 text-white">
                 <CheckCircle className="h-3 w-3 mr-1" />
-                Completed
+                {t.completed}
               </Badge>
             </div>
           )}
@@ -138,7 +166,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
           <p className="text-sm text-gray-600">{module.description}</p>
           {courseType === 'sequential' && (
             <Badge variant="outline" className="text-blue-600 border-blue-300 mt-2 w-fit">
-              Sequential
+              {t.sequential}
             </Badge>
           )}
         </CardHeader>
@@ -152,7 +180,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
               disabled={isLocked}
             >
               <BookOpen className="h-4 w-4 mr-2" />
-              View Lesson
+              {t.viewLesson}
               {isLocked && <Lock className="h-3 w-3 ml-auto" />}
             </Button>
 
@@ -174,7 +202,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
                 className="w-full bg-ca-primary hover:bg-ca-secondary text-white transition-colors duration-200"
               >
                 <CheckCircle className="h-4 w-4 mr-2" />
-                Mark as Complete
+                {t.markAsComplete}
               </Button>
             )}
           </div>
@@ -182,7 +210,7 @@ const ModuleCard = ({ module, onComplete, courseType = 'open', courseId }) => {
           {isLocked && (
             <div className="mt-3 p-2 bg-yellow-50 rounded-md">
               <p className="text-xs text-yellow-700 text-center">
-                Complete the previous module to unlock this one
+                {t.unlockMessage}
               </p>
             </div>
           )}

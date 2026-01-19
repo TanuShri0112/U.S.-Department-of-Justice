@@ -4,12 +4,49 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowLeft, Clock, User, Plus } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CategoryDetail = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const { currentLanguage } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
+  
+  const translations = {
+    en: {
+      addCourse: 'Add Course',
+      addFirstCourse: 'Add First Course',
+      searchCourses: 'Search courses...',
+      courses: 'courses',
+      modules: 'modules',
+      assessments: 'assessments',
+      noCoursesFound: 'No courses found matching',
+      noCoursesInCatalog: 'No courses in this catalog yet.'
+    },
+    mr: {
+      addCourse: 'अभ्यासक्रम जोडा',
+      addFirstCourse: 'पहिला अभ्यासक्रम जोडा',
+      searchCourses: 'अभ्यासक्रम शोधा...',
+      courses: 'अभ्यासक्रम',
+      modules: 'मॉड्यूल',
+      assessments: 'मूल्यांकन',
+      noCoursesFound: 'जुळणारे कोणतेही अभ्यासक्रम आढळले नाहीत',
+      noCoursesInCatalog: 'या संग्रहात अद्याप कोणतेही अभ्यासक्रम नाहीत.'
+    },
+    mk: {
+      addCourse: 'Додади курс',
+      addFirstCourse: 'Додади прв курс',
+      searchCourses: 'Пребарај курсеви...',
+      courses: 'курсеви',
+      modules: 'модули',
+      assessments: 'оценувања',
+      noCoursesFound: 'Не се пронајдени курсеви што одговараат',
+      noCoursesInCatalog: 'Сè уште нема курсеви во овој каталог.'
+    }
+  };
+  
+  const t = translations[currentLanguage] || translations.en;
   
   // Get catalog data from navigation state or fallback to mock data
   const catalogFromState = location.state?.catalog;
@@ -231,13 +268,13 @@ const CategoryDetail = () => {
         </div>
         <Button onClick={handleAddCourse}>
           <Plus className="h-4 w-4 mr-2" />
-          Add Course
+          {t.addCourse}
         </Button>
       </div>
 
       <div className="flex justify-between items-center mb-6">
         <Input
-          placeholder="Search courses..."
+          placeholder={t.searchCourses}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="max-w-md"
@@ -293,8 +330,8 @@ const CategoryDetail = () => {
                 </div>
                 
                 <div className="flex items-center justify-between text-xs text-slate-500">
-                  <span>{course.modules} modules</span>
-                  <span>{course.assessments} assessments</span>
+                  <span>{course.modules} {t.modules}</span>
+                  <span>{course.assessments} {t.assessments}</span>
                 </div>
               </div>
             </CardContent>
@@ -304,16 +341,16 @@ const CategoryDetail = () => {
 
       {filteredCourses.length === 0 && searchQuery && (
         <div className="text-center py-12">
-          <p className="text-slate-500">No courses found matching "{searchQuery}".</p>
+          <p className="text-slate-500">{t.noCoursesFound} "{searchQuery}".</p>
         </div>
       )}
 
       {catalogData.courses.length === 0 && !searchQuery && (
         <div className="text-center py-12">
-          <p className="text-slate-500 mb-4">No courses in this catalog yet.</p>
+          <p className="text-slate-500 mb-4">{t.noCoursesInCatalog}</p>
           <Button onClick={handleAddCourse}>
             <Plus className="h-4 w-4 mr-2" />
-            Add First Course
+            {t.addFirstCourse}
           </Button>
         </div>
       )}

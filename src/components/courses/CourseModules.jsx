@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 import ModuleCard from './ModuleCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import EditModuleDialog from './EditModuleDialog';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CourseModules = () => {
   console.log('Rendering CourseModules');
@@ -13,6 +14,42 @@ const CourseModules = () => {
   const { courseId } = useParams();
   const [searchParams] = useSearchParams();
   const courseType = searchParams.get('type') || 'open';
+  const { currentLanguage } = useLanguage();
+  
+  const translations = {
+    en: {
+      backToCourses: 'Back to Courses',
+      noModulesFound: 'No modules found for this course',
+      noModulesTitle: 'No Modules Found',
+      noModulesDescription: "This course doesn't have any modules yet. Create your first module to get started.",
+      accessModulesAnyOrder: 'Access modules in any order',
+      completeModulesInOrder: 'Complete modules in order to unlock the next one',
+      publishedCourse: 'Published Course',
+      loadingModules: 'Loading modules...'
+    },
+    mr: {
+      backToCourses: 'अभ्यासक्रमांकडे परत',
+      noModulesFound: 'या अभ्यासक्रमासाठी कोणतेही मॉड्यूल आढळले नाहीत',
+      noModulesTitle: 'कोणतेही मॉड्यूल आढळले नाहीत',
+      noModulesDescription: 'या अभ्यासक्रमात अद्याप कोणतेही मॉड्यूल नाहीत. सुरू करण्यासाठी तुमचा पहिला मॉड्यूल तयार करा.',
+      accessModulesAnyOrder: 'कोणत्याही क्रमाने मॉड्यूलमध्ये प्रवेश करा',
+      completeModulesInOrder: 'पुढचे अनलॉक करण्यासाठी क्रमाने मॉड्यूल पूर्ण करा',
+      publishedCourse: 'प्रकाशित अभ्यासक्रम',
+      loadingModules: 'मॉड्यूल लोड होत आहेत...'
+    },
+    mk: {
+      backToCourses: 'Назад кон курсеви',
+      noModulesFound: 'Не се пронајдени модули за овој курс',
+      noModulesTitle: 'Не се пронајдени модули',
+      noModulesDescription: 'Овој курс сè уште нема модули. Создајте го вашиот прв модул за да започнете.',
+      accessModulesAnyOrder: 'Пристап до модули во кој било редослед',
+      completeModulesInOrder: 'Завршете ги модулите по ред за да го отклучите следниот',
+      publishedCourse: 'Објавен курс',
+      loadingModules: 'Вчитување модули...'
+    }
+  };
+  
+  const t = translations[currentLanguage] || translations.en;
   
   const [modules, setModules] = useState([]);
   const [isPublishedCourse, setIsPublishedCourse] = useState(false);
@@ -174,7 +211,7 @@ const CourseModules = () => {
       <div className="p-6 animate-fade-in">
         <div className="flex items-center justify-center h-64">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-          <span className="ml-2">Loading modules...</span>
+          <span className="ml-2">{t.loadingModules}</span>
         </div>
       </div>
     );
@@ -191,11 +228,11 @@ const CourseModules = () => {
               className="flex items-center gap-2"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to Courses
+              {t.backToCourses}
             </Button>
             <div>
               <h1 className="text-2xl font-bold">{getCourseName(courseId)}</h1>
-              <p className="text-gray-600">No modules found for this course</p>
+              <p className="text-gray-600">{t.noModulesFound}</p>
             </div>
           </div>
         </div>
@@ -205,11 +242,11 @@ const CourseModules = () => {
             <div className="mx-auto mb-4 bg-gray-100 rounded-full p-6 w-20 h-20 flex items-center justify-center">
               <BookOpen className="h-8 w-8 text-gray-400" />
             </div>
-            <CardTitle className="text-xl">No Modules Found</CardTitle>
+            <CardTitle className="text-xl">{t.noModulesTitle}</CardTitle>
           </CardHeader>
           <CardContent className="text-center">
             <p className="text-gray-600 mb-6">
-              This course doesn't have any modules yet. Create your first module to get started.
+              {t.noModulesDescription}
             </p>
           </CardContent>
         </Card>
@@ -227,16 +264,16 @@ const CourseModules = () => {
             variant="outline"
             className="flex items-center gap-2"
           >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Courses
-          </Button>
+              <ArrowLeft className="h-4 w-4" />
+              {t.backToCourses}
+            </Button>
           <div>
             <h1 className="text-2xl font-bold">{getCourseName(courseId)}</h1>
             <p className="text-gray-600">
               {courseType === 'sequential' 
-                ? 'Complete modules in order to unlock the next one' 
-                : 'Access modules in any order'}
-              {isPublishedCourse && ' • Published Course'}
+                ? t.completeModulesInOrder 
+                : t.accessModulesAnyOrder}
+              {isPublishedCourse && ` • ${t.publishedCourse}`}
             </p>
           </div>
         </div>

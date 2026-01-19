@@ -11,13 +11,68 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CourseLessons = () => {
   const { courseId, moduleId, unitId } = useParams();
   const navigate = useNavigate();
+  const { currentLanguage } = useLanguage();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingLesson, setEditingLesson] = useState(null);
+  
+  const translations = {
+    en: {
+      unitLessons: 'Unit Lessons',
+      addLesson: 'Add Lesson',
+      addNewLesson: 'Add New Lesson',
+      editLesson: 'Edit Lesson',
+      updateLesson: 'Update Lesson',
+      lessonTitle: 'Lesson Title',
+      lessonDescription: 'Description',
+      enterLessonTitle: 'Enter lesson title',
+      enterLessonDescription: 'Enter lesson description',
+      cancel: 'Cancel',
+      back: 'Back',
+      lessons: 'lessons',
+      lesson: 'lesson',
+      start: 'Start'
+    },
+    mr: {
+      unitLessons: 'युनिट पाठ',
+      addLesson: 'पाठ जोडा',
+      addNewLesson: 'नवीन पाठ जोडा',
+      editLesson: 'पाठ संपादित करा',
+      updateLesson: 'पाठ अद्यतनित करा',
+      lessonTitle: 'पाठ शीर्षक',
+      lessonDescription: 'वर्णन',
+      enterLessonTitle: 'पाठ शीर्षक प्रविष्ट करा',
+      enterLessonDescription: 'पाठ वर्णन प्रविष्ट करा',
+      cancel: 'रद्द करा',
+      back: 'मागे',
+      lessons: 'पाठ',
+      lesson: 'पाठ',
+      start: 'सुरू करा'
+    },
+    mk: {
+      unitLessons: 'Лекции на единица',
+      addLesson: 'Додади лекција',
+      addNewLesson: 'Додади нова лекција',
+      editLesson: 'Уреди лекција',
+      updateLesson: 'Ажурирај лекција',
+      lessonTitle: 'Наслов на лекција',
+      lessonDescription: 'Опис',
+      enterLessonTitle: 'Внесете наслов на лекција',
+      enterLessonDescription: 'Внесете опис на лекција',
+      cancel: 'Откажи',
+      back: 'Назад',
+      lessons: 'лекции',
+      lesson: 'лекција',
+      start: 'Започни'
+    }
+  };
+  
+  const t = translations[currentLanguage] || translations.en;
   const [newLesson, setNewLesson] = useState({
     title: '',
     description: '',
@@ -176,13 +231,13 @@ const CourseLessons = () => {
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t.back}
               </Button>
-              <h1 className="text-2xl font-bold">Unit Lessons</h1>
+              <h1 className="text-2xl font-bold">{t.unitLessons}</h1>
             </div>
             <Button onClick={() => setIsAddDialogOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
-              Add Lesson
+              {t.addLesson}
             </Button>
           </div>
           
@@ -237,7 +292,7 @@ const CourseLessons = () => {
                         className="ml-4"
                       >
                         <Play className="h-3 w-3 mr-1" />
-                        Start
+                        {t.start}
                       </Button>
                     </div>
                   </div>
@@ -292,25 +347,25 @@ const CourseLessons = () => {
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Add New Lesson</DialogTitle>
+            <DialogTitle>{t.addNewLesson}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="title">Lesson Title</Label>
+              <Label htmlFor="title">{t.lessonTitle}</Label>
               <Input
                 id="title"
                 value={newLesson.title}
                 onChange={(e) => setNewLesson(prev => ({ ...prev, title: e.target.value }))}
-                placeholder="Enter lesson title"
+                placeholder={t.enterLessonTitle}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="description">Description</Label>
+              <Label htmlFor="description">{t.lessonDescription}</Label>
               <Textarea
                 id="description"
                 value={newLesson.description}
                 onChange={(e) => setNewLesson(prev => ({ ...prev, description: e.target.value }))}
-                placeholder="Enter lesson description"
+                placeholder={t.enterLessonDescription}
                 rows={3}
               />
             </div>
@@ -339,10 +394,10 @@ const CourseLessons = () => {
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
-              Cancel
+              {t.cancel}
             </Button>
             <Button onClick={handleAddLesson} disabled={!newLesson.title.trim()}>
-              Add Lesson
+              {t.addLesson}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -352,35 +407,35 @@ const CourseLessons = () => {
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Edit Lesson</DialogTitle>
+            <DialogTitle>{t.editLesson}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="editTitle">Lesson Title</Label>
+              <Label htmlFor="editTitle">{t.lessonTitle}</Label>
               <Input
                 id="editTitle"
                 value={newLesson.title}
                 onChange={(e) => setNewLesson(prev => ({ ...prev, title: e.target.value }))}
-                placeholder="Enter lesson title"
+                placeholder={t.enterLessonTitle}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="editDescription">Description</Label>
+              <Label htmlFor="editDescription">{t.lessonDescription}</Label>
               <Textarea
                 id="editDescription"
                 value={newLesson.description}
                 onChange={(e) => setNewLesson(prev => ({ ...prev, description: e.target.value }))}
-                placeholder="Enter lesson description"
+                placeholder={t.enterLessonDescription}
                 rows={3}
               />
             </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
-              Cancel
+              {t.cancel}
             </Button>
             <Button onClick={handleUpdateLesson} disabled={!newLesson.title.trim()}>
-              Update Lesson
+              {t.updateLesson}
             </Button>
           </DialogFooter>
         </DialogContent>
